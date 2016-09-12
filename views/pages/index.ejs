@@ -1,0 +1,149 @@
+<!-- views/pages/index.ejs -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title></title>
+		<link rel="stylesheet" href="/css/index.css">
+	</head>
+	<body>
+		<div class='left-side'>
+			<ul>
+				<li>
+					<h1>Chris Barry</h1>
+				</li>
+				<li>
+					<a href="mailto:me@chriswbarry.com" title="Talk to me!">
+						Talk to Me!
+					</a>
+				</li>
+				<li>
+					<a href="https://github.com/ChrisW-B/" title="Github">
+						Github
+					</a>
+				</li>
+				<li>
+					<a href="https://linkedin.com/in/ChrisWBarry" title="LinkedIn">
+						LinkedIn
+					</a>
+				</li>
+				<li>
+					<a href="https://twitter.com/ChrisW_B/" title="Twitter">
+						Twitter
+					</a>
+					<div class='twitter-widget widget'>
+						<div class='descrip'>
+							<%- lastTweet %>
+						</div>
+						<div class='reltime'>
+							<a href="<%= tweetLink%>" title="<%= tweetTime %>"><%= tweetTime %></a>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a href="http://last.fm/user/christo27/" title="Music">
+						Music
+					</a>
+					<div class='lastfm-widget widget'>
+						<div class='descrip'>
+							<%= lastPlay %>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a href="http://photo.chriswbarry.com/" title="Photography">Photography</a>
+					<div class='tumblr-widget widget'></div>
+				</li>
+			</ul>
+		</div>
+		<div class='right-side'>
+			<div class='inner-right'>
+				<div class="prof-pic">
+					<img src="/images/prof.jpg" alt="Profile Picture">
+				</div>
+				<div class='about-me'>
+					<h1>Hi, I'm Chris</h1>
+					
+					<p>
+						I'm a recent graduate of Lehigh University, where I studied computer science and engineering. Right now, I'm just doing some side projects while looking for work.
+					</p>
+					<h2>Interests</h2>
+					<p>
+						While at school, I studied a huge variety of subjects, ranging from bioinformatics and algorithms to pattern recognition and web design. Recently, I've been making a lot of things with Python, Node.JS, and JavaScript.
+						Some of my other skills include
+						</p>
+						<p>
+						<ul>
+							<li>
+								Programming
+								<ul>
+									<li>Java, C, C++, JavaScript/JQuery, HTML, CSS, Node.JS, Python, MATLAB, and anything else I can get my hands on</li>
+								</ul>
+							</li>
+							<li>
+								Visuals
+								<ul>
+									<li>Adobe Photoshop, Bridge, Lightroom, and Illustrator for both graphic design and photo editing</li>
+								</ul>
+							</li>
+							<li>
+								Social
+								<ul>
+									<li>Wordpress, Tumblr, Twitter, Snapchat, Facebook, Slack</li>
+								</ul>
+							</li>
+							<li>
+								Platforms
+								<ul>
+									<li>OS X, Linux, Windows, Unix, Bash, Microsoft Office Suite, Windows Phone, command line</li>
+								</ul>
+							</li>
+						</ul>
+					</p>
+					
+					<h2>Recent Personal Projects</h2>
+					<ul>
+						<li><a href="http://spotifyapps.chriswbarry.com/" title="Spotify Autoplaylists">Spotify Autoplaylists</a>  (<a href="https://github.com/ChrisW-B/spotifyPlaylists" title="Magic Gifs">source</a>)</li>
+						<li><a href="https://twitter.com/MagicGifsBot/" title="Magic Gifs Bot">@MagicGifsBot</a>  (<a href="https://github.com/ChrisW-B/MagicGifs" title="Magic Gifs">source</a>)</li>
+					</ul>
+
+					<h2>Experience</h2>
+					<ul>
+						<li>
+							The Brown and White: <strong>Sports Visuals Editor</strong>, <i>August 2015-June 2016</i> 
+							<ul>
+								<li>Worked in a team to produce a student run print newspaper twice weekly, and daily web articles</li>
+								<li>Coordinated a team of photographers to cover events</li>
+								<li>Processed Photos for print and web</li>
+								<li>Aided work on website, including setting up A/B testing with Parsely</li>
+							</ul>
+						</li>
+						<li>
+							Chubb Insurance: <strong>Digital Business Intern</strong>, <i>Summers 2014 and 15</i> 
+							<ul>
+								<li>Worked with the Digital Business team to create internal HTML and JavaScript apps for testing and searching</li>
+								<li>Created complex modular JavaScript grids including session storage, searching, and sorting</li>
+								<li>Worked in Claims IT to upgrade applications from VB6 to VB.Net, as well as Task Tray apps to aid in switching servers, parsing SQL</li>
+							</ul>
+						</li>
+						<li>
+							Lehigh University: <strong>Lab Assistant/Grader</strong>, <i>August 2014-December 2015</i>
+							<ul>
+								<li>Graded labs, homework, and exams for Lehigh Computer Science Courses</li>
+								<li>Held weekly office hours to assist students with homework and classes</li>
+								<li>Assisted Professor with Labs for beginner CS students, in Java, HTML, and JavaScript</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script
+			src="http://code.jquery.com/jquery-3.1.0.min.js"
+			integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+		crossorigin="anonymous"></script>
+		<script src='/js/index.js'></script>
+		<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:700|Source+Sans+Pro:400,700&subset=latin-ext" rel="stylesheet"> 
+	</body>
+</html>

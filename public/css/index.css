@@ -1,0 +1,153 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	min-width: 390px;
+}
+body {
+	display: flex;
+	flex-direction: row;
+	font-family: 'Source Sans Pro', sans-serif;
+	overflow: hidden;
+}
+a {
+	color: #cfe3cf;
+	text-decoration: none;
+	transition: .2s;
+}
+a:hover {
+	color: #8d4881;
+}
+
+/* Left side of page */
+.left-side {
+	width: 50vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow-y: hidden;
+	color: white;
+}
+.left-side:after {
+	content: '';
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 50vw;
+	height: 100vh;
+	z-index: -1;
+	pointer-events: none;
+	background-position: center, center;
+	background-repeat: no-repeat, no-repeat;
+	background-size: cover, cover;
+	background-attachment: scroll;
+	background-color: #FFFFFF;
+}
+.left-side ul {
+	font-size: 20px;
+	list-style: none;
+}
+.left-side li {
+	padding-top: 10px;
+	max-width: 400px;
+	overflow: hidden;
+	font-family: 'Source Code Pro', monospace;
+}
+.widget {
+	padding-left: 10px;
+	text-align: justify;
+	color: white;
+}
+.reltime {
+	text-transform: uppercase;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 10px;
+}
+.descrip {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 12px;
+}
+.photo-descrip {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+}
+a.photo-descrip {
+	color: white;
+	width: calc(50vw - 8px);
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	padding: 4px;
+}
+
+/* Right Side of page */
+.right-side {
+	background-color: rgba(255, 255, 255, 1);
+	width: 50%;
+	display: flex;
+	justify-content: center;
+	overflow-y: scroll;
+}
+.inner-right {
+	padding: 10px;
+	height: calc(100vh - 20px);
+	overflow-y: scroll;
+}
+.about-me {
+	padding-bottom: 30px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.prof-pic {
+	display: flex;
+	justify-content: center;
+}
+.prof-pic img {
+	width: 100px;
+	height: 100px;
+	border-radius: 100%;
+}
+.right-side a {
+	color: #8d4881;
+}
+.right-side a:hover {
+	color: #cfe3cf;
+}
+.right-side a {
+	border-bottom: 1px dotted #cfe3cf;
+}
+@media only screen and (max-width:900px) {
+	.widget {
+		display: none;
+	}
+}
+@media only screen and (max-width:640px) {
+	body {
+		flex-direction: column;
+	}
+	.left-side, .right-side {
+		width: 100%
+	}
+	.left-side ul, .left-side h1 {
+		padding: 2px;
+		margin: 0;
+	}
+	.left-side {
+		height: 120px;
+	}
+	.left-side:after {
+		width: 100vw;
+	}
+	.left-side li {
+		display: inline;
+	}
+	.left-side li:not(:last-child):not(:first-child):after {
+		content: '/ ';
+	}
+	.photo-descrip {
+		display: none;
+	}
+	.inner-right {
+		height: calc(100vh - 120px);
+	}
+}
