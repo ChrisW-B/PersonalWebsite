@@ -15,6 +15,24 @@ var logger = scribe.console({
 		rootPath: '../logs'
 	}
 });
+var lex = require('letsencrypt-express').create({
+	// set to https://acme-v01.api.letsencrypt.org/directory in production
+	server: 'https://acme-v01.api.letsencrypt.org/directory',
+	challenges: {
+		'http-01': require('le-challenge-fs').create({
+			webrootPath: '/tmp/acme-challenges'
+		})
+	},
+	store: require('le-store-certbot').create({
+		webrootPath: '/tmp/acme-challenges'
+	}),
+	approveDomains: ['chriswbarry.com'],
+	email: 'me@chriswbarry.com',
+	agreeTos: true
+});
+require('http').createServer(lex.middleware(require('redirect-https')())).listen(80, function() {
+	logger.log("Listening for ACME http-01 challenges on", this.address());
+});
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({
@@ -31,8 +49,8 @@ app.get('/', function(req, res) {
 		lastPlay: recentPlay
 	});
 });
-app.listen(3000, function() {
-	logger.log('Example app listening on port 3000!');
+require('https').createServer(lex.httpsOptions, lex.middleware(app)).listen(443, function() {
+	logger.log("Listening for ACME tls-sni-01 challenges and serve app on", this.address());
 });
 var twitterClient = new Twitter({
 	consumer_key: config.twitter.consumerKey,
