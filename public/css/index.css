@@ -126,12 +126,9 @@ and (orientation:landscape), only screen and (max-width:900px) {
 }
 @media only screen
 and (max-device-width:736px) 
-and (orientation:portrait), only screen and (max-width:640px) {
+and (orientation:portrait), only screen and (max-device-width:667px), only screen and (max-width:640px) {
 	body {
 		flex-direction: column;
-	}
-	html, body {
-		max-width: 640px;
 	}
 	.left-side, .right-side {
 		width: 100%
@@ -157,5 +154,11 @@ and (orientation:portrait), only screen and (max-width:640px) {
 	}
 	.photo-descrip {
 		display: none;
+	}
+}
+@media only screen 
+and (max-device-width:736px), only screen and (max-device-width:667px) {
+	html, body {
+		width: 400px;
 	}
 }
