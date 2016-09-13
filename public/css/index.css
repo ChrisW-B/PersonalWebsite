@@ -162,7 +162,4 @@ and (max-device-width:736px), only screen and (max-device-width:667px) {
 	html, body, .left-side:after {
 		width: 100vw;
 	}
-	body {
-		font-size:
-	}
 }
