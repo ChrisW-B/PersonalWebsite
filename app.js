@@ -58,19 +58,19 @@ require('https').createServer(lex.httpsOptions, lex.middleware(app)).listen(443,
 	logger.log("Listening for ACME tls-sni-01 challenges and serve app on", this.address());
 });
 var twitterClient = new Twitter({
-	consumer_key: config.twitter.consumerKey,
-	consumer_secret: config.twitter.consumerSecret,
-	access_token_key: config.twitter.accessToken,
-	access_token_secret: config.twitter.accessSecret
-});
-var lastFmClient = new Lastfm({
-	api_key: config.lastfm.apiKey,
-	api_secret: config.lastfm.apiSecret
-});
-var recentTweet = {};
-var recentPlay = "";
-var photoData = {};
-var okToDownloadPhoto = true;
+		consumer_key: config.twitter.consumerKey,
+		consumer_secret: config.twitter.consumerSecret,
+		access_token_key: config.twitter.accessToken,
+		access_token_secret: config.twitter.accessSecret
+	}),
+	lastFmClient = new Lastfm({
+		api_key: config.lastfm.apiKey,
+		api_secret: config.lastfm.apiSecret
+	}),
+	recentTweet = {},
+	recentPlay = "",
+	photoData = {},
+	okToDownloadPhoto = true;
 
 function getMostRecentTweet() {
 	logger.log("getting recent tweet");
@@ -182,7 +182,7 @@ var download = function(uri, filename, callback) {
 };
 getMostRecentTweet();
 getMostRecentPlay();
-// getNewBgImage();
+getNewBgImage();
 setInterval(function() {
 	getMostRecentPlay();
 }, 2 * (60 * 1000));
