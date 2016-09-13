@@ -91,7 +91,7 @@ a.photo-descrip {
 }
 .inner-right {
 	padding: 10px;
-	height: calc(100vh - 20px);
+	height: 100vh;
 	overflow-y: scroll;
 }
 .about-me {
@@ -151,6 +151,9 @@ and (orientation:portrait), only screen and (max-device-width:667px), only scree
 	}
 	.left-side li:not(:last-child):not(:first-child):after {
 		content: '/ ';
+	}
+	.inner-right {
+		height: calc(100vh - 80px);
 	}
 	.photo-descrip {
 		display: none;
