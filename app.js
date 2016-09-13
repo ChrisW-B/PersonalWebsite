@@ -28,7 +28,7 @@ var config = require('./config'),
 		store: require('le-store-certbot').create({
 			webrootPath: '/tmp/acme-challenges'
 		}),
-		approveDomains: ['chriswbarry.com', 'chrisb.xyz'],
+		approveDomains: ['chriswbarry.com', 'chrisb.xyz', 'chriswbarry.cloudapp.net'],
 		email: 'me@chriswbarry.com',
 		agreeTos: true
 	});
