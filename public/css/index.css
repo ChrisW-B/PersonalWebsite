@@ -44,7 +44,7 @@ a:hover {
 	background-image: linear-gradient(102deg, rgba(0, 195, 216, 0.82) 9%, rgba(186, 39, 66, 0.51) 100%), url("../images/bg.jpg");
 }
 .left-side ul {
-	font-size: 20px;
+	font-size: 1.5em;
 	list-style: none;
 }
 .left-side li {
@@ -123,12 +123,17 @@ and (orientation:landscape), only screen and (max-width:900px) {
 	.widget {
 		display: none;
 	}
+	.left-side ul {
+		font-size: 20px;
+	}
 }
 @media only screen
-and (max-device-width:736px) 
-and (orientation:portrait), only screen and (max-device-width:667px), only screen and (max-width:640px) {
+and (max-device-width:736px), only screen and (max-device-width:667px), only screen and (max-width:640px) {
 	body {
 		flex-direction: column;
+	}
+	.left-side ul {
+		font-size: 20px;
 	}
 	.left-side, .right-side {
 		width: 100%
