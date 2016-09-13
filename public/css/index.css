@@ -126,7 +126,8 @@ and (orientation:landscape), only screen and (max-width:900px) {
 }
 @media only screen
 and (max-device-width:736px) 
-and (orientation:portrait), only screen and (max-width:640px) {
+and (orientation:portrait), and (max-device-width:736px) 
+and (orientation:landscape), only screen and (max-width:640px) {
 	body {
 		flex-direction: column;
 	}
