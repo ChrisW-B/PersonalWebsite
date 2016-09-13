@@ -153,7 +153,7 @@ and (orientation:portrait), only screen and (max-device-width:667px), only scree
 		content: '/ ';
 	}
 	.inner-right {
-		height: calc(100vh - 80px);
+		height: calc(100vh - 120px);
 	}
 	.photo-descrip {
 		display: none;
