@@ -118,12 +118,8 @@ function getNewBgImage() {
 	}
 	okToDownloadPhoto = false;
 	var url = "http://photo.chriswbarry.com/api/read/json?number=20&type=photo";
-	http.get(url, function(res) {
-		var body = '';
-		res.on('data', function(chunk) {
-			body += chunk;
-		});
-		res.on('end', function() {
+	request(url, function(error, res, body) {
+		if (!error && res.statusCode == 200) {
 			var response = JSON.parse(body);
 			logger.log(response);
 			var randNum = Math.round(Math.random() * (response.tumblr_api_read.posts.length - 1));
@@ -133,9 +129,7 @@ function getNewBgImage() {
 			download(recentPhoto['photo-url-1280'], "../images/bg.jpg", function() {
 				logger.log("downloaded image");
 			});
-		});
-	}).on('error', function(e) {
-		console.log("Got an error: ", e);
+		}
 	});
 }
 
