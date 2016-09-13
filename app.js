@@ -43,6 +43,7 @@ app.use(bodyParser.json());
 app.use(scribe.express.logger(logger)); //Log each request
 app.use('/logs', scribe.webPanel());
 app.get('/', function(req, res) {
+	getNewBgImage();
 	res.render('pages/index', {
 		lastTweet: recentTweet.text,
 		tweetTime: relativeTimeDifference(new Date(recentTweet.time)),
@@ -68,6 +69,7 @@ var lastFmClient = new Lastfm({
 var recentTweet = {};
 var recentPlay = "";
 var photoData = {};
+var okToDownloadPhoto = true;
 
 function getMostRecentTweet() {
 	logger.log("getting recent tweet");
@@ -111,6 +113,10 @@ function getMostRecentPlay() {
 }
 
 function getNewBgImage() {
+	if (!okToDownloadPhoto) {
+		return;
+	}
+	okToDownloadPhoto = false;
 	var url = "http://photo.chriswbarry.com/api/read/json?number=20&type=photo";
 	http.get(url, function(res) {
 		var body = '';
@@ -181,7 +187,11 @@ var download = function(uri, filename, callback) {
 };
 getMostRecentTweet();
 getMostRecentPlay();
+getNewBgImage();
 setInterval(function() {
-	getMostRecentTweet();
 	getMostRecentPlay();
 }, 120000);
+setInterval(function() {
+	getMostRecentTweet();
+	okToDownloadPhoto = true;
+}, 540000);
