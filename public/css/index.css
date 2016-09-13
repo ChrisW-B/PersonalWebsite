@@ -117,12 +117,12 @@ a.photo-descrip {
 .right-side a {
 	border-bottom: 1px dotted #cfe3cf;
 }
-@media only screen and (max-width:900px) {
+@media only screen and (max-width:900px) and (-webkit-device-pixel-ratio:2) {
 	.widget {
 		display: none;
 	}
 }
-@media only screen and (max-width:640px) {
+@media only screen and (max-width:640px) and (-webkit-device-pixel-ratio:2) {
 	body {
 		flex-direction: column;
 	}
