@@ -161,7 +161,7 @@ and (max-device-width:736px), only screen and (max-device-width:667px) {
 	html, body {
 		width: 400px;
 	}
-	.left-side {
+	.left-side:after {
 		width: 400px;
 	}
 }
