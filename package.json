@@ -19,7 +19,8 @@
     "body-parser": "*",
     "scribe-js": "*",
     "twitter-text": "*",
-    "letsencrypt-express": "*"
+    "letsencrypt-express": "*",
+    "request": "*"
   },
   "engines": {
     "node": "0.10.x",

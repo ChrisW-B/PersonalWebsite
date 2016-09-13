@@ -6,6 +6,8 @@ var config = require('./config'),
 	twitterText = require('twitter-text'),
 	Lastfm = require('simple-lastfm'),
 	bodyParser = require('body-parser'),
+	fs = require('fs'),
+	request = require('request'),
 	scribe = require('scribe-js')({
 		createDefaultlog: false
 	}),
@@ -16,7 +18,6 @@ var logger = scribe.console({
 	}
 });
 var lex = require('letsencrypt-express').create({
-	// set to https://acme-v01.api.letsencrypt.org/directory in production
 	server: 'https://acme-v01.api.letsencrypt.org/directory',
 	challenges: {
 		'http-01': require('le-challenge-fs').create({
@@ -46,7 +47,9 @@ app.get('/', function(req, res) {
 		lastTweet: recentTweet.text,
 		tweetTime: relativeTimeDifference(new Date(recentTweet.time)),
 		tweetLink: recentTweet.link,
-		lastPlay: recentPlay
+		lastPlay: recentPlay,
+		photoLink: photoData.link,
+		photoDescrip: photoData.descrip
 	});
 });
 require('https').createServer(lex.httpsOptions, lex.middleware(app)).listen(443, function() {
@@ -64,6 +67,7 @@ var lastFmClient = new Lastfm({
 });
 var recentTweet = {};
 var recentPlay = "";
+var photoData = {};
 
 function getMostRecentTweet() {
 	logger.log("getting recent tweet");
@@ -106,6 +110,29 @@ function getMostRecentPlay() {
 	});
 }
 
+function getNewBgImage() {
+	var url = "http://photo.chriswbarry.com/api/read/json?number=20&type=photo";
+	http.get(url, function(res) {
+		var body = '';
+		res.on('data', function(chunk) {
+			body += chunk;
+		});
+		res.on('end', function() {
+			var response = JSON.parse(body);
+			logger.log(response);
+			var randNum = Math.round(Math.random() * (response.tumblr_api_read.posts.length - 1));
+			var recentPhoto = tumblr_api_read.posts[randNum];
+			photoData.link = recentPhoto.url;
+			photoData.descrip = "Background: <br/>" + recentPhoto['photo-caption'];
+			download(recentPhoto['photo-url-1280'], "../images/bg.jpg", function() {
+				logger.log("downloaded image");
+			});
+		});
+	}).on('error', function(e) {
+		console.log("Got an error: ", e);
+	});
+}
+
 function relativeTimeDifference(previous) {
 	//based on http://stackoverflow.com/a/6109105/6465731
 	var current = new Date(),
@@ -145,6 +172,13 @@ function relativeTimeDifference(previous) {
 	}
 	return approx + " " + num + " " + unit + " ago";
 }
+var download = function(uri, filename, callback) {
+	request.head(uri, function(err, res, body) {
+		console.log('content-type:', res.headers['content-type']);
+		console.log('content-length:', res.headers['content-length']);
+		request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
+	});
+};
 getMostRecentTweet();
 getMostRecentPlay();
 setInterval(function() {
