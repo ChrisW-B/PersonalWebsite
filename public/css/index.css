@@ -158,13 +158,17 @@ and (orientation:portrait), only screen and (max-device-width:667px), only scree
 }
 @media only screen 
 and (max-device-width:736px), only screen and (max-device-width:667px) {
-	html, body, .left-side:after {
-		width: 100vw;
+	.left-side {
+		height: 17em;
 	}
 	.left-side ul {
 		font-size: 3em;
 	}
 	.right-side {
 		font-size: 2em;
+	}
+	.prof-pic img {
+		width: 11em;
+		height: 11em;
 	}
 }
