@@ -120,6 +120,7 @@ function getNewBgImage() {
 	var url = "http://photo.chriswbarry.com/api/read/json?number=20&type=photo";
 	request(url, function(error, res, body) {
 		if (!error && res.statusCode == 200) {
+			logger.log(body);
 			var response = JSON.parse(body);
 			logger.log(response);
 			var randNum = Math.round(Math.random() * (response.tumblr_api_read.posts.length - 1));
