@@ -2,35 +2,36 @@ var config = require('./config'),
 	http = require('http'),
 	Twitter = require('twitter'),
 	express = require('express'),
-	app = express(),
 	twitterText = require('twitter-text'),
 	Lastfm = require('simple-lastfm'),
 	bodyParser = require('body-parser'),
 	fs = require('fs'),
+	vm = require('vm'),
 	request = require('request'),
+	app = express(),
 	scribe = require('scribe-js')({
 		createDefaultlog: false
 	}),
-	console = process.log;
-var logger = scribe.console({
-	logWriter: {
-		rootPath: '../logs'
-	}
-});
-var lex = require('letsencrypt-express').create({
-	server: 'https://acme-v01.api.letsencrypt.org/directory',
-	challenges: {
-		'http-01': require('le-challenge-fs').create({
-			webrootPath: '/tmp/acme-challenges'
-		})
-	},
-	store: require('le-store-certbot').create({
-		webrootPath: '/tmp/acme-challenges'
+	logger = scribe.console({
+		logWriter: {
+			rootPath: '../logs'
+		}
 	}),
-	approveDomains: ['chriswbarry.com'],
-	email: 'me@chriswbarry.com',
-	agreeTos: true
-});
+	console = process.log,
+	lex = require('letsencrypt-express').create({
+		server: 'https://acme-v01.api.letsencrypt.org/directory',
+		challenges: {
+			'http-01': require('le-challenge-fs').create({
+				webrootPath: '/tmp/acme-challenges'
+			})
+		},
+		store: require('le-store-certbot').create({
+			webrootPath: '/tmp/acme-challenges'
+		}),
+		approveDomains: ['chriswbarry.com'],
+		email: 'me@chriswbarry.com',
+		agreeTos: true
+	});
 require('http').createServer(lex.middleware(require('redirect-https')())).listen(80, function() {
 	logger.log("Listening for ACME http-01 challenges on", this.address());
 });
@@ -120,15 +121,14 @@ function getNewBgImage() {
 	var url = "http://photo.chriswbarry.com/api/read/json?number=20&type=photo";
 	request(url, function(error, res, body) {
 		if (!error && res.statusCode == 200) {
-			logger.log(body);
-			var response = JSON.parse(body);
-			logger.log(response);
-			var randNum = Math.round(Math.random() * (response.tumblr_api_read.posts.length - 1));
-			var recentPhoto = tumblr_api_read.posts[randNum];
+			sandbox = {};
+			vm.runInNewContext(body, sandbox, 'myfile.vm');
+			var randNum = Math.round(Math.random() * (sandbox.tumblr_api_read.posts.length - 1));
+			var recentPhoto = sandbox.tumblr_api_read.posts[randNum];
 			photoData.link = recentPhoto.url;
 			photoData.descrip = "Background: <br/>" + recentPhoto['photo-caption'];
-			download(recentPhoto['photo-url-1280'], "../images/bg.jpg", function() {
-				logger.log("downloaded image");
+			download(recentPhoto['photo-url-1280'], "public/images/bg.jpg", function() {
+				console.log("downloaded image");
 			});
 		}
 	});
@@ -175,18 +175,20 @@ function relativeTimeDifference(previous) {
 }
 var download = function(uri, filename, callback) {
 	request.head(uri, function(err, res, body) {
-		console.log('content-type:', res.headers['content-type']);
-		console.log('content-length:', res.headers['content-length']);
+		logger.log('content-type:', res.headers['content-type']);
+		logger.log('content-length:', res.headers['content-length']);
 		request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
 	});
 };
 getMostRecentTweet();
 getMostRecentPlay();
-getNewBgImage();
+// getNewBgImage();
 setInterval(function() {
 	getMostRecentPlay();
-}, 120000);
+}, 2 * (60 * 1000));
 setInterval(function() {
 	getMostRecentTweet();
+}, 4 * (60 * 1000));
+setInterval(function() {
 	okToDownloadPhoto = true;
-}, 540000);
+}, 15 * (60 * 1000));
