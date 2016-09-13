@@ -128,7 +128,7 @@ function getNewBgImage() {
 			photoData.link = recentPhoto.url;
 			photoData.descrip = "Background: <br/>" + recentPhoto['photo-caption'];
 			download(recentPhoto['photo-url-1280'], "public/images/bg.jpg", function() {
-				console.log("downloaded image");
+				logger.log("downloaded image");
 			});
 		}
 	});
