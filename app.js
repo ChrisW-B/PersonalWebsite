@@ -126,7 +126,7 @@ function getNewBgImage() {
 			var randNum = Math.round(Math.random() * (sandbox.tumblr_api_read.posts.length - 1));
 			var recentPhoto = sandbox.tumblr_api_read.posts[randNum];
 			photoData.link = recentPhoto.url;
-			photoData.descrip = "Background: <br/>" + recentPhoto['photo-caption'];
+			photoData.descrip = "Background: <br/>" + recentPhoto['photo-caption'].replace(/(<([^>]+)>)/ig, "");
 			download(recentPhoto['photo-url-1280'], "public/images/bg.jpg", function() {
 				logger.log("downloaded image");
 			});
