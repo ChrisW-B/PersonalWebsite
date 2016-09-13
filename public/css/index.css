@@ -158,10 +158,7 @@ and (orientation:portrait), only screen and (max-device-width:667px), only scree
 }
 @media only screen 
 and (max-device-width:736px), only screen and (max-device-width:667px) {
-	html, body {
+	html, body, .left-side:after {
 		width: 400px;
-	}
-	.left-side:after {
-		width: 100%;
 	}
 }
