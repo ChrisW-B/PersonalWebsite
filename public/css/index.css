@@ -126,7 +126,9 @@ a.photo-descrip {
 and (max-device-width:640px), only screen and (max-device-width:667px), only screen and (max-width:640px) {
 	body {
 		flex-direction: column;
-		width: 640px;
+	}
+	html {
+		max-width: 640px;
 	}
 	.left-side, .right-side {
 		width: 100%
