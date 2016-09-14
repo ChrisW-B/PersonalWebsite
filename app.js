@@ -9,9 +9,7 @@ var config = require('./config'),
 	vm = require('vm'),
 	request = require('request'),
 	app = express(),
-	scribe = require('scribe-js')({
-		createDefaultlog: false
-	}),
+	scribe = require('scribe-js')(),
 	logger = scribe.console(),
 	console = process.log,
 	lex = require('letsencrypt-express').create({
