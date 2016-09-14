@@ -26,7 +26,7 @@ var config = require('./config'),
 		email: 'me@chriswbarry.com',
 		agreeTos: true
 	});
-require('http').createServer(lex.middleware(require('redirect-https')())).listen(80, function() {
+require('http').createServer(lex.middleware(require('redirect-https')())).listen(3000, function() {
 	console.log("Listening for ACME http-01 challenges on", this.address());
 });
 app.set('view engine', 'ejs');
@@ -48,7 +48,7 @@ app.get('/', function(req, res) {
 		photoDescrip: photoData.descrip
 	});
 });
-require('https').createServer(lex.httpsOptions, lex.middleware(app)).listen(443, function() {
+require('https').createServer(lex.httpsOptions, lex.middleware(app)).listen(3001, function() {
 	console.log("Listening for ACME tls-sni-01 challenges and serve app on", this.address());
 });
 var twitterClient = new Twitter({
