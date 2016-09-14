@@ -13,6 +13,7 @@ var config = require('./config'),
 	console = process.console,
 	lex = require('letsencrypt-express').create({
 		server: 'https://acme-v01.api.letsencrypt.org/directory',
+		debug: true,
 		// server: 'staging',
 		challenges: {
 			'http-01': require('le-challenge-fs').create({
@@ -22,7 +23,7 @@ var config = require('./config'),
 		store: require('le-store-certbot').create({
 			webrootPath: '/tmp/acme-challenges'
 		}),
-		approveDomains: ['chriswbarry.com', 'chrisb.xyz', 'www.chriswbarry.com', 'www.chrisb.xyz', 'blog.chriswbarry.com'],
+		approveDomains: ['chriswbarry.com', 'chrisb.xyz', 'www.chriswbarry.com', 'www.chrisb.xyz', 'me.chrisb.xyz'],
 		email: 'me@chriswbarry.com',
 		agreeTos: true
 	});
