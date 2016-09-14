@@ -14,7 +14,7 @@ var config = require('./config'),
 	}),
 	logger = scribe.console({
 		logWriter: {
-			rootPath: '../logs'
+			rootPath: 'logs'
 		}
 	}),
 	console = process.log,
