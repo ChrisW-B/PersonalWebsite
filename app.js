@@ -12,8 +12,8 @@ var config = require('./config'),
 	scribe = require('scribe-js')(),
 	logger = process.console,
 	lex = require('letsencrypt-express').create({
-		// server: 'https://acme-v01.api.letsencrypt.org/directory',
-		server: 'staging',
+		server: 'https://acme-v01.api.letsencrypt.org/directory',
+		// server: 'staging',
 		challenges: {
 			'http-01': require('le-challenge-fs').create({
 				webrootPath: '/tmp/acme-challenges'
