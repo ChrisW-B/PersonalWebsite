@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({
 	extended: false
 }));
 app.use(bodyParser.json());
-app.use(scribe.express.console(console)); //Log each request
+app.use(scribe.express.logger(console)); //Log each request
 app.use('/logs', scribe.webPanel());
 app.get('/', function(req, res) {
 	getNewBgImage();
