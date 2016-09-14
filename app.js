@@ -12,11 +12,7 @@ var config = require('./config'),
 	scribe = require('scribe-js')({
 		createDefaultlog: false
 	}),
-	logger = scribe.console({
-		logWriter: {
-			rootPath: 'logs'
-		}
-	}),
+	logger = scribe.console(),
 	console = process.log,
 	lex = require('letsencrypt-express').create({
 		// server: 'https://acme-v01.api.letsencrypt.org/directory',

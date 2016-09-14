@@ -4,7 +4,6 @@
   "description": "My Personal Website",
   "main": "app.js",
   "author": "Chris Barry <me@chrisb.xyz>",
-  "license": "None",
   "repository": {
     "type": "git",
     "url": "null"
