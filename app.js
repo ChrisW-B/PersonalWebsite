@@ -10,10 +10,10 @@ var config = require('./config'),
 	request = require('request'),
 	app = express(),
 	scribe = require('scribe-js')(),
-	logger = process.console,
+	console = process.console,
 	lex = require('letsencrypt-express').create({
-		server: 'https://acme-v01.api.letsencrypt.org/directory',
-		// server: 'staging',
+		// server: 'https://acme-v01.api.letsencrypt.org/directory',
+		server: 'staging',
 		challenges: {
 			'http-01': require('le-challenge-fs').create({
 				webrootPath: '/tmp/acme-challenges'
@@ -24,13 +24,10 @@ var config = require('./config'),
 		}),
 		approveDomains: ['chriswbarry.com', 'chrisb.xyz', 'www.chriswbarry.com', 'www.chrisb.xyz'],
 		email: 'me@chriswbarry.com',
-		agreeTos: true,
-		renewWithin: (91 * 24 * 60 * 60 * 1000),
-		renewBy: (90 * 24 * 60 * 60 * 1000),
-		debug: true
+		agreeTos: true
 	});
 require('http').createServer(lex.middleware(require('redirect-https')())).listen(80, function() {
-	logger.log("Listening for ACME http-01 challenges on", this.address());
+	console.log("Listening for ACME http-01 challenges on", this.address());
 });
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
@@ -38,7 +35,7 @@ app.use(bodyParser.urlencoded({
 	extended: false
 }));
 app.use(bodyParser.json());
-app.use(scribe.express.logger(logger)); //Log each request
+app.use(scribe.express.console(console)); //Log each request
 app.use('/logs', scribe.webPanel());
 app.get('/', function(req, res) {
 	getNewBgImage();
@@ -52,7 +49,7 @@ app.get('/', function(req, res) {
 	});
 });
 require('https').createServer(lex.httpsOptions, lex.middleware(app)).listen(443, function() {
-	logger.log("Listening for ACME tls-sni-01 challenges and serve app on", this.address());
+	console.log("Listening for ACME tls-sni-01 challenges and serve app on", this.address());
 });
 var twitterClient = new Twitter({
 		consumer_key: config.twitter.consumerKey,
@@ -70,7 +67,7 @@ var twitterClient = new Twitter({
 	okToDownloadPhoto = true;
 
 function getMostRecentTweet() {
-	logger.log("getting recent tweet");
+	console.log("getting recent tweet");
 	var params = {
 		screen_name: "ChrisW_B",
 		count: 20,
@@ -85,15 +82,15 @@ function getMostRecentTweet() {
 			});
 			recentTweet.time = newTweet.created_at;
 			recentTweet.link = "https://twitter.com/statuses/" + newTweet.id_str;
-			logger.log("updated tweet");
+			console.log("updated tweet");
 		} else {
-			logger.log(error);
+			console.log(error);
 		}
 	});
 }
 
 function getMostRecentPlay() {
-	logger.log("getting recent play");
+	console.log("getting recent play");
 	lastFmClient.getRecentTracks({
 		user: 'Christo27',
 		limit: 1,
@@ -102,7 +99,7 @@ function getMostRecentPlay() {
 			if (result.success) {
 				var lastTrack = result.recentTracks[0];
 				if (lastTrack !== undefined && lastTrack['@'].nowplaying) {
-					logger.log("updated now playing");
+					console.log("updated now playing");
 					recentPlay = "♫ " + lastTrack.name + " by " + lastTrack.artist['#'];
 				}
 			}
@@ -125,7 +122,7 @@ function getNewBgImage() {
 			photoData.link = recentPhoto.url;
 			photoData.descrip = "Background: <br/>" + recentPhoto['photo-caption'].replace(/(<([^>]+)>)/ig, "");
 			download(recentPhoto['photo-url-1280'], "public/images/bg.jpg", function() {
-				logger.log("downloaded image");
+				console.log("downloaded image");
 			});
 		}
 	});
@@ -172,8 +169,8 @@ function relativeTimeDifference(previous) {
 }
 var download = function(uri, filename, callback) {
 	request.head(uri, function(err, res, body) {
-		logger.log('content-type:', res.headers['content-type']);
-		logger.log('content-length:', res.headers['content-length']);
+		console.log('content-type:', res.headers['content-type']);
+		console.log('content-length:', res.headers['content-length']);
 		request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
 	});
 };
