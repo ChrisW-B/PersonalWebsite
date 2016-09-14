@@ -19,7 +19,8 @@ var config = require('./config'),
 	}),
 	console = process.log,
 	lex = require('letsencrypt-express').create({
-		server: 'https://acme-v01.api.letsencrypt.org/directory',
+		// server: 'https://acme-v01.api.letsencrypt.org/directory',
+		server: 'staging',
 		challenges: {
 			'http-01': require('le-challenge-fs').create({
 				webrootPath: '/tmp/acme-challenges'
@@ -28,9 +29,12 @@ var config = require('./config'),
 		store: require('le-store-certbot').create({
 			webrootPath: '/tmp/acme-challenges'
 		}),
-		approveDomains: ['chriswbarry.com', 'chrisb.xyz'],
+		approveDomains: ['chriswbarry.com', 'chrisb.xyz', 'www.chriswbarry.com', 'www.chrisb.xyz'],
 		email: 'me@chriswbarry.com',
-		agreeTos: true
+		agreeTos: true,
+		renewWithin: (91 * 24 * 60 * 60 * 1000),
+		renewBy: (90 * 24 * 60 * 60 * 1000),
+		debug: true
 	});
 require('http').createServer(lex.middleware(require('redirect-https')())).listen(80, function() {
 	logger.log("Listening for ACME http-01 challenges on", this.address());
