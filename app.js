@@ -1,5 +1,4 @@
 var config = require('./config'),
-	http = require('http'),
 	Twitter = require('twitter'),
 	express = require('express'),
 	twitterText = require('twitter-text'),
@@ -10,26 +9,7 @@ var config = require('./config'),
 	request = require('request'),
 	app = express(),
 	scribe = require('scribe-js')(),
-	console = process.console,
-	lex = require('letsencrypt-express').create({
-		server: 'https://acme-v01.api.letsencrypt.org/directory',
-		debug: true,
-		// server: 'staging',
-		challenges: {
-			'http-01': require('le-challenge-fs').create({
-				webrootPath: '/tmp/acme-challenges'
-			})
-		},
-		store: require('le-store-certbot').create({
-			webrootPath: '/tmp/acme-challenges'
-		}),
-		approveDomains: ['chriswbarry.com', 'chrisb.xyz', 'www.chriswbarry.com', 'www.chrisb.xyz', 'me.chrisb.xyz'],
-		email: 'me@chriswbarry.com',
-		agreeTos: true
-	});
-require('http').createServer(lex.middleware(require('redirect-https')())).listen(3000, function() {
-	console.log("Listening for ACME http-01 challenges on", this.address());
-});
+	console = process.console;
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({
@@ -49,8 +29,8 @@ app.get('/', function(req, res) {
 		photoDescrip: photoData.descrip
 	});
 });
-require('https').createServer(lex.httpsOptions, lex.middleware(app)).listen(3001, function() {
-	console.log("Listening for ACME tls-sni-01 challenges and serve app on", this.address());
+app.listen(4737, function() {
+	console.log('SpotifyApps listening on port 4737!');
 });
 var twitterClient = new Twitter({
 		consumer_key: config.twitter.consumerKey,
