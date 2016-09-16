@@ -10,6 +10,7 @@ var config = require('./config'),
 	app = express(),
 	scribe = require('scribe-js')(),
 	console = process.console;
+const ONE_MIN = 60 * 1000;
 app.set('view engine', 'ejs');
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({
@@ -19,7 +20,9 @@ app.use(bodyParser.json());
 app.use(scribe.express.logger(console)); //Log each request
 app.use('/logs', scribe.webPanel());
 app.get('/', function(req, res) {
-	getNewBgImage();
+	setTimeout(function() {
+		getNewBgImage();
+	}, ONE_MIN / 2); //wait a bit before loading a new bg
 	res.render('pages/index', {
 		lastTweet: recentTweet.text,
 		tweetTime: relativeTimeDifference(new Date(recentTweet.time)),
@@ -149,6 +152,7 @@ function relativeTimeDifference(previous) {
 	return approx + " " + num + " " + unit + " ago";
 }
 var download = function(uri, filename, callback) {
+	//saving a file
 	request.head(uri, function(err, res, body) {
 		console.log('content-type:', res.headers['content-type']);
 		console.log('content-length:', res.headers['content-length']);
@@ -160,10 +164,10 @@ getMostRecentPlay();
 getNewBgImage();
 setInterval(function() {
 	getMostRecentPlay();
-}, 2 * (60 * 1000));
+}, 2 * ONE_MIN);
 setInterval(function() {
 	getMostRecentTweet();
-}, 4 * (60 * 1000));
+}, 4 * ONE_MIN);
 setInterval(function() {
 	okToDownloadPhoto = true;
-}, 15 * (60 * 1000));
+}, 15 * ONE_MIN);
