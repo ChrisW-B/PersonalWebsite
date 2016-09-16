@@ -18,7 +18,8 @@
     "body-parser": "*",
     "scribe-js": "*",
     "twitter-text": "*",
-    "request": "*"
+    "request": "*",
+    "compression": "*"
   },
   "engines": {
     "node": "0.10.x",

@@ -7,16 +7,21 @@ var config = require('./config'),
 	fs = require('fs'),
 	vm = require('vm'),
 	request = require('request'),
+	compression = require('compression'),
 	app = express(),
 	scribe = require('scribe-js')(),
 	console = process.console;
-const ONE_MIN = 60 * 1000;
+const ONE_MIN = 60 * 1000,
+	ONE_DAY = 86400000;
 app.set('view engine', 'ejs');
-app.use(express.static("public"));
+app.use(express.static(__dirname + "/public", {
+	maxAge: ONE_DAY
+}));
 app.use(bodyParser.urlencoded({
 	extended: false
 }));
 app.use(bodyParser.json());
+app.use(compression());
 app.use(scribe.express.logger(console)); //Log each request
 app.use('/logs', scribe.webPanel());
 app.get('/', function(req, res) {
