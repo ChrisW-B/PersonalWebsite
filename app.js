@@ -2,7 +2,7 @@ var config = require('./config'),
 	Twitter = require('twitter'),
 	express = require('express'),
 	twitterText = require('twitter-text'),
-	Lastfm = require('simple-lastfm'),
+	Lastfm = require('lastfm-njs'),
 	bodyParser = require('body-parser'),
 	fs = require('fs'),
 	vm = require('vm'),
@@ -47,8 +47,8 @@ var twitterClient = new Twitter({
 		access_token_secret: config.twitter.accessSecret
 	}),
 	lastFmClient = new Lastfm({
-		api_key: config.lastfm.apiKey,
-		api_secret: config.lastfm.apiSecret
+		apiKey: config.lastfm.apiKey,
+		apiSecret: config.lastfm.apiSecret
 	}),
 	recentTweet = {},
 	recentPlay = "",
@@ -80,16 +80,16 @@ function getMostRecentTweet() {
 
 function getMostRecentPlay() {
 	console.log("getting recent play");
-	lastFmClient.getRecentTracks({
+	lastFmClient.user_getRecentTracks({
 		user: 'Christo27',
 		limit: 1,
 		callback: function(result) {
 			recentPlay = "";
 			if (result.success) {
-				var lastTrack = result.recentTracks[0];
-				if (lastTrack !== undefined && lastTrack['@'].nowplaying) {
+				var lastTrack = result.track[0];
+				if (lastTrack !== undefined && lastTrack['@attr'].nowplaying) {
 					console.log("updated now playing");
-					recentPlay = "♫ " + lastTrack.name + " by " + lastTrack.artist['#'];
+					recentPlay = "♫ " + lastTrack.name + " by " + lastTrack.artist['#text'];
 				}
 			}
 		}
