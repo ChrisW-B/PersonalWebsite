@@ -38,19 +38,17 @@ function setLastFM() {
 
 function setBgInfo() {
 	var tumblrWidget = $('.photo-descrip');
-	setTimeout(function() {
-		$.ajax({
-				url: "/bginfo"
-			})
-			.done(function(data) {
-				if (data.success) {
-					var info = $('<a href="' +
-						data.url +
-						'" title="Link to Background">' +
-						data.descrip +
-						'</a>');
-					tumblrWidget.html(info);
-				}
-			});
-	}, 1000); //give it time to find a photo first
+	$.ajax({
+			url: "/bginfo"
+		})
+		.done(function(data) {
+			if (data.success) {
+				var info = $('<a href="' +
+					data.url +
+					'" title="Link to Background">' +
+					data.descrip +
+					'</a>');
+				tumblrWidget.html(info);
+			}
+		});
 }
