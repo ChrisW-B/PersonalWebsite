@@ -85,19 +85,17 @@ app.get('/bg', function(req, res) {
 });
 
 app.get('/bginfo', function(req, res) {
-	setTimeout(function() {
-		if (recentPhoto !== undefined && recentPhoto !== "") {
-			res.send({
-				success: true,
-				link: recentPhoto.url,
-				descrip: "Background: <br/>" + recentPhoto['photo-caption'].replace(/(<([^>]+)>)/ig, ""),
-			});
-		} else {
-			res.send({
-				success: false
-			});
-		}
-	}, 200);
+	if (recentPhoto !== undefined && recentPhoto !== "") {
+		res.send({
+			success: true,
+			link: recentPhoto.url,
+			descrip: "Background: <br/>" + recentPhoto['photo-caption'].replace(/(<([^>]+)>)/ig, ""),
+		});
+	} else {
+		res.send({
+			success: false
+		});
+	}
 });
 
 app.get('/lastfm', function(req, res) {

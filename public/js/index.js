@@ -2,7 +2,7 @@ $(document).ready(
 	function() {
 		setTweet();
 		setLastFM();
-		setBg();
+		setBgInfo();
 	}
 );
 
@@ -36,19 +36,21 @@ function setLastFM() {
 		});
 }
 
-function setBg() {
+function setBgInfo() {
 	var tumblrWidget = $('.photo-descrip');
-	$.ajax({
-			url: "/bginfo"
-		})
-		.done(function(data) {
-			if (data.success) {
-				var info = $('<a href="' +
-					data.url +
-					'" title="Link to Background">' +
-					data.descrip +
-					'</a>');
-				tumblrWidget.html(info);
-			}
-		});
+	setTimeout(function() {
+		$.ajax({
+				url: "/bginfo"
+			})
+			.done(function(data) {
+				if (data.success) {
+					var info = $('<a href="' +
+						data.url +
+						'" title="Link to Background">' +
+						data.descrip +
+						'</a>');
+					tumblrWidget.html(info);
+				}
+			});
+	}, 1000); //give it time to find a photo first
 }
