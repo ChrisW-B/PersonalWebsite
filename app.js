@@ -11,8 +11,22 @@ var config = require('./config'),
 	app = express(),
 	scribe = require('scribe-js')(),
 	console = process.console;
+
 const ONE_MIN = 60 * 1000,
-	ONE_DAY = 86400000;
+	ONE_DAY = ONE_MIN * 60 * 24;
+
+var twitterClient = new Twitter({
+		consumer_key: config.twitter.consumerKey,
+		consumer_secret: config.twitter.consumerSecret,
+		access_token_key: config.twitter.accessToken,
+		access_token_secret: config.twitter.accessSecret
+	}),
+	lastFmClient = new Lastfm({
+		apiKey: config.lastfm.apiKey,
+		apiSecret: config.lastfm.apiSecret
+	}),
+	photoData = {};
+
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname + "/public", {
 	maxAge: ONE_DAY
@@ -25,60 +39,68 @@ app.use(compression());
 app.use(scribe.express.logger(console)); //Log each request
 app.use('/logs', scribe.webPanel());
 app.get('/', function(req, res) {
-	setTimeout(function() {
-		getNewBgImage();
-	}, ONE_MIN / 2); //wait a bit before loading a new bg
-	res.render('pages/index', {
-		lastTweet: recentTweet.text,
-		tweetTime: relativeTimeDifference(new Date(recentTweet.time)),
-		tweetLink: recentTweet.link,
-		lastPlay: recentPlay,
-		photoLink: photoData.link,
-		photoDescrip: photoData.descrip
-	});
+	res.render('pages/index');
 });
-app.listen(4737, function() {
-	console.log('SpotifyApps listening on port 4737!');
-});
-var twitterClient = new Twitter({
-		consumer_key: config.twitter.consumerKey,
-		consumer_secret: config.twitter.consumerSecret,
-		access_token_key: config.twitter.accessToken,
-		access_token_secret: config.twitter.accessSecret
-	}),
-	lastFmClient = new Lastfm({
-		apiKey: config.lastfm.apiKey,
-		apiSecret: config.lastfm.apiSecret
-	}),
-	recentTweet = {},
-	recentPlay = "",
-	photoData = {},
-	okToDownloadPhoto = true;
-
-function getMostRecentTweet() {
+app.get('/twitter', function(req, res) {
 	console.log("getting recent tweet");
 	var params = {
 		screen_name: "ChrisW_B",
-		count: 20,
+		count: 20, //make sure we get enough to ignore RTs
 		exclude_replies: true,
 		include_rts: false
 	};
 	twitterClient.get('statuses/user_timeline', params, function(error, tweets, response) {
 		if (!error) {
 			newTweet = tweets[0];
-			recentTweet.text = twitterText.autoLink(newTweet.text, {
-				urlEntities: newTweet.entities.urls
+			res.send({
+				success: true,
+				text: twitterText.autoLink(newTweet.text, {
+					urlEntities: newTweet.entities.urls
+				}),
+				time: relativeTimeDifference(new Date(newTweet.created_at)),
+				link: "https://twitter.com/statuses/" + newTweet.id_str
 			});
-			recentTweet.time = newTweet.created_at;
-			recentTweet.link = "https://twitter.com/statuses/" + newTweet.id_str;
-			console.log("updated tweet");
+			console.log("got tweet");
 		} else {
-			console.log(error);
+			res.send({
+				success: false
+			});
 		}
 	});
-}
+});
+var recentPhoto = "";
 
-function getMostRecentPlay() {
+app.get('/bg', function(req, res) {
+	request("http://photo.chriswbarry.com/api/read/json?number=20&type=photo",
+		function(error, result, body) {
+			if (!error && result.statusCode == 200) {
+				var sandbox = {};
+				vm.runInNewContext(body, sandbox, 'myfile.vm');
+				var randNum = Math.round(Math.random() * (sandbox.tumblr_api_read.posts.length - 1));
+				recentPhoto = sandbox.tumblr_api_read.posts[randNum];
+				request(recentPhoto['photo-url-1280']).pipe(res);
+			}
+		}
+	);
+});
+
+app.get('/bginfo', function(req, res) {
+	setTimeout(function() {
+		if (recentPhoto !== undefined && recentPhoto !== "") {
+			res.send({
+				success: true,
+				link: recentPhoto.url,
+				descrip: "Background: <br/>" + recentPhoto['photo-caption'].replace(/(<([^>]+)>)/ig, ""),
+			});
+		} else {
+			res.send({
+				success: false
+			});
+		}
+	}, 200);
+});
+
+app.get('/lastfm', function(req, res) {
 	console.log("getting recent play");
 	lastFmClient.user_getRecentTracks({
 		user: 'Christo27',
@@ -89,33 +111,23 @@ function getMostRecentPlay() {
 				var lastTrack = result.track[0];
 				if (lastTrack !== undefined && lastTrack['@attr'].nowplaying) {
 					console.log("updated now playing");
-					recentPlay = "♫ " + lastTrack.name + " by " + lastTrack.artist['#text'];
+					res.send({
+						success: true,
+						text: "♫ " + lastTrack.name + " by " + lastTrack.artist['#text']
+					});
 				}
+			} else {
+				res.send({
+					success: false
+				});
 			}
 		}
 	});
-}
+});
 
-function getNewBgImage() {
-	if (!okToDownloadPhoto) {
-		return;
-	}
-	okToDownloadPhoto = false;
-	var url = "http://photo.chriswbarry.com/api/read/json?number=20&type=photo";
-	request(url, function(error, res, body) {
-		if (!error && res.statusCode == 200) {
-			sandbox = {};
-			vm.runInNewContext(body, sandbox, 'myfile.vm');
-			var randNum = Math.round(Math.random() * (sandbox.tumblr_api_read.posts.length - 1));
-			var recentPhoto = sandbox.tumblr_api_read.posts[randNum];
-			photoData.link = recentPhoto.url;
-			photoData.descrip = "Background: <br/>" + recentPhoto['photo-caption'].replace(/(<([^>]+)>)/ig, "");
-			download(recentPhoto['photo-url-1280'], "public/images/bg.jpg", function() {
-				console.log("downloaded image");
-			});
-		}
-	});
-}
+app.listen(4737, function() {
+	console.log('SpotifyApps listening on port 4737!');
+});
 
 function relativeTimeDifference(previous) {
 	//based on http://stackoverflow.com/a/6109105/6465731
@@ -164,15 +176,3 @@ var download = function(uri, filename, callback) {
 		request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
 	});
 };
-getMostRecentTweet();
-getMostRecentPlay();
-getNewBgImage();
-setInterval(function() {
-	getMostRecentPlay();
-}, 2 * ONE_MIN);
-setInterval(function() {
-	getMostRecentTweet();
-}, 4 * ONE_MIN);
-setInterval(function() {
-	okToDownloadPhoto = true;
-}, 15 * ONE_MIN);

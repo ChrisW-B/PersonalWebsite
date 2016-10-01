@@ -34,10 +34,10 @@
 					</a>
 					<div class='twitter-widget widget'>
 						<div class='descrip'>
-							<%- lastTweet %>
+			
 						</div>
 						<div class='reltime'>
-							<a href="<%= tweetLink%>" title="<%= tweetTime %>"><%= tweetTime %></a>
+
 						</div>
 					</div>
 				</li>
@@ -47,7 +47,6 @@
 					</a>
 					<div class='lastfm-widget widget'>
 						<div class='descrip'>
-							<%= lastPlay %>
 						</div>
 					</div>
 				</li>
@@ -57,7 +56,6 @@
 				<div class='pad'></div>
 			</ul>
 			<div class='tumblr-widget widget descrip photo-descrip'>
-				<a href="<%= photoLink %>" title="Link to Background"><%- photoDescrip %></a>
 			</div>
 		</div>
 		<div class='right-side'>
@@ -144,19 +142,7 @@
 				</div>
 			</div>
 		</div>
-		<link rel="stylesheet" href="/css/index.css">
-		<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:700|Source+Sans+Pro:400,700&subset=latin-ext" rel="stylesheet">
-		<script type="text/javascript">
-		var clicky_site_ids = clicky_site_ids || [];
-		clicky_site_ids.push(100989312);
-		(function() {
-		var s = document.createElement('script');
-		s.type = 'text/javascript';
-		s.async = true;
-		s.src = '//static.getclicky.com/js';
-		( document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0] ).appendChild( s );
-		})();
-		</script>
-		<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100989312ns.gif" /></p></noscript>
+		<% include ../partials/scripts %> 
 	</body>
 </html>
+<% include ../partials/css %> 
