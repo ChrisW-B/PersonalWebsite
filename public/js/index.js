@@ -1,5 +1,9 @@
+const ONE_MIN = 60 * 1000;
+
 $(document).ready(
 	function() {
+		setInterval(setTweet, 2 * ONE_MIN);
+		setInterval(setLastFM, ONE_MIN / 2);
 		setTweet();
 		setLastFM();
 		setBgInfo();

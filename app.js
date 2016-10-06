@@ -4,7 +4,6 @@ var config = require('./config'),
 	twitterText = require('twitter-text'),
 	Lastfm = require('lastfm-njs'),
 	bodyParser = require('body-parser'),
-	fs = require('fs'),
 	vm = require('vm'),
 	request = require('request'),
 	compression = require('compression'),
@@ -168,11 +167,3 @@ function relativeTimeDifference(previous) {
 	}
 	return approx + " " + num + " " + unit + " ago";
 }
-var download = function(uri, filename, callback) {
-	//saving a file
-	request.head(uri, function(err, res, body) {
-		console.log('content-type:', res.headers['content-type']);
-		console.log('content-length:', res.headers['content-length']);
-		request(uri).pipe(fs.createWriteStream(filename)).on('close', callback);
-	});
-};
