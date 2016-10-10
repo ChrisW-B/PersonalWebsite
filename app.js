@@ -103,26 +103,23 @@ app.get('/lastfm', function(req, res) {
 	console.log("getting recent play");
 	lastFmClient.user_getRecentTracks({
 		user: 'Christo27',
-		limit: 1,
-		callback: function(result) {
-			recentPlay = "";
-			if (result.success) {
-				var lastTrack = result.track[0];
-				if (lastTrack !== undefined && lastTrack['@attr'].nowplaying) {
-					console.log("updated now playing");
-					res.send({
-						success: true,
-						text: "♫ " + lastTrack.name + " by " + lastTrack.artist['#text']
-					});
-				}
-			} else {
-				res.send({
-					success: false
-				});
-			}
+		limit: 1
+	}).then(recentTracks => {
+		var lastTrack = recentTracks.track[0];
+		if (lastTrack !== undefined && lastTrack['@attr'].nowplaying) {
+			console.log("updated now playing");
+			res.send({
+				success: true,
+				text: "♫ " + lastTrack.name + " by " + lastTrack.artist['#text']
+			});
 		}
+	}).catch(() => {
+		res.send({
+			success: false
+		});
 	});
 });
+
 
 app.listen(4737, function() {
 	console.log('SpotifyApps listening on port 4737!');
