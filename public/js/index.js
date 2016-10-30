@@ -48,7 +48,7 @@ function setBgInfo() {
 		.done(function(data) {
 			if (data.success) {
 				var info = $('<a href="' +
-					data.url +
+					data.link +
 					'" title="Link to Background">' +
 					data.descrip +
 					'</a>');
