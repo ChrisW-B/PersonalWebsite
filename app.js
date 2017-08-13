@@ -77,10 +77,10 @@ app.get('/bg', function (req, res) {
         const randNum = Math.round(Math.random() * (posts.length - 1));
         recentPhoto = posts[randNum];
         recentPhoto.url = `https://photo.chriswbarry.com${recentPhoto.url}`;
-        if (!recentPhoto.image.includes('http')) {
-          recentPhoto.image = `https://photo.chriswbarry.com${recentPhoto.feature_image}`;
+        if (!recentPhoto.feature_image.includes('http')) {
+          recentPhoto.feature_image = `https://photo.chriswbarry.com${recentPhoto.feature_image}`;
         }
-        request(recentPhoto.image).pipe(res);
+        request(recentPhoto.feature_image).pipe(res);
       } else {
         res.sendStatus(404);
       }
