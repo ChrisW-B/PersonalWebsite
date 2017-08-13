@@ -70,7 +70,7 @@ app.get('/twitter', function(req, res) {
 });
 
 app.get('/bg', function(req, res) {
-  request(`https://photo.chriswbarry.com/ghost/api/v0.1/posts?client_id=${config.ghost.id}&client_secret=${config.ghost.secret}&fields=image,url,title&limit=7`,
+  request(`https://photo.chriswbarry.com/ghost/api/v0.1/posts?client_id=${config.ghost.id}&client_secret=${config.ghost.secret}&fields=feature_image,url,title&limit=7`,
     function(error, result, json) {
       if (!error && result.statusCode === 200) {
         const posts = JSON.parse(json).posts;
@@ -78,7 +78,7 @@ app.get('/bg', function(req, res) {
         recentPhoto = posts[randNum];
         recentPhoto.url = `https://photo.chriswbarry.com${recentPhoto.url}`;
         if (!recentPhoto.image.includes('http')) {
-          recentPhoto.image = `https://photo.chriswbarry.com${recentPhoto.image}`;
+          recentPhoto.image = `https://photo.chriswbarry.com${recentPhoto.feature_image}`;
         }
         request(recentPhoto.image).pipe(res);
       } else {
