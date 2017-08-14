@@ -1,3 +1,5 @@
+// react/components/Sidenav/Sidenav.js
+
 import React, { Component } from 'react';
 
 export default class Sidenav extends Component {
