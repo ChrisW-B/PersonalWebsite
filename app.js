@@ -74,8 +74,7 @@ app.get('/bg', function (req, res) {
     function (error, result, json) {
       if (!error && result.statusCode === 200) {
         const posts = JSON.parse(json).posts;
-        const randNum = Math.round(Math.random() * (posts.length - 1));
-        recentPhoto = posts[randNum];
+        recentPhoto = posts[Math.round(Math.random() * (posts.length - 1))];
         recentPhoto.url = `https://photo.chriswbarry.com${recentPhoto.url}`;
         if (!recentPhoto.feature_image.includes('http')) {
           recentPhoto.feature_image = `https://photo.chriswbarry.com${recentPhoto.feature_image}`;
@@ -126,7 +125,7 @@ app.get('/lastfm', function (req, res) {
 });
 
 app.listen(4737, function () {
-  console.log('Running on port 4737!');
+  console.log('Running on port 4737!\n http://127.0.0.1:4737/');
 });
 
 function relativeTimeDifference(previous) {
