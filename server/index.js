@@ -26,9 +26,27 @@ let twitterClient = new Twitter({
   }),
   recentPhoto = {};
 
+if (process.env.BUILD_MODE !== 'prebuilt') {
+  const webpackConfig = require('../webpack.dev.config.js');
+  const compiler = require('webpack')(webpackConfig);
+  app.use(require('webpack-dev-middleware')(compiler, {
+    hot: true,
+    publicPath: webpackConfig.output.publicPath,
+    stats: {
+      colors: true
+    },
+    historyApiFallback: true
+  }));
+  app.use(require('webpack-hot-middleware')(compiler, {
+    reload: true,
+    path: '/__webpack_hmr',
+    heartbeat: 10 * 1000
+  }));
+}
+
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-app.use(express.static(path.join(__dirname, 'public'), {
+app.set('views', path.join(__dirname, '../views'));
+app.use(express.static(path.join(__dirname, '../public'), {
   maxAge: ONE_DAY
 }));
 app.use(bodyParser.urlencoded({
@@ -39,7 +57,7 @@ app.use(compression());
 app.use(scribe.express.logger(console)); // Log each request
 app.use('/logs', scribe.webPanel());
 app.get('/', function (req, res) {
-  res.render('pages/index');
+  res.render('pages/react');
 });
 app.get('/twitter', function (req, res) {
   console.log('getting recent tweet');
