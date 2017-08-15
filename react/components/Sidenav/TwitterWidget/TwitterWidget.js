@@ -31,10 +31,10 @@ export default class TwitterWidget extends Component {
   }
 
   render = () => {
-    const { link = 'https://twitter.com/ChrisW_B/', text = '', time = '' } = this.state;
+    const { link = '//twitter.com/ChrisW_B/', text = '', time = '' } = this.state;
     return (
       <li>
-        <a href='https://twitter.com/ChrisW_B/' title='Twitter'>
+        <a href='//twitter.com/ChrisW_B/' title='Twitter'>
           Twitter
         </a>
         <div className='twitter-widget widget'>

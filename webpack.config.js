@@ -1,7 +1,7 @@
 const path = require('path'),
-  CompressionPlugin = require("compression-webpack-plugin"),
+  CompressionPlugin = require('compression-webpack-plugin'),
+  BabiliPlugin = require('babili-webpack-plugin'),
   webpack = require('webpack'),
-  // PrepackWebpackPlugin = require('prepack-webpack-plugin').default,
   BUILD_DIR = path.resolve(__dirname, 'public/build'),
   APP_DIR = path.resolve(__dirname, 'react');
 
@@ -16,6 +16,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({ ENV: JSON.stringify('production') }),
+    new BabiliPlugin({ removeConsole: true, removeDebugger: true }, { comments: false, sourceMap: false }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
@@ -25,29 +26,6 @@ module.exports = {
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      mangle: true,
-      compress: {
-        warnings: false, // Suppress uglification warnings
-        pure_getters: true,
-        unsafe: true,
-        unsafe_comps: true,
-        screw_ie8: true,
-        conditionals: true,
-        unused: true,
-        comparisons: true,
-        sequences: true,
-        dead_code: true,
-        evaluate: true,
-        if_return: true,
-        join_vars: true
-      },
-      output: {
-        comments: false
-      },
-      exclude: [/\.min\.js$/gi] // skip pre-minified libs
-    }),
-    new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
     new CompressionPlugin({
       asset: "[path].gz[query]",
       algorithm: "gzip",
@@ -62,15 +40,15 @@ module.exports = {
   module: {
     rules: [{
       test: /\.jsx?$|\.js?$/,
-      exclude: /node_modules/,
+      exclude: /(node_modules|bower_components)/,
       use: {
         loader: 'babel-loader',
         options: {
           cacheDirectory: './webpack-cache',
           babelrc: false,
           'presets': [
+            'es2015', ['minify', { removeConsole: true, removeDebugger: true }],
             'react',
-            'es2015',
             'stage-0'
           ],
           'plugins': [
