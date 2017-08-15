@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 export default class Experience extends Component {
   render = () =>
-    <div>
+    <div className='experience'>
       <h2>Experience</h2>
       <ul>
         <li>

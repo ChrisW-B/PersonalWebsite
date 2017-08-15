@@ -1,13 +1,13 @@
 // react/components/Resume/Resume.js
 
 import React, { Component } from 'react';
-import { Intro, Interests, Projects, Experience, LearnMore } from './'
+import { Intro, Interests, Projects, Experience, LearnMore } from './';
 export default class Resume extends Component {
   render = () =>
-    <div className='right-side'>
-      <div className='inner-right'>
-        <div className="prof-pic">
-          <img src="/images/prof.jpg" alt="Profile Picture"/>
+    <div className='resume'>
+      <div className='inner-resume'>
+        <div className='prof-pic'>
+          <img src='/images/prof.jpg' alt='Profile Picture'/>
         </div>
         <div className='about-me'>
           <Intro />

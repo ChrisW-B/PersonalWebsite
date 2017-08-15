@@ -23,8 +23,7 @@ let twitterClient = new Twitter({
   lastFmClient = new Lastfm({
     apiKey: config.lastfm.apiKey,
     apiSecret: config.lastfm.apiSecret
-  }),
-  recentPhoto = {};
+  });
 
 if (process.env.BUILD_MODE !== 'prebuilt') {
   const webpackConfig = require('../webpack.dev.config.js');
@@ -57,7 +56,7 @@ app.use(compression());
 app.use(scribe.express.logger(console)); // Log each request
 app.use('/logs', scribe.webPanel());
 app.get('/', function (req, res) {
-  res.render('pages/react');
+  res.render('pages/index');
 });
 app.get('/twitter', function (req, res) {
   console.log('getting recent tweet');
@@ -92,33 +91,20 @@ app.get('/bg', function (req, res) {
     function (error, result, json) {
       if (!error && result.statusCode === 200) {
         const posts = JSON.parse(json).posts;
-        recentPhoto = posts[Math.round(Math.random() * (posts.length - 1))];
+        const recentPhoto = posts[Math.round(Math.random() * (posts.length - 1))];
         recentPhoto.url = `https://photo.chriswbarry.com${recentPhoto.url}`;
         if (!recentPhoto.feature_image.includes('http')) {
           recentPhoto.feature_image = `https://photo.chriswbarry.com${recentPhoto.feature_image}`;
         }
-        request(recentPhoto.feature_image).pipe(res);
+        res.send({
+          success: true,
+          ...recentPhoto
+        });
       } else {
-        res.sendStatus(404);
+        res.sendStatus({ success: false });
       }
     }
   );
-});
-
-app.get('/bginfo', function (req, res) {
-  setTimeout(function () {
-    if (recentPhoto !== undefined && recentPhoto !== '') {
-      res.send({
-        success: true,
-        link: recentPhoto.url,
-        descrip: 'Background: <br/>' + recentPhoto.title
-      });
-    } else {
-      res.send({
-        success: false
-      });
-    }
-  }, 1000); // give /bg time to get a photo
 });
 
 app.get('/lastfm', function (req, res) {

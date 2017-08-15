@@ -1,1 +1,25 @@
 // react/components/Homepage/Homepage.scss
+
+@import url('//fonts.googleapis.com/css?family=Source+Code+Pro:700|Source+Sans+Pro:400,700&subset=latin-ext');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-width: 400px
+}
+
+.homepage {
+  display: flex;
+  flex-direction: row;
+  font-family: 'Source Sans Pro', sans-serif;
+  overflow: hidden;
+  @media only screen and (max-width: 640px)  {
+    flex-direction: column;
+  }
+}
+
+a {
+  color: #cfe3cf;
+  text-decoration: none;
+  transition: .2s
+}

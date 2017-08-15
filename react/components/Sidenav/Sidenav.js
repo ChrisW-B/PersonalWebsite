@@ -1,56 +1,58 @@
 // react/components/Sidenav/Sidenav.js
 
 import React, { Component } from 'react';
+import { TwitterWidget, LastFmWidget, SidenavLink } from './';
 
 export default class Sidenav extends Component {
-  render = () =>
-    <div className='sidenav'>
-      <ul>
-        <li>
-          <h1>Chris Barry</h1>
-        </li>
-        <li>
-          <a href="mailto:me@chriswbarry.com" title="Talk to me!">
-            Talk to Me!
-          </a>
-        </li>
-        <li>
-          <a href="https://github.com/ChrisW-B/" title="Github">
-            Github
-          </a>
-        </li>
-        <li>
-          <a href="https://keybase.io/chriswb" title="Keybase.io">
-            Keybase
-          </a>
-        </li>
-        <li>
-          <a href="https://twitter.com/ChrisW_B/" title="Twitter">
-            Twitter
-          </a>
-          <div className='twitter-widget widget'>
-            <div className='descrip'>
-            </div>
-            <div className='reltime'>
-            </div>
-          </div>
-        </li>
-        <li>
-          <a href="http://last.fm/user/christo27/" title="Last.fm">
-            Last.FM
-          </a>
-          <div className='lastfm-widget widget'>
-            <div className='descrip'>
-            </div>
-          </div>
-        </li>
-        <li>
-          <a href="http://photo.chriswbarry.com/" title="Photography">Photography</a>
-        </li>
-        <div className='pad'></div>
-      </ul>
-      <div className='tumblr-widget widget descrip photo-descrip'>
+
+  state = {
+    feature_image: null,
+    title: null,
+    url: null
+  }
+
+  sidenavElements = [
+    { link: 'mailto:me@chriswbarry.com', title: 'Talk to me!' },
+    { link: 'https://github.com/ChrisW-B/', title: 'Github' },
+    { link: 'https://keybase.io/chriswb', title: 'Keybase' },
+    { link: 'http://photo.chriswbarry.com/', title: 'Photography' }
+  ]
+
+  componentDidMount = () => this.getBackground();
+
+  getBackground = async() => {
+    let bgJson;
+    try {
+      bgJson = await (await fetch('/bg')).json();
+      if (!bgJson.success) throw new Error('oh well');
+    } catch (e) {
+      return;
+    }
+    console.log({ bgJson })
+    this.setState({ ...bgJson });
+  }
+
+  render = () => {
+    const { feature_image = '', title = '', url = '' } = this.state;
+    return (
+      <div className='sidenav'>
+        <ul>
+          <li>
+            <h1>Chris Barry</h1>
+          </li>
+          {
+            this.sidenavElements.map(e=> <SidenavLink key={e.link} {...e}/>)
+          }
+          <TwitterWidget />
+          <LastFmWidget />
+
+        </ul>
+        <div className='tumblr-widget widget descrip photo-descrip'>
+          <a href={url}>Background: <br/> {title}</a>
+        </div>
+        <div className={`bg-image ${feature_image ? 'image' : 'empty'} `} style={{backgroundImage: `url(${feature_image})`}}/>
       </div>
-    </div>
+    );
+  }
 
 }

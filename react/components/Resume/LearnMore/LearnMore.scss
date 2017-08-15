@@ -1,1 +1,8 @@
 // react/components/Intro/Intro.scss
+.learn-more {
+  @media only screen and (max-width: 640px) {
+    width: 275px;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
