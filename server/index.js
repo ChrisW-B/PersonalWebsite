@@ -41,6 +41,17 @@ if (process.env.BUILD_MODE !== 'prebuilt') {
     path: '/__webpack_hmr',
     heartbeat: 10 * 1000
   }));
+} else {
+  app.get('*.js', (req, res, next) => {
+    req.url = req.url + '.gz';
+    res.set('Content-Encoding', 'gzip');
+    res.set('Content-Type', 'text/javascript');
+    next();
+  });
+
+  app.get('/build/app.js', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/build', 'app.js'));
+  });
 }
 
 app.set('view engine', 'ejs');
@@ -58,6 +69,7 @@ app.use('/logs', scribe.webPanel());
 app.get('/', function (req, res) {
   res.render('pages/index');
 });
+
 app.get('/twitter', async(req, res) => {
   console.log('getting recent tweet');
   const params = {

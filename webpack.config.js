@@ -1,4 +1,5 @@
 const path = require('path'),
+  CompressionPlugin = require("compression-webpack-plugin"),
   webpack = require('webpack'),
   // PrepackWebpackPlugin = require('prepack-webpack-plugin').default,
   BUILD_DIR = path.resolve(__dirname, 'public/build'),
@@ -21,8 +22,39 @@ module.exports = {
       debug: false
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ minimize: true, compress: { warnings: false } })
+    new webpack.optimize.UglifyJsPlugin({
+      mangle: true,
+      compress: {
+        warnings: false, // Suppress uglification warnings
+        pure_getters: true,
+        unsafe: true,
+        unsafe_comps: true,
+        screw_ie8: true,
+        conditionals: true,
+        unused: true,
+        comparisons: true,
+        sequences: true,
+        dead_code: true,
+        evaluate: true,
+        if_return: true,
+        join_vars: true
+      },
+      output: {
+        comments: false
+      },
+      exclude: [/\.min\.js$/gi] // skip pre-minified libs
+    }),
+    new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
+    new CompressionPlugin({
+      asset: "[path].gz[query]",
+      algorithm: "gzip",
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0
+    })
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.json']
@@ -71,7 +103,14 @@ module.exports = {
           importLoaders: 1
         }
       }, {
-        loader: 'postcss-loader'
+        loader: 'postcss-loader',
+        options: {
+          plugins: [
+            require('postcss-smart-import')({ /* ...options */ }),
+            require('precss')({ /* ...options */ }),
+            require('autoprefixer')({ /* ...options */ })
+          ]
+        }
       }, {
         loader: 'sass-loader'
       }]
