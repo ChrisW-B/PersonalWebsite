@@ -6,9 +6,9 @@ import { TwitterWidget, LastFmWidget, SidenavLink } from './';
 export default class Sidenav extends Component {
 
   state = {
-    feature_image: null,
-    title: null,
-    url: null
+    feature_image: '',
+    title: '',
+    url: ''
   }
 
   sidenavElements = [
@@ -49,7 +49,10 @@ export default class Sidenav extends Component {
         <div className='tumblr-widget widget descrip photo-descrip'>
           <a href={url}>Background: <br/> {title}</a>
         </div>
-        <div className={`bg-image ${feature_image ? 'image' : 'empty'} `} style={{backgroundImage: `url(${feature_image})`}}/>
+        <div
+          className={`bg-image ${feature_image ? 'image' : 'empty'} `}
+          style={{backgroundImage: `url(${feature_image})`}}
+        />
       </div>
     );
   }

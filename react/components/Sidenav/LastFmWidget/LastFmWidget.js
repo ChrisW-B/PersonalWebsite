@@ -19,10 +19,10 @@ export default class TwitterWidget extends Component {
     let lastFmJson;
     try {
       lastFmJson = await (await fetch('/lastfm')).json();
-      if (!lastFmJson.success) throw new Error(lastFmJson.e);
+      if (!lastFmJson.success) throw new Error('no song');
       this.setState({ ...lastFmJson });
     } catch (error) {
-      console.error({ error })
+      console.error({ error });
     }
 
   }
