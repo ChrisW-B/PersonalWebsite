@@ -12,6 +12,7 @@
     "fs": "0.0.1-security",
     "jsonfile": "^3.0.1",
     "lastfm-njs": "^0.x",
+    "node-fetch": "^1.7.2",
     "prop-types": "^15.5.10",
     "react": "next",
     "react-dom": "next",

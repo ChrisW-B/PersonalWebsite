@@ -4,7 +4,7 @@ const config = require('./config'),
   twitterText = require('twitter-text'),
   Lastfm = require('lastfm-njs'),
   bodyParser = require('body-parser'),
-  request = require('request'),
+  fetch = require('node-fetch'),
   compression = require('compression'),
   path = require('path'),
   app = express(),
@@ -58,7 +58,7 @@ app.use('/logs', scribe.webPanel());
 app.get('/', function (req, res) {
   res.render('pages/index');
 });
-app.get('/twitter', function (req, res) {
+app.get('/twitter', async(req, res) => {
   console.log('getting recent tweet');
   const params = {
     screen_name: 'ChrisW_B',
@@ -66,54 +66,42 @@ app.get('/twitter', function (req, res) {
     exclude_replies: true,
     include_rts: false
   };
-  twitterClient.get('statuses/user_timeline', params, function (error, tweets, response) {
-    if (!error) {
-      const newTweet = tweets[0];
-      res.send({
-        success: true,
-        text: twitterText.autoLink(newTweet.text, {
-          urlEntities: newTweet.entities.urls
-        }),
-        time: relativeTimeDifference(new Date(newTweet.created_at)),
-        link: 'https://twitter.com/statuses/' + newTweet.id_str
-      });
-      console.log('got tweet');
-    } else {
-      res.send({
-        success: false
-      });
-    }
-  });
+  try {
+    const newTweet = (await twitterClient.get('statuses/user_timeline', params))[0];
+    res.send({
+      success: true,
+      text: twitterText.autoLink(newTweet.text, {
+        urlEntities: newTweet.entities.urls
+      }),
+      time: relativeTimeDifference(new Date(newTweet.created_at)),
+      link: 'https://twitter.com/statuses/' + newTweet.id_str
+    });
+    console.log('got tweet');
+  } catch (e) { res.send({ success: false, e }); }
 });
 
-app.get('/bg', function (req, res) {
-  request(`https://photo.chriswbarry.com/ghost/api/v0.1/posts?client_id=${config.ghost.id}&client_secret=${config.ghost.secret}&limit=7&fields=feature_image,url,title`,
-    function (error, result, json) {
-      if (!error && result.statusCode === 200) {
-        const posts = JSON.parse(json).posts;
-        const recentPhoto = posts[Math.round(Math.random() * (posts.length - 1))];
-        recentPhoto.url = `https://photo.chriswbarry.com${recentPhoto.url}`;
-        if (!recentPhoto.feature_image.includes('http')) {
-          recentPhoto.feature_image = `https://photo.chriswbarry.com${recentPhoto.feature_image}`;
-        }
-        res.send({
-          success: true,
-          ...recentPhoto
-        });
-      } else {
-        res.sendStatus({ success: false });
-      }
+app.get('/bg', async(req, res) => {
+  try {
+    const posts = (await (await fetch(`https://photo.chriswbarry.com/ghost/api/v0.1/posts?client_id=${config.ghost.id}&client_secret=${config.ghost.secret}&limit=7&fields=feature_image,url,title`)).json()).posts;
+    const recentPhoto = posts[Math.round(Math.random() * (posts.length - 1))];
+    recentPhoto.url = `https://photo.chriswbarry.com${recentPhoto.url}`;
+    if (!recentPhoto.feature_image.includes('http')) {
+      recentPhoto.feature_image = `https://photo.chriswbarry.com${recentPhoto.feature_image}`;
     }
-  );
+    res.send({
+      success: true,
+      ...recentPhoto
+    });
+  } catch (e) { res.send({ success: false, e }); }
 });
 
-app.get('/lastfm', function (req, res) {
+app.get('/lastfm', async(req, res) => {
   console.log('getting recent play');
-  lastFmClient.user_getRecentTracks({
-    user: 'Christo27',
-    limit: 1
-  }).then(recentTracks => {
-    const lastTrack = recentTracks.track[0];
+  try {
+    const lastTrack = (await lastFmClient.user_getRecentTracks({
+      user: 'Christo27',
+      limit: 1
+    })).track[0];
     if (lastTrack !== undefined && lastTrack['@attr'].nowplaying) {
       console.log('updated now playing');
       res.send({
@@ -121,11 +109,7 @@ app.get('/lastfm', function (req, res) {
         text: '♫ ' + lastTrack.name + ' by ' + lastTrack.artist['#text']
       });
     }
-  }).catch(() => {
-    res.send({
-      success: false
-    });
-  });
+  } catch (e) { res.send({ success: false, e }); }
 });
 
 app.listen(4737, function () {

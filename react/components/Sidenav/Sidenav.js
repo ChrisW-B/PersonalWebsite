@@ -24,12 +24,11 @@ export default class Sidenav extends Component {
     let bgJson;
     try {
       bgJson = await (await fetch('/bg')).json();
-      if (!bgJson.success) throw new Error('oh well');
-    } catch (e) {
-      return;
+      if (!bgJson.success) throw new Error(bgJson.e);
+      this.setState({ ...bgJson });
+    } catch (error) {
+      console.error({ error });
     }
-    console.log({ bgJson })
-    this.setState({ ...bgJson });
   }
 
   render = () => {

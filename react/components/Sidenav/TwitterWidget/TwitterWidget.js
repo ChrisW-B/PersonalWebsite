@@ -22,11 +22,12 @@ export default class TwitterWidget extends Component {
     let tweetJson;
     try {
       tweetJson = await (await fetch('/twitter')).json();
-      if (!tweetJson.success) throw new Error('oh well');
-    } catch (e) {
-      return;
+      if (!tweetJson.success) throw new Error(tweetJson.e);
+      this.setState({ ...tweetJson });
+    } catch (error) {
+      console.error({ error });
     }
-    this.setState({ ...tweetJson });
+
   }
 
   render = () => {
