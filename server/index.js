@@ -1,3 +1,6 @@
+// server/index.js
+
+require('colors');
 const config = require('./config'),
   Twitter = require('twitter'),
   express = require('express'),
@@ -7,14 +10,13 @@ const config = require('./config'),
   fetch = require('node-fetch'),
   compression = require('compression'),
   path = require('path'),
-  app = express(),
-  scribe = require('scribe-js')(),
-  console = process.console;
+  winston = require('winston'),
+  expressWinston = require('express-winston'),
 
-const ONE_MIN = 60 * 1000,
-  ONE_DAY = ONE_MIN * 60 * 24;
+  ONE_MIN = 60 * 1000,
+  ONE_DAY = ONE_MIN * 60 * 24,
 
-let twitterClient = new Twitter({
+  twitterClient = new Twitter({
     consumer_key: config.twitter.consumerKey,
     consumer_secret: config.twitter.consumerSecret,
     access_token_key: config.twitter.accessToken,
@@ -23,7 +25,17 @@ let twitterClient = new Twitter({
   lastFmClient = new Lastfm({
     apiKey: config.lastfm.apiKey,
     apiSecret: config.lastfm.apiSecret
-  });
+  }),
+  logger = new(winston.Logger)({
+    level: 'server',
+    levels: { server: 0, twitter: 0, lastfm: 0, bg: 0 },
+    colors: { server: 'green', twitter: 'blue', lastfm: 'yellow', bg: 'magenta' },
+    colorize: true,
+    transports: [
+      new(winston.transports.Console)({ 'timestamp': true, 'prettyPrint': true, colorize: true })
+    ]
+  }),
+  app = express();
 
 if (process.env.BUILD_MODE !== 'prebuilt') {
   const webpackConfig = require('../webpack.dev.config.js');
@@ -64,14 +76,18 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 app.use(compression());
-app.use(scribe.express.logger(console)); // Log each request
-app.use('/logs', scribe.webPanel());
+app.use(expressWinston.logger({
+  transports: [new winston.transports.Console({ 'timestamp': true, colorize: true })],
+  expressFormat: true,
+  meta: false,
+  colorize: true
+}));
 app.get('/', function (req, res) {
   res.render('pages/index');
 });
 
 app.get('/twitter', async(req, res) => {
-  console.log('getting recent tweet');
+  logger.twitter('getting recent tweet');
   const params = {
     screen_name: 'ChrisW_B',
     count: 20, // make sure we get enough to ignore RTs
@@ -88,11 +104,15 @@ app.get('/twitter', async(req, res) => {
       time: relativeTimeDifference(new Date(newTweet.created_at)),
       link: 'https://twitter.com/statuses/' + newTweet.id_str
     });
-    console.log('got tweet');
-  } catch (e) { res.send({ success: false, e }); }
+    logger.twitter('got tweet');
+  } catch (e) {
+    logger.twitter('no tweet!', e);
+    res.send({ success: false, e });
+  }
 });
 
 app.get('/bg', async(req, res) => {
+  logger.bg('getting a background')
   try {
     const posts = (await (await fetch(`https://photo.chriswbarry.com/ghost/api/v0.1/posts?client_id=${config.ghost.id}&client_secret=${config.ghost.secret}&limit=7&fields=feature_image,url,title`)).json()).posts;
     const recentPhoto = posts[Math.round(Math.random() * (posts.length - 1))];
@@ -104,28 +124,35 @@ app.get('/bg', async(req, res) => {
       success: true,
       ...recentPhoto
     });
-  } catch (e) { res.send({ success: false, e }); }
+    logger.bg('got bg');
+  } catch (e) {
+    logger.bg('no bg!', e);
+    res.send({ success: false, e });
+  }
 });
 
 app.get('/lastfm', async(req, res) => {
-  console.log('getting recent play');
+  logger.lastfm('getting recent play');
   try {
     const lastTrack = (await lastFmClient.user_getRecentTracks({
       user: 'Christo27',
       limit: 1
     })).track[0];
     if (lastTrack !== undefined && lastTrack['@attr'].nowplaying) {
-      console.log('updated now playing');
+      logger.lastfm('got now playing');
       res.send({
         success: true,
         text: '♫ ' + lastTrack.name + ' by ' + lastTrack.artist['#text']
       });
     }
-  } catch (e) { res.send({ success: false, e }); }
+  } catch (e) {
+    logger.lastfm('no track!', e);
+    res.send({ success: false, e });
+  }
 });
 
 app.listen(4737, function () {
-  console.log('Running on port 4737!\n http://127.0.0.1:4737/');
+  logger.server('Listening on port 4737!\n'.rainbow + 'http://localhost:4737/');
 });
 
 function relativeTimeDifference(previous) {
