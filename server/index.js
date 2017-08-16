@@ -151,6 +151,8 @@ app.get('/lastfm', async(req, res) => {
   }
 });
 
+app.get('*', (req, res) => res.redirect('/'));
+
 app.listen(4737, function () {
   logger.server('Listening on port 4737!\n'.rainbow + 'http://localhost:4737/');
 });
