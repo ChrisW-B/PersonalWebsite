@@ -84,9 +84,9 @@ module.exports = {
         loader: 'postcss-loader',
         options: {
           plugins: [
-            require('postcss-smart-import')({ /* ...options */ }),
-            require('precss')({ /* ...options */ }),
-            require('autoprefixer')({ /* ...options */ })
+            require('postcss-smart-import')(),
+            require('precss')(),
+            require('autoprefixer')()
           ]
         }
       }, {

@@ -58,6 +58,7 @@ if (process.env.BUILD_MODE !== 'prebuilt') {
     req.url = req.url + '.gz';
     res.set('Content-Encoding', 'gzip');
     res.set('Content-Type', 'text/javascript');
+    res.set('Vary', 'Accept-Encoding');
     next();
   });
 
@@ -68,12 +69,8 @@ if (process.env.BUILD_MODE !== 'prebuilt') {
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../views'));
-app.use(express.static(path.join(__dirname, '../public'), {
-  maxAge: ONE_DAY
-}));
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+app.use(express.static(path.join(__dirname, '../public'), { maxAge: ONE_DAY }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(compression());
 app.use(expressWinston.logger({
