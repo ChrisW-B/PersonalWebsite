@@ -12,7 +12,7 @@ export default class Sidenav extends Component {
   }
 
   sidenavElements = [
-    { link: 'mailto:me@chriswbarry.com', title: 'Talk to me!' },
+    { link: 'mailto:me@chriswbarry.com', title: 'Get in Touch!' },
     { link: '//github.com/ChrisW-B/', title: 'Github' },
     { link: '//keybase.io/chriswb', title: 'Keybase' },
     { link: '//photo.chriswbarry.com/', title: 'Photography' }
