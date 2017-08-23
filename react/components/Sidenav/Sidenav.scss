@@ -1,40 +1,41 @@
 // react/components/Sidenav/Sidenav.scss
 .sidenav {
-  font-family: 'Source Sans Pro', monospace;
-  width: 40vw;
+  -webkit-overflow-scrolling: touch;
+  color: #fff;
   display: flex;
+  font-family: 'Source Sans Pro', monospace;
+  height: calc(100vh - 40px);
   justify-content: center;
   overflow-y: scroll;
-  color: #fff;
-  height: calc(100vh - 40px);
-  -webkit-overflow-scrolling: touch;
+  width: 40vw;
 
   @media only screen and (max-width: 640px) {
-    width: 100%;
     height: 120px;
-    overflow: hidden
+    overflow: hidden;
+    width: 100%;
   }
 
-  &:after, .bg-image {
-    content: '';
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 40vw;
-    height: 100vh;
-    z-index: -1;
-    pointer-events: none;
+  &::after,
+  .bg-image {
+    background-attachment: scroll;
+    background-color: transparent;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: scroll;
-    background-color: transparent;
+    bottom: 0;
+    content: '';
+    height: 100vh;
+    left: 0;
+    pointer-events: none;
+    position: fixed;
+    width: 40vw;
+    z-index: -1;
     @media only screen and (max-width: 640px) {
       width: 100vw;
     }
   }
 
-  &:after {
+  &::after {
     background-image: linear-gradient(102deg, rgba(0, 195, 216, .9) 9%, rgba(186, 39, 66, .6) 100%);
     opacity: .95;
   }
@@ -46,8 +47,8 @@
   }
 
   h1 {
-    padding: 2px;
     margin: 0;
+    padding: 2px;
   }
 
 
@@ -59,20 +60,21 @@
       font-size: 20px;
     }
     @media only screen and (max-width: 640px) {
-      padding: 2px;
+      font-size: 18px;
       margin: 0;
+      padding: 2px;
     }
 
     li {
-      padding-top: 10px;
+      font-family: 'Source Code Pro', monospace;
       max-width: 400px;
       overflow: hidden;
-      font-family: 'Source Code Pro', monospace;
+      padding-top: 10px;
       transition: opacity .3s ease-in-out;
 
       @media only screen and (max-width: 640px) {
         display: inline;
-        &:not(:last-child):not(:first-child):after {
+        &::not(:last-child):not(:first-child):after {
           content: ' / '
         }
       }
