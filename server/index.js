@@ -152,12 +152,12 @@ app.get('/lastfm', async(req, res) => {
 
 const ensureGithub = (req, res, next) => {
   if (!req.headers['user-agent'].includes('GitHub-Hookshot')) {
-    return false;
+    res.redirect(301, '/');
   }
   const theirSignature = req.headers['x-hub-signature'];
   const payload = JSON.stringify(req.body);
   const secret = config.SECRET_TOKEN; // TODO: Replace me
-  const ourSignature = `sha1=${crypto.createHmac('sha1', secret).update(payload).digest('hex')}`;
+  const ourSignature = `sha1=${crypto.createHmac('sha1', secret.toString()).update(payload).digest('hex')}`;
   if (crypto.timingSafeEqual(Buffer.from(theirSignature), Buffer.from(ourSignature))) return next();
   else res.redirect(301, '/');
 };
