@@ -16,6 +16,7 @@
     "node-fetch": "^1.7.2",
     "react": "next",
     "react-dom": "next",
+    "secure-compare": "^3.0.1",
     "simple-lastfm": "^1.x",
     "twitter": "^1.7.1",
     "twitter-text": "^1.14.7",

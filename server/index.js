@@ -12,6 +12,8 @@ const config = require('./config'),
   path = require('path'),
   winston = require('winston'),
   expressWinston = require('express-winston'),
+  crypto = require('crypto'),
+  exec = require('child_process').exec,
 
   ONE_MIN = 60 * 1000,
   ONE_DAY = ONE_MIN * 60 * 24,
@@ -149,11 +151,13 @@ app.get('/lastfm', async(req, res) => {
 });
 
 app.post('/postrecieve', (req, res) => {
-  const { commits } = req.body;
-  if (commits.length > 0) {
-    const exec = require('child_process').exec;
+  const hmac = crypto.createHmac('sha1', process.env.SECRET_TOKEN);
+  hmac.update(JSON.stringify(req.body));
+  const calculatedSignature = 'sha1=' + hmac.digest('hex');
+  if (req.headers['x-hub-signature'] === calculatedSignature) {
     exec(`cd ${path.join(__dirname, '..')}; git pull; yarn; yarn cleanup; yarn build`);
   }
+
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   res.write('success');
   res.end();
