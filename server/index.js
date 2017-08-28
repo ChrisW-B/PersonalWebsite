@@ -154,6 +154,7 @@ const ensureGithub = (req, res, next) => {
   if (!req.headers['user-agent'].includes('GitHub-Hookshot')) {
     res.redirect(301, '/');
   }
+  logger.server(process.env)
   const theirSignature = req.headers['x-hub-signature'];
   const payload = JSON.stringify(req.body);
   const secret = process.env.SECRET_KEY; // TODO: Replace me
