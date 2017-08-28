@@ -149,10 +149,10 @@ app.get('/lastfm', async(req, res) => {
 });
 
 app.post('/postrecieve', (req, res) => {
-  if (req.body.hook.events.includes('push')) {
+  const { hook, commits } = req.body;
+  if (hook.events.includes('push') || commits.length > 0) {
     const exec = require('child_process').exec;
-    const updateCmd = `cd ${path.join(__dirname, '..')}; git pull; yarn; yarn cleanup; yarn build`;
-    exec(updateCmd, (err, out, code)=>logger.server({err, out, code}))
+    exec(`cd ${path.join(__dirname, '..')}; git pull; yarn; yarn cleanup; yarn build`);
   }
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   res.write('success');
