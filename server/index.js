@@ -164,7 +164,8 @@ const ensureGithub = (req, res, next) => {
 
 app.post('/postrecieve', ensureGithub, (req, res) => {
   console.log('updating!');
-  exec(`cd ${path.join(__dirname, '..')}; git pull; yarn; yarn cleanup; yarn build`);
+  const update = exec(`cd ${path.join(__dirname, '..')}; git pull; yarn; yarn cleanup; yarn build`);
+  update.stdout.pipe(process.stdout);
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   res.end('Thanks GitHub <3');
 });
