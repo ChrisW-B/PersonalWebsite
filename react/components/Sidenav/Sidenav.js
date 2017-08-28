@@ -15,7 +15,8 @@ export default class Sidenav extends Component {
     { link: 'mailto:me@chriswbarry.com', title: 'Get in Touch' },
     { link: '//github.com/ChrisW-B/', title: 'Github' },
     { link: '//linkedin.com/in/chriswbarry', title: 'LinkedIn' },
-    { link: '//photo.chriswbarry.com/', title: 'Photos' }
+    { link: '//photo.chriswbarry.com/', title: 'Photos' },
+    { link: '//keybase.io/chriswb', title: 'Keybase' }
   ]
 
   componentDidMount = () => this.getBackground();
@@ -40,7 +41,7 @@ export default class Sidenav extends Component {
             <h1>Chris Barry</h1>
           </li>
           {
-            this.sidenavElements.map(e=> <SidenavLink key={e.link} {...e}/>)
+            this.sidenavElements.map(e => <SidenavLink key={e.link} {...e}/>)
           }
           <TwitterWidget />
           <LastFmWidget />
