@@ -35,7 +35,7 @@ openssl aes-256-cbc -K $encrypted_287fde1ac466_key -iv $encrypted_287fde1ac466_i
 chmod 600 scripts/deploy_key
 eval `ssh-agent -s`
 ssh-add scripts/deploy_key
-chmod -R 777 node_modules/gh-pages/
+
 
 # Now that we're all set up, we can deploy
 yarn start # ??? unsure
