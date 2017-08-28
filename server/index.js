@@ -160,7 +160,7 @@ const ensureGithub = (req, res, next) => {
 };
 
 app.post('/postrecieve', ensureGithub, (req, res) => {
-  const update = spawn(path(__dirname, '..', 'scripts', 'update.sh'));
+  const update = spawn(path.join(__dirname, '..', 'scripts', 'update.sh'));
   update.unref();
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   res.end('Thanks GitHub <3');
