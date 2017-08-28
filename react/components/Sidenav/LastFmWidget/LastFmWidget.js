@@ -22,7 +22,7 @@ export default class TwitterWidget extends Component {
       if (!lastFmJson.success) throw new Error('no song');
       this.setState({ ...lastFmJson });
     } catch (error) {
-      console.error({ error });
+      return;
     }
 
   }

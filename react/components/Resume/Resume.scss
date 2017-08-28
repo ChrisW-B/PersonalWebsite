@@ -2,34 +2,30 @@
 .resume {
   background-color: #fff;
   color: #0d2659;
-  width: 60vw;
   display: flex;
-  justify-content: center;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
   height: 100vh;
+  justify-content: center;
+  -webkit-overflow-scrolling: touch;
   overflow-y: scroll;
-
-  @media only screen and (max-width: 640px) {
-    width: 100%;
-    height: calc(100vh - 120px);
-  }
+  width: 60vw;
 
   a {
-    color: #8d4881;
     border-bottom: 1px dotted #cfe3cf;
+    color: #8d4881;
+
     &:hover {
-      color: #cfe3cf
+      color: #cfe3cf;
     }
   }
   .inner-resume {
-    padding: 10px;
     max-width: 800px;
+    padding: 10px;
 
     .about-me {
       padding-bottom: 30px;
       padding-left: 10px;
       padding-right: 10px;
+
       @media only screen and (max-width: 640px) {
         padding-bottom: 100px;
       }
@@ -38,23 +34,30 @@
     .prof-pic {
       display: flex;
       justify-content: center;
+
       img {
-        width: 100px;
+        border-radius: 100%;
         height: 100px;
-        border-radius: 100%
+        width: 100px;
       }
     }
 
-    @media only screen and (max-width:640px) {
+    @media only screen and (max-width: 640px) {
       .button {
-        padding: 10px;
-        border: none;
         background: #eaf0ea;
+        border: none;
         box-shadow: 1px 2px 3px 0 grey;
+        padding: 10px;
+
         &:active {
           box-shadow: none;
         }
       }
     }
+  }
+
+  @media only screen and (max-width: 640px) {
+    height: calc(100vh - 120px);
+    width: 100%;
   }
 }

@@ -1,19 +1,13 @@
 // react/components/Sidenav/Sidenav.scss
 .sidenav {
-  -webkit-overflow-scrolling: touch;
   color: #fff;
   display: flex;
   font-family: 'Source Sans Pro', monospace;
   height: calc(100vh - 40px);
   justify-content: center;
+  -webkit-overflow-scrolling: touch;
   overflow-y: scroll;
   width: 40vw;
-
-  @media only screen and (max-width: 640px) {
-    height: 120px;
-    overflow: hidden;
-    width: 100%;
-  }
 
   &::after,
   .bg-image {
@@ -30,17 +24,19 @@
     position: fixed;
     width: 40vw;
     z-index: -1;
+
     @media only screen and (max-width: 640px) {
       width: 100vw;
     }
   }
 
   &::after {
-    background-image: linear-gradient(102deg, rgba(0, 195, 216, .9) 9%, rgba(186, 39, 66, .6) 100%);
-    opacity: .95;
+    background-image: linear-gradient(102deg, rgba(0, 195, 216, 0.9) 9%, rgba(186, 39, 66, 0.6) 100%);
+    opacity: 0.95;
   }
 
   .bg-image {
+
     &.image {
       animation: animateImage 2s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -51,26 +47,23 @@
     padding: 2px;
   }
 
-
   ul {
     font-size: 1.5em;
     list-style: none;
     padding-right: 20px;
-    @media only screen and (max-width: 900px) {
-      font-size: 20px;
-    }
-    @media only screen and (max-width: 640px) {
-      font-size: 18px;
-      margin: 0;
-      padding: 2px;
-    }
 
     li {
       font-family: 'Source Code Pro', monospace;
       max-width: 400px;
       overflow: hidden;
       padding-top: 10px;
-      transition: opacity .3s ease-in-out;
+      transition: opacity 0.3s ease-in-out;
+
+      a {
+        &:hover {
+          color: #8d4881;
+        }
+      }
 
       @media only screen and (max-width: 640px) {
         display: inline;
@@ -83,28 +76,39 @@
           }
         }
       }
-
-      a {
-        &:hover {
-          color: #8d4881;
-        }
-      }
     }
 
     .widget {
+      color: #fff;
       padding-left: 10px;
       text-align: left;
-      color: #fff;
+
       @media only screen and (max-width: 900px) {
         display: none;
       }
     }
 
     .reltime {
-      text-transform: uppercase;
       font-family: 'Source Sans Pro', sans-serif;
       font-size: 10px;
+      text-transform: uppercase;
     }
+
+    @media only screen and (max-width: 900px) {
+      font-size: 20px;
+    }
+
+    @media only screen and (max-width: 640px) {
+      font-size: 18px;
+      margin: 0;
+      padding: 2px;
+    }
+  }
+
+  @media only screen and (max-width: 640px) {
+    height: 120px;
+    overflow: hidden;
+    width: 100%;
   }
 }
 
@@ -114,20 +118,21 @@
 }
 
 .photo-descrip {
-  position: fixed;
   bottom: 0;
   left: 0;
-  padding: 2px 4px;
-  width: calc(40vw - 8px);
-  white-space: nowrap;
-  text-overflow: ellipsis;
   overflow: hidden;
+  padding: 2px 4px;
+  position: fixed;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: calc(40vw - 8px);
+
   a {
     color: #fff;
   }
 
-  @media only screen and (max-width:640px) {
-    display: none
+  @media only screen and (max-width: 640px) {
+    display: none;
   }
 }
 

@@ -28,7 +28,7 @@ export default class Sidenav extends Component {
       if (!bgJson.success) throw new Error(bgJson.e);
       this.setState({ ...bgJson });
     } catch (error) {
-      console.error({ error });
+      return;
     }
   }
 

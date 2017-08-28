@@ -25,7 +25,7 @@ export default class TwitterWidget extends Component {
       if (!tweetJson.success) throw new Error('no tweet');
       this.setState({ ...tweetJson });
     } catch (error) {
-      console.error({ error });
+      return;
     }
 
   }

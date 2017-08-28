@@ -151,24 +151,15 @@ app.get('/lastfm', async(req, res) => {
 });
 
 const ensureGithub = (req, res, next) => {
-  if (!req.headers['user-agent'].includes('GitHub-Hookshot')) {
-    console.log('no ua')
-    res.redirect(301, '/');
-  }
-  logger.server({ env: process.env })
+  if (!req.headers['user-agent'].includes('GitHub-Hookshot')) res.redirect(301, '/');
   const hmac = crypto.createHmac('sha1', process.env.SECRET_TOKEN);
   const ourSignature = `sha1=${hmac.update(JSON.stringify(req.body)).digest('hex')}`;
   const theirSignature = req.get('X-Hub-Signature');
-  logger.server({ ourSignature, theirSignature })
   if (crypto.timingSafeEqual(Buffer.from(ourSignature, 'utf8'), Buffer.from(theirSignature, 'utf8'))) return next();
-  else {
-    console.log('no match');
-    res.redirect(301, '/');
-  }
+  else res.redirect(301, '/');
 };
 
 app.post('/postrecieve', ensureGithub, (req, res) => {
-  console.log('updating!');
   const update = exec(`cd ${path.join(__dirname, '..')}; git pull; yarn; yarn cleanup; yarn build`);
   update.stdout.pipe(process.stdout);
   res.writeHead(200, { 'Content-Type': 'text/plain' });
