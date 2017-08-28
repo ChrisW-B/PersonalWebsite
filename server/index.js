@@ -150,23 +150,23 @@ app.get('/lastfm', async(req, res) => {
   }
 });
 
-app.post('/postrecieve', (req, res) => {
-  const blob = JSON.stringify(req.body);
-  const hmac = crypto.createHmac('sha1', process.env.SECRET_TOKEN);
-  const ourSignature = `sha1=${hmac.update(blob).digest('hex')}`;
-  const theirSignature = req.get('X-Hub-Signature');
-  const bufferA = Buffer.from(ourSignature, 'utf8');
-  const bufferB = Buffer.from(theirSignature, 'utf8');
-  const safe = crypto.timingSafeEqual(bufferA, bufferB);
-
-  if (safe) {
-    console.log('updating!');
-    exec(`cd ${path.join(__dirname, '..')}; git pull; yarn; yarn cleanup; yarn build`);
+const ensureGithub = (req, res, next) => {
+  if (!req.headers['user-agent'].includes('GitHub-Hookshot')) {
+    return false;
   }
+  const theirSignature = req.headers['x-hub-signature'];
+  const payload = JSON.stringify(req.body);
+  const secret = config.SECRET_TOKEN; // TODO: Replace me
+  const ourSignature = `sha1=${crypto.createHmac('sha1', secret).update(payload).digest('hex')}`;
+  if (crypto.timingSafeEqual(Buffer.from(theirSignature), Buffer.from(ourSignature))) return next();
+  else res.redirect(301, '/');
+};
 
+app.post('/postrecieve', ensureGithub, (req, res) => {
+  console.log('updating!');
+  exec(`cd ${path.join(__dirname, '..')}; git pull; yarn; yarn cleanup; yarn build`);
   res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.write('success');
-  res.end();
+  res.end('Thanks GitHub <3');
 });
 
 app.get('*', (req, res) => res.redirect('/'));
