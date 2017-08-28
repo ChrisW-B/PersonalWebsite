@@ -158,6 +158,7 @@ const ensureGithub = (req, res, next) => {
   const hmac = crypto.createHmac('sha1', process.env.SECRET_TOKEN);
   const ourSignature = `sha1=${hmac.update(JSON.stringify(req.body)).digest('hex')}`;
   const theirSignature = req.get('X-Hub-Signature');
+  logger.server({ token: process.env.SECRET_TOKEN, ourSignature, theirSignature })
   if (crypto.timingSafeEqual(Buffer.from(ourSignature, 'utf8'), Buffer.from(theirSignature, 'utf8'))) return next();
   else {
     console.log('no match');
