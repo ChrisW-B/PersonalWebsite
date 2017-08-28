@@ -156,9 +156,8 @@ const ensureGithub = (req, res, next) => {
     res.redirect(301, '/');
   }
   const theirSignature = req.headers['x-hub-signature'];
-  const payload = JSON.stringify(req.body);
-  const secret = process.env.SECRET_TOKEN;
-  const ourSignature = `sha1=${crypto.createHmac('sha1', secret).update(payload).digest('hex')}`;
+  const ourSignature = `sha1=${crypto.createHmac('sha1', process.env.SECRET_TOKEN.toString()).update(JSON.stringify(req.body)).digest('hex')}`;
+  console.log({ theirSignature, ourSignature })
   if (crypto.timingSafeEqual(Buffer.from(theirSignature), Buffer.from(ourSignature))) return next();
   else {
     console.log('no match');
