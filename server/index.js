@@ -154,11 +154,10 @@ const ensureGithub = (req, res, next) => {
   if (!req.headers['user-agent'].includes('GitHub-Hookshot')) {
     res.redirect(301, '/');
   }
-  logger.server(process.env)
   const theirSignature = req.headers['x-hub-signature'];
   const payload = JSON.stringify(req.body);
-  const secret = process.env.SECRET_KEY; // TODO: Replace me
-  const ourSignature = `sha1=${crypto.createHmac('sha1', secret.string()).update(payload).digest('hex')}`;
+  const secret = process.env.SECRET_TOKEN;
+  const ourSignature = `sha1=${crypto.createHmac('sha1', secret).update(payload).digest('hex')}`;
   if (crypto.timingSafeEqual(Buffer.from(theirSignature), Buffer.from(ourSignature))) return next();
   else res.redirect(301, '/');
 };
