@@ -16,7 +16,7 @@ export default class Sidenav extends Component {
     { link: '//github.com/ChrisW-B/', title: 'Github' },
 
     { link: '//linkedin.com/in/chriswbarry', title: 'LinkedIn' },
-    { link: '//photo.chriswbarry.com/', title: 'Photography' }
+    { link: '//photo.chriswbarry.com/', title: 'Photos' }
   ]
 
   componentDidMount = () => this.getBackground();
