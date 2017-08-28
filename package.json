@@ -67,6 +67,9 @@
     "backend": "npm run build & nodemon --config ./nodemon-backend.json ./server",
     "frontend": "nodemon ./server --config ./nodemon-frontend.json",
     "build": "webpack -p --progress",
+    "lint:js": "eslint ./",
+    "lint:js:fix": "eslint --fix ./",
+    "lint:css": "stylelint './react/components/**/*.js'",
     "cleanup": "rm -r public/build"
   },
   "repository": {

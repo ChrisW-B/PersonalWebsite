@@ -148,11 +148,20 @@ app.get('/lastfm', async(req, res) => {
   }
 });
 
+app.post('/postrecieve', (req, res) => {
+  if (req.body.hook.events.includes('push')) {
+    const exec = require('child_process').exec;
+    const updateCmd = `cd ${path.join(__dirname, '..')}; git pull; yarn; yarn cleanup; yarn build`;
+    exec(updateCmd, (err, out, code)=>logger.server({err, out, code}))
+  }
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.write('success');
+  res.end();
+});
+
 app.get('*', (req, res) => res.redirect('/'));
 
-app.listen(4737, function () {
-  logger.server('Listening on port 4737!\n'.rainbow + 'http://localhost:4737/');
-});
+app.listen(4737, () => logger.server('Listening on port 4737!\n'.rainbow + 'http://localhost:4737/'));
 
 function relativeTimeDifference(previous) {
   // based on http://stackoverflow.com/a/6109105/6465731

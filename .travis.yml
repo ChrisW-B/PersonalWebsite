@@ -1,0 +1,9 @@
+branches:
+  only:
+    - "master"
+language: node_js
+node_js:
+  - "node"
+cache: yarn
+script:
+  - bash ./scripts/deploy.sh
