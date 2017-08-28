@@ -152,6 +152,7 @@ app.get('/lastfm', async(req, res) => {
 
 const ensureGithub = (req, res, next) => {
   if (!req.headers['user-agent'].includes('GitHub-Hookshot')) {
+    console.log('no ua')
     res.redirect(301, '/');
   }
   const theirSignature = req.headers['x-hub-signature'];
@@ -159,7 +160,10 @@ const ensureGithub = (req, res, next) => {
   const secret = process.env.SECRET_TOKEN;
   const ourSignature = `sha1=${crypto.createHmac('sha1', secret).update(payload).digest('hex')}`;
   if (crypto.timingSafeEqual(Buffer.from(theirSignature), Buffer.from(ourSignature))) return next();
-  else res.redirect(301, '/');
+  else {
+    console.log('no match');
+    res.redirect(301, '/');
+  }
 };
 
 app.post('/postrecieve', ensureGithub, (req, res) => {
