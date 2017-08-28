@@ -151,10 +151,16 @@ app.get('/lastfm', async(req, res) => {
 });
 
 app.post('/postrecieve', (req, res) => {
+  const blob = JSON.stringify(req.body);
   const hmac = crypto.createHmac('sha1', process.env.SECRET_TOKEN);
-  hmac.update(JSON.stringify(req.body));
-  const calculatedSignature = 'sha1=' + hmac.digest('hex');
-  if (req.headers['x-hub-signature'] === calculatedSignature) {
+  const ourSignature = `sha1=${hmac.update(blob).digest('hex')}`;
+  const theirSignature = req.get('X-Hub-Signature');
+  const bufferA = Buffer.from(ourSignature, 'utf8');
+  const bufferB = Buffer.from(theirSignature, 'utf8');
+  const safe = crypto.timingSafeEqual(bufferA, bufferB);
+
+  if (safe) {
+    console.log('updating!');
     exec(`cd ${path.join(__dirname, '..')}; git pull; yarn; yarn cleanup; yarn build`);
   }
 
