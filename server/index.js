@@ -13,7 +13,7 @@ const config = require('./config'),
   winston = require('winston'),
   expressWinston = require('express-winston'),
   crypto = require('crypto'),
-  spawn = require('child_process').spawn,
+  exec = require('child_process').exec,
 
   ONE_MIN = 60 * 1000,
   ONE_DAY = ONE_MIN * 60 * 24,
@@ -160,7 +160,9 @@ const ensureGithub = (req, res, next) => {
 };
 
 app.post('/postrecieve', ensureGithub, (req, res) => {
-  const update = spawn(path.join(__dirname, '..', 'scripts', 'update.sh'));
+  const updateFile = path.join(__dirname, '..', 'scripts', 'update.sh');
+  const update = exec(updateFile);
+
   update.unref();
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   res.end('Thanks GitHub <3');
