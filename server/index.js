@@ -149,8 +149,8 @@ app.get('/lastfm', async(req, res) => {
 });
 
 app.post('/postrecieve', (req, res) => {
-  const { hook, commits } = req.body;
-  if (hook.events.includes('push') || commits.length > 0) {
+  const { commits } = req.body;
+  if (commits.length > 0) {
     const exec = require('child_process').exec;
     exec(`cd ${path.join(__dirname, '..')}; git pull; yarn; yarn cleanup; yarn build`);
   }
