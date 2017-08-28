@@ -7,6 +7,6 @@ export Projects from './Projects';
 export Intro from './Intro';
 export Interests from './Interests';
 export Experience from './Experience';
-export LearnMore from './LearnMore'
+export LearnMore from './LearnMore';
 
 export default Resume;

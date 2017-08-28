@@ -57,6 +57,10 @@
     "sass-lint": "^1.10.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
+    "stylelint": "^8.0.0",
+    "stylelint-config-standard": "^17.0.0",
+    "stylelint-no-unsupported-browser-features": "^1.0.0",
+    "stylelint-order": "^0.6.0",
     "webpack": "^3.5.5",
     "webpack-dev-middleware": "^1.12.0",
     "webpack-hot-middleware": "^2.18.2"
@@ -67,9 +71,9 @@
     "backend": "npm run build & nodemon --config ./nodemon-backend.json ./server",
     "frontend": "nodemon ./server --config ./nodemon-frontend.json",
     "build": "webpack -p --progress",
-    "lint:js": "eslint ./",
-    "lint:js:fix": "eslint --fix ./",
-    "lint:css": "stylelint './react/components/**/*.js'",
+    "lint:js": "eslint ./ --ignore-pattern 'public/**/*.js'",
+    "lint:js:fix": "eslint --fix ./ --ignore-pattern 'public/**/*.js'",
+    "lint:css": "stylelint './react/components/**/*.scss'",
     "cleanup": "rm -r public/build"
   },
   "repository": {

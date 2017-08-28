@@ -109,7 +109,7 @@ app.get('/twitter', async(req, res) => {
 });
 
 app.get('/bg', async(req, res) => {
-  logger.bg('getting a background')
+  logger.bg('getting a background');
   try {
     const posts = (await (await fetch(`https://photo.chriswbarry.com/ghost/api/v0.1/posts?client_id=${config.ghost.id}&client_secret=${config.ghost.secret}&limit=7&fields=feature_image,url,title`)).json()).posts;
     const recentPhoto = posts[Math.round(Math.random() * (posts.length - 1))];
