@@ -155,10 +155,10 @@ const ensureGithub = (req, res, next) => {
     console.log('no ua')
     res.redirect(301, '/');
   }
-  const theirSignature = req.headers['x-hub-signature'];
-  const ourSignature = `sha1=${crypto.createHmac('sha1', process.env.SECRET_TOKEN.toString()).update(JSON.stringify(req.body)).digest('hex')}`;
-  console.log({ theirSignature, ourSignature })
-  if (crypto.timingSafeEqual(Buffer.from(theirSignature), Buffer.from(ourSignature))) return next();
+  const hmac = crypto.createHmac('sha1', process.env.SECRET_TOKEN);
+  const ourSignature = `sha1=${hmac.update(JSON.stringify(req.body)).digest('hex')}`;
+  const theirSignature = req.get('X-Hub-Signature');
+  if (crypto.timingSafeEqual(Buffer.from(ourSignature, 'utf8'), Buffer.from(theirSignature, 'utf8'))) return next();
   else {
     console.log('no match');
     res.redirect(301, '/');
