@@ -1,7 +1,9 @@
 #! /bin/bash
-set -e
 
 git pull
 yarn
-yarn cleanup
+if [ -d "./public/build" ]
+then
+    yarn cleanup
+fi
 yarn build
