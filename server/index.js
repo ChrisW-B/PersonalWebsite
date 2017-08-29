@@ -36,7 +36,7 @@ const Twitter = require('twitter'),
     ]
   }),
   app = express();
-logger.server(process.env);
+
 if (process.env.BUILD_MODE !== 'prebuilt') {
   const webpackConfig = require('../webpack.dev.config.js');
   const compiler = require('webpack')(webpackConfig);
