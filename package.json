@@ -5,8 +5,8 @@
   "main": "app.js",
   "dependencies": {
     "body-parser": "^1.17.2",
-    "colors": "^1.1.2",
     "compression": "^1.7.0",
+    "dotenv": "^4.0.0",
     "ejs": "^2.5.7",
     "express": "^4.15.4",
     "express-winston": "^2.4.0",
@@ -75,7 +75,7 @@
     "lint:js": "eslint ./ --ignore-pattern 'public/**/*.js'",
     "lint:js:fix": "eslint --fix ./ --ignore-pattern 'public/**/*.js'",
     "lint:css": "stylelint './react/components/**/*.scss'",
-    "cleanup": "rm -r ./public/build; rm -r ./webpack-cache"
+    "cleanup": "rm -r ./public/build"
   },
   "repository": {
     "type": "git",

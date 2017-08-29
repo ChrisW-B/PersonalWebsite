@@ -1,8 +1,6 @@
 // server/index.js
-
-require('colors');
-const config = require('./config'),
-  Twitter = require('twitter'),
+require('dotenv').config();
+const Twitter = require('twitter'),
   express = require('express'),
   twitterText = require('twitter-text'),
   Lastfm = require('lastfm-njs'),
@@ -19,14 +17,14 @@ const config = require('./config'),
   ONE_DAY = ONE_MIN * 60 * 24,
 
   twitterClient = new Twitter({
-    consumer_key: config.twitter.consumerKey,
-    consumer_secret: config.twitter.consumerSecret,
-    access_token_key: config.twitter.accessToken,
-    access_token_secret: config.twitter.accessSecret
+    consumer_key: process.env.TWITTER_CONSUMER_KEY,
+    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+    access_token_key: process.env.TWITTER_ACCESS_KEY,
+    access_token_secret: process.env.TWITTER_ACCESS_SECRET
   }),
   lastFmClient = new Lastfm({
-    apiKey: config.lastfm.apiKey,
-    apiSecret: config.lastfm.apiSecret
+    apiKey: process.env.LASTFM_KEY,
+    apiSecret: process.env.LASTFM_SECRET
   }),
   logger = new(winston.Logger)({
     level: 'server',
@@ -38,7 +36,7 @@ const config = require('./config'),
     ]
   }),
   app = express();
-
+logger.server(process.env);
 if (process.env.BUILD_MODE !== 'prebuilt') {
   const webpackConfig = require('../webpack.dev.config.js');
   const compiler = require('webpack')(webpackConfig);
@@ -113,7 +111,7 @@ app.get('/twitter', async(req, res) => {
 app.get('/bg', async(req, res) => {
   logger.bg('getting a background');
   try {
-    const posts = (await (await fetch(`https://photo.chriswbarry.com/ghost/api/v0.1/posts?client_id=${config.ghost.id}&client_secret=${config.ghost.secret}&limit=7&fields=feature_image,url,title`)).json()).posts;
+    const posts = (await (await fetch(`https://photo.chriswbarry.com/ghost/api/v0.1/posts?client_id=${process.env.GHOST_ID}&client_secret=${process.env.GHOST_SECRET}&limit=7&fields=feature_image,url,title`)).json()).posts;
     const recentPhoto = posts[Math.round(Math.random() * (posts.length - 1))];
     recentPhoto.url = `https://photo.chriswbarry.com${recentPhoto.url}`;
     if (!recentPhoto.feature_image.includes('http')) {
@@ -152,7 +150,7 @@ app.get('/lastfm', async(req, res) => {
 
 const ensureGithub = (req, res, next) => {
   if (!req.headers['user-agent'].includes('GitHub-Hookshot')) res.redirect(301, '/');
-  const hmac = crypto.createHmac('sha1', process.env.SECRET_TOKEN);
+  const hmac = crypto.createHmac('sha1', process.env.GITHUB_SECRET);
   const ourSignature = `sha1=${hmac.update(JSON.stringify(req.body)).digest('hex')}`;
   const theirSignature = req.get('X-Hub-Signature');
   if (crypto.timingSafeEqual(Buffer.from(ourSignature, 'utf8'), Buffer.from(theirSignature, 'utf8'))) return next();
@@ -170,7 +168,7 @@ app.post('/postrecieve', ensureGithub, (req, res) => {
 
 app.get('*', (req, res) => res.redirect('/'));
 
-app.listen(4737, () => logger.server('Listening on port 4737!\n'.rainbow + 'http://localhost:4737/'));
+app.listen(4737, () => logger.server('Listening on port 4737!\n' + 'http://localhost:4737/'));
 
 function relativeTimeDifference(previous) {
   // based on http://stackoverflow.com/a/6109105/6465731
