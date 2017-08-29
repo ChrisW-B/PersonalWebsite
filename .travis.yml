@@ -6,4 +6,4 @@ node_js:
   - "node"
 cache: yarn
 script:
-  - bash ./scripts/deploy.sh
+  - bash ./scripts/travis-ci.sh
