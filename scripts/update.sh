@@ -2,9 +2,6 @@
 {
   git pull
   yarn
-  if [ -d "./public/build" ]
-  then
-      yarn cleanup
-  fi
+  if [ -d "./public/build" ] && yarn cleanup
   yarn build
 } > update.log
