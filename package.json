@@ -69,7 +69,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "env BUILD_MODE=prebuilt node ./server",
-    "backend": "npm run build & nodemon --config ./nodemon-backend.json ./server",
+    "backend": "yarn build & nodemon --config ./nodemon-backend.json ./server",
     "frontend": "nodemon ./server --config ./nodemon-frontend.json",
     "build": "webpack -p --progress",
     "lint:js": "eslint ./ --ignore-pattern 'public/**/*.js'",
