@@ -1,5 +1,6 @@
 #! /bin/bash
 {
+  local NODE_ENV='development'
   if [ -d "./public/build" ]; then
       yarn cleanup
   fi
