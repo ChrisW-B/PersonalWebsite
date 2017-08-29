@@ -1,9 +1,10 @@
 #! /bin/bash
-
-git pull
-yarn
-if [ -d "./public/build" ]
-then
-    yarn cleanup
-fi
-yarn build
+{
+  git pull
+  yarn
+  if [ -d "./public/build" ]
+  then
+      yarn cleanup
+  fi
+  yarn build
+} > update.log
