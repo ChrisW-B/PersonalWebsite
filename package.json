@@ -75,7 +75,8 @@
     "lint:js": "eslint ./ --ignore-pattern 'public/**/*.js'",
     "lint:js:fix": "eslint --fix ./ --ignore-pattern 'public/**/*.js'",
     "lint:css": "stylelint './react/components/**/*.scss'",
-    "cleanup": "rm -r ./public/build"
+    "cleanup": "rm -r ./public/build",
+    "forceDev": "yarn install --production=false"
   },
   "repository": {
     "type": "git",
