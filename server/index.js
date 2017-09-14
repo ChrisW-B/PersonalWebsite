@@ -11,7 +11,7 @@ const Twitter = require('twitter'),
   winston = require('winston'),
   expressWinston = require('express-winston'),
   crypto = require('crypto'),
-  exec = require('child_process').exec,
+  { spawn } = require('child_process'),
 
   ONE_MIN = 60 * 1000,
   ONE_DAY = ONE_MIN * 60 * 24,
@@ -158,10 +158,13 @@ const ensureGithub = (req, res, next) => {
 };
 
 app.post('/postrecieve', ensureGithub, (req, res) => {
-  const updateFile = path.join(__dirname, '..', 'scripts', 'update.sh');
-  const update = exec(updateFile);
-
-  update.unref();
+  const cwd = path.join(__dirname, '..');
+  const updateFile = path.join(cwd, 'scripts', 'update.sh');
+  utils.logger.server(`running ${updateFile}`);
+  spawn('sh', [updateFile], {
+    cwd,
+    env: Object.assign({}, process.env, { PATH: `${process.env.PATH} :/usr/local/bin` })
+  });
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   res.end('Thanks GitHub <3');
 });
