@@ -1,7 +1,7 @@
 // react/components/Sidenav/Sidenav.js
 
 import React, { Component } from 'react';
-import { TwitterWidget, LastFmWidget, SidenavLink } from './';
+import { TwitterWidget, LastFmWidget, SidenavLink, GithubWidget } from './';
 
 export default class Sidenav extends Component {
 
@@ -13,9 +13,11 @@ export default class Sidenav extends Component {
 
   sidenavElements = [
     { link: 'mailto:me@chriswbarry.com', title: 'Get in Touch' },
-    { link: '//github.com/ChrisW-B/', title: 'Github' },
+    { widget: <GithubWidget />, link: '//github.com/chrisw-b', title: 'Github' },
     { link: '//linkedin.com/in/chriswbarry', title: 'LinkedIn' },
-    { link: '//photo.chriswbarry.com/', title: 'Photos' }
+    { widget: <TwitterWidget />, link: '//twitter.com/chrisw_b', title: 'Twitter' },
+    { link: '//photo.chriswbarry.com/', title: 'Photos' },
+    { widget: <LastFmWidget />, link: '//last.fm/christo27', title: 'LastFM' }
   ]
 
   componentDidMount = () => this.getBackground();
@@ -42,9 +44,6 @@ export default class Sidenav extends Component {
           {
             this.sidenavElements.map(e => <SidenavLink key={e.link} {...e}/>)
           }
-          <TwitterWidget />
-          <LastFmWidget />
-
         </ul>
         <div className='tumblr-widget widget descrip photo-descrip'>
           <a href={url}>Background: <br/> {title}</a>
