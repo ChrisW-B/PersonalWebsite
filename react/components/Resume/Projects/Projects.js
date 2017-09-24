@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 
 export default class Projects extends Component {
   render = () =>
-    <div className='projects'>
+    (<div className='projects'>
       <h2>Some Personal Projects</h2>
       <ul>
         <li><a href='//spotifyapps.chriswbarry.com/' title='Spotify Autoplaylists'>Spotify Autoplaylists</a> (<a href='//github.com/ChrisW-B/spotifyPlaylists' title='Spotify Autoplaylists'>source</a>)</li>
@@ -20,6 +20,6 @@ export default class Projects extends Component {
           <li>An experiment in identifying positivity/sentiment in news</li>
         </ul>
       </ul>
-    </div>
+    </div>)
 
 }

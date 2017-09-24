@@ -1,12 +1,13 @@
-const path = require('path'),
-  webpack = require('webpack'),
-  CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin'),
-  BUILD_DIR = path.resolve(__dirname, 'public/build'),
-  APP_DIR = path.resolve(__dirname, 'react');
+const path = require('path');
+const webpack = require('webpack');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+
+const BUILD_DIR = path.resolve(__dirname, 'public/build');
+const APP_DIR = path.resolve(__dirname, 'react');
 
 module.exports = {
   entry: {
-    app: ['babel-polyfill', 'webpack-hot-middleware/client?name=app', APP_DIR + '/index']
+    app: ['babel-polyfill', 'webpack-hot-middleware/client?name=app', `${APP_DIR}/index`]
   },
   output: {
     path: BUILD_DIR,
@@ -22,27 +23,31 @@ module.exports = {
     new CaseSensitivePathsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.ProgressPlugin()
   ],
   module: {
     rules: [{
+      enforce: 'pre',
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loader: 'eslint-loader'
+    }, {
+      enforce: 'pre',
+      test: /\.scss$/,
+      exclude: /node_modules/,
+      loader: 'stylelint-custom-processor-loader'
+    }, {
       test: /\.jsx?$|\.js?$/,
       exclude: /node_modules/,
-      use: {
+      use: [{
         loader: 'babel-loader',
         options: {
           cacheDirectory: true,
-          presets: ['es2015', 'stage-0', 'react'],
-          'plugins': [
-            'transform-decorators-legacy', [
-              'transform-react-remove-prop-types',
-              { mode: 'remove', removeImport: true }
-            ]
-
+          presets: [
+            ['es2015', { modules: false }], 'react', 'stage-0'
           ]
         }
-      }
+      }]
     }, {
       test: /\.json?$/,
       loader: 'json-loader'

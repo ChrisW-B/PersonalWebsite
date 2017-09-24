@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 export default class Interests extends Component {
   render = () =>
-    <div className='interests'>
+    (<div className='interests'>
       <h2>Interests</h2>
       <p>
         I&#39;ve made things with Python, Node.JS, and JavaScript, and most recently, I&#39;ve been working in frontend, especially in React. While at school, I studied a huge variety of subjects, ranging from bioinformatics and algorithms to pattern recognition and web design. Some of my other skills include
@@ -36,5 +36,5 @@ export default class Interests extends Component {
           </li>
         </ul>
       </div>
-  </div>
+    </div>)
 }

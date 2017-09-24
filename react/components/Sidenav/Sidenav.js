@@ -11,15 +11,6 @@ export default class Sidenav extends Component {
     url: ''
   }
 
-  sidenavElements = [
-    { link: 'mailto:me@chriswbarry.com', title: 'Get in Touch' },
-    { widget: <GithubWidget />, link: '//github.com/chrisw-b', title: 'Github' },
-    { link: '//linkedin.com/in/chriswbarry', title: 'LinkedIn' },
-    { widget: <TwitterWidget />, link: '//twitter.com/chrisw_b', title: 'Twitter' },
-    { link: '//photo.chriswbarry.com/', title: 'Photos' },
-    { widget: <LastFmWidget />, link: '//last.fm/christo27', title: 'LastFM' }
-  ]
-
   componentDidMount = () => this.getBackground();
 
   getBackground = async() => {
@@ -33,6 +24,15 @@ export default class Sidenav extends Component {
     }
   }
 
+  sidenavElements = [
+    { link: 'mailto:me@chriswbarry.com', title: 'Get in Touch' },
+    { widget: <GithubWidget />, link: '//github.com/chrisw-b', title: 'Github' },
+    { link: '//linkedin.com/in/chriswbarry', title: 'LinkedIn' },
+    { widget: <TwitterWidget />, link: '//twitter.com/chrisw_b', title: 'Twitter' },
+    { link: '//photo.chriswbarry.com/', title: 'Photos' },
+    { widget: <LastFmWidget />, link: '//last.fm/christo27', title: 'LastFM' }
+  ]
+
   render = () => {
     const { feature_image = '', title = '', url = '' } = this.state;
     return (
@@ -42,11 +42,11 @@ export default class Sidenav extends Component {
             <h1>Chris Barry</h1>
           </li>
           {
-            this.sidenavElements.map(e => <SidenavLink key={e.link} {...e}/>)
+            this.sidenavElements.map(e => <SidenavLink key={e.link} {...e} />)
           }
         </ul>
         <div className='tumblr-widget widget descrip photo-descrip'>
-          <a href={url}>Background: <br/> {title}</a>
+          <a href={url}>Background: <br /> {title}</a>
         </div>
         <div
           className={`bg-image ${feature_image ? 'image' : 'empty'} `}

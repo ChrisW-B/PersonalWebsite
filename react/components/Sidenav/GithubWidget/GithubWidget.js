@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 const ONE_MIN = 60 * 1000;
 
 export default class GithubWidget extends Component {
@@ -38,7 +39,7 @@ export default class GithubWidget extends Component {
           Github
         </a>
         <div className='github-widget widget'>
-          <div className='descrip' dangerouslySetInnerHTML={{__html: message}}/> { /* eeep! */}
+          <div className='descrip' dangerouslySetInnerHTML={{__html: message}} /> { /* eeep! */}
           <div className='reltime'>
             {link ? <a href={link} title={time}>{time} in {repo}</a> : null}
           </div>

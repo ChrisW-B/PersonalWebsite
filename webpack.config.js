@@ -1,13 +1,14 @@
-const path = require('path'),
-  CompressionPlugin = require('compression-webpack-plugin'),
-  BabiliPlugin = require('babili-webpack-plugin'),
-  webpack = require('webpack'),
-  BUILD_DIR = path.resolve(__dirname, 'public/build'),
-  APP_DIR = path.resolve(__dirname, 'react');
+const path = require('path');
+const CompressionPlugin = require('compression-webpack-plugin');
+const MinifyPlugin = require('babel-minify-webpack-plugin');
+const webpack = require('webpack');
+
+const BUILD_DIR = path.resolve(__dirname, 'public/build');
+const APP_DIR = path.resolve(__dirname, 'react');
 
 module.exports = {
   entry: {
-    app: ['babel-polyfill', APP_DIR + '/index']
+    app: ['babel-polyfill', `${APP_DIR}/index`]
   },
   output: {
     path: BUILD_DIR,
@@ -16,15 +17,14 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({ ENV: JSON.stringify('production') }),
-    new BabiliPlugin({ removeConsole: true, removeDebugger: true }, { comments: false, sourceMap: false }),
+    new MinifyPlugin({
+      removeConsole: true,
+      removeDebugger: true
+    }, { comments: false, sourceMap: false }),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false
-    }),
+    new webpack.LoaderOptionsPlugin({ minimize: true, debug: false }),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
-    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new CompressionPlugin({
       asset: '[path].gz[query]',
@@ -39,37 +39,29 @@ module.exports = {
   },
   module: {
     rules: [{
+      enforce: 'pre',
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loader: 'eslint-loader'
+    }, {
+      enforce: 'pre',
+      test: /\.scss$/,
+      exclude: /node_modules/,
+      loader: 'stylelint-custom-processor-loader'
+    }, {
       test: /\.jsx?$|\.js?$/,
-      exclude: /(node_modules|bower_components)/,
-      use: {
+      exclude: /node_modules/,
+      use: [{
         loader: 'babel-loader',
         options: {
-          cacheDirectory: './webpack-cache',
-          babelrc: false,
-          'presets': [
-            'es2015', ['minify', { removeConsole: true, removeDebugger: true }],
-            'react',
-            'stage-0'
+          presets: [
+            ['es2015', { modules: false }], 'react', 'stage-0'
           ],
-          'plugins': [
-            'transform-decorators-legacy', [
-              'transform-react-remove-prop-types',
-              {
-                mode: 'remove',
-                removeImport: true
-              }
-            ],
-            [
-              'transform-runtime', {
-                helpers: false,
-                polyfill: false,
-                regenerator: true,
-                moduleName: 'babel-runtime'
-              }
-            ]
+          plugins: [
+            ['transform-react-remove-prop-types', { mode: 'remove', removeImport: true }]
           ]
         }
-      }
+      }]
     }, {
       test: /\.scss$/,
       exclude: /node_modules/,
@@ -84,9 +76,9 @@ module.exports = {
         loader: 'postcss-loader',
         options: {
           plugins: [
-            require('postcss-smart-import')(),
-            require('precss')(),
-            require('autoprefixer')()
+            require('postcss-smart-import')(), // eslint-disable-line global-require
+            require('precss')(), // eslint-disable-line global-require
+            require('autoprefixer')() // eslint-disable-line global-require
           ]
         }
       }, {

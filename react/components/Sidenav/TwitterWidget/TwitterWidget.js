@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 const ONE_MIN = 60 * 1000;
 
 export default class TwitterWidget extends Component {
@@ -38,7 +39,7 @@ export default class TwitterWidget extends Component {
           Twitter
         </a>
         <div className='twitter-widget widget'>
-          <div className='descrip' dangerouslySetInnerHTML={{__html: text}}/> { /* eeep! */}
+          <div className='descrip' dangerouslySetInnerHTML={{__html: text}} /> { /* eeep! */}
           <div className='reltime'>
             <a href={link} title={time}>{time}</a>
           </div>

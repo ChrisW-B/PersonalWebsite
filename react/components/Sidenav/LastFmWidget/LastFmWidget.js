@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 const ONE_MIN = 60 * 1000;
 export default class TwitterWidget extends Component {
   state = {

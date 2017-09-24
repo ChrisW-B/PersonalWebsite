@@ -1,6 +1,7 @@
 #! /bin/bash
 {
+  date
   git pull
-  yarn forceDev
+  yarn
   yarn build
 } > update.log 2>&1

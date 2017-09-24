@@ -5,9 +5,9 @@ import { Sidenav, Resume } from '..';
 
 export default class Homepage extends Component {
   render = () =>
-    <div className='homepage'>
-      <Sidenav/>
-      <Resume/>
-    </div>
+    (<div className='homepage'>
+      <Sidenav />
+      <Resume />
+    </div>)
 
 }
