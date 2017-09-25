@@ -16,7 +16,8 @@
     "./server/"
   ],
   "env": {
-    "BUILD_MODE": "prebuilt"
+    "BUILD_MODE": "prebuilt",
+    "NODE_ENV": "development"
   },
   "ext": "js json"
 }

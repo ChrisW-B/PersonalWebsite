@@ -1,6 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin'); // eslint-disable-line import/no-extraneous-dependencies
 
 const BUILD_DIR = path.resolve(__dirname, 'public/build');
 const APP_DIR = path.resolve(__dirname, 'react');
@@ -42,9 +42,11 @@ module.exports = {
       use: [{
         loader: 'babel-loader',
         options: {
-          cacheDirectory: true,
           presets: [
-            ['es2015', { modules: false }], 'react', 'stage-0'
+            ['env', { targets: { browsers: ['last 2 versions'] } }], 'react'
+          ],
+          plugins: [
+            'transform-object-rest-spread', 'transform-export-extensions', 'transform-class-properties'
           ]
         }
       }]

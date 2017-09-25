@@ -22,7 +22,6 @@ module.exports = {
       removeDebugger: true
     }, { comments: false, sourceMap: false }),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.LoaderOptionsPlugin({ minimize: true, debug: false }),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
@@ -39,26 +38,16 @@ module.exports = {
   },
   module: {
     rules: [{
-      enforce: 'pre',
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: 'eslint-loader'
-    }, {
-      enforce: 'pre',
-      test: /\.scss$/,
-      exclude: /node_modules/,
-      loader: 'stylelint-custom-processor-loader'
-    }, {
-      test: /\.jsx?$|\.js?$/,
+      test: /\.js[x]?$/,
       exclude: /node_modules/,
       use: [{
         loader: 'babel-loader',
         options: {
           presets: [
-            ['es2015', { modules: false }], 'react', 'stage-0'
+            ['env', { targets: { browsers: ['last 2 versions'] } }], 'react'
           ],
           plugins: [
-            ['transform-react-remove-prop-types', { mode: 'remove', removeImport: true }]
+            'transform-object-rest-spread', 'transform-export-extensions', 'transform-class-properties', ['transform-react-remove-prop-types', { mode: 'remove', removeImport: true }]
           ]
         }
       }]
