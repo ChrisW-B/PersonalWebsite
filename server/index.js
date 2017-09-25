@@ -211,22 +211,20 @@ app.get('/bg', async (req, res) => {
 
 app.get('/lastfm', async (req, res) => {
   logger.lastfm('getting recent play');
-  try {
-    const lastTrack = (await lastFmClient.user_getRecentTracks({
-      user: 'Christo27',
-      limit: 1
-    })).track[0];
-    if (lastTrack !== undefined && lastTrack['@attr'].nowplaying) {
-      logger.lastfm('got now playing');
-      res.send({
-        success: true,
-        text: `♫ ${lastTrack.name} by ${lastTrack.artist['#text']}`
-      });
-    }
-  } catch (e) {
-    logger.lastfm('no track!', e);
-    res.send({ success: false, e });
+  const recentTrack = (await lastFmClient.user_getRecentTracks({
+    user: 'Christo27',
+    limit: 1
+  })).track;
+  if (recentTrack.length && recentTrack[0]['@attr'] && recentTrack[0]['@attr'].nowplaying) {
+    const lastTrack = recentTrack[0];
+    logger.lastfm('got now playing');
+    return res.send({
+      success: true,
+      text: `♫ ${lastTrack.name} by ${lastTrack.artist['#text']}`
+    });
   }
+  logger.lastfm('no track!');
+  return res.send({ success: false });
 });
 
 const ensureGithub = (req, res, next) => {

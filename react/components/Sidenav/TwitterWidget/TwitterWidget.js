@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TwitterLogo from 'react-icons/lib/io/social-twitter';
 
 const ONE_MIN = 60 * 1000;
 
@@ -36,7 +37,7 @@ export default class TwitterWidget extends Component {
     return (
       <li>
         <a href='//twitter.com/ChrisW_B/' title='Twitter'>
-          Twitter
+          <span className='icon'><TwitterLogo /></span>Twitter
         </a>
         <div className='twitter-widget widget'>
           <div className='descrip' dangerouslySetInnerHTML={{__html: text}} /> { /* eeep! */}

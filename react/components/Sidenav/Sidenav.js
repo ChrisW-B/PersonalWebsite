@@ -1,6 +1,9 @@
 // react/components/Sidenav/Sidenav.js
 
 import React, { Component } from 'react';
+import Mail from 'react-icons/lib/io/android-mail';
+import LinkedInLogo from 'react-icons/lib/io/social-linkedin';
+import Camera from 'react-icons/lib/io/camera';
 import { TwitterWidget, LastFmWidget, SidenavLink, GithubWidget } from './';
 
 export default class Sidenav extends Component {
@@ -25,12 +28,13 @@ export default class Sidenav extends Component {
   }
 
   sidenavElements = [
-    { link: 'mailto:me@chriswbarry.com', title: 'Get in Touch' },
-    { widget: <GithubWidget />, link: '//github.com/chrisw-b', title: 'Github' },
-    { link: '//linkedin.com/in/chriswbarry', title: 'LinkedIn' },
-    { widget: <TwitterWidget />, link: '//twitter.com/chrisw_b', title: 'Twitter' },
-    { link: '//photo.chriswbarry.com/', title: 'Photos' },
-    { widget: <LastFmWidget />, link: '//last.fm/christo27', title: 'LastFM' }
+    { title: 'Get in Touch', link: 'mailto:me@chriswbarry.com', icon: <Mail />, emphasis: true },
+    { title: 'Github', link: '//github.com/chrisw-b', widget: <GithubWidget /> },
+    { title: 'Twitter', link: '//twitter.com/chrisw_b', widget: <TwitterWidget /> },
+    { title: 'LastFM', link: '//last.fm/christo27', widget: <LastFmWidget /> },
+    { title: 'LinkedIn', link: '//linkedin.com/in/chriswbarry', icon: <LinkedInLogo /> },
+    { title: 'Phototography', link: '//photo.chriswbarry.com/', icon: <Camera /> }
+
   ]
 
   render = () => {

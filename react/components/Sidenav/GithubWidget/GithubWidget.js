@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import GitHubLogo from 'react-icons/lib/io/social-github';
 
 const ONE_MIN = 60 * 1000;
 
@@ -36,7 +37,7 @@ export default class GithubWidget extends Component {
     return (
       <li>
         <a href='//github.com/ChrisW-B/' title='Github'>
-          Github
+          <span className='icon'><GitHubLogo /></span>Github
         </a>
         <div className='github-widget widget'>
           <div className='descrip' dangerouslySetInnerHTML={{__html: message}} /> { /* eeep! */}

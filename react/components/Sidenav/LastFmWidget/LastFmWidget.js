@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Music from 'react-icons/lib/io/radio-waves'
 
 const ONE_MIN = 60 * 1000;
 export default class TwitterWidget extends Component {
@@ -32,7 +33,7 @@ export default class TwitterWidget extends Component {
     return (
       <li>
         <a href='http://last.fm/user/christo27/' title='Last.fm'>
-          Last.FM
+          <span className='icon'><Music /></span>Last.FM
         </a>
         <div className='lastfm-widget widget'>
           <div className='descrip'>

@@ -5,17 +5,23 @@ export default class SidenavLink extends Component {
   static propTypes = {
     link: PropTypes.string,
     title: PropTypes.string,
-    widget: PropTypes.node
+    widget: PropTypes.node,
+    icon: PropTypes.node,
+    emphasis: PropTypes.bool
   }
 
   static defaultProps = {
     link: '',
     title: '',
-    widget: null
+    widget: null,
+    icon: null,
+    emphasis: false
   }
   render = () => {
-    const { link, title, widget } = this.props;
-    if (widget) return widget;
-    return <li><a href={link} title={title}>{title}</a></li>;
+    const { link, title, widget, icon, emphasis } = this.props;
+    return widget ? widget
+      : <li className={`${emphasis ? 'emphasis':''}`}>
+        <a href={link} title={title}><span className='icon'>{icon}</span>{title}</a>
+      </li>;
   }
 }

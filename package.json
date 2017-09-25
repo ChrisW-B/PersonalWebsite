@@ -19,6 +19,7 @@
     "prop-types": "^15.5.10",
     "react": "^16.0.0-rc.2",
     "react-dom": "^16.0.0-rc.2",
+    "react-icons": "^2.2.5",
     "secure-compare": "^3.0.1",
     "simple-lastfm": "^1.x",
     "stylelint-custom-processor-loader": "^0.2.1",
