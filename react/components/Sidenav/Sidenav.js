@@ -33,7 +33,7 @@ export default class Sidenav extends Component {
     { title: 'Twitter', link: '//twitter.com/chrisw_b', widget: <TwitterWidget /> },
     { title: 'LastFM', link: '//last.fm/christo27', widget: <LastFmWidget /> },
     { title: 'LinkedIn', link: '//linkedin.com/in/chriswbarry', icon: <LinkedInLogo /> },
-    { title: 'Phototography', link: '//photo.chriswbarry.com/', icon: <Camera /> }
+    { title: 'Photography', link: '//photo.chriswbarry.com/', icon: <Camera /> }
 
   ]
 
