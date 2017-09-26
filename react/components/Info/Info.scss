@@ -1,5 +1,5 @@
-// react/components/Resume/Resume.scss
-.resume {
+// react/components/Info/Info.scss
+.info {
   background-color: #fff;
   color: #0d2659;
   display: flex;
@@ -18,46 +18,11 @@
       color: #cfe3cf;
     }
   }
-  .inner-resume {
+  .inner-info {
     max-width: 800px;
 
     .about-me {
       padding: 0 10px 30px;
-
-      .projects,
-      .interests,
-      .experience {
-        border-top: 1px dashed hsl(220.3, 74.5, 90);
-        display: flex;
-        flex-direction: column;
-        padding-top: 10px;
-
-        p,
-        ul,
-        h2 {
-          margin: 10px 5px;
-        }
-
-        .section_title {
-          color: rgba(0, 195, 216, 1);
-          font-size: 14px;
-          text-decoration: underline rgba(186, 39, 66, 1) wavy;
-          text-transform: uppercase;
-          h2 {
-            text-align: center;
-          }
-        }
-
-        @media (min-width: 640px) {
-          flex-direction: row;
-          .section_title {
-            flex: 0 1 150px;
-            h2 {
-              text-align: left;
-            }
-          }
-        }
-      }
 
       @media only screen and (max-width: 640px) {
         padding-bottom: 100px;

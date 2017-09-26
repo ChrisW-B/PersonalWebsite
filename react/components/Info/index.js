@@ -1,12 +1,10 @@
-// react/components/Resume/index.js
+// react/components/Info/index.js
 
-import Resume from './Resume';
-import './Resume.scss';
+import Info from './Info';
+import './Info.scss';
 
-export Projects from './Projects';
 export Intro from './Intro';
-export Interests from './Interests';
-export Experience from './Experience';
 export LearnMore from './LearnMore';
+export DetailSections from './DetailSections';
 
-export default Resume;
+export default Info;

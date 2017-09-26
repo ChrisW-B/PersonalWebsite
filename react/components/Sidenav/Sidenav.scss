@@ -58,6 +58,7 @@
       max-width: 400px;
       overflow: hidden;
       padding-top: 10px;
+      text-shadow: 0 0 4px #6a6a6a;
       transition: opacity 0.3s ease-in-out;
 
       .icon {
@@ -100,17 +101,17 @@
 
     .reltime {
       font-family: 'Source Sans Pro', sans-serif;
-      font-size: 10px;
+      font-size: 0.4em;
       font-weight: 600;
       text-transform: uppercase;
     }
 
     @media only screen and (max-width: 900px) {
-      font-size: 20px;
+      font-size: 1.4em;
     }
 
     @media only screen and (max-width: 640px) {
-      font-size: 18px;
+      font-size: 1.1em;
       margin: 0;
       padding: 2px;
     }
@@ -125,8 +126,7 @@
 
 .descrip {
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 0.65em;
 }
 
 .photo-descrip {
