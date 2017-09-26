@@ -173,7 +173,7 @@ app.get('/github', async (req, res) => {
         success: true,
         link: `${url}/tree/${ref.name}`,
         repo: `${nameWithOwner}#${ref.name}`,
-        message: `${messageHeadlineHTML}${messageBodyHTML ? '\n' : ''}${messageBodyHTML}`,
+        message: `${messageHeadlineHTML.replace('…', '')}${messageBodyHTML.replace('…', '')}`,
         time: committedDate
       };
     });
