@@ -59,15 +59,15 @@ const relativeTimeDifference = (previous) => {
     num = Math.round(elapsed / msPerHour);
     unit = 'hour';
   } else if (elapsed < msPerMonth) {
-    num = `approximately ${Math.round(elapsed / msPerDay)}`;
+    num = `${Math.round(elapsed / msPerDay)}`;
     unit = 'day';
     approx = 'approximately';
   } else if (elapsed < msPerYear) {
-    num = `approximately ${Math.round(elapsed / msPerMonth)}`;
+    num = `${Math.round(elapsed / msPerMonth)}`;
     unit = 'month';
     approx = 'approximately';
   } else {
-    num = `approximately${Math.round(elapsed / msPerYear)}`;
+    num = `${Math.round(elapsed / msPerYear)}`;
     unit = 'year';
     approx = 'approximately';
   }
@@ -76,36 +76,6 @@ const relativeTimeDifference = (previous) => {
   }
   return `${approx} ${num} ${unit} ago`;
 };
-
-if (process.env.BUILD_MODE !== 'prebuilt') {
-  const webpackConfig = require('../webpack.dev.config.js'); // eslint-disable-line global-require
-  const compiler = require('webpack')(webpackConfig); // eslint-disable-line global-require
-  app.use(require('webpack-dev-middleware')(compiler, { // eslint-disable-line global-require
-    hot: true,
-    publicPath: webpackConfig.output.publicPath,
-    stats: {
-      colors: true
-    },
-    historyApiFallback: true
-  }));
-  app.use(require('webpack-hot-middleware')(compiler, { // eslint-disable-line global-require
-    reload: true,
-    path: '/__webpack_hmr',
-    heartbeat: 10 * 1000
-  }));
-} else {
-  app.get('*.js', (req, res, next) => {
-    req.url += '.gz';
-    res.set('Content-Encoding', 'gzip');
-    res.set('Content-Type', 'text/javascript');
-    res.set('Vary', 'Accept-Encoding');
-    next();
-  });
-
-  app.get('/build/app.js', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/build', 'app.js'));
-  });
-}
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../views'));
@@ -119,6 +89,25 @@ app.use(expressWinston.logger({
   meta: false,
   colorize: true
 }));
+
+if (process.env.BUILD_MODE !== 'prebuilt') {
+  const webpackConfig = require('../config/webpack.dev.config.js'); // eslint-disable-line global-require
+  const compiler = require('webpack')(webpackConfig); // eslint-disable-line global-require
+  app.use(require('webpack-dev-middleware')(compiler, { // eslint-disable-line
+    hot: true,
+    publicPath: webpackConfig.output.publicPath,
+    stats: {
+      colors: true
+    },
+    historyApiFallback: true
+  }));
+  app.use(require('webpack-hot-middleware')(compiler, { // eslint-disable-line
+    reload: true,
+    path: '/__webpack_hmr',
+    heartbeat: 10 * 1000
+  }));
+}
+
 app.get('/', (req, res) => {
   res.render('pages/index');
 });
@@ -198,6 +187,8 @@ app.get('/bg', async (req, res) => {
     if (!recentPhoto.feature_image.includes('http')) {
       recentPhoto.feature_image = `https://photo.chriswbarry.com${recentPhoto.feature_image}`;
     }
+    recentPhoto.photo = recentPhoto.feature_image;
+    delete recentPhoto.feature_image;
     res.send({
       success: true,
       ...recentPhoto
