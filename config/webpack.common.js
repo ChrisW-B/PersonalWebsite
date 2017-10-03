@@ -7,7 +7,7 @@ const BabelPresets = [
   ['env', { targets: { browsers: ['> 2%'] } }], 'react'
 ];
 
-const BabelPlugins = ['emotion/babel', 'transform-object-rest-spread', 'transform-export-extensions', 'transform-class-properties'];
+const BabelPlugins = ['transform-object-rest-spread', 'transform-export-extensions', 'transform-class-properties'];
 
 const WebpackStatic = [
   { test: /\.json?$/, loader: 'json-loader', exclude: /node_modules/ },

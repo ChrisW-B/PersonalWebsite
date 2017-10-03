@@ -1,8 +1,5 @@
 import React from 'react';
-import Projects from './Projects';
-import Interests from './Interests';
-import Experience from './Experience';
-import Technologies from './Technologies';
+import { Projects, Interests, Experience, Technologies } from './Sections';
 
 export default [
   { title: `Interests`, content: <Interests /> },

@@ -1,7 +1,7 @@
 // react/index.js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { injectGlobal } from 'emotion/react';
+import { injectGlobal } from 'emotion';
 import { Homepage } from './components';
 
 /* eslint-disable no-unused-expressions */

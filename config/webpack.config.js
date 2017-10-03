@@ -20,7 +20,7 @@ const WebpackPlugins = [
   new webpack.NoEmitOnErrorsPlugin(),
   new CompressionPlugin(CompressionConfig)
 ];
-const ProdPlugins = [...BabelPlugins, ['transform-react-remove-prop-types', { mode: 'remove', removeImport: true }]];
+const ProdPlugins = ['emotion', ...BabelPlugins, ['transform-react-remove-prop-types', { mode: 'remove', removeImport: true }]];
 
 const BabelConfig = {
   test: /\.jsx?$|\.js?$/,
@@ -34,7 +34,6 @@ const BabelConfig = {
 module.exports = {
   entry: { app: ['babel-polyfill', `${AppDir}/index`] },
   output: OutputConfig,
-  devtool: 'cheap-module-source-map',
   plugins: WebpackPlugins,
   resolve: { extensions: ['.js', '.jsx', '.json'] },
   module: { rules: [BabelConfig, ...WebpackStatic] }

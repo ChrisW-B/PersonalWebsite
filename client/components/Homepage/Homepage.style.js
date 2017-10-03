@@ -1,4 +1,4 @@
-import styled from 'emotion/react';
+import styled from 'react-emotion';
 /* eslint-disable import/prefer-default-export */
 
 export const HomepageDiv = styled.div `

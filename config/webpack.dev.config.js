@@ -11,12 +11,16 @@ const WebpackPre = [
   { enforce: 'pre', test: /\.js$/, exclude: /node_modules/, loader: 'eslint-loader' },
   { enforce: 'pre', test: /\.js$/, exclude: /node_modules/, loader: 'stylelint-custom-processor-loader' }
 ];
+const DevPlugins = [
+  ['emotion', { sourceMap: true }], ...BabelPlugins
+];
+
 const BabelConfig = {
   test: /\.jsx?$|\.js?$/,
   exclude: /node_modules/,
   use: [{
     loader: 'babel-loader',
-    options: { presets: BabelPresets, plugins: BabelPlugins }
+    options: { presets: BabelPresets, plugins: DevPlugins }
   }]
 };
 const HMRConfig = {
@@ -28,7 +32,7 @@ const HMRConfig = {
 module.exports = {
   entry: { app: ['babel-polyfill', 'webpack-hot-middleware/client?name=app', `${AppDir}/index`] },
   output: { ...OutputConfig, ...HMRConfig },
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'cheap-eval-source-map',
   plugins: WebpackPlugins,
   module: { rules: [...WebpackPre, BabelConfig, ...WebpackStatic] }
 };
