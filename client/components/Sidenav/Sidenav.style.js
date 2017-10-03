@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'react-emotion';
 
-const animateImage = keyframes`
+const animateImage = keyframes `
   from {
     opacity: 0;
   }
@@ -42,7 +42,7 @@ export const SidenavContainer = styled.aside `
   }
 
   @media only screen and (max-width: 640px) {
-    height: 120px;
+    height: auto;
     overflow: hidden;
     width: 100%;
   }
@@ -71,6 +71,8 @@ export const SidenavBackground = styled.aside `
 `;
 
 export const Name = styled.h1 `
+  font-family: 'Source Code Pro', monospace;
+  font-size: 2.1em;
   margin: 0;
   padding: 2px;
 `;
@@ -93,6 +95,7 @@ export const SidenavItems = styled.ul `
 
 export const PhotoDescription = styled.div `
   bottom: 0;
+  font-size: 0.65em;
   left: 0;
   overflow: hidden;
   padding: 2px 4px;
@@ -101,8 +104,9 @@ export const PhotoDescription = styled.div `
   white-space: nowrap;
   width: calc(40vw - 8px);
 
-  a {
+  & > a {
     color: #fff;
+    text-decoration: none;
   }
 
   @media only screen and (max-width: 640px) {

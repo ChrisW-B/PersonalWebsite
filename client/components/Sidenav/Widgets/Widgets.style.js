@@ -1,4 +1,5 @@
 import styled from 'react-emotion';
+import { Link } from '../SidenavLink/SidenavLink.style';
 
 export const Widget = styled.div `
   color: #fff;
@@ -19,5 +20,18 @@ export const Time = styled.div `
 
 export const Description = styled.div `
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 0.65em;
+  font-size: 0.55em;
+
+  & > a {
+    color: #cfe3cf;
+    text-decoration: none;
+    transition: 0.2s;
+    white-space: nowrap;
+
+    &:hover {
+      color: #8d4881;
+    }
+  }
 `;
+
+export { Link };

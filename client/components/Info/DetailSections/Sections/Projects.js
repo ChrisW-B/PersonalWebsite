@@ -1,18 +1,19 @@
 // react/components/Projects/Projects.js
 
 import React from 'react';
+import { Link } from '../DetailSections.style';
 
 const Projects = () => (
   <ul>
-    <li><a href='//spotifyapps.chriswbarry.com/' title='Spotify Autoplaylists'>Spotify Autoplaylists</a> (<a href='//github.com/ChrisW-B/spotifyPlaylists' title='Spotify Autoplaylists'>source</a>)</li>
+    <li><Link href='//spotifyapps.chriswbarry.com/' title='Spotify Autoplaylists'>Spotify Autoplaylists</Link> (<Link href='//github.com/ChrisW-B/spotifyPlaylists' title='Spotify Autoplaylists'>source</Link>)</li>
     <ul>
       <li>A website that will create and update playlists for your most played and recently added music</li>
     </ul>
-    <li><a href='//twitter.com/MagicGifsBot/' title='Magic Gifs Bot'>@MagicGifsBot</a> (<a href='//github.com/ChrisW-B/MagicGifs' title='Magic Gifs Bot'>source</a>)</li>
+    <li><Link href='//twitter.com/MagicGifsBot/' title='Magic Gifs Bot'>@MagicGifsBot</Link> (<Link href='//github.com/ChrisW-B/MagicGifs' title='Magic Gifs Bot'>source</Link>)</li>
     <ul>
       <li>A little twitter bot that might respond with a gif!</li>
     </ul>
-    <li><a href='//news.chriswbarry.com/' title='Positive News'>Positive News</a> (<a href='//github.com/ChrisW-B/positive-news' title='Positive News'>source</a>)</li>
+    <li><Link href='//news.chriswbarry.com/' title='Positive News'>Positive News</Link> (<Link href='//github.com/ChrisW-B/positive-news' title='Positive News'>source</Link>)</li>
     <ul>
       <li>An experiment in identifying positivity/sentiment in news</li>
     </ul>

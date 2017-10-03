@@ -1,6 +1,7 @@
 const CompressionPlugin = require('compression-webpack-plugin');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
 const webpack = require('webpack');
+
 const { BabelPlugins, BabelPresets, WebpackStatic, OutputConfig, AppDir } = require('./webpack.common');
 
 const MinifyConfig = { removeConsole: true, removeDebugger: true };
@@ -21,7 +22,6 @@ const WebpackPlugins = [
   new CompressionPlugin(CompressionConfig)
 ];
 const ProdPlugins = ['emotion', ...BabelPlugins, ['transform-react-remove-prop-types', { mode: 'remove', removeImport: true }]];
-
 const BabelConfig = {
   test: /\.jsx?$|\.js?$/,
   exclude: /node_modules/,

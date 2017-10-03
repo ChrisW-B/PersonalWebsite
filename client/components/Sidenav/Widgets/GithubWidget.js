@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Widget, Description, Time } from './Widgets.style';
+import { Widget, Description, Time, Link } from './Widgets.style';
 
 const ONE_MIN = 60 * 1000;
 
@@ -37,7 +37,7 @@ export default class GithubWidget extends Component {
       <Widget>
         <Description dangerouslySetInnerHTML={{ __html: message }} /> { /* eeep! */}
         <Time>
-          {link ? <a href={link} title={time}>{time} in {repo}</a> : null}
+          {link ? <Link href={link} title={time}>{time} in {repo}</Link> : null}
         </Time>
       </Widget>
     );

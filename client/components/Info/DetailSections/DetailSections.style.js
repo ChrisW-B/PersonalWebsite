@@ -1,9 +1,7 @@
 import styled from 'react-emotion';
+import { InfoSubSection, Link } from '../Info.style';
 
-export const DetailList = styled.ul `
-  margin: 0;
-  padding: 0;
-`;
+export const DetailList = InfoSubSection.withComponent(`ul`);
 
 export const DetailListItem = styled.li `
   border-top: 1px dashed hsl(220.3, 74.5, 90);
@@ -38,3 +36,5 @@ export const SectionTitle = styled.h2 `
     text-align: left;
   }
 `;
+
+export { Link };

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { SidenavItem, Icon } from './SidenavLink.style';
+import { SidenavItem, Icon, Link } from './SidenavLink.style';
 
 export default class SidenavLink extends Component {
   static propTypes = {
@@ -23,9 +23,9 @@ export default class SidenavLink extends Component {
     const { link, title, widget, icon, emphasis } = this.props;
     return (
       <SidenavItem emphasis={emphasis}>
-        <a href={link} title={title}>
+        <Link href={link} title={title}>
           <Icon>{icon}</Icon>{title}
-        </a>
+        </Link>
         {widget}
       </SidenavItem>
     );

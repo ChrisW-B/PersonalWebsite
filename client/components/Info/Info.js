@@ -7,11 +7,9 @@ import { InfoSection, ProfilePhoto } from './Info.style';
 const Info = () => (
   <InfoSection>
     <ProfilePhoto src='/images/prof.jpg' alt='Profile' />
-    <div className='about-me'>
-      <Intro />
-      <DetailSections />
-      <LearnMore />
-    </div>
+    <Intro />
+    <DetailSections />
+    <LearnMore />
   </InfoSection>
 );
 

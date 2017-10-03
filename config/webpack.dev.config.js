@@ -14,7 +14,6 @@ const WebpackPre = [
 const DevPlugins = [
   ['emotion', { sourceMap: true }], ...BabelPlugins
 ];
-
 const BabelConfig = {
   test: /\.jsx?$|\.js?$/,
   exclude: /node_modules/,

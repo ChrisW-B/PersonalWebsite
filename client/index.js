@@ -10,6 +10,7 @@ injectGlobal `
   body {
     margin: 0;
   }
+
 `;
 /* eslint-enable no-unused-expressions */
 

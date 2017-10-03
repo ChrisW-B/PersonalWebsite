@@ -6,14 +6,10 @@ export const SidenavItem = styled.li `
   overflow: hidden;
   padding-top: 10px;
   text-shadow: 0 0 4px #6a6a6a;
-  transition: opacity 0.3s ease-in-out;
-
-  & > a {
-    white-space: nowrap;
-  }
+  transition: all 0.3s ease-in-out;
 
   @media (min-width: 900px) {
-    font-size: ${({ emphasis }) => (emphasis ? '1.5em' : '1em')};
+    font-size: ${({ emphasis }) => (emphasis ? `1.3em ` : `1em`)};
   }
 
   @media only screen and (max-width: 640px) {
@@ -35,5 +31,16 @@ export const Icon = styled.span `
 
   @media only screen and (min-width: 640px) {
     display: none;
+  }
+`;
+
+export const Link = styled.a `
+  color: #cfe3cf;
+  text-decoration: none;
+  transition: 0.2s;
+  white-space: nowrap;
+
+  &:hover {
+    color: #8d4881;
   }
 `;
