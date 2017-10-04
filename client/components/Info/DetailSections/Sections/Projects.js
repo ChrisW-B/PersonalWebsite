@@ -1,10 +1,10 @@
 // react/components/Projects/Projects.js
 
 import React from 'react';
-import { Link } from '../DetailSections.style';
+import { Link, SectionContentUL } from './Sections.style';
 
 const Projects = () => (
-  <ul>
+  <SectionContentUL>
     <li><Link href='//spotifyapps.chriswbarry.com/' title='Spotify Autoplaylists'>Spotify Autoplaylists</Link> (<Link href='//github.com/ChrisW-B/spotifyPlaylists' title='Spotify Autoplaylists'>source</Link>)</li>
     <ul>
       <li>A website that will create and update playlists for your most played and recently added music</li>
@@ -17,6 +17,6 @@ const Projects = () => (
     <ul>
       <li>An experiment in identifying positivity/sentiment in news</li>
     </ul>
-  </ul>
+  </SectionContentUL>
 );
 export default Projects;

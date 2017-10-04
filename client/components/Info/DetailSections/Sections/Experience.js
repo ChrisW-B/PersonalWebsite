@@ -1,9 +1,10 @@
 // react/components/Experience/Experience.js
 
 import React from 'react';
+import { SectionContentUL } from './Sections.style';
 
 const Experience = () => (
-  <ul>
+  <SectionContentUL>
     <li>
       Kip: <strong>Frontend Developer</strong>, <i>November 2016-August 2017</i>
       <ul>
@@ -36,7 +37,7 @@ const Experience = () => (
         <li>Assisted Professor with Labs for beginner CS students, in Java, HTML, and JavaScript</li>
       </ul>
     </li>
-  </ul>
+  </SectionContentUL>
 );
 
 export default Experience;
