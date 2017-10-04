@@ -8,65 +8,24 @@ const animateImage = keyframes `
     opacity: 1;
   }
 `;
-
+const emptyBackground = `linear-gradient(102deg, rgba(0, 195, 216, 0.82) 9%, rgba(186, 39, 66, 0.51) 100%)`;
+const fullBackground = bg => `${emptyBackground}, url(${bg}) center / cover no-repeat scroll`;
 export const SidenavContainer = styled.aside `
+  animation: ${animateImage} 2s cubic-bezier(0.4, 0, 0.2, 1);
+  background: ${({ bg }) => (bg ? fullBackground(bg) : emptyBackground)};
   color: #fff;
   display: flex;
   flex-shrink: 0;
   font-family: 'Source Sans Pro', monospace;
-  height: 100%;
   justify-content: center;
   -webkit-overflow-scrolling: touch;
   overflow-y: scroll;
   width: 40vw;
-  &::after {
-    background-attachment: scroll;
-    background-color: transparent;
-    background-image: linear-gradient(102deg, rgba(0, 195, 216, 0.9) 9%, rgba(186, 39, 66, 0.6) 100%);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    bottom: 0;
-    content: '';
-    height: 100vh;
-    left: 0;
-    opacity: 0.95;
-    pointer-events: none;
-    position: fixed;
-    width: 40vw;
-    z-index: -1;
-
-    @media only screen and (max-width: 640px) {
-      width: 100vw;
-    }
-  }
 
   @media only screen and (max-width: 640px) {
     height: auto;
     overflow: hidden;
     width: 100%;
-  }
-`;
-
-export const SidenavBackground = styled.aside `
-  animation: ${animateImage} 2s cubic-bezier(0.4, 0, 0.2, 1);
-  background-attachment: scroll;
-  background-color: transparent;
-  background-image: url(${({ bg }) => bg});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  bottom: 0;
-  content: '';
-  height: 100vh;
-  left: 0;
-  pointer-events: none;
-  position: fixed;
-  width: 40vw;
-  z-index: -1;
-
-  @media only screen and (max-width: 640px) {
-    width: 100vw;
   }
 `;
 
@@ -92,7 +51,6 @@ export const SidenavItems = styled.ul `
     padding: 2px;
   }
 `;
-
 export const PhotoDescription = styled.div `
   bottom: 0;
   font-size: 0.65em;

@@ -34,7 +34,7 @@ export const Link = styled.a `
   border-bottom: 1px dotted #cfe3cf;
   color: #8d4881;
   text-decoration: none;
-  transition: 0.2s;
+  transition: color 0.2s;
 
   &:hover {
     color: #cfe3cf;

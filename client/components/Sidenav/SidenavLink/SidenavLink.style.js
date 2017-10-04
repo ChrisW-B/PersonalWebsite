@@ -5,7 +5,6 @@ export const SidenavItem = styled.li `
   max-width: 400px;
   padding-top: 10px;
   text-shadow: 0 0 4px #6a6a6a;
-  transition: all 0.3s ease-in-out;
 
   @media (min-width: 900px) {
     font-size: ${({ emphasis }) => (emphasis ? `1.3em ` : `1em`)};
@@ -37,7 +36,7 @@ export const Link = styled.a `
   color: #cfe3cf;
   text-decoration: none;
   text-shadow: none;
-  transition: 0.2s;
+  transition: color 0.2s;
   white-space: nowrap;
 
   &:hover {

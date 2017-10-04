@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { SidenavLinks } from './';
-import { Name, PhotoDescription, SidenavBackground, SidenavContainer, SidenavItems } from './Sidenav.style';
+import { Name, PhotoDescription, SidenavContainer, SidenavItems } from './Sidenav.style';
 
 export default class Sidenav extends Component {
   state = {
@@ -26,7 +26,7 @@ export default class Sidenav extends Component {
   render = () => {
     const { photo = ``, title = ``, url = `` } = this.state;
     return (
-      <SidenavContainer>
+      <SidenavContainer bg={photo}>
         <SidenavItems>
           <li>
             <Name>Chris Barry</Name>
@@ -36,7 +36,6 @@ export default class Sidenav extends Component {
         <PhotoDescription>
           <a href={url}>Background: <br /> {title}</a>
         </PhotoDescription>
-        <SidenavBackground bg={photo} />
       </SidenavContainer>
     );
   }
