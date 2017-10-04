@@ -1,5 +1,7 @@
 import styled from 'react-emotion';
 
+export { SectionContentDIV } from '../Sections.style';
+
 export const SkillType = styled.div `
   align-items: baseline;
   border-bottom: 1px dashed #ddd;
@@ -22,7 +24,7 @@ export const SkillList = styled.ul `
   padding: 5px 0;
 `;
 
-export const Skill = styled.li`
+export const Skill = styled.li `
   display: inline-block;
 
   &::after {

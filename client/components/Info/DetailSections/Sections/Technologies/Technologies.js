@@ -1,9 +1,9 @@
 import React from 'react';
 import Skills from './Skills';
-import { Skill, SkillList, SkillType, SkillName } from './Technologies.style';
+import { Skill, SkillList, SkillType, SkillName, SectionContentDIV } from './Technologies.style';
 
 const Technologies = () => (
-  <div>
+  <SectionContentDIV>
     {
       Skills.map(({ name, types }) => (
         <SkillType key={name}>
@@ -18,7 +18,7 @@ const Technologies = () => (
         </SkillType>
       ))
     }
-  </div>
+  </SectionContentDIV>
 );
 
 export default Technologies;

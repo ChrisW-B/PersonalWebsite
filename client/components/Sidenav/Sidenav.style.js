@@ -15,14 +15,16 @@ export const SidenavContainer = styled.aside `
   background: ${({ bg }) => (bg ? fullBackground(bg) : emptyBackground)};
   color: #fff;
   display: flex;
+  flex-direction: column;
   flex-shrink: 0;
   font-family: 'Source Sans Pro', monospace;
+  grid-column: 1 / 2;
+  grid-row: 1 / 4;
   justify-content: center;
-  -webkit-overflow-scrolling: touch;
-  overflow-y: scroll;
-  width: 40vw;
 
   @media only screen and (max-width: 640px) {
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
     height: auto;
     overflow: hidden;
     width: 100%;
@@ -33,13 +35,17 @@ export const Name = styled.h1 `
   font-family: 'Source Code Pro', monospace;
   font-size: 2.1em;
   margin: 0;
-  padding: 2px;
 `;
 
 export const SidenavItems = styled.ul `
+  align-self: center;
+  flex: 1 1 auto;
   font-size: 1.5em;
   list-style: none;
-  padding-right: 20px;
+  margin: 0;
+  -webkit-overflow-scrolling: touch;
+  overflow-y: scroll;
+  padding: 40px 20px 0;
 
   @media only screen and (max-width: 900px) {
     font-size: 1.4em;
@@ -52,15 +58,10 @@ export const SidenavItems = styled.ul `
   }
 `;
 export const PhotoDescription = styled.div `
-  bottom: 0;
   font-size: 0.65em;
-  left: 0;
-  overflow: hidden;
   padding: 2px 4px;
-  position: fixed;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: calc(40vw - 8px);
 
   & > a {
     color: #fff;

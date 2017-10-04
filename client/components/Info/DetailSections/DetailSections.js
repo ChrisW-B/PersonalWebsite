@@ -8,7 +8,7 @@ const DetailSections = () => (
       DetailSectionList.map(({ title, content }) => (
         <DetailListItem key={title}>
           <SectionTitle>{title}</SectionTitle>
-          <div>{content}</div>
+          {content}
         </DetailListItem>
       ))
     }

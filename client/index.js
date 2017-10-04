@@ -9,6 +9,7 @@ injectGlobal `
   html,
   body {
     margin: 0;
+    -ms-overflow-style: none;
   }
 
 `;

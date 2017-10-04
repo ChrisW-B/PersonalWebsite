@@ -7,13 +7,15 @@ export const InfoSection = styled.main `
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  height: 100%;
+  grid-column: 2 / 4;
+  grid-row: 1 / 4;
   -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
   overflow-y: scroll;
-  width: 60vw;
 
   @media only screen and (max-width: 640px) {
-    width: 100%;
+    grid-column: 1 / 4;
+    grid-row: 2 / 3;
   }
 `;
 
