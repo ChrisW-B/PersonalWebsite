@@ -3,7 +3,6 @@ import styled from 'react-emotion';
 export const SidenavItem = styled.li `
   font-family: 'Source Code Pro', monospace;
   max-width: 400px;
-  overflow: hidden;
   padding-top: 10px;
   text-shadow: 0 0 4px #6a6a6a;
   transition: all 0.3s ease-in-out;
@@ -37,6 +36,7 @@ export const Icon = styled.span `
 export const Link = styled.a `
   color: #cfe3cf;
   text-decoration: none;
+  text-shadow: none;
   transition: 0.2s;
   white-space: nowrap;
 

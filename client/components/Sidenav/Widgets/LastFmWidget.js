@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { Widget, Description } from './Widgets.style';
+import { TransitionGroup, Transition } from 'react-transition-group';
+import { Widget, Description, WidgetWrapper } from './Widgets.style';
+import { ONE_MIN } from './';
 
-const ONE_MIN = 60 * 1000;
-export default class TwitterWidget extends Component {
+export default class LastFmWidget extends Component {
   state = {
-    text: ``
+    songs: []
   }
 
   componentDidMount = () => {
-    this.updateLastFm();
+    setTimeout(() => this.updateLastFm(), 1500);
     this.autoUpdater = setInterval(this.updateLastFm, ONE_MIN / 2);
   }
 
@@ -17,24 +18,35 @@ export default class TwitterWidget extends Component {
     this.autoUpdater = null;
   }
 
+  updateSong = ({ text }) => {
+    this.setState(state => ({ songs: [...state.songs, text] }));
+    this.setState(state => ({ songs: [state.songs[state.songs.length - 1]] }));
+  }
+
   updateLastFm = async () => {
     let lastFmJson;
     try {
       lastFmJson = await (await fetch(`/lastfm`)).json();
       if (!lastFmJson.success) throw new Error(`no song`);
-      this.setState({ ...lastFmJson });
+      this.updateSong({ ...lastFmJson });
     } catch (error) {
       console.log({ error });
     }
   }
   render = () => {
-    const { text = `` } = this.state;
+    const { songs = [] } = this.state;
     return (
-      <Widget>
-        <Description>
-          {text}
-        </Description>
-      </Widget>
+      <TransitionGroup component={WidgetWrapper}>
+        {songs.map(song => (
+          <Transition key={song} timeout={1000}>
+            { status => (
+              <Widget status={status}>
+                <Description>{song}</Description>
+              </Widget>
+            )}
+          </Transition>
+        ))}
+      </TransitionGroup>
     );
   }
 }

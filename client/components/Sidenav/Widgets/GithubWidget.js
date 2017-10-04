@@ -1,18 +1,15 @@
 import React, { Component } from 'react';
-import { Widget, Description, Time, Link } from './Widgets.style';
-
-const ONE_MIN = 60 * 1000;
+import { TransitionGroup, Transition } from 'react-transition-group';
+import { Widget, Description, Time, Link, WidgetWrapper } from './Widgets.style';
+import { ONE_MIN } from './';
 
 export default class GithubWidget extends Component {
   state = {
-    link: null,
-    repo: null,
-    message: null,
-    time: null
+    commits: []
   }
 
   componentDidMount = () => {
-    this.updateCommit();
+    setTimeout(() => this.updateCommit(), 1000);
     this.autoUpdater = setInterval(this.updateCommit, 30 * ONE_MIN);
   }
 
@@ -21,25 +18,38 @@ export default class GithubWidget extends Component {
     this.autoUpdater = null;
   }
 
+  updateCommits = (commit) => {
+    this.setState(state => ({ commits: [...state.commits, commit] }));
+    this.setState(state => ({ commits: [state.commits[state.commits.length - 1]] }));
+  }
+
   updateCommit = async () => {
     try {
       const commit = await (await fetch(`/github`)).json();
       if (!commit.success) throw new Error(`no github`);
-      this.setState({ ...commit });
+      this.updateCommits(commit);
     } catch (error) {
       console.log({ error });
     }
   }
 
   render = () => {
-    const { link = `//github.com/ChrisW-B/`, repo = ``, message = ``, time = `` } = this.state;
+    const { commits } = this.state;
     return (
-      <Widget>
-        <Description dangerouslySetInnerHTML={{ __html: message }} /> { /* eeep! */}
-        <Time>
-          {link ? <Link href={link} title={time}>{time} in {repo}</Link> : null}
-        </Time>
-      </Widget>
+      <TransitionGroup component={WidgetWrapper}>
+        {commits.map(({ link = `//github.com/ChrisW-B/`, repo = ``, message = ``, time = `` }) => (
+          <Transition key={message} timeout={1000}>
+            { status => (
+              <Widget status={status}>
+                <Description dangerouslySetInnerHTML={{ __html: message }} /> {/* eeep! */}
+                <Time className='reltime'>
+                  <Link href={link} title={repo}>{time}</Link>
+                </Time>
+              </Widget>
+            )}
+          </Transition>
+        ))}
+      </TransitionGroup>
     );
   }
 }
