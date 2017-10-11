@@ -5,8 +5,10 @@ export { SectionContentDIV } from '../Sections.style';
 export const SkillType = styled.div `
   align-items: baseline;
   border-bottom: 1px dashed #ddd;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 120px auto;
+  grid-template-rows: 1fr;
 
   &:last-child {
     border: 0;
@@ -15,13 +17,11 @@ export const SkillType = styled.div `
 
 export const SkillName = styled.h4 `
   margin: 0;
-  min-width: 120px;
 `;
 
 export const SkillList = styled.ul `
-  flex: 1 1 auto;
   margin: 0;
-  padding: 5px 0;
+  margin-bottom: 10px;
 `;
 
 export const Skill = styled.li `

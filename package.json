@@ -4,7 +4,7 @@
   "description": "A Simple Personal Website",
   "main": "server/index.js",
   "dependencies": {
-    "babel-cli": "^7.0.0-beta.2",
+    "babel-cli": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-minify-webpack-plugin": "^0.2.0",
     "babel-plugin-emotion": "^8.0.2-11",
@@ -68,7 +68,8 @@
     "lint:js:fix": "eslint --fix ./ --ignore-pattern 'public/**/*.js'",
     "lint:css": "stylelint './react/components/**/*style.js'",
     "clean": "rm -r public/build",
-    "precommit": "yarn lint:js"
+    "precommit": "yarn lint:js",
+    "serverside": "webpack -p --progress --config ./config/webpack.server.config.js"
   },
   "repository": {
     "type": "git",
