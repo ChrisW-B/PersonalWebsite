@@ -1,25 +1,16 @@
 // react/index.js
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { injectGlobal } from 'emotion';
+import { hydrate } from 'react-dom';
+import { hydrate as emotionHydrate } from 'emotion';
 import { Homepage } from './components';
-
-/* eslint-disable no-unused-expressions */
-injectGlobal `
-  html,
-  body {
-    margin: 0;
-    -ms-overflow-style: none;
-  }
-
-`;
-/* eslint-enable no-unused-expressions */
 
 if (module.hot && ENV !== `production`) {
   module.hot.accept();
 }
+if (typeof window !== `undefined`) {
+  const { ids } = window.APP_DATA;
+  console.log({ ids });
+  emotionHydrate(ids);
+}
 
-ReactDOM.render(
-  <Homepage />,
-  document.getElementById(`root`)
-);
+hydrate(<Homepage />, document.getElementById(`root`));

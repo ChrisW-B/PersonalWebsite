@@ -7,6 +7,6 @@ export default class LearnMore extends Component {
   render = () =>
     (<LearnMoreSection>
       <h3> Want to know more?</h3>
-      <p><Link className='button' href='/files/ChrisBarry_Resume.pdf' title=''>Download my Resume</Link> or <Link className='button' href='mailto:me@chriswbarry.com'>Email Me!</Link></p>
+      <p><Link href='/files/ChrisBarry_Resume.pdf' title=''>Download my Resume</Link> or <Link href='mailto:me@chriswbarry.com'>Email Me!</Link></p>
     </LearnMoreSection>)
 }
