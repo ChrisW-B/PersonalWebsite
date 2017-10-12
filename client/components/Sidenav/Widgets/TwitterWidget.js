@@ -43,7 +43,7 @@ export default class TwitterWidget extends Component {
             { status => (
               <Widget status={status}>
                 <Description dangerouslySetInnerHTML={{ __html: text }} /> {/* eeep! */}
-                <Time className='reltime'>
+                <Time>
                   <Link href={link} title={time}>{time}</Link>
                 </Time>
               </Widget>

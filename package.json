@@ -4,7 +4,7 @@
   "description": "A Simple Personal Website",
   "main": "server/index.js",
   "dependencies": {
-    "babel-cli": "^6.26.0",
+    "babel-cli": "^7.0.0-beta.2",
     "babel-loader": "^7.1.2",
     "babel-minify-webpack-plugin": "^0.2.0",
     "babel-plugin-emotion": "^8.0.2-11",
@@ -22,6 +22,7 @@
     "dotenv": "^4.0.0",
     "ejs": "^2.5.7",
     "emotion": "^8.0.2-12",
+    "emotion-server": "^8.0.2-13",
     "express": "^4.16.1",
     "express-winston": "^2.4.0",
     "lastfm-njs": "^1.0.0",
@@ -32,6 +33,7 @@
     "react-emotion": "^8.0.2-13",
     "react-icons": "^2.2.5",
     "react-transition-group": "^2.0.0-beta.1",
+    "serialize-javascript": "^1.4.0",
     "twitter": "^1.7.1",
     "twitter-text": "^1.14.7",
     "webpack": "^3.6.0",
@@ -60,16 +62,16 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "env BUILD_MODE=prebuilt node ./server",
+    "start": "env NODE_ENV=production BUILD_MODE=prebuilt node ./public/build/server",
     "backend": "yarn build & nodemon --config ./config/nodemon-backend.json ./server",
-    "frontend": "nodemon ./server --config ./config/nodemon-frontend.json",
-    "build": "webpack -p --progress --config ./config/webpack.config.js",
+    "frontend": "nodemon ./public/build/server --config ./config/nodemon-frontend.json",
+    "build:client": "webpack -p --progress --config ./config/webpack.config.js",
+    "build:server": "env NODE_ENV=production babel server -d public/build/server --config-file ./config/server.babelrc",
     "lint:js": "eslint ./ --ignore-pattern 'public/**/*.js'",
     "lint:js:fix": "eslint --fix ./ --ignore-pattern 'public/**/*.js'",
     "lint:css": "stylelint './react/components/**/*style.js'",
     "clean": "rm -r public/build",
-    "precommit": "yarn lint:js",
-    "serverside": "webpack -p --progress --config ./config/webpack.server.config.js"
+    "precommit": "yarn lint:js"
   },
   "repository": {
     "type": "git",

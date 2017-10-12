@@ -2,7 +2,6 @@ import styled from 'react-emotion';
 /* eslint-disable import/prefer-default-export */
 
 export const HomepageDiv = styled.div `
-  box-sizing: border-box;
   display: grid;
   font-family: 'Source Sans Pro', sans-serif;
   grid-template-columns: repeat(3, 1fr);

@@ -1,17 +1,19 @@
 // server/index.js
-require('dotenv').config();
-const Twitter = require('twitter');
-const express = require('express');
-const twitterText = require('twitter-text');
-const Lastfm = require('lastfm-njs');
-const bodyParser = require('body-parser');
-const fetch = require('node-fetch');
-const compression = require('compression');
-const path = require('path');
-const winston = require('winston');
-const expressWinston = require('express-winston');
-const crypto = require('crypto');
-const { spawn } = require('child_process');
+require(`dotenv`).config();
+require(`babel-polyfill`);
+const Twitter = require(`twitter`);
+const express = require(`express`);
+const twitterText = require(`twitter-text`);
+const Lastfm = require(`lastfm-njs`);
+const bodyParser = require(`body-parser`);
+const fetch = require(`node-fetch`);
+const compression = require(`compression`);
+const path = require(`path`);
+const winston = require(`winston`);
+const expressWinston = require(`express-winston`);
+const crypto = require(`crypto`);
+const { spawn } = require(`child_process`);
+const Html = require(`./components/html`).default;
 
 const ONE_MIN = 60 * 1000;
 const ONE_DAY = ONE_MIN * 60 * 24;
@@ -27,9 +29,9 @@ const lastFmClient = new Lastfm({
   apiSecret: process.env.LASTFM_SECRET
 });
 const logger = new (winston.Logger)({
-  level: 'server',
+  level: `server`,
   levels: { server: 0, twitter: 0, lastfm: 0, bg: 0, github: 0 },
-  colors: { server: 'green', twitter: 'blue', lastfm: 'yellow', bg: 'magenta', github: 'red' },
+  colors: { server: `green`, twitter: `blue`, lastfm: `yellow`, bg: `magenta`, github: `red` },
   colorize: true,
   transports: [
     new (winston.transports.Console)({ timestamp: true, prettyPrint: true, colorize: true })
@@ -47,39 +49,38 @@ const relativeTimeDifference = (previous) => {
   const msPerYear = msPerDay * 365;
   const elapsed = current - previous;
   let num = 0;
-  let unit = '';
-  let approx = '';
+  let unit = ``;
+  let approx = ``;
   if (elapsed < msPerMinute) {
     num = Math.round(elapsed / 1000);
-    unit = 'second';
+    unit = `second`;
   } else if (elapsed < msPerHour) {
     num = Math.round(elapsed / msPerMinute);
-    unit = 'minute';
+    unit = `minute`;
   } else if (elapsed < msPerDay) {
     num = Math.round(elapsed / msPerHour);
-    unit = 'hour';
+    unit = `hour`;
   } else if (elapsed < msPerMonth) {
     num = `${Math.round(elapsed / msPerDay)}`;
-    unit = 'day';
-    approx = 'approximately';
+    unit = `day`;
+    approx = `approximately`;
   } else if (elapsed < msPerYear) {
     num = `${Math.round(elapsed / msPerMonth)}`;
-    unit = 'month';
-    approx = 'approximately';
+    unit = `month`;
+    approx = `approximately`;
   } else {
     num = `${Math.round(elapsed / msPerYear)}`;
-    unit = 'year';
-    approx = 'approximately';
+    unit = `year`;
+    approx = `approximately`;
   }
   if (num !== 1) {
-    unit += 's';
+    unit += `s`;
   }
   return `${approx} ${num} ${unit} ago`;
 };
 
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '../views'));
-app.use(express.static(path.join(__dirname, '../public'), { maxAge: ONE_DAY }));
+app.set(`view engine`, `ejs`);
+app.use(express.static(path.join(__dirname, `..`, `..`), { maxAge: ONE_DAY }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(compression());
@@ -90,38 +91,41 @@ app.use(expressWinston.logger({
   colorize: true
 }));
 
-if (process.env.BUILD_MODE !== 'prebuilt') {
-  const webpackConfig = require('../config/webpack.dev.config.js'); // eslint-disable-line global-require
-  const compiler = require('webpack')(webpackConfig); // eslint-disable-line global-require
-  app.use(require('webpack-dev-middleware')(compiler, { // eslint-disable-line
+if (process.env.BUILD_MODE !== `prebuilt`) {
+  /* eslint-disable */ // there's just so much here
+  const devMiddleware = require('webpack-dev-middleware');
+  const hotMiddleware = require('webpack-hot-middleware');
+  const webpackConfig = require('../../../config/webpack.dev.config.js');
+  const compiler = require('webpack')(webpackConfig);
+
+  app.use(devMiddleware(compiler, {
     hot: true,
-    publicPath: webpackConfig.output.publicPath,
+    publicPath: '/build/client',
     stats: {
       colors: true
     },
     historyApiFallback: true
   }));
-  app.use(require('webpack-hot-middleware')(compiler, { // eslint-disable-line
+  app.use(hotMiddleware(compiler, {
     reload: true,
     path: '/__webpack_hmr',
     heartbeat: 10 * 1000
   }));
+   /* eslint-enable */
 }
 
-app.get('/', (req, res) => {
-  res.render('pages/index');
-});
+app.get(`/`, (req, res) => res.send(Html()));
 
-app.get('/twitter', async (req, res) => {
-  logger.twitter('getting recent tweet');
+app.get(`/twitter`, async (req, res) => {
+  logger.twitter(`getting recent tweet`);
   const params = {
-    screen_name: 'ChrisW_B',
+    screen_name: `ChrisW_B`,
     count: 20, // make sure we get enough to ignore RTs
     exclude_replies: true,
     include_rts: false
   };
   try {
-    const newTweet = (await twitterClient.get('statuses/user_timeline', params))[0];
+    const newTweet = (await twitterClient.get(`statuses/user_timeline`, params))[0];
     res.send({
       success: true,
       text: twitterText.autoLink(newTweet.text, {
@@ -130,26 +134,26 @@ app.get('/twitter', async (req, res) => {
       time: relativeTimeDifference(new Date(newTweet.created_at)),
       link: `https://twitter.com/statuses/${newTweet.id_str}`
     });
-    logger.twitter('got tweet');
+    logger.twitter(`got tweet`);
   } catch (e) {
-    logger.twitter('no tweet!', e);
+    logger.twitter(`no tweet!`, e);
     res.send({ success: false, e });
   }
 });
 
-app.get('/github', async (req, res) => {
-  logger.github('getting recent commit');
-  const githubRes = await fetch('https://api.github.com/graphql', {
-    method: 'POST',
-    'Content-Type': 'application/json',
+app.get(`/github`, async (req, res) => {
+  logger.github(`getting recent commit`);
+  const githubRes = await fetch(`https://api.github.com/graphql`, {
+    method: `POST`,
+    'Content-Type': `application/json`,
     headers: {
       Authorization: `Bearer ${process.env.GITHUB_TOKEN}`
     },
-    body: JSON.stringify({ query: '{viewer{repositories(first:1 orderBy: {field: PUSHED_AT, direction: DESC} affiliations:[OWNER, COLLABORATOR, ORGANIZATION_MEMBER]){nodes{url nameWithOwner refs(first: 50 refPrefix: "refs/heads/"){nodes{name target{ ... on Commit{history(first: 1){edges{node{committedDate messageHeadlineHTML messageBodyHTML}}}}}}}}}}}' }) // best way I know of to get all of the refs
+    body: JSON.stringify({ query: `{viewer{repositories(first:1 orderBy: {field: PUSHED_AT, direction: DESC} affiliations:[OWNER, COLLABORATOR, ORGANIZATION_MEMBER]){nodes{url nameWithOwner refs(first: 50 refPrefix: "refs/heads/"){nodes{name target{ ... on Commit{history(first: 1){edges{node{committedDate messageHeadlineHTML messageBodyHTML}}}}}}}}}}}` }) // best way I know of to get all of the refs
   });
   try {
     const githubJson = await githubRes.json();
-    logger.github('got commits, now to sort');
+    logger.github(`got commits, now to sort`);
     const repository = githubJson.data.viewer.repositories.nodes[0];
     const { url, nameWithOwner, refs: { nodes: refs } } = repository;
     const commits = refs.map((ref) => {
@@ -162,7 +166,7 @@ app.get('/github', async (req, res) => {
         success: true,
         link: `${url}/tree/${ref.name}`,
         repo: `${nameWithOwner}#${ref.name}`,
-        message: `${messageHeadlineHTML.replace('…', '')}${messageBodyHTML.replace('…', '')}`,
+        message: `${messageHeadlineHTML.replace(`…`, ``)}${messageBodyHTML.replace(`…`, ``)}`,
         time: committedDate
       };
     });
@@ -173,18 +177,18 @@ app.get('/github', async (req, res) => {
       time: relativeTimeDifference(new Date(mostRecentCommit.time))
     });
   } catch (e) {
-    logger.github('no commit!', e);
+    logger.github(`no commit!`, e);
     res.send({ success: false, e });
   }
 });
 
-app.get('/bg', async (req, res) => {
-  logger.bg('getting a background');
+app.get(`/bg`, async (req, res) => {
+  logger.bg(`getting a background`);
   try {
     const posts = (await (await fetch(`https://photo.chriswbarry.com/ghost/api/v0.1/posts?client_id=${process.env.GHOST_ID}&client_secret=${process.env.GHOST_SECRET}&limit=7&fields=feature_image,url,title`)).json()).posts;
     const recentPhoto = posts[Math.round(Math.random() * (posts.length - 1))];
     recentPhoto.url = `https://photo.chriswbarry.com${recentPhoto.url}`;
-    if (!recentPhoto.feature_image.includes('http')) {
+    if (!recentPhoto.feature_image.includes(`http`)) {
       recentPhoto.feature_image = `https://photo.chriswbarry.com${recentPhoto.feature_image}`;
     }
     recentPhoto.photo = recentPhoto.feature_image;
@@ -193,52 +197,52 @@ app.get('/bg', async (req, res) => {
       success: true,
       ...recentPhoto
     });
-    logger.bg('got bg');
+    logger.bg(`got bg`);
   } catch (e) {
-    logger.bg('no bg!', e);
+    logger.bg(`no bg!`, e);
     res.send({ success: false, e });
   }
 });
 
-app.get('/lastfm', async (req, res) => {
-  logger.lastfm('getting recent play');
+app.get(`/lastfm`, async (req, res) => {
+  logger.lastfm(`getting recent play`);
   const recentTrack = (await lastFmClient.user_getRecentTracks({
-    user: 'Christo27',
+    user: `Christo27`,
     limit: 1
   })).track;
-  if (recentTrack.length && recentTrack[0]['@attr'] && recentTrack[0]['@attr'].nowplaying) {
+  if (recentTrack.length && recentTrack[0][`@attr`] && recentTrack[0][`@attr`].nowplaying) {
     const lastTrack = recentTrack[0];
-    logger.lastfm('got now playing');
+    logger.lastfm(`got now playing`);
     return res.send({
       success: true,
-      text: `♫ ${lastTrack.name} by ${lastTrack.artist['#text']}`
+      text: `♫ ${lastTrack.name} by ${lastTrack.artist[`#text`]}`
     });
   }
-  logger.lastfm('no track!');
+  logger.lastfm(`no track!`);
   return res.send({ success: false });
 });
 
 const ensureGithub = (req, res, next) => {
-  if (!req.headers['user-agent'].includes('GitHub-Hookshot')) res.redirect(301, '/');
-  const hmac = crypto.createHmac('sha1', process.env.GITHUB_SECRET);
-  const ourSignature = `sha1=${hmac.update(JSON.stringify(req.body)).digest('hex')}`;
-  const theirSignature = req.get('X-Hub-Signature');
-  if (crypto.timingSafeEqual(Buffer.from(ourSignature, 'utf8'), Buffer.from(theirSignature, 'utf8'))) return next();
-  return res.redirect(301, '/');
+  if (!req.headers[`user-agent`].includes(`GitHub-Hookshot`)) res.redirect(301, `/`);
+  const hmac = crypto.createHmac(`sha1`, process.env.GITHUB_SECRET);
+  const ourSignature = `sha1=${hmac.update(JSON.stringify(req.body)).digest(`hex`)}`;
+  const theirSignature = req.get(`X-Hub-Signature`);
+  if (crypto.timingSafeEqual(Buffer.from(ourSignature, `utf8`), Buffer.from(theirSignature, `utf8`))) return next();
+  return res.redirect(301, `/`);
 };
 
-app.post('/postrecieve', ensureGithub, (req, res) => {
-  const cwd = path.join(__dirname, '..');
-  const updateFile = path.join(cwd, 'scripts', 'update.sh');
+app.post(`/postrecieve`, ensureGithub, (req, res) => {
+  const cwd = path.join(__dirname, `..`);
+  const updateFile = path.join(cwd, `scripts`, `update.sh`);
   logger.server(`running ${updateFile}`);
-  spawn('sh', [updateFile], {
+  spawn(`sh`, [updateFile], {
     cwd,
     env: Object.assign({}, process.env, { PATH: `${process.env.PATH} :/usr/local/bin` })
   });
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Thanks GitHub <3');
+  res.writeHead(200, { 'Content-Type': `text/plain` });
+  res.end(`Thanks GitHub <3`);
 });
 
-app.get('*', (req, res) => res.redirect('/'));
+app.get(`*`, (req, res) => res.redirect(`/`));
 
-app.listen(4737, () => logger.server('Listening on port 4737!\n http://localhost:4737/'));
+app.listen(4737, () => logger.server(`Listening on port 4737!\n http://localhost:4737/`));

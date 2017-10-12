@@ -42,7 +42,7 @@ export default class GithubWidget extends Component {
             { status => (
               <Widget status={status}>
                 <Description dangerouslySetInnerHTML={{ __html: message }} /> {/* eeep! */}
-                <Time className='reltime'>
+                <Time>
                   <Link href={link} title={repo}>{time} in {repo}</Link>
                 </Time>
               </Widget>

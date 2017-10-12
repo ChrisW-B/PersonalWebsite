@@ -8,8 +8,10 @@ const animateImage = keyframes `
     opacity: 1;
   }
 `;
+
 const emptyBackground = `linear-gradient(102deg, rgba(0, 195, 216, 0.82) 9%, rgba(186, 39, 66, 0.51) 100%)`;
 const fullBackground = bg => `${emptyBackground}, url(${bg}) center / cover no-repeat scroll`;
+
 export const SidenavContainer = styled.aside `
   animation: ${animateImage} 2s cubic-bezier(0.4, 0, 0.2, 1);
   background: ${({ bg }) => (bg ? fullBackground(bg) : emptyBackground)};

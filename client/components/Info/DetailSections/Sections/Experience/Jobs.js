@@ -43,7 +43,7 @@ export default [{
   },
   details: [
     `Graded labs, homework, and exams for Lehigh Computer Science Courses`,
-    `Held weekly office hours to assist students with homework and classNamees`,
+    `Held weekly office hours to assist students with homework and classes`,
     `Assisted Professor with Labs for beginner CS students, in Java, HTML, and JavaScript`
   ]
 }];
