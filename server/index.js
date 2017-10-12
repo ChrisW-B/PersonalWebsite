@@ -80,7 +80,7 @@ const relativeTimeDifference = (previous) => {
 };
 
 app.set(`view engine`, `ejs`);
-app.use(express.static(path.join(__dirname, `..`, `..`), { maxAge: ONE_DAY }));
+app.use(express.static(path.join(__dirname, `..`, `..`), { maxAge: ONE_DAY * 7 }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(compression());
