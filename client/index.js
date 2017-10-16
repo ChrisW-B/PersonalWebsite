@@ -9,7 +9,6 @@ if (module.hot && ENV !== `production`) {
 }
 if (typeof window !== `undefined`) {
   const { ids } = window.APP_DATA;
-  console.log({ ids });
   emotionHydrate(ids);
 }
 

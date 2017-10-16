@@ -14,6 +14,6 @@ export default [{
   name: `Positive News`,
   url: `https://news.chriswbarry.com/`,
   github: `https://github.com/ChrisW-B/positive-news`,
-  description: `An experiment in identifying positivity/sentiment in news`,
+  description: `An experiment in identifying positivity and sentiment in news`,
   technologies: [`Express`, `EJS`, `Bootstrap`, `Sentiment Analysis`]
 }];

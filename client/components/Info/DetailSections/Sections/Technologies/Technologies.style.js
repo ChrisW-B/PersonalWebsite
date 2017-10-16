@@ -22,6 +22,7 @@ export const SkillName = styled.h4 `
 export const SkillList = styled.ul `
   margin: 0;
   margin-bottom: 10px;
+  padding: 0;
 `;
 
 export const Skill = styled.li `
