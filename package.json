@@ -5,6 +5,7 @@
   "main": "server/index.js",
   "dependencies": {
     "babel-cli": "^7.0.0-beta.2",
+    "babel-core": "^7.0.0-beta.2",
     "babel-loader": "^7.1.2",
     "babel-minify-webpack-plugin": "^0.2.0",
     "babel-plugin-emotion": "^8.0.2-11",
@@ -41,7 +42,6 @@
     "winston-express": "^0.1.1"
   },
   "devDependencies": {
-    "babel-core": "^7.0.0-beta.2",
     "babel-eslint": "^8.0.0-alpha.17",
     "eslint": "^4.8.0",
     "eslint-config-airbnb": "^15.1.0",
@@ -63,7 +63,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "parallelshell 'yarn watch:server' 'nodemon ./public/build/server --config ./config/nodemon.json'",
+    "dev": "yarn build:server && parallelshell 'yarn watch:server' 'nodemon ./public/build/server --config ./config/nodemon.json'",
     "watch:server": "babel server -d public/build/server --config-file ./config/server.babelrc --watch",
     "watch:client": "webpack -p --progress --config ./config/webpack.config.js --watch",
     "build:server": "env NODE_ENV=production babel server -d public/build/server --config-file ./config/server.babelrc",
