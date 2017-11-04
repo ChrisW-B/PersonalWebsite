@@ -11,7 +11,6 @@ const relativeTimeDifference = (previous) => {
   const elapsed = current - previous;
   let num = 0;
   let unit = ``;
-  let approx = ``;
   if (elapsed < msPerMinute) {
     num = Math.round(elapsed / 1000);
     unit = `second`;
@@ -24,20 +23,17 @@ const relativeTimeDifference = (previous) => {
   } else if (elapsed < msPerMonth) {
     num = `${Math.round(elapsed / msPerDay)}`;
     unit = `day`;
-    approx = `approximately`;
   } else if (elapsed < msPerYear) {
     num = `${Math.round(elapsed / msPerMonth)}`;
     unit = `month`;
-    approx = `approximately`;
   } else {
     num = `${Math.round(elapsed / msPerYear)}`;
     unit = `year`;
-    approx = `approximately`;
   }
   if (num !== 1) {
     unit += `s`;
   }
-  return `${approx} ${num} ${unit} ago`;
+  return `${num} ${unit} ago`;
 };
 
 const logger = new (winston.Logger)({
