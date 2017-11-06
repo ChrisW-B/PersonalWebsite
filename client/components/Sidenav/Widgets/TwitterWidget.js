@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Transition, TransitionGroup } from 'react-transition-group';
 import { Widget, Description, Time, Link, WidgetWrapper } from './Widgets.style';
 import { ONE_MIN } from './';
+import query from '../../queries';
 
 export default class TwitterWidget extends Component {
   state = {
@@ -24,27 +25,22 @@ export default class TwitterWidget extends Component {
   }
 
   updateTweet = async () => {
-    let tweetJson;
-    try {
-      tweetJson = await (await fetch(`/twitter`)).json();
-      if (!tweetJson.success) throw new Error(`no tweet`);
-      this.updateTweets(tweetJson);
-    } catch (error) {
-      console.log({ error });
-    }
+    const { twitter: { tweets, url } } = await query(`{twitter{url tweets(limit: 1){message reltime url}}}`);
+    const [tweet] = tweets;
+    if (tweet) this.updateTweets(tweet, url);
   }
 
   render = () => {
     const { tweets = [] } = this.state;
     return (
       <TransitionGroup component={WidgetWrapper}>
-        {tweets.map(({ link = `//twitter.com/ChrisW_B/`, text = ``, time = `` }) => (
-          <Transition key={text} timeout={1000}>
+        {tweets.map(({ url = `//twitter.com/ChrisW_B/`, message = ``, reltime = `` }) => (
+          <Transition key={message} timeout={1000}>
             { status => (
               <Widget status={status}>
-                <Description dangerouslySetInnerHTML={{ __html: text }} /> {/* eeep! */}
+                <Description dangerouslySetInnerHTML={{ __html: message }} /> {/* eeep! */}
                 <Time>
-                  <Link href={link} title={time}>{time}</Link>
+                  <Link href={url} title={reltime}>{reltime}</Link>
                 </Time>
               </Widget>
             )}

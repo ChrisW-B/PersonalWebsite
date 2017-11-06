@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { TransitionGroup, Transition } from 'react-transition-group';
 import { Widget, Description, WidgetWrapper } from './Widgets.style';
 import { ONE_MIN } from './';
+import query from '../../queries';
 
 export default class LastFmWidget extends Component {
   state = {
@@ -18,20 +19,14 @@ export default class LastFmWidget extends Component {
     this.autoUpdater = null;
   }
 
-  updateSong = ({ text }) => {
-    this.setState(state => ({ songs: [...state.songs, text] }));
+  updateSong = ({ title, artist }) => {
+    this.setState(state => ({ songs: [...state.songs, `♫ ${title} by ${artist}`] }));
     this.setState(state => ({ songs: [state.songs[state.songs.length - 1]] }));
   }
 
   updateLastFm = async () => {
-    let lastFmJson;
-    try {
-      lastFmJson = await (await fetch(`/lastfm`)).json();
-      if (!lastFmJson.success) throw new Error(`no song`);
-      this.updateSong({ ...lastFmJson });
-    } catch (error) {
-      console.log({ error });
-    }
+    const { lastfm: { nowplaying, url } } = await query(`{lastfm{url nowplaying{title artist}}}`);
+    if (nowplaying) this.updateSong(nowplaying, url);
   }
   render = () => {
     const { songs = [] } = this.state;
