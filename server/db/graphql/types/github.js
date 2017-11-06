@@ -3,6 +3,7 @@ const fetch = require(`node-fetch`);
 const { GraphQLObjectType, GraphQLString, GraphQLList } = require(`graphql/type`);
 const commitType = require(`./commit`);
 const { limit } = require(`../args`);
+const { relTime } = require(`../utils`);
 
 const getFirstN = (max = 0, array) => (max ? array.slice(0, max) : array);
 
@@ -27,9 +28,16 @@ const getGithubInfo = async () => {
       .map(commit =>
         Object.assign({}, commit, { author: commit.author.login }))
       .map(({ url, nameWithOwner, branch, committedDate, messageBodyHTML, messageHeadlineHTML, author }) =>
-        ({ url: `${url}/tree/${branch}`, author, name: `${nameWithOwner}#${branch}`, committedDate, message: `${messageHeadlineHTML.replace(`…`, ``)}${messageBodyHTML.replace(`…`, ``)}` }))
+        ({
+          url: `${url}/tree/${branch}`,
+          author,
+          name: `${nameWithOwner}@${branch}`,
+          time: committedDate,
+          reltime: relTime(new Date(committedDate)),
+          message: `${messageHeadlineHTML.replace(`…`, ``)}${messageBodyHTML.replace(`…`, ``)}`
+        }))
       .sort((a, b) =>
-        new Date(b.committedDate) - new Date(a.committedDate));
+        new Date(b.time) - new Date(a.time));
   } catch (e) {
     throw e;
   }
@@ -43,9 +51,9 @@ const Github = new GraphQLObjectType({
       args: { limit },
       type: new GraphQLList(commitType),
       description: `The Company's Name`,
-      resolve: async (_, { limit: max }) => getFirstN(max, await getGithubInfo())
+      resolve: async (_, { limit: max = 5 }) => getFirstN(max, await getGithubInfo())
     },
-    url: { type: GraphQLString, description: `My Starting Date`, resolve: url => url }
+    url: { type: GraphQLString, description: `My Starting Date`, resolve: ({ url }) => url }
   })
 });
 

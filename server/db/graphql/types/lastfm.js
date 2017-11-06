@@ -9,12 +9,14 @@ const lastFmClient = new Lastfm({
 });
 
 const getLastFmInfo = async (max) => {
-  let maxSongs = max;
-  if (maxSongs > 50) maxSongs = 50;
-  return (await lastFmClient.user_getRecentTracks({
+  const maxSongs = max > 50 ? 50 : max;
+  let tracks = (await lastFmClient.user_getRecentTracks({
     user: process.env.LASTFM_ID,
     limit: maxSongs
-  })).track.map(track => Object.assign({}, { title: track.name, artist: track.artist[`#text`], nowplaying: false }, track[`@attr`]));
+  })).track;
+  if (max !== tracks.length) tracks = tracks.slice(0, max); // sometimes last.fm returns 2 tracks when you ask for 1
+  return tracks.map(track =>
+    Object.assign({}, { title: track.name, artist: track.artist[`#text`], nowplaying: false }, track[`@attr`]));
 };
 
 const Github = new GraphQLObjectType({
@@ -27,7 +29,15 @@ const Github = new GraphQLObjectType({
       description: `A Song I listened to`,
       resolve: async (_, { limit: max = 5 }) => getLastFmInfo(max)
     },
-    url: { type: GraphQLString, description: `My Last.FM url`, resolve: url => url }
+    nowplaying: {
+      type: song,
+      description: `What's playing right now`,
+      resolve: async () => {
+        const songs = await getLastFmInfo(1);
+        return songs[0].nowplaying ? songs[0] : null;
+      }
+    },
+    url: { type: GraphQLString, description: `My Last.FM url`, resolve: ({ url }) => url }
   })
 });
 

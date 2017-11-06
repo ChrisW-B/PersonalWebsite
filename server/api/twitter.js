@@ -27,7 +27,7 @@ app.get(`/twitter`, async (req, res) => {
     const newTweet = (await twitterClient.get(`statuses/user_timeline`, params))[0];
     res.send({
       success: true,
-      text: twitterText.autoLink(newTweet.text, {
+      message: twitterText.autoLink(newTweet.text, {
         urlEntities: newTweet.entities.urls
       }),
       time: relativeTimeDifference(new Date(newTweet.created_at)),

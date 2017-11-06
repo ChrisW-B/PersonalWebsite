@@ -1,5 +1,5 @@
 const { GraphQLString, GraphQLList, GraphQLObjectType, GraphQLBoolean } = require(`graphql/type`);
-const { github, job, project, skill, resume, lastfm /* , twitter */ } = require(`./`);
+const { github, job, project, skill, resume, lastfm, twitter } = require(`./`);
 const { limit } = require(`../args`);
 const info = require(`../../me.json`);
 
@@ -64,20 +64,20 @@ const complex = {
 };
 
 const external = {
-  // twitter: {
-  //   type: twitter,
-  //   description: `My Twitter Info`,
-  //   resolve: () => info.twitter
-  // },
+  twitter: {
+    type: twitter,
+    description: `My Twitter Info`,
+    resolve: () => ({ url: info.twitter })
+  },
   github: {
     type: github,
     description: `My Github Info`,
-    resolve: () => info.github
+    resolve: () => ({ url: info.github })
   },
   lastfm: {
     type: lastfm,
     description: `My Last.FM info`,
-    resolve: () => info.lastfm
+    resolve: () => ({ url: info.lastfm })
   }
 };
 
