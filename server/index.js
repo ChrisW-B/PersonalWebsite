@@ -12,7 +12,7 @@ import graphqlHTTP from 'express-graphql';
 import Html from './components/html';
 import Api from './api';
 import { logger } from './utils';
-import graphqlSchema from '../../../db/graphql';
+import graphqlSchema from './db/graphql';
 
 require(`dotenv`).config();
 require(`babel-polyfill`);
