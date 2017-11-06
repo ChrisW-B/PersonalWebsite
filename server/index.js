@@ -8,9 +8,11 @@ import winston from 'winston';
 import expressWinston from 'express-winston';
 import crypto from 'crypto';
 import { spawn } from 'child_process';
+import graphqlHTTP from 'express-graphql';
 import Html from './components/html';
 import Api from './api';
 import { logger } from './utils';
+import graphqlSchema from '../../../db/graphql';
 
 require(`dotenv`).config();
 require(`babel-polyfill`);
@@ -51,6 +53,8 @@ if (process.env.BUILD_MODE !== `prebuilt`) {
   }));
   /* eslint-enable */
 }
+
+app.use(`/graphql`, graphqlHTTP({ schema: graphqlSchema, graphiql: true }));
 
 app.get(`/`, (req, res) => res.send(Html()));
 

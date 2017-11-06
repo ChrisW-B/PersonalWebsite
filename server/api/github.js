@@ -15,7 +15,7 @@ app.get(`/github`, async (req, res) => {
     headers: {
       Authorization: `Bearer ${process.env.GITHUB_TOKEN}`
     },
-    body: JSON.stringify({ query: `{viewer{repositories(first:1 orderBy: {field: PUSHED_AT, direction: DESC} affiliations:[OWNER, COLLABORATOR, ORGANIZATION_MEMBER]){nodes{url nameWithOwner refs(first: 50 refPrefix: "refs/heads/"){nodes{name target{ ... on Commit{history(first: 1){edges{node{committedDate messageHeadlineHTML messageBodyHTML}}}}}}}}}}}` }) // best way I know of to get all of the refs
+    body: JSON.stringify({ query: `{viewer{repositories(first:1 orderBy: {field: PUSHED_AT, direction: DESC} affiliations:[OWNER, COLLABORATOR, ORGANIZATION_MEMBER]){nodes{url nameWithOwner refs(first: 50 refPrefix: "refs/heads/"){nodes{name target{ ... on Commit{history(first: 10){edges{node{committedDate messageHeadlineHTML messageBodyHTML}}}}}}}}}}}` }) // best way I know of to get all of the refs
   });
   try {
     const githubJson = await githubRes.json();

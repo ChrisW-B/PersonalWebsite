@@ -11,7 +11,8 @@
     "restart": "osascript -e 'display notification \"App restarted due to:\n'$FILENAME'\" with title \"nodemon\"'"
   },
   "watch": [
-    "public/build/server/index.js"
+    "public/build/server/index.js",
+    "db/**"
   ],
   "env": {
     "NODE_ENV": "development"
