@@ -1,2 +1,4 @@
 const limit = require(`./limit`);
-module.exports = { limit };
+const period = require(`./period`);
+
+module.exports = { limit, period };
