@@ -6,5 +6,7 @@ const skill = require(`./skill`);
 const song = require(`./song`);
 const tweet = require(`./tweet`);
 const resume = require(`./resume`);
+const lastfm = require(`./lastfm`);
+const twitter = require(`./twitter`);
 
-module.exports = { job, github, commit, project, skill, song, tweet, resume };
+module.exports = { job, github, commit, project, skill, song, tweet, resume, lastfm, twitter };

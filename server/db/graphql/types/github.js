@@ -23,7 +23,7 @@ const getGithubInfo = async () => {
       .map(({ url, nameWithOwner, branch, committedDate, messageBodyHTML, messageHeadlineHTML, author }) =>
         ({ url, nameWithOwner, branch, committedDate, messageBodyHTML, messageHeadlineHTML, author: author.user }))
       .filter(({ author }) =>
-        author !== null && author.login === process.env.GITHUB_USER)
+        author !== null && author.login === process.env.GITHUB_ID)
       .map(commit =>
         Object.assign({}, commit, { author: commit.author.login }))
       .map(({ url, nameWithOwner, branch, committedDate, messageBodyHTML, messageHeadlineHTML, author }) =>

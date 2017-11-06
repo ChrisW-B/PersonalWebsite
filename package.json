@@ -66,9 +66,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "yarn build:server && parallelshell 'yarn watch:server' 'nodemon ./public/build/server --config ./config/nodemon.json'",
-    "watch:server": "babel server -d public/build/server --config-file ./config/babelrc.js --watch",
+    "watch:server": "babel server -d public/build/server --config-file ./config/babelrc.js --watch --copy-files",
     "watch:client": "webpack -p --progress --config ./config/webpack.config.js --watch",
-    "build:server": "env NODE_ENV=production babel server -d public/build/server --config-file ./config/babelrc.js",
+    "build:server": "env NODE_ENV=production babel server -d public/build/server --config-file ./config/babelrc.js --copy-files",
     "build:client": "webpack -p --progress --config ./config/webpack.config.js",
     "lint:js": "eslint ./ --ignore-pattern 'public/**/*.js'",
     "lint:js:fix": "eslint --fix ./ --ignore-pattern 'public/**/*.js'",
