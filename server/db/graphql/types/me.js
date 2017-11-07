@@ -13,7 +13,7 @@ const simple = {
   },
   linkedin: {
     type: GraphQLString,
-    description: `My LinkedIN URL`,
+    description: `My LinkedIn URL`,
     resolve: () => info.linkedin
   },
   email: {
@@ -81,7 +81,7 @@ const external = {
   },
   photoBlog: {
     type: photoBlog,
-    description: `Recent Photos from my blog`,
+    description: `Recent Post from my Photoblog`,
     resolve: () => ({ url: info.blog })
   }
 };
