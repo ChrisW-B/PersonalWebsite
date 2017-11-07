@@ -1,9 +1,7 @@
 const { GraphQLObjectType, GraphQLString, GraphQLList } = require(`graphql/type`);
 const song = require(`./song`);
-const topTrack = require(`./topTrack`);
-const topArtist = require(`./topArtist`);
-const topAlbum = require(`./topAlbum`);
-const { limit, period } = require(`../args`);
+const chartItem = require(`./chartItem`);
+const { limit, period } = require(`../../args`);
 const Lastfm = require(`lastfm-njs`);
 
 const lastFmClient = new Lastfm({
@@ -28,7 +26,7 @@ const getTopTracks = async (timePeriod, max) => {
     limit: max,
     period: timePeriod
   })).track;
-  return tracks.map(({ name, artist, playcount }) => ({ title: name, artist: artist.name, playcount }));
+  return tracks.map(({ name, artist, playcount }) => ({ name, artist: artist.name, playcount }));
 };
 
 const getTopArtists = async (timePeriod, max) => {
@@ -37,7 +35,7 @@ const getTopArtists = async (timePeriod, max) => {
     limit: max,
     period: timePeriod
   })).artist;
-  return artists.map(({ name, playcount }) => ({ name, playcount }));
+  return artists.map(({ name, playcount }) => ({ artist: name, playcount }));
 };
 
 const getTopAlbums = async (timePeriod, max) => {
@@ -46,7 +44,7 @@ const getTopAlbums = async (timePeriod, max) => {
     limit: max,
     period: timePeriod
   })).album;
-  return albums.map(({ name, artist, playcount }) => ({ title: name, artist: artist.name, playcount }));
+  return albums.map(({ name, artist, playcount }) => ({ name, artist: artist.name, playcount }));
 };
 
 const LastFMType = new GraphQLObjectType({
@@ -55,19 +53,19 @@ const LastFMType = new GraphQLObjectType({
   fields: () => ({
     mostPlayedTracks: {
       args: { limit, period },
-      type: new GraphQLList(topTrack),
+      type: new GraphQLList(chartItem),
       description: `My most played songs`,
       resolve: async (_, { limit: max = 10, period: timePeriod }) => getTopTracks(timePeriod, max)
     },
     mostPlayedArtists: {
       args: { limit, period },
-      type: new GraphQLList(topArtist),
+      type: new GraphQLList(chartItem),
       description: `My most played artists`,
       resolve: async (_, { limit: max = 10, period: timePeriod }) => getTopArtists(timePeriod, max)
     },
     mostPlayedAlbums: {
       args: { limit, period },
-      type: new GraphQLList(topAlbum),
+      type: new GraphQLList(chartItem),
       description: `My most played albums`,
       resolve: async (_, { limit: max = 10, period: timePeriod }) => getTopAlbums(timePeriod, max)
     },

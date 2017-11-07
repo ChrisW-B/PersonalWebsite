@@ -2,8 +2,8 @@
 const fetch = require(`node-fetch`);
 const { GraphQLObjectType, GraphQLString, GraphQLList } = require(`graphql/type`);
 const commitType = require(`./commit`);
-const { limit } = require(`../args`);
-const { relTime } = require(`../utils`);
+const { limit } = require(`../../args`);
+const { relTime } = require(`../../utils`);
 
 const getFirstN = (max = 0, array) => (max ? array.slice(0, max) : array);
 

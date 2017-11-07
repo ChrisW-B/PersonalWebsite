@@ -1,10 +1,10 @@
 const { GraphQLObjectType, GraphQLString, GraphQLList } = require(`graphql/type`);
 const Twitter = require(`twitter`);
 const twitterText = require(`twitter-text`);
-const { relTime } = require(`../utils`);
+const { relTime } = require(`../../utils`);
 
 const tweet = require(`./tweet`);
-const { limit } = require(`../args`);
+const { limit } = require(`../../args`);
 
 const twitterClient = new Twitter({
   consumer_key: process.env.TWITTER_CONSUMER_KEY,

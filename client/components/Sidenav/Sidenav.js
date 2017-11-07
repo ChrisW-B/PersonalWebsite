@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { SidenavLinks } from './';
 import { Name, PhotoDescription, SidenavContainer, SidenavItems } from './Sidenav.style';
+import query from '../queries';
 
 export default class Sidenav extends Component {
   state = {
@@ -14,13 +15,8 @@ export default class Sidenav extends Component {
   componentDidMount = () => this.getBackground();
 
   getBackground = async () => {
-    try {
-      const bgJson = await (await fetch(`/bg`)).json();
-      if (!bgJson.success) throw new Error(bgJson.e);
-      this.setState({ ...bgJson });
-    } catch (error) {
-      console.log({ error });
-    }
+    const { photoBlog: { photos } } = await query(`{photoBlog{photos(limit:10){url photo html title}}}`);
+    this.setState(() => ({ ...photos[Math.floor(Math.random() * (photos.length - 1))] }));
   }
 
   render = () => {

@@ -1,5 +1,5 @@
 const { GraphQLString, GraphQLList, GraphQLObjectType, GraphQLBoolean } = require(`graphql/type`);
-const { github, job, project, skill, resume, lastfm, twitter } = require(`./`);
+const { github, job, project, skill, resume, lastfm, twitter, photoBlog } = require(`./`);
 const { limit } = require(`../args`);
 const info = require(`../../me.json`);
 
@@ -78,6 +78,11 @@ const external = {
     type: lastfm,
     description: `My Last.FM info`,
     resolve: () => ({ url: info.lastfm })
+  },
+  photoBlog: {
+    type: photoBlog,
+    description: `Recent Photos from my blog`,
+    resolve: () => ({ url: info.blog })
   }
 };
 
