@@ -20,8 +20,7 @@ export default class GithubWidget extends Component {
   }
 
   updateCommits = (commit, url) => {
-    this.setState(() => ({ url }));
-    this.setState(state => ({ commits: [...state.commits, commit] }));
+    this.setState(state => ({ url, commits: [...state.commits, commit] }));
     this.setState(state => ({ commits: [state.commits[state.commits.length - 1]] }));
   }
 
