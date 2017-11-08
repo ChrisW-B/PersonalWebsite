@@ -7,12 +7,12 @@ export const ProjectsSection = styled(SectionContentDIV)`
 `;
 
 export const ProjectItem = styled.div `
-  border-bottom: 1px dashed #ddd;
+  border-bottom: 0.1rem dashed #ddd;
   display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 120px auto;
+  grid-gap: 1rem;
+  grid-template-columns: 12rem auto;
   grid-template-rows: 1fr auto;
-  margin-bottom: 10px;
+  margin-bottom: 1rem;
 
   &:last-child {
     border: 0;

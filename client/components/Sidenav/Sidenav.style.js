@@ -35,33 +35,33 @@ export const SidenavContainer = styled.aside `
 
 export const Name = styled.h1 `
   font-family: 'Source Code Pro', monospace;
-  font-size: 2.1em;
+  font-size: 2.1rem;
   margin: 0;
 `;
 
 export const SidenavItems = styled.ul `
   align-self: center;
   flex: 1 1 auto;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   list-style: none;
   margin: 0;
   -webkit-overflow-scrolling: touch;
   overflow-y: scroll;
-  padding: 40px 20px 0;
+  padding: 4rem 2rem 0;
 
   @media only screen and (max-width: 900px) {
-    font-size: 1.4em;
+    font-size: 1.4rem;
   }
 
   @media only screen and (max-width: 640px) {
-    font-size: 1.1em;
+    font-size: 1.1rem;
     margin: 0;
-    padding: 2px;
+    padding: 0.2rem;
   }
 `;
 export const PhotoDescription = styled.div `
-  font-size: 0.65em;
-  padding: 2px 4px;
+  font-size: 0.65rem;
+  padding: 0.2rem 0.4rem;
   text-overflow: ellipsis;
   white-space: nowrap;
 

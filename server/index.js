@@ -10,7 +10,6 @@ import crypto from 'crypto';
 import { spawn } from 'child_process';
 import graphqlHTTP from 'express-graphql';
 import Html from './components/html';
-import Api from './api';
 import { logger } from './utils';
 import graphqlSchema from './db/graphql';
 
@@ -57,8 +56,6 @@ if (process.env.BUILD_MODE !== `prebuilt`) {
 app.use(`/graphql`, graphqlHTTP({ schema: graphqlSchema, graphiql: true }));
 
 app.get(`/`, (req, res) => res.send(Html()));
-
-app.use(Api);
 
 const ensureGithub = (req, res, next) => {
   if (!req.headers[`user-agent`].includes(`GitHub-Hookshot`)) res.redirect(301, `/`);

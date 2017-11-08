@@ -21,19 +21,19 @@ export const InfoSection = styled.main `
 
 export const ProfilePhoto = styled.img `
   border-radius: 100%;
-  height: 100px;
-  margin-top: 30px;
-  width: 100px;
+  height: 10rem;
+  margin-top: 3rem;
+  width: 10rem;
 `;
 
 export const InfoSubSection = styled.div `
   margin: 0;
-  max-width: 800px;
-  padding: 0 20px;
+  max-width: 80rem;
+  padding: 0 2rem;
 `;
 
 export const Link = styled.a `
-  border-bottom: 1px dotted #cfe3cf;
+  border-bottom: 0.1rem dotted #cfe3cf;
   color: #8d4881;
   text-decoration: none;
   transition: color 0.2s;

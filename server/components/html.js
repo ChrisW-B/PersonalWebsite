@@ -18,7 +18,7 @@ const Html = () => {
         <title>Chris Barry | Software Engineer and more</title>
         <style>
           @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:700|Source+Sans+Pro:400,700&subset=latin-ext');
-          html,body {margin:0;}
+          html,body {margin:0; font-size: 10px;}
         </style>
         <style type='text/css'>${css}</style>
       </head>

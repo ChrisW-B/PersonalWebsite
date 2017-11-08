@@ -36,7 +36,7 @@ export const Widget = styled.div `
     if (status === `exiting`) return 0;
     return `auto`;
   }};
-  padding-left: 10px;
+  padding-left: 1rem;
   text-align: left;
 `;
 
@@ -49,14 +49,15 @@ export const WidgetWrapper = styled.div`
 
 export const Time = styled.div `
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 0.4em;
+  font-size: 0.6rem;
   font-weight: 600;
   text-transform: uppercase;
 `;
 
 export const Description = styled.div `
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 0.55em;
+  font-size: 0.9rem;
+  word-wrap: break-word;
 
   & > a {
     color: #cfe3cf;

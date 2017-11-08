@@ -2,12 +2,12 @@ import styled from 'react-emotion';
 
 export const SidenavItem = styled.li `
   font-family: 'Source Code Pro', monospace;
-  max-width: 400px;
-  padding-top: 10px;
-  text-shadow: 0 0 4px #6a6a6a;
+  max-width: 40rem;
+  padding-top: 1rem;
+  text-shadow: 0 0 0.4rem #6a6a6a;
 
   @media (min-width: 900px) {
-    font-size: ${({ emphasis }) => (emphasis ? `1.3em ` : `1em`)};
+    font-size: ${({ emphasis }) => (emphasis ? `1.3rem ` : `1rem`)};
   }
 
   @media only screen and (max-width: 640px) {
@@ -24,8 +24,8 @@ export const SidenavItem = styled.li `
 `;
 
 export const Icon = styled.span `
-  font-size: 1em;
-  padding-right: 0.3em;
+  font-size: 1rem;
+  padding-right: 0.3rem;
 
   @media only screen and (min-width: 640px) {
     display: none;
