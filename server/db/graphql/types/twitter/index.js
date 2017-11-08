@@ -2,25 +2,33 @@ const { GraphQLObjectType, GraphQLString, GraphQLList } = require(`graphql/type`
 const Twitter = require(`twitter`);
 const twitterText = require(`twitter-text`);
 const { relTime } = require(`../../utils`);
-
 const tweet = require(`./tweet`);
 const { limit } = require(`../../args`);
 
-const twitterClient = new Twitter({
-  consumer_key: process.env.TWITTER_CONSUMER_KEY,
-  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-  access_token_key: process.env.TWITTER_ACCESS_KEY,
-  access_token_secret: process.env.TWITTER_ACCESS_SECRET
-});
+let twitterClient = null;
+// for some reason setting twitterClient on its own wasn't working so...
+// singleton!
+const getTwitterClient = () => {
+  if (twitterClient === null) {
+    twitterClient = new Twitter({
+      consumer_key: process.env.TWITTER_CONSUMER_KEY,
+      consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+      access_token_key: process.env.TWITTER_ACCESS_KEY,
+      access_token_secret: process.env.TWITTER_ACCESS_SECRET
+    });
+  }
+  return twitterClient;
+};
 
 const convertToText = (text, urlEntities) =>
   twitterText.autoLink(text, { urlEntities });
 
 const getTweets = async (max) => {
+  const twitter = getTwitterClient();
   try {
-    const tweets = await twitterClient.get(`statuses/user_timeline`, {
+    const tweets = await twitter.get(`statuses/user_timeline`, {
       screen_name: process.env.TWITTER_ID,
-      count: 200,
+      count: 200, // so we get enough without rts and mentions
       exclude_replies: true,
       include_rts: false
     });
@@ -31,7 +39,7 @@ const getTweets = async (max) => {
       url: `https://twitter.com/statuses/${id}`
     })).slice(0, max);
   } catch (e) {
-    throw e;
+    throw new Error(`Error: ${JSON.stringify(e)}`);
   }
 };
 

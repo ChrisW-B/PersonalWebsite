@@ -4,47 +4,75 @@ const chartItem = require(`./chartItem`);
 const { limit, period } = require(`../../args`);
 const Lastfm = require(`lastfm-njs`);
 
-const lastFmClient = new Lastfm({
-  apiKey: process.env.LASTFM_KEY,
-  apiSecret: process.env.LASTFM_SECRET
-});
+let lastFmClient = null;
+
+// love to singleton
+const getLastFmClient = () => {
+  if (lastFmClient === null) {
+    lastFmClient = new Lastfm({
+      apiKey: process.env.LASTFM_KEY,
+      apiSecret: process.env.LASTFM_SECRET
+    });
+  }
+  return lastFmClient;
+};
 
 const getLastFmSongs = async (max) => {
+  const lastFm = getLastFmClient();
   const maxSongs = max > 50 ? 50 : max;
-  let tracks = (await lastFmClient.user_getRecentTracks({
-    user: process.env.LASTFM_ID,
-    limit: maxSongs
-  })).track;
-  if (max !== tracks.length) tracks = tracks.slice(0, max); // sometimes last.fm returns 2 tracks when you ask for 1
-  return tracks.map(track =>
-    Object.assign({}, { title: track.name, artist: track.artist[`#text`], nowplaying: false }, track[`@attr`]));
+  try {
+    let tracks = (await lastFm.user_getRecentTracks({
+      user: process.env.LASTFM_ID,
+      limit: maxSongs
+    })).track;
+    if (max !== tracks.length) tracks = tracks.slice(0, max); // sometimes last.fm returns 2 tracks when you ask for 1
+    return tracks.map(track =>
+      Object.assign({}, { title: track.name, artist: track.artist[`#text`], nowplaying: false }, track[`@attr`]));
+  } catch (e) {
+    throw new Error(`Error: ${JSON.stringify(e)}`);
+  }
 };
 
 const getTopTracks = async (timePeriod, max) => {
-  const tracks = (await lastFmClient.user_getTopTracks({
-    user: process.env.LASTFM_ID,
-    limit: max,
-    period: timePeriod
-  })).track;
-  return tracks.map(({ name, artist, playcount }) => ({ name, artist: artist.name, playcount }));
+  try {
+    const lastFm = getLastFmClient();
+    const tracks = (await lastFm.user_getTopTracks({
+      user: process.env.LASTFM_ID,
+      limit: max,
+      period: timePeriod
+    })).track;
+    return tracks.map(({ name, artist, playcount }) => ({ name, artist: artist.name, playcount }));
+  } catch (e) {
+    throw new Error(`Error: ${JSON.stringify(e)}`);
+  }
 };
 
 const getTopArtists = async (timePeriod, max) => {
-  const artists = (await lastFmClient.user_getTopArtists({
-    user: process.env.LASTFM_ID,
-    limit: max,
-    period: timePeriod
-  })).artist;
-  return artists.map(({ name, playcount }) => ({ artist: name, playcount }));
+  const lastFm = getLastFmClient();
+  try {
+    const artists = (await lastFm.user_getTopArtists({
+      user: process.env.LASTFM_ID,
+      limit: max,
+      period: timePeriod
+    })).artist;
+    return artists.map(({ name, playcount }) => ({ artist: name, playcount }));
+  } catch (e) {
+    throw new Error(`Error: ${JSON.stringify(e)}`);
+  }
 };
 
 const getTopAlbums = async (timePeriod, max) => {
-  const albums = (await lastFmClient.user_getTopAlbums({
-    user: process.env.LASTFM_ID,
-    limit: max,
-    period: timePeriod
-  })).album;
-  return albums.map(({ name, artist, playcount }) => ({ name, artist: artist.name, playcount }));
+  const lastFm = getLastFmClient();
+  try {
+    const albums = (await lastFm.user_getTopAlbums({
+      user: process.env.LASTFM_ID,
+      limit: max,
+      period: timePeriod
+    })).album;
+    return albums.map(({ name, artist, playcount }) => ({ name, artist: artist.name, playcount }));
+  } catch (e) {
+    throw new Error(`Error: ${JSON.stringify(e)}`);
+  }
 };
 
 const LastFMType = new GraphQLObjectType({
