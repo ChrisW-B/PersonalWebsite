@@ -7,7 +7,7 @@ export const SidenavItem = styled.li `
   text-shadow: 0 0 0.4rem #6a6a6a;
 
   @media (min-width: 900px) {
-    font-size: ${({ emphasis }) => (emphasis ? `1.3rem ` : `1rem`)};
+    font-size: ${({ emphasis }) => (emphasis ? `3rem ` : `2.7rem`)};
   }
 
   @media only screen and (max-width: 640px) {
@@ -24,7 +24,7 @@ export const SidenavItem = styled.li `
 `;
 
 export const Icon = styled.span `
-  font-size: 1rem;
+  font-size: 2rem;
   padding-right: 0.3rem;
 
   @media only screen and (min-width: 640px) {

@@ -49,14 +49,14 @@ export const WidgetWrapper = styled.div`
 
 export const Time = styled.div `
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 0.6rem;
+  font-size: 1rem;
   font-weight: 600;
   text-transform: uppercase;
 `;
 
 export const Description = styled.div `
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   word-wrap: break-word;
 
   & > a {

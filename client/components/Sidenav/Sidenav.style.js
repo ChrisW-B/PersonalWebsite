@@ -35,14 +35,13 @@ export const SidenavContainer = styled.aside `
 
 export const Name = styled.h1 `
   font-family: 'Source Code Pro', monospace;
-  font-size: 2.1rem;
+  font-size: 3.5rem;
   margin: 0;
 `;
 
 export const SidenavItems = styled.ul `
   align-self: center;
   flex: 1 1 auto;
-  font-size: 1.5rem;
   list-style: none;
   margin: 0;
   -webkit-overflow-scrolling: touch;
@@ -50,17 +49,17 @@ export const SidenavItems = styled.ul `
   padding: 4rem 2rem 0;
 
   @media only screen and (max-width: 900px) {
-    font-size: 1.4rem;
+    font-size: 2.4rem;
   }
 
   @media only screen and (max-width: 640px) {
-    font-size: 1.1rem;
+    font-size: 1.7rem;
     margin: 0;
     padding: 0.2rem;
   }
 `;
 export const PhotoDescription = styled.div `
-  font-size: 0.65rem;
+  font-size: 1rem;
   padding: 0.2rem 0.4rem;
   text-overflow: ellipsis;
   white-space: nowrap;
