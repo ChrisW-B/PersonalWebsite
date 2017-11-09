@@ -37,13 +37,14 @@ class GithubWidget extends Component {
     commits: []
   }
 
-  componentWillReceiveProps({ data: { github = { commits: [null] } } }) {
+  componentWillReceiveProps({ data: { github = { commits: [] } } }) {
     const [commit] = github.commits;
-    this.updateCommits(commit);
+    this.updateCommits(commit || null);
   }
 
   updateCommits = (commit) => {
-    this.setState(state => ({ commits: [...state.commits, commit] }));
+    if (!commit) this.setState(state => ({ commits: [...state.commits, null] }));
+    else this.setState(state => ({ commits: [...state.commits, commit] }));
     this.setState(state => ({ commits: [state.commits[state.commits.length - 1]] }));
   }
 
