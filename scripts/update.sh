@@ -3,6 +3,6 @@
   date
   git pull
   yarn
-  yarn build:client
   yarn build:server
+  yarn build:client
 } > update.log 2>&1

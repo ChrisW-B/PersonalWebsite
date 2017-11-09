@@ -41,7 +41,7 @@ class TwitterWidget extends Component {
     tweets: []
   }
 
-  componentWillReceiveProps({ data: { twitter } }) {
+  componentWillReceiveProps({ data: { twitter = { tweets: [null] } } }) {
     const [tweet] = twitter.tweets;
     this.updateTweets(tweet);
   }
