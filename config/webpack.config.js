@@ -32,6 +32,7 @@ const BabelConfig = {
 };
 
 module.exports = {
+  devtool: `source-map`,
   entry: { app: [`babel-polyfill`, `${AppDir}/index`] },
   output: OutputConfig,
   plugins: WebpackPlugins,
