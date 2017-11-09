@@ -43,13 +43,15 @@ class GithubWidget extends Component {
   }
 
   updateCommits = (commit) => {
-    if (!commit) this.setState(state => ({ commits: [...state.commits, null] }));
-    else this.setState(state => ({ commits: [...state.commits, commit] }));
-    this.setState(state => ({ commits: [state.commits[state.commits.length - 1]] }));
+    if (!commit) this.setState(() => ({ commits: [] }));
+    else {
+      this.setState(state => ({ commits: [...state.commits, commit] }));
+      this.setState(state => ({ commits: [state.commits[state.commits.length - 1]] }));
+    }
   }
 
   render = () => {
-    const { commits } = this.state;
+    const { commits = [] } = this.state;
     return (
       <TransitionGroup component={WidgetWrapper}>
         {commits.map(({ url = `//github.com/ChrisW-B/`, name = ``, message = ``, reltime = `` }) => (

@@ -47,9 +47,11 @@ class TwitterWidget extends Component {
   }
 
   updateTweets = (tweet) => {
-    if (!tweet) this.setState(state => ({ commits: [...state.tweets, null] }));
-    else this.setState(state => ({ tweets: [...state.tweets, tweet] }));
-    this.setState(state => ({ tweets: [state.tweets[state.tweets.length - 1]] }));
+    if (!tweet) this.setState(() => ({ tweets: [] }));
+    else {
+      this.setState(state => ({ tweets: [...state.tweets, tweet] }));
+      this.setState(state => ({ tweets: [state.tweets[state.tweets.length - 1]] }));
+    }
   }
 
   render = () => {
