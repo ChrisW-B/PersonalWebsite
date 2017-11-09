@@ -56,7 +56,7 @@ export const Time = styled.div `
 
 export const Description = styled.div `
   font-family: 'Source Sans Pro', sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   word-wrap: break-word;
 
   & > a {

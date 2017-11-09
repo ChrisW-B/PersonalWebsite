@@ -1,38 +1,53 @@
 // react/components/Sidenav/Sidenav.js
-
-import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+import React from 'react';
+import { PropTypes } from 'prop-types';
 import { SidenavLinks } from './';
 import { Name, PhotoDescription, SidenavContainer, SidenavItems } from './Sidenav.style';
-import query from '../queries';
 
-export default class Sidenav extends Component {
-  state = {
-    photo: ``,
-    title: ``,
-    url: ``
+const query = gql `
+  {
+    photoBlog {
+      photos(limit: 10) {
+        url title photo
+      }
+    }
   }
+`;
 
-  componentDidMount = () => this.getBackground();
-
-  getBackground = async () => {
-    const { photoBlog: { photos } } = await query(`{photoBlog{photos(limit:10){url photo html title}}}`);
-    this.setState(() => ({ ...photos[Math.floor(Math.random() * (photos.length - 1))] }));
+const queryOptions = {
+  // override the defaults to select a random photo
+  props: ({ data }) => {
+    if (data.loading) return data;
+    const { photoBlog: { photos } } = data;
+    return ({ photo: photos[Math.floor(Math.random() * (photos.length - 1))] });
   }
+};
 
-  render = () => {
-    const { photo = ``, title = ``, url = `` } = this.state;
-    return (
-      <SidenavContainer bg={photo}>
-        <SidenavItems>
-          <li>
-            <Name>Chris Barry</Name>
-          </li>
-          <SidenavLinks />
-        </SidenavItems>
-        <PhotoDescription>
-          <a href={url}>Background: <br /> {title}</a>
-        </PhotoDescription>
-      </SidenavContainer>
-    );
-  }
-}
+const Sidenav = ({ photo: { photo, title, url } }) => (
+  <SidenavContainer bg={photo}>
+    <SidenavItems>
+      <li>
+        <Name>Chris Barry</Name>
+      </li>
+      <SidenavLinks />
+    </SidenavItems>
+    <PhotoDescription>
+      <a href={url}>Background: <br /> {title}</a>
+    </PhotoDescription>
+  </SidenavContainer>
+);
+
+Sidenav.propTypes = {
+  photo: PropTypes.shape({
+    photo: PropTypes.string,
+    title: PropTypes.string,
+    url: PropTypes.string
+  })
+};
+Sidenav.defaultProps = {
+  photo: { photo: ``, title: ``, url: `` }
+};
+
+export default graphql(query, queryOptions)(Sidenav);

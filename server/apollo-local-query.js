@@ -16,23 +16,16 @@ export default class LocalLink extends ApolloLink {
 
     return new Observable((observer) => {
       let canceled = false;
-
       execute(schema, query, rootValue, context, variables, operationName)
         .then((result) => {
-          if (canceled) {
-            return null;
-          }
-          // we have data and can send it to back up the link chain
+          if (canceled) return null;
           observer.next(result);
           observer.complete();
           return result;
         })
         .catch((err) => {
-          if (canceled) {
-            return;
-          }
-
-          observer.error(err);
+          if (!canceled) observer.error(err);
+          return null;
         });
 
       return () => {

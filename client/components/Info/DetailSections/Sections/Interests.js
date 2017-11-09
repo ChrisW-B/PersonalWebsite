@@ -1,11 +1,19 @@
 // react/components/Interests/Interests.js
 import React from 'react';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+import { PropTypes } from 'prop-types';
 import { SectionContentP } from './Sections.style';
 
-const Interests = () => (
-  <SectionContentP>
-    I&#39;m currently looking for a position at a company where I can continue to exercise my skills in Frontend development, especially in React and CSS, especially one where I can try new things and have input into the creation of a product.
-  </SectionContentP>
-);
+const query = gql `
+  {
+    interests
+  }
+`;
 
-export default Interests;
+const Interests = ({ data: { interests } }) =>
+  <SectionContentP>{interests}</SectionContentP>;
+Interests.propTypes = { data: PropTypes.shape({ interests: PropTypes.string }) };
+Interests.defaultProps = { data: { interests: `` } };
+
+export default graphql(query)(Interests);

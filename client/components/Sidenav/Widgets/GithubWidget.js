@@ -1,33 +1,50 @@
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+import { PropTypes } from 'prop-types';
 import { TransitionGroup, Transition } from 'react-transition-group';
 import { Widget, Description, Time, Link, WidgetWrapper } from './Widgets.style';
-import { ONE_MIN } from './';
-import query from '../../queries';
 
-export default class GithubWidget extends Component {
+const query = gql `
+  {
+    github {
+      commits(limit: 1) {
+        url author name time reltime message
+      }
+    }
+  }
+`;
+
+const queryOptions = {
+  options: {
+    pollInterval: 1000 * 60 * 10,
+    ssr: false
+  }
+};
+
+class GithubWidget extends Component {
+  static propTypes = {
+    data: PropTypes.shape({
+      github: PropTypes.object
+    })
+  }
+
+  static defaultProps = {
+    data: { github: { commits: [] } }
+  }
+
   state = {
     commits: []
   }
 
-  componentDidMount = () => {
-    setTimeout(() => this.updateCommit(), 1000);
-    this.autoUpdater = setInterval(this.updateCommit, 30 * ONE_MIN);
-  }
-
-  componentWillUnmount = () => {
-    clearInterval(this.autoUpdater);
-    this.autoUpdater = null;
+  componentWillReceiveProps({ data: { github } }) {
+    const [commit] = github.commits;
+    this.updateCommits(commit, github.url);
   }
 
   updateCommits = (commit, url) => {
     this.setState(state => ({ url, commits: [...state.commits, commit] }));
     this.setState(state => ({ commits: [state.commits[state.commits.length - 1]] }));
-  }
-
-  updateCommit = async () => {
-    const { github: { commits, url } } = await query(`{github{url commits(limit: 1){message reltime url name}}}`);
-    const [commit] = commits;
-    if (commit) this.updateCommits(commit, url);
   }
 
   render = () => {
@@ -50,3 +67,5 @@ export default class GithubWidget extends Component {
     );
   }
 }
+
+export default graphql(query, queryOptions)(GithubWidget);

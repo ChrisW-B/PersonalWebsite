@@ -1,15 +1,28 @@
 // react/components/Experience/Experience.js
 
 import React from 'react';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+import { PropTypes } from 'prop-types';
 import { ExperienceSection, ExperienceItem, Company, JobInfo, JobDetailList, JobDetail } from './Experience.style';
-import Jobs from './Jobs';
 
-const Experience = () => (
+const query = gql `
+  {
+    jobs {
+      title company details
+      when {
+        start end
+      }
+    }
+  }
+`;
+
+const Experience = ({ data: { jobs } }) => (
   <ExperienceSection>
     {
-      Jobs.map(({ company, title, when, details }) => (
+      jobs.map(({ company, title, when, details }) => (
         <ExperienceItem key={company}>
-          <Company>{company}</Company> <JobInfo><strong>{title}</strong>, <i>{when.from}-{when.to}</i></JobInfo>
+          <Company>{company}</Company> <JobInfo><strong>{title}</strong>, <i>{when.start}-{when.end}</i></JobInfo>
           <JobDetailList>
             {details.map(text => <JobDetail key={text.length}>{text}</JobDetail>)}
           </JobDetailList>
@@ -19,4 +32,7 @@ const Experience = () => (
   </ExperienceSection>
 );
 
-export default Experience;
+Experience.propTypes = { data: PropTypes.shape({ jobs: PropTypes.array }) };
+Experience.defaultProps = { data: { jobs: [] } };
+
+export default graphql(query)(Experience);

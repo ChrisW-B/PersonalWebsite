@@ -12,9 +12,15 @@ const simple = {
     resolve: () => info.name
   },
   linkedin: {
-    type: GraphQLString,
-    description: `My LinkedIn URL`,
-    resolve: () => info.linkedin
+    type: new GraphQLObjectType({
+      name: `Linkedin`,
+      description: `My Linkedin Info`,
+      fields: () => ({
+        url: { type: GraphQLString, description: `My LinkedIn URL`, resolve: ({ url }) => url }
+      })
+    }),
+    description: `My LinkedIn Info`,
+    resolve: () => ({ url: info.linkedin })
   },
   email: {
     type: GraphQLString,
@@ -57,7 +63,7 @@ const complex = {
     resolve: (_, { limit: max }) => getFirstN(max, info.jobs)
   },
   skills: {
-    type: skill,
+    type: new GraphQLList(skill),
     description: `Possible Relevant Skills`,
     resolve: () => info.skills
   }

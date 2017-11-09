@@ -1,25 +1,36 @@
 // react/components/Projects/Projects.js
 
 import React from 'react';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+import { PropTypes } from 'prop-types';
 import GitHubLogo from 'react-icons/lib/io/social-github';
 import { Link, ProjectsSection, ProjectItem, ProjectTitle, ProjectGithub, ProjectDetails } from './Projects.style';
 
-import ProjectList from './ProjectList';
+const query = gql `
+  {
+    projects {
+      name description github website technologies
+    }
+  }
+`;
 
-const Projects = () => (
+const Projects = ({ data: { projects } }) => (
   <ProjectsSection>
     {
-      ProjectList.map(({ name, url, github, description }) =>
+      projects.map(({ name, website, github, description }) =>
         (
           <ProjectItem key={name}>
-            <ProjectTitle><Link href={url} title={name}>{name}</Link></ProjectTitle>
+            <ProjectTitle><Link href={website} title={name}>{name}</Link></ProjectTitle>
             <ProjectGithub><Link href={github} title={`${name} on Github`}><GitHubLogo /> Source</Link></ProjectGithub>
-            <ProjectDetails>{description}</ProjectDetails>
+            <ProjectDetails dangerouslySetInnerHTML={{ __html: description }} />
           </ProjectItem>
         )
       )
     }
   </ProjectsSection>
 );
+Projects.propTypes = { data: PropTypes.shape({ projects: PropTypes.array }) };
+Projects.defaultProps = { data: { projects: [] } };
 
-export default Projects;
+export default graphql(query)(Projects);

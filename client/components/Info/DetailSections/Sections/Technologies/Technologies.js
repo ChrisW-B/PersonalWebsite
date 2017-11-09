@@ -1,13 +1,23 @@
 import React from 'react';
-import Skills from './Skills';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+import { PropTypes } from 'prop-types';
 import { Skill, SkillList, SkillType, SkillName, SectionContentDIV } from './Technologies.style';
 
-const Technologies = () => (
+const query = gql `
+  {
+    skills {
+      category types
+    }
+  }
+`;
+
+const Technologies = ({ data: { skills } }) => (
   <SectionContentDIV>
     {
-      Skills.map(({ name, types }) => (
-        <SkillType key={name}>
-          <SkillName>{name}</SkillName>
+      skills.map(({ category, types }) => (
+        <SkillType key={category}>
+          <SkillName>{category}</SkillName>
           <SkillList>
             {
               types.map(type => (
@@ -21,4 +31,7 @@ const Technologies = () => (
   </SectionContentDIV>
 );
 
-export default Technologies;
+Technologies.propTypes = { data: PropTypes.shape({ projects: PropTypes.array }) };
+Technologies.defaultProps = { data: { projects: [] } };
+
+export default graphql(query)(Technologies);
