@@ -1,5 +1,4 @@
 // react/components/Homepage/Homepage.js
-
 import React from 'react';
 import Sidenav from '../Sidenav';
 import Info from '../Info';

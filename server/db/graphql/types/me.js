@@ -12,9 +12,15 @@ const simple = {
     resolve: () => info.name
   },
   linkedin: {
-    type: GraphQLString,
-    description: `My LinkedIn URL`,
-    resolve: () => info.linkedin
+    type: new GraphQLObjectType({
+      name: `Linkedin`,
+      description: `My Linkedin Info`,
+      fields: () => ({
+        url: { type: GraphQLString, description: `My LinkedIn URL`, resolve: ({ url }) => url }
+      })
+    }),
+    description: `My LinkedIn Info`,
+    resolve: () => ({ url: info.linkedin })
   },
   email: {
     type: GraphQLString,
@@ -25,11 +31,6 @@ const simple = {
     type: GraphQLBoolean,
     description: `Do I Have A Job?`,
     resolve: () => info.employed
-  },
-  resume: {
-    type: resume,
-    description: `My Last.FM URL`,
-    resolve: () => info.resume
   },
   bio: {
     type: GraphQLString,
@@ -44,6 +45,11 @@ const simple = {
 };
 
 const complex = {
+  resume: {
+    type: resume,
+    description: `My Resume`,
+    resolve: () => info.resume
+  },
   projects: {
     args: { limit },
     type: new GraphQLList(project),
@@ -57,7 +63,7 @@ const complex = {
     resolve: (_, { limit: max }) => getFirstN(max, info.jobs)
   },
   skills: {
-    type: skill,
+    type: new GraphQLList(skill),
     description: `Possible Relevant Skills`,
     resolve: () => info.skills
   }
@@ -81,7 +87,7 @@ const external = {
   },
   photoBlog: {
     type: photoBlog,
-    description: `Recent Post from my Photoblog`,
+    description: `My Photo Blog info`,
     resolve: () => ({ url: info.blog })
   }
 };

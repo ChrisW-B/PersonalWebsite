@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLList } = require(`graphql/type`);
+const { GraphQLObjectType, GraphQLList, GraphQLString } = require(`graphql/type`);
 const fetch = require(`node-fetch`);
 const photo = require(`./photo`);
 const { limit } = require(`../../args`);
@@ -16,7 +16,7 @@ const getPhotos = async (max) => {
     }));
     return photos;
   } catch (e) {
-    throw e;
+    throw new Error(`Error: ${JSON.stringify(e)}`);
   }
 };
 
@@ -29,7 +29,8 @@ const Blog = new GraphQLObjectType({
       type: new GraphQLList(photo),
       description: `All of the avalible photos`,
       resolve: async (_, { limit: max = 5 }) => getPhotos(max)
-    }
+    },
+    url: { type: GraphQLString, description: `My Photo Blog's URL`, resolve: ({ url }) => url }
   })
 });
 

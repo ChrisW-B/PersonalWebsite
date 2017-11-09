@@ -1,33 +1,54 @@
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+import { PropTypes } from 'prop-types';
 import { Transition, TransitionGroup } from 'react-transition-group';
 import { Widget, Description, Time, Link, WidgetWrapper } from './Widgets.style';
-import { ONE_MIN } from './';
-import query from '../../queries';
 
-export default class TwitterWidget extends Component {
+const query = gql `
+  {
+    twitter {
+      tweets {
+        message reltime url
+      }
+    }
+  }
+`;
+
+const queryOptions = {
+  options: {
+    pollInterval: 1000 * 60 * 5,
+    ssr: false
+  }
+};
+
+class TwitterWidget extends Component {
+  static propTypes = {
+    data: PropTypes.shape({
+      twitter: PropTypes.object
+    })
+  }
+
+  static defaultProps = {
+    data: {
+      twitter: {
+        tweets: []
+      }
+    }
+  }
+
   state = {
     tweets: []
   }
 
-  componentDidMount = () => {
-    setTimeout(() => this.updateTweet(), 1250);
-    this.autoUpdater = setInterval(this.updateTweet, 30 * ONE_MIN);
-  }
-
-  componentWillUnmount = () => {
-    clearInterval(this.autoUpdater);
-    this.autoUpdater = null;
+  componentWillReceiveProps({ data: { twitter } }) {
+    const [tweet] = twitter.tweets;
+    this.updateTweets(tweet);
   }
 
   updateTweets = (tweet) => {
     this.setState(state => ({ tweets: [...state.tweets, tweet] }));
     this.setState(state => ({ tweets: [state.tweets[state.tweets.length - 1]] }));
-  }
-
-  updateTweet = async () => {
-    const { twitter: { tweets, url } } = await query(`{twitter{url tweets(limit: 1){message reltime url}}}`);
-    const [tweet] = tweets;
-    if (tweet) this.updateTweets(tweet, url);
   }
 
   render = () => {
@@ -50,3 +71,5 @@ export default class TwitterWidget extends Component {
     );
   }
 }
+
+export default graphql(query, queryOptions)(TwitterWidget);

@@ -32,23 +32,25 @@
     "github": "https://github.com/ChrisW-B/positive-news",
     "website": "https://news.chriswbarry.com/"
   }, {
-    "name": "This Site!",
-    "description": "Just a personal landing page",
-    "technologies": ["React", "Isomorphic React", "GraphQL", "Express", "CSS in JS/Emotion", "SCSS", "Webpack", "NodeJS"],
-    "github": "https://github.com/ChrisW-B/personalWebsite",
-    "website": "https://chriswbarry.com/"
-  }, {
     "name": "Isabella Kapur Art & Illustration",
     "description": "A simple portfolio site for a friend",
     "technologies": ["KeystoneJS", "Handlebars", "NodeJS", "Express", "SCSS"],
     "github": "https://github.com/ChrisW-B/izzy-website",
     "website": "https://isabellakapur.com/"
+  }, {
+    "name": "This Site!",
+    "description": "Just a personal landing page. Check out <a href='https://chrisb.me/graphql'>chrisb.me/graphql</a> or try <code>curl chrisb.me</code> for some fun!",
+    "technologies": ["React", "Isomorphic React", "GraphQL", "Express", "CSS in JS/Emotion", "SCSS", "Webpack", "NodeJS"],
+    "github": "https://github.com/ChrisW-B/personalWebsite",
+    "website": "https://chriswbarry.com/"
   }],
   "jobs": [{
     "company": "Kip",
     "title": "Frontend Engineer",
-    "start": "November 2016",
-    "end": "August 2017",
+    "when": {
+      "start": "November 2016",
+      "end": "August 2017"
+    },
     "details": [
       "Worked in a small team to create a team commerce focused bot",
       "Created a new React Webapp from the ground up, including interacting with an API with Redux and Styling with SASS/SCSS"
@@ -56,8 +58,10 @@
   }, {
     "company": "Chubb Insurance",
     "title": "Digital Business Intern",
-    "start": "Summer 2014",
-    "end": "Summer 2015",
+    "when": {
+      "start": "Summer 2014",
+      "end": "Summer 2015"
+    },
     "details": [
       "Worked with the Digital Business team to create internal HTML and JavaScript apps for testing and searching",
       "Created complex modular JavaScript grids including session storage, searching, and sorting",
@@ -66,8 +70,10 @@
   }, {
     "company": "The Brown and White",
     "title": "Sports Visuals Editor",
-    "start": "August 2015",
-    "end": "June 2016",
+    "when": {
+      "start": "August 2015",
+      "end": "June 2016"
+    },
     "details": [
       "Worked in a team to produce a student run print newspaper twice weekly, and daily web articles",
       "Coordinated a team of photographers to cover events",
@@ -77,19 +83,30 @@
   }, {
     "company": "Lehigh University",
     "title": "Computer Science Lab Assistant/Grader",
-    "start": "August 2014",
-    "end": "December 2015",
+    "when": {
+      "start": "August 2014",
+      "end": "December 2015"
+    },
     "details": [
       "Graded labs, homework, and exams for Lehigh Computer Science Courses",
       "Held weekly office hours to assist students with homework and classes",
       "Assisted Professor with Labs for beginner CS students, in Java, HTML, and JavaScript"
     ]
   }],
-  "skills": {
-    "programming": ["JavaScript", "MongoDB", "Node", "HTML5", "CSS3", "C/C++", "C#", "Python", "MATLAB/Octave"],
-    "libraries": ["React", "Redux", "Mongoose", "Express", "Sass", "GraphQL", "jQuery", "Styled-Components/Emotion", "Webpack"],
-    "visuals": ["Adobe Photoshop", "Bridge", "Lightroom", "Illustrator"],
-    "social": ["Wordpress", "Tumblr", "Twitter", "Facebook", "Slack"],
-    "platforms": ["OS X", "Linux", "Windows", "Unix", "Bash/Fish Shell", "Microsoft Office", "Windows Phone"]
-  }
+  "skills": [{
+    "category": "Programming",
+    "types": ["JavaScript", "MongoDB", "Node", "HTML5", "CSS3", "C/C++", "C#", "Python", "MATLAB/Octave"]
+  }, {
+    "category": "Libraries",
+    "types": ["React", "Redux", "Mongoose", "Express", "Sass", "GraphQL", "jQuery", "Styled-Components/Emotion", "Webpack"]
+  }, {
+    "category": "Visuals",
+    "types": ["Adobe Photoshop", "Bridge", "Lightroom", "Illustrator"]
+  }, {
+    "category": "Social",
+    "types": ["Wordpress", "Tumblr", "Twitter", "Facebook", "Slack"]
+  }, {
+    "category": "Platforms",
+    "types": ["OS X", "Linux", "Windows", "Unix", "Bash/Fish Shell", "Microsoft Office", "Windows Phone"]
+  }]
 }

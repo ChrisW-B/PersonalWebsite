@@ -1,33 +1,55 @@
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
+import { PropTypes } from 'prop-types';
 import { TransitionGroup, Transition } from 'react-transition-group';
 import { Widget, Description, WidgetWrapper } from './Widgets.style';
-import { ONE_MIN } from './';
-import query from '../../queries';
 
-export default class LastFmWidget extends Component {
+const query = gql `
+  {
+    lastfm {
+      nowplaying {
+        title artist
+      }
+    }
+  }
+`;
+
+const queryOptions = {
+  options: {
+    pollInterval: 1000 * 30,
+    ssr: false
+  }
+};
+
+class LastFmWidget extends Component {
+  static propTypes = {
+    data: PropTypes.shape({
+      lastfm: PropTypes.object
+    })
+  }
+
+  static defaultProps = {
+    data: {
+      lastfm: {
+        nowplaying: null
+      }
+    }
+  }
+
   state = {
     songs: []
   }
 
-  componentDidMount = () => {
-    setTimeout(() => this.updateLastFm(), 1500);
-    this.autoUpdater = setInterval(this.updateLastFm, ONE_MIN / 2);
-  }
+  componentWillReceiveProps = ({ data: { lastfm } }) =>
+    this.updateSong(lastfm.nowplaying);
 
-  componentWillUnmount = () => {
-    clearInterval(this.autoUpdater);
-    this.autoUpdater = null;
-  }
-
-  updateSong = ({ title, artist }) => {
-    this.setState(state => ({ songs: [...state.songs, `♫ ${title} by ${artist}`] }));
+  updateSong = (nowplaying) => {
+    if (!nowplaying) this.setState(state => ({ songs: [...state.songs, null] }));
+    else this.setState(state => ({ songs: [...state.songs, `♫ ${nowplaying.title} by ${nowplaying.artist}`] }));
     this.setState(state => ({ songs: [state.songs[state.songs.length - 1]] }));
   }
 
-  updateLastFm = async () => {
-    const { lastfm: { nowplaying, url } } = await query(`{lastfm{url nowplaying{title artist}}}`);
-    if (nowplaying) this.updateSong(nowplaying, url);
-  }
   render = () => {
     const { songs = [] } = this.state;
     return (
@@ -45,3 +67,5 @@ export default class LastFmWidget extends Component {
     );
   }
 }
+
+export default graphql(query, queryOptions)(LastFmWidget);

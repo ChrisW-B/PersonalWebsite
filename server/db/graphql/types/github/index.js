@@ -39,7 +39,7 @@ const getGithubInfo = async () => {
       .sort((a, b) =>
         new Date(b.time) - new Date(a.time));
   } catch (e) {
-    throw e;
+    throw new Error(`Error: ${JSON.stringify(e)}`);
   }
 };
 
@@ -53,7 +53,7 @@ const Github = new GraphQLObjectType({
       description: `The Company's Name`,
       resolve: async (_, { limit: max = 5 }) => getFirstN(max, await getGithubInfo())
     },
-    url: { type: GraphQLString, description: `My Starting Date`, resolve: ({ url }) => url }
+    url: { type: GraphQLString, description: `My Github URL`, resolve: ({ url }) => url }
   })
 });
 

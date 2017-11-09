@@ -7,11 +7,13 @@ import Music from 'react-icons/lib/io/radio-waves';
 import TwitterLogo from 'react-icons/lib/io/social-twitter';
 import { TwitterWidget, GithubWidget, LastFmWidget } from '../Widgets';
 
-export default [
-  { title: `Get in Touch`, link: `mailto:me@chriswbarry.com`, icon: <Mail />, emphasis: true },
-  { title: `Github`, link: `//github.com/chrisw-b`, icon: <GitHubLogo />, widget: <GithubWidget /> },
-  { title: `Twitter`, link: `//twitter.com/chrisw_b`, icon: <TwitterLogo />, widget: <TwitterWidget /> },
-  { title: `LastFM`, link: `//last.fm/user/Christo27`, icon: <Music />, widget: <LastFmWidget /> },
-  { title: `LinkedIn`, link: `//linkedin.com/in/chriswbarry`, icon: <LinkedInLogo /> },
-  { title: `Photos`, link: `//photo.chriswbarry.com/`, icon: <Camera /> }
+const links = ({ lastfm, email, github, twitter, linkedin, photoBlog }) => [
+  { title: `Get in Touch`, link: `mailto:${email}`, icon: <Mail />, emphasis: true },
+  { title: `Github`, link: github.url, icon: <GitHubLogo />, widget: <GithubWidget /> },
+  { title: `Twitter`, link: twitter.url, icon: <TwitterLogo />, widget: <TwitterWidget /> },
+  { title: `LastFM`, link: lastfm.url, icon: <Music />, widget: <LastFmWidget /> },
+  { title: `LinkedIn`, link: linkedin.url, icon: <LinkedInLogo /> },
+  { title: `Photos`, link: photoBlog.url, icon: <Camera /> }
 ];
+
+export default links;
