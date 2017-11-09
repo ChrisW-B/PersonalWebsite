@@ -97,7 +97,7 @@ const LastFMType = new GraphQLObjectType({
       description: `My most played albums`,
       resolve: async (_, { limit: max = 10, period: timePeriod }) => getTopAlbums(timePeriod, max)
     },
-    songs: {
+    recentSongs: {
       args: { limit },
       type: new GraphQLList(song),
       description: `A Song I listened to`,

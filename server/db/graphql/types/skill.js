@@ -8,9 +8,9 @@ const Skills = new GraphQLObjectType({
   fields: () => ({
     programming: { type: new GraphQLList(GraphQLString), description: `Programming Languages` },
     libraries: { type: new GraphQLList(GraphQLString), description: `Programming Libraries and Frameworks` },
-    visuals: { type: new GraphQLList(GraphQLString), description: `Programming Languages` },
-    social: { type: new GraphQLList(GraphQLString), description: `Programming Languages` },
-    platforms: { type: new GraphQLList(GraphQLString), description: `Programming Languages` }
+    visuals: { type: new GraphQLList(GraphQLString), description: `Photoediting and such` },
+    social: { type: new GraphQLList(GraphQLString), description: `Social platforms` },
+    platforms: { type: new GraphQLList(GraphQLString), description: `Platforms I use` }
   })
 });
 

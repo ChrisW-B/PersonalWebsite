@@ -26,11 +26,6 @@ const simple = {
     description: `Do I Have A Job?`,
     resolve: () => info.employed
   },
-  resume: {
-    type: resume,
-    description: `My Last.FM URL`,
-    resolve: () => info.resume
-  },
   bio: {
     type: GraphQLString,
     description: `A Little About Me`,
@@ -44,6 +39,11 @@ const simple = {
 };
 
 const complex = {
+  resume: {
+    type: resume,
+    description: `My Resume`,
+    resolve: () => info.resume
+  },
   projects: {
     args: { limit },
     type: new GraphQLList(project),
@@ -81,7 +81,7 @@ const external = {
   },
   photoBlog: {
     type: photoBlog,
-    description: `Recent Post from my Photoblog`,
+    description: `My Photo Blog info`,
     resolve: () => ({ url: info.blog })
   }
 };

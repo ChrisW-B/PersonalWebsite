@@ -1,5 +1,3 @@
-import 'babel-polyfill';
-
 const queryHandler = async (query) => {
   const res = await fetch(`/graphql`, {
     method: `POST`,

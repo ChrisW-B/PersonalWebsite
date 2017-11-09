@@ -45,12 +45,12 @@ const getTweets = async (max) => {
 
 const TwitterType = new GraphQLObjectType({
   name: `Twitter`,
-  description: `My Github Info`,
+  description: `My Twitter Info`,
   fields: () => ({
     tweets: {
       args: { limit },
       type: new GraphQLList(tweet),
-      description: `A Tweet I wrote`,
+      description: `My recent tweets`,
       resolve: async (_, { limit: max = 5 }) => getTweets(max)
     },
     url: { type: GraphQLString, description: `My Twitter url`, resolve: ({ url }) => url }
