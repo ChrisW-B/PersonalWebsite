@@ -18,6 +18,7 @@ const query = gql `
 
 const queryOptions = {
   // override the defaults to select a random photo
+  options: { ssr: false },
   props: ({ data }) => {
     if (data.loading) return data;
     const { photoBlog: { photos } } = data;

@@ -13,8 +13,6 @@ const emptyBackground = `linear-gradient(102deg, rgba(0, 195, 216, 0.82) 9%, rgb
 const fullBackground = bg => `${emptyBackground}, url(${bg}) center / cover no-repeat scroll`;
 
 export const SidenavContainer = styled.aside `
-  animation: ${animateImage} 2s cubic-bezier(0.4, 0, 0.2, 1);
-  background: ${({ bg }) => (bg ? fullBackground(bg) : emptyBackground)};
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -23,6 +21,30 @@ export const SidenavContainer = styled.aside `
   grid-column: 1 / 2;
   grid-row: 1 / 4;
   justify-content: center;
+  position: relative;
+
+  &::after {
+    animation: ${animateImage} 5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: ${({ bg }) => (bg ? fullBackground(bg) : `transparent`)};
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+  }
+
+  &::before {
+    background: ${emptyBackground};
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -2;
+  }
 
   @media only screen and (max-width: 640px) {
     grid-column: 1 / 4;
