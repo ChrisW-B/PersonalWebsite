@@ -30,7 +30,8 @@ app.get(`/`, async (req, res) => {
   const client = new ApolloClient({
     ssrMode: true,
     link: new LocalQuery(graphqlSchema),
-    cache: new InMemoryCache()
+    cache: new InMemoryCache(),
+    shouldBatch: true
   });
 
   // The client-side app will instead use <BrowserRouter>

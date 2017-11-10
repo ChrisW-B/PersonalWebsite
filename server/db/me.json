@@ -7,7 +7,7 @@
   "lastfm": "https://last.fm/user/christo27",
   "blog": "https://photo.chriswbarry.com/",
   "employed": false,
-  "bio": "I'm a web developer from NYC, focusing on Node, Javascript and React. I love learning the newest technologies to create great web experiences. Most recently, I worked at *Kip*, where I worked on a Slack bot and later worked in a team creating an entirely new frontend in React.",
+  "bio": "I'm a web developer from NYC, focusing on Node, Javascript and React. I love learning the newest technologies to create great web experiences. Most recently, I worked at **Kip**, where I worked on a Slack bot and later worked in a team creating an entirely new frontend in React.",
   "interests": "I'm currently looking for a position at a company where I can continue to exercise my skills in Frontend development, especially in React and CSS, especially one where I can try new things and have input into the creation of a product.",
   "resume": {
     "pdf": "https://chriswbarry.com/files/ChrisBarry_Resume.pdf",
@@ -39,7 +39,7 @@
     "website": "https://isabellakapur.com/"
   }, {
     "name": "This Site!",
-    "description": "Just a personal landing page. Check out <a href='https://chrisb.me/graphql'>chrisb.me/graphql</a> or try <code>curl chrisb.me</code> for some fun!",
+    "description": "Just a personal landing page. Check out [chrisb.me/graphql](https://chrisb.me/graphql) or try `curl chrisb.me` for some fun!",
     "technologies": ["React", "Isomorphic React", "GraphQL", "Express", "CSS in JS/Emotion", "SCSS", "Webpack", "NodeJS"],
     "github": "https://github.com/ChrisW-B/personalWebsite",
     "website": "https://chriswbarry.com/"

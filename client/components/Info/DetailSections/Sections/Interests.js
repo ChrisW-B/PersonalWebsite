@@ -3,6 +3,7 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { PropTypes } from 'prop-types';
+import Markdown from 'react-markdown';
 import { SectionContentP } from './Sections.style';
 
 const query = gql `
@@ -12,7 +13,7 @@ const query = gql `
 `;
 
 const Interests = ({ data: { interests } }) =>
-  <SectionContentP>{interests}</SectionContentP>;
+  <Markdown disallowedTypes={[`Paragraph`, `div`]} unwrapDisallowed source={interests} escapeHtml containerTagName={SectionContentP} />;
 Interests.propTypes = { data: PropTypes.shape({ interests: PropTypes.string }) };
 Interests.defaultProps = { data: { interests: `` } };
 

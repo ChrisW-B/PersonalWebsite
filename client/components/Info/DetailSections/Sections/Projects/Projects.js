@@ -1,5 +1,5 @@
 // react/components/Projects/Projects.js
-
+import Markdown from 'react-markdown';
 import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -23,7 +23,7 @@ const Projects = ({ data: { projects } }) => (
           <ProjectItem key={name}>
             <ProjectTitle><Link href={website} title={name}>{name}</Link></ProjectTitle>
             <ProjectGithub><Link href={github} title={`${name} on Github`}><GitHubLogo /> Source</Link></ProjectGithub>
-            <ProjectDetails dangerouslySetInnerHTML={{ __html: description }} />
+            <Markdown disallowedTypes={[`Paragraph`]} unwrapDisallowed source={description} escapeHtml containerTagName={ProjectDetails} />
           </ProjectItem>
         )
       )

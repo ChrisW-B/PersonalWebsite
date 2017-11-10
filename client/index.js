@@ -12,7 +12,8 @@ import { Homepage } from './components';
 
 const client = new ApolloClient({
   link: new HttpLink(),
-  cache: new InMemoryCache().restore(window.APOLLO_STATE)
+  cache: new InMemoryCache().restore(window.APOLLO_STATE),
+  shouldBatch: true
 });
 
 if (module.hot && ENV !== `production`) {

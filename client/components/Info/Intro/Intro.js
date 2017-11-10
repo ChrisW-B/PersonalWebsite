@@ -2,6 +2,7 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import React from 'react';
+import Markdown from 'react-markdown';
 import { PropTypes } from 'prop-types';
 import { HiMessage, InfoSubSection } from './Intro.style';
 
@@ -14,7 +15,7 @@ const query = gql `
 const Intro = ({ data: { bio } }) => (
   <InfoSubSection>
     <HiMessage>Hi!</HiMessage>
-    <p>{bio}</p>
+    <Markdown source={bio} escapeHtml />
   </InfoSubSection>
 );
 
