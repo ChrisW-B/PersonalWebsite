@@ -4,7 +4,7 @@ import GitHubLogo from 'react-icons/lib/io/social-github';
 import Markdown from 'react-remarkable';
 import React from 'react';
 import { Link } from '../../../styles/Info';
-import { ProjectsSection, ProjectItem, ProjectTitle, ProjectGithub, ProjectDetails } from '../../../styles/Projects';
+import { ProjectsSection, ProjectItem, ProjectTitle, ProjectGithub } from '../../../styles/Projects';
 
 const Projects = ({ data: { projects } }) => (
   <ProjectsSection>
@@ -14,7 +14,7 @@ const Projects = ({ data: { projects } }) => (
           <ProjectItem key={name}>
             <ProjectTitle><Link href={website} title={name}>{name}</Link></ProjectTitle>
             <ProjectGithub><Link href={github} title={`${name} on Github`}><GitHubLogo /> Source</Link></ProjectGithub>
-            <ProjectDetails><Markdown source={description} /></ProjectDetails>
+            <Markdown source={description} />
           </ProjectItem>
         )
       )

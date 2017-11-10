@@ -1,8 +1,6 @@
 import styled from 'react-emotion';
 
 export const SectionContentP = styled.p `
-  grid-column: 2 / 5;
-  grid-row: 1 / 3;
   margin: 0;
 
   div {
