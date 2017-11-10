@@ -1,6 +1,6 @@
 import styled from 'react-emotion';
 
-import { SectionContentUL } from '../Sections.style';
+import { SectionContentUL } from './Sections';
 
 export const ExperienceSection = styled(SectionContentUL)`
   padding: 0;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { TransitionGroup, Transition } from 'react-transition-group';
-import { Widget, Description, WidgetWrapper } from './Widgets.style';
+import { Widget, Description, WidgetWrapper } from '../../../styles/Widgets';
 
 class LastFmWidget extends Component {
   static propTypes = {

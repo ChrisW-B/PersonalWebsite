@@ -1,6 +1,6 @@
 import styled from 'react-emotion';
 
-export { SectionContentDIV } from '../Sections.style';
+export { SectionContentDIV } from './Sections';
 
 export const SkillType = styled.div `
   align-items: baseline;

@@ -1,6 +1,6 @@
+import { PropTypes } from 'prop-types';
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { SidenavItem, Icon, Link } from './SidenavLink.style';
+import { SidenavItem, Icon, Link } from '../../styles/Sidenav';
 
 export default class SidenavLink extends Component {
   static propTypes = {

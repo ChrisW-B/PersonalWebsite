@@ -1,8 +1,7 @@
 // react/components/Intro/Intro.js
-import React from 'react';
 import { PropTypes } from 'prop-types';
-import { LearnMoreSection, Link } from './LearnMore.style';
-
+import React from 'react';
+import { LearnMoreSection, Link } from '../../styles/Info';
 
 const LearnMore = ({ data: { email, resume: { pdf } } }) => (
   <LearnMoreSection>

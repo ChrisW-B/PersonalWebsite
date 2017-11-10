@@ -1,6 +1,6 @@
 import styled from 'react-emotion';
 
-import { Link, SectionContentDIV } from '../Sections.style';
+import { SectionContentDIV } from './Sections';
 
 export const ProjectsSection = styled(SectionContentDIV)`
   padding: 0;
@@ -64,5 +64,3 @@ export const ProjectDetails = styled.p `
     }
   }
 `;
-
-export { Link };

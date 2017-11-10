@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'react-emotion';
-import { Link } from '../SidenavLink/SidenavLink.style';
 
 const SlideUpIn = keyframes `
   0% {
@@ -21,20 +20,20 @@ const SlideUpOut = keyframes `
   }
 `;
 
-const materialAnimation = `cubic-bezier(0.4, 0, 0.2, 1)`;
+const materialAnimation = 'cubic-bezier(0.4, 0, 0.2, 1)';
 const transitionOut = `1000ms ${SlideUpOut} ${materialAnimation}`;
 const transitionIn = `1000ms ${SlideUpIn} ${materialAnimation}`;
 
 export const Widget = styled.div `
   animation: ${({ status }) => {
-    if (status === `entering`) return transitionIn;
-    else if (status === `exiting`) return transitionOut;
-    return ``;
+    if (status === 'entering') return transitionIn;
+    else if (status === 'exiting') return transitionOut;
+    return '';
   }};
   color: #fff;
   height: ${({ status }) => {
-    if (status === `exiting`) return 0;
-    return `auto`;
+    if (status === 'exiting') return 0;
+    return 'auto';
   }};
   padding-left: 1rem;
   text-align: left;
@@ -71,5 +70,3 @@ export const Description = styled.div `
     }
   }
 `;
-
-export { Link };

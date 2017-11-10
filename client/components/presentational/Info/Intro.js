@@ -1,9 +1,8 @@
 // react/components/Intro/Intro.js
-
-import React from 'react';
-import Markdown from 'react-remarkable';
 import { PropTypes } from 'prop-types';
-import { HiMessage, InfoSubSection } from './Intro.style';
+import Markdown from 'react-remarkable';
+import React from 'react';
+import { HiMessage, InfoSubSection } from '../../styles/Info';
 
 const Intro = ({ data: { bio } }) => (
   <InfoSubSection>

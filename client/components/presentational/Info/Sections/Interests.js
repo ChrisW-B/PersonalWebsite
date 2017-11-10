@@ -2,7 +2,7 @@
 import { PropTypes } from 'prop-types';
 import Markdown from 'react-remarkable';
 import React from 'react';
-import { SectionContentP } from './Sections.style';
+import { SectionContentP } from '../../../styles/Sections';
 
 const Interests = ({ data: { interests } }) =>
   <SectionContentP><Markdown source={interests} /></SectionContentP>;

@@ -2,7 +2,7 @@
 import { PropTypes } from 'prop-types';
 import Markdown from 'react-remarkable';
 import React from 'react';
-import { ExperienceSection, ExperienceItem, Company, JobInfo, JobDetailList, JobDetail } from './Experience.style';
+import { ExperienceSection, ExperienceItem, Company, JobInfo, JobDetailList, JobDetail } from '../../../styles/Experience';
 
 const Experience = ({ data: { jobs } }) => (
   <ExperienceSection>

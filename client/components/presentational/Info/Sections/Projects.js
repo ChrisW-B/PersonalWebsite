@@ -3,7 +3,8 @@ import { PropTypes } from 'prop-types';
 import GitHubLogo from 'react-icons/lib/io/social-github';
 import Markdown from 'react-remarkable';
 import React from 'react';
-import { Link, ProjectsSection, ProjectItem, ProjectTitle, ProjectGithub, ProjectDetails } from './Projects.style';
+import { Link } from '../../../styles/Info';
+import { ProjectsSection, ProjectItem, ProjectTitle, ProjectGithub, ProjectDetails } from '../../../styles/Projects';
 
 const Projects = ({ data: { projects } }) => (
   <ProjectsSection>

@@ -1,6 +1,6 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import { Experience } from '../presentational/Info/DetailSections/Sections';
+import { Experience } from '../presentational/Info/Sections';
 
 const query = gql `
   {

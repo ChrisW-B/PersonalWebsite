@@ -9,7 +9,7 @@ const animateImage = keyframes `
   }
 `;
 
-const emptyBackground = `linear-gradient(102deg, rgba(0, 195, 216, 0.82) 9%, rgba(186, 39, 66, 0.51) 100%)`;
+const emptyBackground = 'linear-gradient(102deg, rgba(0, 195, 216, 0.82) 9%, rgba(186, 39, 66, 0.51) 100%)';
 const fullBackground = bg => `${emptyBackground}, url(${bg}) center / cover no-repeat scroll`;
 
 export const SidenavContainer = styled.aside `
@@ -25,7 +25,7 @@ export const SidenavContainer = styled.aside `
 
   &::after {
     animation: ${animateImage} 5s cubic-bezier(0.4, 0, 0.2, 1);
-    background: ${({ bg }) => (bg ? fullBackground(bg) : `transparent`)};
+    background: ${({ bg }) => (bg ? fullBackground(bg) : 'transparent')};
     bottom: 0;
     content: '';
     left: 0;
@@ -93,5 +93,49 @@ export const PhotoDescription = styled.div `
 
   @media only screen and (max-width: 640px) {
     display: none;
+  }
+`;
+
+export const SidenavItem = styled.li `
+  font-family: 'Source Code Pro', monospace;
+  max-width: 40rem;
+  padding-top: 1rem;
+  text-shadow: 0 0 0.4rem #6a6a6a;
+
+  @media (min-width: 900px) {
+    font-size: ${({ emphasis }) => (emphasis ? '3rem' : '2.7rem')};
+  }
+
+  @media only screen and (max-width: 640px) {
+    display: inline;
+
+    &:not(:last-child) {
+      &:not(:first-child) {
+        &::after {
+          content: ' / ';
+        }
+      }
+    }
+  }
+`;
+
+export const Icon = styled.span `
+  font-size: 2rem;
+  padding-right: 0.3rem;
+
+  @media only screen and (min-width: 640px) {
+    display: none;
+  }
+`;
+
+export const Link = styled.a `
+  color: #cfe3cf;
+  text-decoration: none;
+  text-shadow: none;
+  transition: color 0.2s;
+  white-space: nowrap;
+
+  &:hover {
+    color: #8d4881;
   }
 `;
