@@ -16,9 +16,9 @@ const ensureGithub = (req, res, next) => {
 };
 
 app.post(`/postrecieve`, ensureGithub, (req, res) => {
-  const cwd = path.join(__dirname, `..`);
+  const cwd = path.join(__dirname, `..`, `..`, `..`);
   const updateFile = path.join(cwd, `scripts`, `update.sh`);
-  logger.server(`updating from github!`);
+  logger.server(`updating from github! cwd: ${cwd}, file: ${updateFile}`);
   spawn(`sh`, [updateFile], {
     cwd,
     env: Object.assign({}, process.env, { PATH: `${process.env.PATH} :/usr/local/bin` })
