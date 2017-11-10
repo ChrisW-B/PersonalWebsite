@@ -4,7 +4,7 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { PropTypes } from 'prop-types';
-import Markdown from 'react-markdown';
+import Markdown from 'react-remarkable';
 import { ExperienceSection, ExperienceItem, Company, JobInfo, JobDetailList, JobDetail } from './Experience.style';
 
 const query = gql `
@@ -25,7 +25,7 @@ const Experience = ({ data: { jobs } }) => (
         <ExperienceItem key={company}>
           <Company>{company}</Company> <JobInfo><strong>{title}</strong>, <i>{when.start}-{when.end}</i></JobInfo>
           <JobDetailList>
-            {details.map(text => <Markdown disallowedTypes={[`Paragraph`]} unwrapDisallowed key={text} source={text} escapeHtml containerTagName={JobDetail} />)}
+            {details.map(text => <JobDetail key={text}><Markdown source={text} /></JobDetail>)}
           </JobDetailList>
         </ExperienceItem>
       ))
