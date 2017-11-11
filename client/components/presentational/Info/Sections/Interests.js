@@ -7,6 +7,6 @@ import React from 'react';
 const Interests = ({ data: { interests } }) =>
   <Markdown>{interests}</Markdown>;
 Interests.propTypes = { data: PropTypes.shape({ interests: PropTypes.string }) };
-Interests.defaultProps = { data: { interests: `` } };
+Interests.defaultProps = { data: { interests: '' } };
 
 export default Interests;

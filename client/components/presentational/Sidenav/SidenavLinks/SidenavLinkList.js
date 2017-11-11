@@ -7,13 +7,13 @@ import Music from 'react-icons/lib/io/radio-waves';
 import TwitterLogo from 'react-icons/lib/io/social-twitter';
 import { TwitterWidgetContainer, GithubWidgetContainer, LastFmWidgetContainer } from '../../../containers';
 
-const links = ({ lastfm, email, github, twitter, linkedin, photoBlog }) => [
-  { title: `Get in Touch`, link: `mailto:${email}`, icon: <Mail />, emphasis: true },
-  { title: `Github`, link: github.url, icon: <GitHubLogo />, widget: <GithubWidgetContainer /> },
-  { title: `Twitter`, link: twitter.url, icon: <TwitterLogo />, widget: <TwitterWidgetContainer /> },
-  { title: `LastFM`, link: lastfm.url, icon: <Music />, widget: <LastFmWidgetContainer /> },
-  { title: `LinkedIn`, link: linkedin.url, icon: <LinkedInLogo /> },
-  { title: `Photos`, link: photoBlog.url, icon: <Camera /> }
+const links = ({ email = '', lastfm = { url: '' }, github = { url: '' }, twitter = { url: '' }, linkedin = { url: '' }, photoBlog = { url: '' } }) => [
+  { title: 'Get in Touch', link: `mailto:${email}`, icon: <Mail />, emphasis: true },
+  { title: 'Github', link: github.url, icon: <GitHubLogo />, widget: <GithubWidgetContainer /> },
+  { title: 'Twitter', link: twitter.url, icon: <TwitterLogo />, widget: <TwitterWidgetContainer /> },
+  { title: 'LastFM', link: lastfm.url, icon: <Music />, widget: <LastFmWidgetContainer /> },
+  { title: 'LinkedIn', link: linkedin.url, icon: <LinkedInLogo /> },
+  { title: 'Photos', link: photoBlog.url, icon: <Camera /> }
 ];
 
 export default links;

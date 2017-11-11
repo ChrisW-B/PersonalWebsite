@@ -40,7 +40,7 @@ class TwitterWidget extends Component {
     const { tweets = [] } = this.state;
     return (
       <TransitionGroup component={WidgetWrapper}>
-        {tweets.map(({ url = `//twitter.com/ChrisW_B/`, message = ``, reltime = `` }) => (
+        {tweets.map(({ url = '//twitter.com/ChrisW_B/', message = '', reltime = '' }) => (
           <Transition key={message} timeout={1000}>
             { status => (
               <Widget status={status}>

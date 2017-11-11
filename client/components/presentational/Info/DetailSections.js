@@ -4,10 +4,10 @@ import { DetailList, DetailListItem, SectionTitle } from '../../styles/DetailSec
 import { ExperienceContainer, InterestsContainer, ProjectsContainer, TechnologiesContainer } from '../../containers';
 
 const DetailSectionList = [
-  { title: `Interests`, content: <InterestsContainer /> },
-  { title: `Projects`, content: <ProjectsContainer /> },
-  { title: `Tech`, content: <TechnologiesContainer /> },
-  { title: `Experience`, content: <ExperienceContainer /> }
+  { title: 'Interests', content: <InterestsContainer /> },
+  { title: 'Projects', content: <ProjectsContainer /> },
+  { title: 'Tech', content: <TechnologiesContainer /> },
+  { title: 'Experience', content: <ExperienceContainer /> }
 ];
 const DetailSections = () => (
   <DetailList>

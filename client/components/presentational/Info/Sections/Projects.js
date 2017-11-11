@@ -6,7 +6,7 @@ import React from 'react';
 import { Link } from '../../../styles/Info';
 import { ProjectsSection, ProjectItem, ProjectTitle, ProjectGithub } from '../../../styles/Projects';
 
-const Projects = ({ data: { projects } }) => (
+const Projects = ({ data: { projects = [] } }) => (
   <ProjectsSection>
     {
       projects.map(({ name, website, github, description }) =>

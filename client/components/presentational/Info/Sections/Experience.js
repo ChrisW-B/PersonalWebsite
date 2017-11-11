@@ -4,7 +4,7 @@ import Markdown from 'react-remarkable';
 import React from 'react';
 import { ExperienceSection, ExperienceItem, Company, JobInfo, JobDetailList, JobDetail } from '../../../styles/Experience';
 
-const Experience = ({ data: { jobs } }) => (
+const Experience = ({ data: { jobs = [] } }) => (
   <ExperienceSection>
     {
       jobs.map(({ company, title, when, details }) => (

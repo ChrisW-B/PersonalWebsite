@@ -12,15 +12,15 @@ export default class SidenavLink extends Component {
   }
 
   static defaultProps = {
-    link: ``,
-    title: ``,
+    link: '',
+    title: '',
     widget: null,
     icon: null,
     emphasis: false
   }
 
   render = () => {
-    const { link, title, widget, icon, emphasis } = this.props;
+    const { link, title, widget = null, icon, emphasis } = this.props;
     return (
       <SidenavItem emphasis={emphasis}>
         <Link href={link} title={title}>

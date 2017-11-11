@@ -1,0 +1,7 @@
+{
+  "plugins": ["emotion", "transform-object-rest-spread", "transform-export-extensions", "transform-class-properties"],
+  "presets": [
+    ["env", { "targets": { "node": "8.9" } }],
+    "react"
+  ]
+}

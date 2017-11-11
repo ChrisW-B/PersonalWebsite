@@ -13,7 +13,7 @@ const Sidenav = ({ photo: { photo, title, url } }) => (
       <SidenavLinksContainer />
     </SidenavItems>
     <PhotoDescription>
-      <a href={url}>Background: <br /> {title}</a>
+      {title ? <a href={url}>Background: <br /> {title}</a> : null}
     </PhotoDescription>
   </SidenavContainer>
 );
@@ -26,7 +26,7 @@ Sidenav.propTypes = {
   })
 };
 Sidenav.defaultProps = {
-  photo: { photo: ``, title: ``, url: `` }
+  photo: { photo: '', title: '', url: '' }
 };
 
 export default Sidenav;
