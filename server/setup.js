@@ -7,8 +7,12 @@ const expressWinston = require('express-winston');
 
 const app = express();
 
+const publicPath = process.env.NODE_ENV === 'production'
+  ? path.join(__dirname, '..', '..')
+  : path.join(__dirname, '..', 'public');
+
 app.set('view engine', 'ejs');
-app.use(express.static(path.join(__dirname, '..', '..'), { maxage: '7d' }));
+app.use(express.static(publicPath, { maxage: '7d' }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(compression());
