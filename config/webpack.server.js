@@ -40,6 +40,6 @@ module.exports = {
   target: 'async-node',
   externals,
   node: {
-    __dirname: true
+    __dirname: false
   }
 };
