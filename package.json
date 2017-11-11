@@ -48,6 +48,7 @@
     "twitter-text": "^1.14.7",
     "webpack": "^3.6.0",
     "webpack-node-externals": "^1.6.0",
+    "webpack-sources": "^1.0.2",
     "winston": "^2.4.0",
     "winston-express": "^0.1.1"
   },
