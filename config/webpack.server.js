@@ -6,7 +6,7 @@ const { BabelPlugins, ServerBuildDir, ServerDir, WebpackStatic } = require('./we
 
 const WebpackPlugins = [
   new webpack.DefinePlugin({ ENV: JSON.stringify('production'), BUILD_MODE: JSON.stringify(process.env.BUILD_MODE || 'prebuilt') }),
-  new MinifyPlugin({ removeDebugger: true }, { comments: false }),
+  new MinifyPlugin({ removeDebugger: true, mangle: true }, { comments: false }),
   new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.optimize.ModuleConcatenationPlugin(),
   new webpack.optimize.AggressiveMergingPlugin()
@@ -14,9 +14,9 @@ const WebpackPlugins = [
 
 const presets = [
   ['env', {
-    targets: {
-      node: 'current'
-    }
+    targets: { node: '9' },
+    forceAllTransforms: true,
+    useBuiltIns: 'usage'
   }], 'react'
 ];
 
