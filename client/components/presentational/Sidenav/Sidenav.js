@@ -4,7 +4,7 @@ import { PropTypes } from 'prop-types';
 import { SidenavLinksContainer } from '../../containers';
 import { Name, PhotoDescription, SidenavContainer, SidenavItems } from '../../styles/Sidenav';
 
-const Sidenav = ({ photo: { photo, title, url } }) => (
+const Sidenav = ({ photo: { photo = '', title = '', url = '' } }) => (
   <SidenavContainer bg={photo}>
     <SidenavItems>
       <li>

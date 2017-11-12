@@ -17,8 +17,8 @@ const queryOptions = {
   options: { ssr: false },
   props: ({ data }) => {
     if (data.loading) return data;
-    const { photoBlog: { photos } } = data;
-    return ({ photo: photos[Math.floor(Math.random() * (photos.length - 1))] });
+    const { photoBlog: { photos = [] } } = data;
+    return photos ? ({ photo: photos[Math.floor(Math.random() * (photos.length - 1))] }) : null;
   }
 };
 
