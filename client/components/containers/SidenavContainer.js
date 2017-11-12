@@ -16,7 +16,7 @@ const queryOptions = {
   // override the defaults to select a random photo
   options: { ssr: false },
   props: ({ data }) => {
-    if (data.loading) return data;
+    if (!data.photoBlog) return data;
     const { photoBlog: { photos = [] } } = data;
     return photos.length > 0
       ? ({ photo: photos[Math.floor(Math.random() * (photos.length - 1))] })
