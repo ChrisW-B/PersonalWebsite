@@ -1,7 +1,7 @@
 import React from 'react';
 import serialize from 'serialize-javascript';
 import { PropTypes } from 'prop-types';
-import webpackManifest from '../../public/build/client/manifest.json';
+import webpackManifest from '../../public/build/client/manifest.json'; // eslint-disable-line import/no-unresolved
 
 const globalCSS = `@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:700|Source+Sans+Pro:400,700&subset=latin-ext');html,body {margin:0; font-size: 10px;}`;
 
