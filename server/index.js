@@ -9,7 +9,6 @@ import env from 'dotenv';
 import express from 'express';
 import graphqlHTTP from 'express-graphql';
 import React from 'react';
-
 import { Homepage } from './components/shared';
 import { logger } from './utils';
 import github from './github';

@@ -1,5 +1,7 @@
 const CompressionPlugin = require('compression-webpack-plugin');
 const MinifyPlugin = require('babel-minify-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const WebpackMd5Hash = require('webpack-md5-hash');
 const webpack = require('webpack');
 
 const { BabelPlugins, BabelPresets, WebpackStatic, OutputConfig, AppDir } = require('./webpack.common');
@@ -13,19 +15,24 @@ const CompressionConfig = {
   minRatio: 0
 };
 const WebpackPlugins = [
+  new ManifestPlugin(),
   new webpack.DefinePlugin({ ENV: JSON.stringify('production') }),
   new MinifyPlugin(MinifyConfig),
   new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.optimize.ModuleConcatenationPlugin(),
   new webpack.optimize.AggressiveMergingPlugin(),
+  new webpack.HashedModuleIdsPlugin(),
   new webpack.NoEmitOnErrorsPlugin(),
   new CompressionPlugin(CompressionConfig),
+  new WebpackMd5Hash(),
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
     minChunks: module => module.context && module.context.indexOf('node_modules') !== -1
   })
 ];
+
 const ProdPlugins = ['emotion', ...BabelPlugins, ['transform-react-remove-prop-types', { mode: 'remove', removeImport: true }]];
+
 const BabelConfig = {
   test: /\.jsx?$|\.js?$/,
   exclude: /node_modules/,
@@ -38,7 +45,7 @@ const BabelConfig = {
 module.exports = {
   // devtool: 'source-map',
   entry: { app: ['babel-polyfill', `${AppDir}/index`] },
-  output: OutputConfig,
+  output: { ...OutputConfig, filename: '[name].[chunkhash].js', chunkFilename: '[name].[chunkhash].js' },
   plugins: WebpackPlugins,
   resolve: { extensions: ['.js', '.jsx', '.json'] },
   module: { rules: [BabelConfig, ...WebpackStatic] }

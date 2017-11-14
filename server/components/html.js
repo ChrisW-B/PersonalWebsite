@@ -1,6 +1,7 @@
 import React from 'react';
 import serialize from 'serialize-javascript';
 import { PropTypes } from 'prop-types';
+import webpackManifest from '../../public/build/client/manifest.json';
 
 const globalCSS = `@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:700|Source+Sans+Pro:400,700&subset=latin-ext');html,body {margin:0; font-size: 10px;}`;
 
@@ -18,8 +19,8 @@ const Html = ({ state, content: { html, css, ids } }) => (
       <div id='root' dangerouslySetInnerHTML={{ __html: html }} />
       <script key='css-ids' dangerouslySetInnerHTML={{ __html: `window.APP_DATA=${serialize({ ids })};` }} />
       <script key='apollo-state' dangerouslySetInnerHTML={{ __html: `window.APOLLO_STATE=${JSON.stringify(state).replace(/</g, `\\u003c`)};` }} />
-      <script key='vendor' src='/build/client/vendor.js' />
-      <script key='app' src='/build/client/app.js' />
+      <script key='vendor' src={`/build/client/${webpackManifest[`vendor.js`]}`} />
+      <script key='app' src={`/build/client/${webpackManifest[`app.js`]}`} />
     </body>
   </html>
 );
