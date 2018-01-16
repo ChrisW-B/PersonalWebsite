@@ -1,7 +1,7 @@
 const CompressionPlugin = require(`compression-webpack-plugin`);
 const MinifyPlugin = require(`babel-minify-webpack-plugin`);
 const ManifestPlugin = require(`webpack-manifest-plugin`);
-const WebpackMd5Hash = require(`webpack-md5-hash`);
+const WebpackChunkHash = require(`webpack-chunk-hash`);
 const webpack = require(`webpack`);
 
 const { BabelPlugins, BabelPresets, WebpackStatic, OutputConfig, AppDir } = require(`./webpack.common`);
@@ -24,7 +24,7 @@ const WebpackPlugins = [
   new webpack.HashedModuleIdsPlugin(),
   new webpack.NoEmitOnErrorsPlugin(),
   new CompressionPlugin(CompressionConfig),
-  new WebpackMd5Hash(),
+  new WebpackChunkHash(),
   new webpack.optimize.CommonsChunkPlugin({
     name: `vendor`,
     minChunks: module => module.context && module.context.indexOf(`node_modules`) !== -1,

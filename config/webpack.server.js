@@ -1,45 +1,45 @@
-const MinifyPlugin = require('babel-minify-webpack-plugin');
-const webpack = require('webpack');
-const externals = require('webpack-node-externals')();
+const MinifyPlugin = require(`babel-minify-webpack-plugin`);
+const webpack = require(`webpack`);
+const externals = require(`webpack-node-externals`)();
 
-const { BabelPlugins, ServerBuildDir, ServerDir, WebpackStatic } = require('./webpack.common');
+const { BabelPlugins, ServerBuildDir, ServerDir, WebpackStatic } = require(`./webpack.common`);
 
 const WebpackPlugins = [
-  new webpack.DefinePlugin({ ENV: JSON.stringify('production'), BUILD_MODE: JSON.stringify(process.env.BUILD_MODE || 'prebuilt') }),
+  new webpack.DefinePlugin({ ENV: JSON.stringify(`production`), BUILD_MODE: JSON.stringify(process.env.BUILD_MODE || `prebuilt`) }),
   new MinifyPlugin({ removeDebugger: true, mangle: true }, { comments: false }),
   new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.optimize.ModuleConcatenationPlugin(),
-  new webpack.optimize.AggressiveMergingPlugin()
+  new webpack.optimize.AggressiveMergingPlugin(),
 ];
 
 const presets = [
-  ['env', {
-    targets: { node: '9' },
+  [`env`, {
+    targets: { node: `9` },
     forceAllTransforms: true,
-    useBuiltIns: 'usage'
-  }], 'react'
+    useBuiltIns: `usage`,
+  }], `react`,
 ];
 
-const plugins = ['emotion', ...BabelPlugins];
+const plugins = [`emotion`, ...BabelPlugins];
 
 const BabelConfig = {
   test: /\.jsx?$|\.js?$/,
   exclude: /node_modules/,
   use: [{
-    loader: 'babel-loader',
-    options: { presets, plugins, babelrc: false }
-  }]
+    loader: `babel-loader`,
+    options: { presets, plugins, babelrc: false },
+  }],
 };
 
 module.exports = {
   entry: `${ServerDir}`,
-  output: { path: ServerBuildDir, filename: 'index.js' },
+  output: { path: ServerBuildDir, filename: `index.js` },
   plugins: WebpackPlugins,
-  resolve: { extensions: ['.js', '.jsx', '.json'] },
+  resolve: { extensions: [`.js`, `.jsx`, `.json`] },
   module: { rules: [BabelConfig, ...WebpackStatic] },
-  target: 'async-node',
+  target: `async-node`,
   externals,
   node: {
-    __dirname: false
-  }
+    __dirname: false,
+  },
 };

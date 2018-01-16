@@ -26,7 +26,7 @@ const renderPage = async (req, res) => {
     ssrMode: true,
     link: new LocalQuery(graphqlSchema),
     cache: new InMemoryCache(),
-    shouldBatch: true
+    shouldBatch: true,
   };
   const client = new ApolloClient(apolloOptions);
 
@@ -44,10 +44,10 @@ const renderPage = async (req, res) => {
     res.send(`<!doctype html>\n${renderToString(html)}`);
     res.end();
   } catch (e) {
-    console.error('RENDERING ERROR:', e); // eslint-disable-line no-console
+    console.error(`RENDERING ERROR:`, e); // eslint-disable-line no-console
     res.status(500);
     res.end(
-      `An error occurred. Please submit an issue to [https://github.com/apollographql/GitHunt-React] with the following stack trace:\n\n${e.stack}`
+      `An error occurred. Please submit an issue to [https://github.com/apollographql/GitHunt-React] with the following stack trace:\n\n${e.stack}`,
     );
   }
 };
@@ -72,8 +72,8 @@ const sendHtml = (req, res) => {
 };
 
 app.use(setup);
-app.use('/graphql', graphqlHTTP({ schema: graphqlSchema, graphiql: true }));
-app.get('/', process.env.NODE_ENV === 'production' ? renderPage : sendHtml);
+app.use(`/graphql`, graphqlHTTP({ schema: graphqlSchema, graphiql: true }));
+app.get(`/`, process.env.NODE_ENV === `production` ? renderPage : sendHtml);
 app.use(github);
 
-app.listen(4737, () => logger.server('Listening on port 4737!\n http://localhost:4737/'));
+app.listen(4737, () => logger.server(`Listening on port 4737!\n http://localhost:4737/`));

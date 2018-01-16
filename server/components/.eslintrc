@@ -10,6 +10,8 @@
     "no-plusplus": [0],
     "react/prefer-stateless-function": [0],
     "react/jsx-filename-extension": [0],
+    "import/prefer-default-export": [1],
+    "react/no-danger": [0],
     "no-console": [1],
     "semi": [1],
     "max-len": [0]

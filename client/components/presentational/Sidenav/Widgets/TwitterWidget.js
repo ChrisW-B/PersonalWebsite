@@ -7,20 +7,20 @@ import { Widget, Description, Time, WidgetWrapper } from '../../../styles/Widget
 class TwitterWidget extends Component {
   static propTypes = {
     data: PropTypes.shape({
-      twitter: PropTypes.object
-    })
+      twitter: PropTypes.object,
+    }),
   }
 
   static defaultProps = {
     data: {
       twitter: {
-        tweets: []
-      }
-    }
+        tweets: [],
+      },
+    },
   }
 
   state = {
-    tweets: []
+    tweets: [],
   }
 
   componentWillReceiveProps({ data: { twitter = { tweets: [null] } } }) {
@@ -40,7 +40,7 @@ class TwitterWidget extends Component {
     const { tweets = [] } = this.state;
     return (
       <TransitionGroup component={WidgetWrapper}>
-        {tweets.map(({ url = '//twitter.com/ChrisW_B/', message = '', reltime = '' }) => (
+        {tweets.map(({ url = `//twitter.com/ChrisW_B/`, message = ``, reltime = `` }) => (
           <Transition key={message} timeout={1000}>
             { status => (
               <Widget status={status}>

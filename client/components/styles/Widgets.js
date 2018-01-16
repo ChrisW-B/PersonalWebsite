@@ -20,21 +20,20 @@ const SlideUpOut = keyframes `
   }
 `;
 
-const materialAnimation = 'cubic-bezier(0.4, 0, 0.2, 1)';
+const materialAnimation = `cubic-bezier(0.4, 0, 0.2, 1)`;
 const transitionOut = `1000ms ${SlideUpOut} ${materialAnimation}`;
 const transitionIn = `1000ms ${SlideUpIn} ${materialAnimation}`;
+const animationStatus = (status) => {
+  if (status === `entering`) return transitionIn;
+  else if (status === `exiting`) return transitionOut;
+  return ``;
+};
+const heightStatus = status => (status === `exiting` ? 0 : `auto`);
 
 export const Widget = styled.div `
-  animation: ${({ status }) => {
-    if (status === 'entering') return transitionIn;
-    else if (status === 'exiting') return transitionOut;
-    return '';
-  }};
+  animation: ${({ status }) => animationStatus(status)};
   color: #fff;
-  height: ${({ status }) => {
-    if (status === 'exiting') return 0;
-    return 'auto';
-  }};
+  height: ${({ status }) => heightStatus(status)};
   padding-left: 1rem;
   text-align: left;
 `;

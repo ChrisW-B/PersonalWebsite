@@ -6,20 +6,20 @@ import { Widget, Description, WidgetWrapper } from '../../../styles/Widgets';
 class LastFmWidget extends Component {
   static propTypes = {
     data: PropTypes.shape({
-      lastfm: PropTypes.object
-    })
+      lastfm: PropTypes.object,
+    }),
   }
 
   static defaultProps = {
     data: {
       lastfm: {
-        nowplaying: null
-      }
-    }
+        nowplaying: null,
+      },
+    },
   }
 
   state = {
-    songs: []
+    songs: [],
   }
 
   componentWillReceiveProps = ({ data: { lastfm = { nowplaying: null } } }) =>

@@ -16,7 +16,7 @@ const Projects = ({ data: { projects = [] } }) => (
             <ProjectGithub><Link href={github} title={`${name} on Github`}><GitHubLogo /> Source</Link></ProjectGithub>
             <Markdown source={description} />
           </ProjectItem>
-        )
+        ),
       )
     }
   </ProjectsSection>

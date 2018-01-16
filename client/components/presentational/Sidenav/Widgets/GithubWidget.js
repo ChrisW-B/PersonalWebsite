@@ -7,16 +7,16 @@ import { Widget, Description, Time, WidgetWrapper } from '../../../styles/Widget
 class GithubWidget extends Component {
   static propTypes = {
     data: PropTypes.shape({
-      github: PropTypes.object
-    })
+      github: PropTypes.object,
+    }),
   }
 
   static defaultProps = {
-    data: { github: { commits: [] } }
+    data: { github: { commits: [] } },
   }
 
   state = {
-    commits: []
+    commits: [],
   }
 
   componentWillReceiveProps({ data: { github = { commits: [] } } }) {
@@ -36,7 +36,7 @@ class GithubWidget extends Component {
     const { commits = [] } = this.state;
     return (
       <TransitionGroup component={WidgetWrapper}>
-        {commits.map(({ url = '//github.com/ChrisW-B/', name = '', message = '', reltime = '' }) => (
+        {commits.map(({ url = `//github.com/ChrisW-B/`, name = ``, message = ``, reltime = `` }) => (
           <Transition key={message} timeout={1000}>
             { status => (
               <Widget status={status}>

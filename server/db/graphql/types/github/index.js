@@ -1,20 +1,20 @@
 // db/graphql/types/Github.js
-const fetch = require('node-fetch');
-const { GraphQLObjectType, GraphQLString, GraphQLList } = require('graphql/type');
-const commitType = require('./commit');
-const { limit } = require('../../args');
-const { relTime } = require('../../utils');
+const fetch = require(`node-fetch`);
+const { GraphQLObjectType, GraphQLString, GraphQLList } = require(`graphql/type`);
+const commitType = require(`./commit`);
+const { limit } = require(`../../args`);
+const { relTime } = require(`../../utils`);
 
 const getFirstN = (max = 0, array) => (max ? array.slice(0, max) : array);
 
 const getGithubInfo = async () => {
-  const githubRes = await fetch('https://api.github.com/graphql', {
-    method: 'POST',
-    'Content-Type': 'application/json',
+  const githubRes = await fetch(`https://api.github.com/graphql`, {
+    method: `POST`,
+    'Content-Type': `application/json`,
     headers: {
-      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`
+      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
     },
-    body: JSON.stringify({ query: '{viewer{repositories(first:5 orderBy: {field: PUSHED_AT, direction: DESC} affiliations:[OWNER, COLLABORATOR, ORGANIZATION_MEMBER]){nodes{url nameWithOwner refs(first: 50 refPrefix: "refs/heads/"){nodes{name target{ ... on Commit{history(first: 5){edges{node{author{user{login}} committedDate messageHeadlineHTML messageBodyHTML}}}}}}}}}}}' }) // best way I know of to get all of the refs
+    body: JSON.stringify({ query: `{viewer{repositories(first:5 orderBy: {field: PUSHED_AT, direction: DESC} affiliations:[OWNER, COLLABORATOR, ORGANIZATION_MEMBER]){nodes{url nameWithOwner refs(first: 50 refPrefix: "refs/heads/"){nodes{name target{ ... on Commit{history(first: 5){edges{node{author{user{login}} committedDate messageHeadlineHTML messageBodyHTML}}}}}}}}}}}` }), // best way I know of to get all of the refs
   });
 
   try {
@@ -34,7 +34,7 @@ const getGithubInfo = async () => {
           name: `${nameWithOwner}@${branch}`,
           time: committedDate,
           reltime: relTime(new Date(committedDate)),
-          message: `${messageHeadlineHTML.replace('…', '')}${messageBodyHTML.replace('…', '')}`
+          message: `${messageHeadlineHTML.replace(`…`, ``)}${messageBodyHTML.replace(`…`, ``)}`,
         }))
       .sort((a, b) =>
         new Date(b.time) - new Date(a.time));
@@ -44,17 +44,17 @@ const getGithubInfo = async () => {
 };
 
 const Github = new GraphQLObjectType({
-  name: 'Github',
-  description: 'My Github Info',
+  name: `Github`,
+  description: `My Github Info`,
   fields: () => ({
     commits: {
       args: { limit },
       type: new GraphQLList(commitType),
-      description: 'The Company\'s Name',
-      resolve: async (_, { limit: max = 5 }) => getFirstN(max, await getGithubInfo())
+      description: `The Company's Name`,
+      resolve: async (_, { limit: max = 5 }) => getFirstN(max, await getGithubInfo()),
     },
-    url: { type: GraphQLString, description: 'My Github URL', resolve: ({ url }) => url }
-  })
+    url: { type: GraphQLString, description: `My Github URL`, resolve: ({ url }) => url },
+  }),
 });
 
 module.exports = Github;

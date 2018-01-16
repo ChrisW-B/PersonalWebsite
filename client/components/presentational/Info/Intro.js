@@ -12,6 +12,6 @@ const Intro = ({ data: { bio } }) => (
 );
 
 Intro.propTypes = { data: PropTypes.shape({ bio: PropTypes.string }) };
-Intro.defaultProps = { data: { body: '' } };
+Intro.defaultProps = { data: { body: `` } };
 
 export default Intro;

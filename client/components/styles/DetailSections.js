@@ -1,7 +1,7 @@
 import styled from 'react-emotion';
 import { InfoSubSection } from './Info';
 
-export const DetailList = InfoSubSection.withComponent('ul');
+export const DetailList = InfoSubSection.withComponent(`ul`);
 
 export const DetailListItem = styled.li `
   border-top: 0.1rem dashed rgba(148, 174, 229, 0.25);

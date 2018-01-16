@@ -15,8 +15,8 @@ const query = gql`
 const queryOptions = {
   options: {
     pollInterval: 1000 * 60 * 5,
-    ssr: false
-  }
+    ssr: false,
+  },
 };
 
 export default graphql(query, queryOptions)(TwitterWidget);

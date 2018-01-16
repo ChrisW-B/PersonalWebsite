@@ -8,28 +8,28 @@ const relativeTimeDifference = (previous) => {
   const msPerYear = msPerDay * 365;
   const elapsed = current - previous;
   let num = 0;
-  let unit = '';
+  let unit = ``;
   if (elapsed < msPerMinute) {
     num = Math.round(elapsed / 1000);
-    unit = 'second';
+    unit = `second`;
   } else if (elapsed < msPerHour) {
     num = Math.round(elapsed / msPerMinute);
-    unit = 'minute';
+    unit = `minute`;
   } else if (elapsed < msPerDay) {
     num = Math.round(elapsed / msPerHour);
-    unit = 'hour';
+    unit = `hour`;
   } else if (elapsed < msPerMonth) {
     num = `${Math.round(elapsed / msPerDay)}`;
-    unit = 'day';
+    unit = `day`;
   } else if (elapsed < msPerYear) {
     num = `${Math.round(elapsed / msPerMonth)}`;
-    unit = 'month';
+    unit = `month`;
   } else {
     num = `${Math.round(elapsed / msPerYear)}`;
-    unit = 'year';
+    unit = `year`;
   }
   if (num !== 1) {
-    unit += 's';
+    unit += `s`;
   }
   return `${num} ${unit} ago`;
 };

@@ -21,7 +21,7 @@ const queryOptions = {
     return photos.length > 0
       ? ({ photo: photos[Math.floor(Math.random() * (photos.length - 1))] })
       : null;
-  }
+  },
 };
 
 export default graphql(query, queryOptions)(Sidenav);
