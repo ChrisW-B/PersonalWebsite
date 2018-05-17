@@ -44,20 +44,22 @@ class GithubWidget extends Component {
     const { commits = [] } = this.state;
     return (
       <TransitionGroup component={WidgetWrapper}>
-        {commits.map(({ url = `//github.com/ChrisW-B/`, name = ``, message = ``, reltime = `` }) => (
-          <Transition key={message} timeout={1000}>
-            {status => (
-              <Widget status={status}>
-                <Description dangerouslySetInnerHTML={{ __html: message }} />
-                {/* eeep! */}
-                <Time>
-                  <Link href={url} title={name}>
-                    {reltime} in {name}
-                  </Link>
-                </Time>
-              </Widget>
+        {commits.map(({
+ url = `//github.com/ChrisW-B/`, name = ``, message = ``, reltime = ``,
+}) => (
+  <Transition key={message} timeout={1000}>
+    {status => (
+      <Widget status={status}>
+        <Description dangerouslySetInnerHTML={{ __html: message }} />
+        {/* eeep! */}
+        <Time>
+          <Link href={url} title={name}>
+            {reltime} in {name}
+          </Link>
+        </Time>
+      </Widget>
             )}
-          </Transition>
+  </Transition>
         ))}
       </TransitionGroup>
     );

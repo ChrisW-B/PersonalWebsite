@@ -9,15 +9,16 @@ import { ProjectsSection, ProjectItem, ProjectTitle, ProjectGithub } from '../..
 const Projects = ({ data: { projects = [] } }) => (
   <ProjectsSection>
     {
-      projects.map(({ name, website, github, description }) =>
+      projects.map(({
+ name, website, github, description,
+}) =>
         (
           <ProjectItem key={name}>
             <ProjectTitle><Link href={website} title={name}>{name}</Link></ProjectTitle>
             <ProjectGithub><Link href={github} title={`${name} on Github`}><GitHubLogo /> Source</Link></ProjectGithub>
             <Markdown source={description} />
           </ProjectItem>
-        ),
-      )
+        ))
     }
   </ProjectsSection>
 );

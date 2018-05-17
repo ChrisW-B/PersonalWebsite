@@ -1,5 +1,9 @@
-const { GraphQLString, GraphQLList, GraphQLObjectType, GraphQLBoolean } = require(`graphql/type`);
-const { github, job, project, skill, resume, lastfm, twitter, photoBlog } = require(`./`);
+const {
+  GraphQLString, GraphQLList, GraphQLObjectType, GraphQLBoolean,
+} = require(`graphql/type`);
+const {
+  github, job, project, skill, resume, lastfm, twitter, photoBlog,
+} = require(`./`);
 const { limit } = require(`../args`);
 const info = require(`../../me.json`);
 

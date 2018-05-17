@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'react-emotion';
 
-const animateImage = keyframes `
+const animateImage = keyframes`
   from {
     opacity: 0;
   }
@@ -12,7 +12,7 @@ const animateImage = keyframes `
 const emptyBackground = `linear-gradient(102deg, rgba(0, 195, 216, 0.82) 9%, rgba(186, 39, 66, 0.51) 100%)`;
 const fullBackground = bg => `${emptyBackground}, url(${bg}) center / cover no-repeat scroll`;
 
-export const SidenavContainer = styled.aside `
+export const SidenavContainer = styled.aside`
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -55,13 +55,13 @@ export const SidenavContainer = styled.aside `
   }
 `;
 
-export const Name = styled.h1 `
+export const Name = styled.h1`
   font-family: 'Source Code Pro', monospace;
   font-size: 3.5rem;
   margin: 0;
 `;
 
-export const SidenavItems = styled.ul `
+export const SidenavItems = styled.ul`
   align-self: center;
   flex: 1 1 auto;
   list-style: none;
@@ -80,7 +80,7 @@ export const SidenavItems = styled.ul `
     padding: 0.2rem;
   }
 `;
-export const PhotoDescription = styled.div `
+export const PhotoDescription = styled.div`
   font-size: 1rem;
   padding: 0.2rem 0.4rem;
   text-overflow: ellipsis;
@@ -96,7 +96,7 @@ export const PhotoDescription = styled.div `
   }
 `;
 
-export const SidenavItem = styled.li `
+export const SidenavItem = styled.li`
   font-family: 'Source Code Pro', monospace;
   max-width: 40rem;
   padding-top: 1rem;
@@ -119,7 +119,7 @@ export const SidenavItem = styled.li `
   }
 `;
 
-export const Icon = styled.span `
+export const Icon = styled.span`
   font-size: 2rem;
   padding-right: 0.3rem;
 
@@ -128,7 +128,7 @@ export const Icon = styled.span `
   }
 `;
 
-export const Link = styled.a `
+export const Link = styled.a`
   color: #cfe3cf;
   text-decoration: none;
   text-shadow: none;

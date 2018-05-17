@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'react-emotion';
 
-const SlideUpIn = keyframes `
+const SlideUpIn = keyframes`
   0% {
     opacity: 0;
     transform: translate3d(0, 100%, 0);
@@ -10,7 +10,7 @@ const SlideUpIn = keyframes `
   }
 `;
 
-const SlideUpOut = keyframes `
+const SlideUpOut = keyframes`
   0% {
     transform: translate3d(0, 0, 0);
   }
@@ -30,7 +30,7 @@ const animationStatus = (status) => {
 };
 const heightStatus = status => (status === `exiting` ? 0 : `auto`);
 
-export const Widget = styled.div `
+export const Widget = styled.div`
   animation: ${({ status }) => animationStatus(status)};
   color: #fff;
   height: ${({ status }) => heightStatus(status)};
@@ -45,14 +45,14 @@ export const WidgetWrapper = styled.div`
   }
 `;
 
-export const Time = styled.div `
+export const Time = styled.div`
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1rem;
   font-weight: 600;
   text-transform: uppercase;
 `;
 
-export const Description = styled.div `
+export const Description = styled.div`
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 1.3rem;
   word-wrap: break-word;

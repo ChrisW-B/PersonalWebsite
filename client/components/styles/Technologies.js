@@ -2,7 +2,7 @@ import styled from 'react-emotion';
 
 export { SectionContentDIV } from './Sections';
 
-export const SkillType = styled.div `
+export const SkillType = styled.div`
   align-items: baseline;
   border-bottom: 0.1rem dashed #ddd;
   display: grid;
@@ -15,17 +15,17 @@ export const SkillType = styled.div `
   }
 `;
 
-export const SkillName = styled.h4 `
+export const SkillName = styled.h4`
   margin: 0;
 `;
 
-export const SkillList = styled.ul `
+export const SkillList = styled.ul`
   margin: 0;
   margin-bottom: 1rem;
   padding: 0;
 `;
 
-export const Skill = styled.li `
+export const Skill = styled.li`
   display: inline-block;
 
   &::after {

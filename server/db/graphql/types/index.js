@@ -7,4 +7,6 @@ const lastfm = require(`./lastfm`);
 const twitter = require(`./twitter`);
 const photoBlog = require(`./photoBlog`);
 
-module.exports = { job, github, project, skill, resume, lastfm, twitter, photoBlog };
+module.exports = {
+  job, github, project, skill, resume, lastfm, twitter, photoBlog,
+};

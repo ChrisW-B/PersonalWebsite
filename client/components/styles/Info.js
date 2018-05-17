@@ -1,6 +1,6 @@
 import styled from 'react-emotion';
 
-export const InfoSection = styled.main `
+export const InfoSection = styled.main`
   align-items: center;
   background-color: #fff;
   color: #0d2659;
@@ -19,20 +19,20 @@ export const InfoSection = styled.main `
   }
 `;
 
-export const ProfilePhoto = styled.img `
+export const ProfilePhoto = styled.img`
   border-radius: 100%;
   height: 10rem;
   margin-top: 3rem;
   width: 10rem;
 `;
 
-export const InfoSubSection = styled.div `
+export const InfoSubSection = styled.div`
   margin: 0;
   max-width: 80rem;
   padding: 0 2rem;
 `;
 
-export const Link = styled.a `
+export const Link = styled.a`
   border-bottom: 0.1rem dotted #cfe3cf;
   color: #8d4881;
   text-decoration: none;
@@ -47,7 +47,7 @@ export const HiMessage = styled.h1`
   text-align: center;
 `;
 
-export const LearnMoreSection = styled(InfoSubSection) `
+export const LearnMoreSection = styled(InfoSubSection)`
   min-height: 20rem;
   text-align: center;
 

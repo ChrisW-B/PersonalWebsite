@@ -1,6 +1,6 @@
 import styled from 'react-emotion';
 
-const HomepageDiv = styled.div `
+const HomepageDiv = styled.div`
   display: grid;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: initial;

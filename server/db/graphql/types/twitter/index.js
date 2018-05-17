@@ -32,7 +32,9 @@ const getTweets = async (max) => {
       exclude_replies: true,
       include_rts: false,
     });
-    return tweets.map(({ text, entities, created_at: time, id_str: id }) => ({
+    return tweets.map(({
+      text, entities, created_at: time, id_str: id,
+    }) => ({
       time,
       message: convertToText(text, entities.urls),
       reltime: relTime(new Date(time)),

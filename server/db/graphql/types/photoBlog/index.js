@@ -10,7 +10,9 @@ const getPhotos = async (max) => {
     const { posts } = await res.json();
     return posts
       .filter(({ feature_image: img }) => !!img)
-      .map(({ url, feature_image: img = ``, title, html }) => ({
+      .map(({
+        url, feature_image: img = ``, title, html,
+      }) => ({
         title,
         html,
         url: `https://photo.chriswbarry.com${url}`,

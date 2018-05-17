@@ -2,7 +2,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import GithubWidget from '../presentational/Sidenav/Widgets/GithubWidget';
 
-const query = gql `
+const query = gql`
   {
     github {
       commits(limit: 1) {
