@@ -7,30 +7,38 @@ import { Widget, Description, Time, WidgetWrapper } from '../../../styles/Widget
 class GithubWidget extends Component {
   static propTypes = {
     data: PropTypes.shape({
+      loading: PropTypes.bool,
       github: PropTypes.object,
     }),
-  }
+  };
 
   static defaultProps = {
-    data: { github: { commits: [] } },
-  }
+
+    data: { loading: true, github: { commits: [] } },
+  };
 
   state = {
     commits: [],
-  }
+  };
 
-  componentWillReceiveProps({ data: { github = { commits: [] } } }) {
-    const [commit] = github.commits;
-    this.updateCommits(commit || null);
+  componentWillReceiveProps({ data: { loading, github = { commits: [] } } }) {
+    if (loading) {
+      this.updateCommits(false);
+    } else {
+      const [commit = null] = github.commits;
+      this.updateCommits(commit || null);
+    }
   }
 
   updateCommits = (commit) => {
     if (!commit) this.setState(() => ({ commits: [] }));
     else {
       this.setState(state => ({ commits: [...state.commits, commit] }));
-      this.setState(state => ({ commits: [state.commits[state.commits.length - 1]] }));
+      this.setState(state => ({
+        commits: [state.commits[state.commits.length - 1]],
+      }));
     }
-  }
+  };
 
   render = () => {
     const { commits = [] } = this.state;
@@ -38,11 +46,14 @@ class GithubWidget extends Component {
       <TransitionGroup component={WidgetWrapper}>
         {commits.map(({ url = `//github.com/ChrisW-B/`, name = ``, message = ``, reltime = `` }) => (
           <Transition key={message} timeout={1000}>
-            { status => (
+            {status => (
               <Widget status={status}>
-                <Description dangerouslySetInnerHTML={{ __html: message }} /> {/* eeep! */}
+                <Description dangerouslySetInnerHTML={{ __html: message }} />
+                {/* eeep! */}
                 <Time>
-                  <Link href={url} title={name}>{reltime} in {name}</Link>
+                  <Link href={url} title={name}>
+                    {reltime} in {name}
+                  </Link>
                 </Time>
               </Widget>
             )}
@@ -50,7 +61,7 @@ class GithubWidget extends Component {
         ))}
       </TransitionGroup>
     );
-  }
+  };
 }
 
 export default GithubWidget;
