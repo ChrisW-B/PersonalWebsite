@@ -8,13 +8,14 @@ const getPhotos = async (max) => {
 
   try {
     const { posts } = await res.json();
-    const photos = posts.map(({ url, feature_image: img, title, html }) => ({
-      title,
-      html,
-      url: `https://photo.chriswbarry.com${url}`,
-      photo: img.includes(`http`) ? img : `https://photo.chriswbarry.com${img}`,
-    }));
-    return photos;
+    return posts
+      .filter(({ feature_image: img }) => !!img)
+      .map(({ url, feature_image: img = ``, title, html }) => ({
+        title,
+        html,
+        url: `https://photo.chriswbarry.com${url}`,
+        photo: img.includes(`http`) ? img : `https://photo.chriswbarry.com${img}`,
+      }));
   } catch (e) {
     throw e;
   }
