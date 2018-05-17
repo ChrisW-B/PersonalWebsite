@@ -39,7 +39,7 @@ const getGithubInfo = async () => {
       .sort((a, b) =>
         new Date(b.time) - new Date(a.time));
   } catch (e) {
-    throw new Error(`Error: ${JSON.stringify(e)}`);
+    throw e;
   }
 };
 

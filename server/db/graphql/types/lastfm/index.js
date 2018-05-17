@@ -29,7 +29,7 @@ const getLastFmSongs = async (max) => {
     return tracks.map(track =>
       Object.assign({}, { title: track.name, artist: track.artist[`#text`], nowplaying: false }, track[`@attr`]));
   } catch (e) {
-    throw new Error(`Error: ${JSON.stringify(e)}`);
+    throw e;
   }
 };
 
@@ -43,7 +43,7 @@ const getTopTracks = async (timePeriod, max) => {
     })).track;
     return tracks.map(({ name, artist, playcount }) => ({ name, artist: artist.name, playcount }));
   } catch (e) {
-    throw new Error(`Error: ${JSON.stringify(e)}`);
+    throw e;
   }
 };
 
@@ -57,7 +57,7 @@ const getTopArtists = async (timePeriod, max) => {
     })).artist;
     return artists.map(({ name, playcount }) => ({ artist: name, playcount }));
   } catch (e) {
-    throw new Error(`Error: ${JSON.stringify(e)}`);
+    throw e;
   }
 };
 
@@ -71,7 +71,7 @@ const getTopAlbums = async (timePeriod, max) => {
     })).album;
     return albums.map(({ name, artist, playcount }) => ({ name, artist: artist.name, playcount }));
   } catch (e) {
-    throw new Error(`Error: ${JSON.stringify(e)}`);
+    throw e;
   }
 };
 

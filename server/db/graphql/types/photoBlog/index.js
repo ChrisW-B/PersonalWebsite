@@ -16,7 +16,7 @@ const getPhotos = async (max) => {
     }));
     return photos;
   } catch (e) {
-    throw new Error(`Error: ${JSON.stringify(e)}`);
+    throw e;
   }
 };
 

@@ -39,7 +39,7 @@ const getTweets = async (max) => {
       url: `https://twitter.com/statuses/${id}`,
     })).slice(0, max);
   } catch (e) {
-    throw new Error(`Error: ${JSON.stringify(e)}`);
+    throw e;
   }
 };
 
