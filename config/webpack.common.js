@@ -12,7 +12,6 @@ const BabelPresets = [
 const BabelPlugins = [`transform-object-rest-spread`, `transform-export-extensions`, `transform-class-properties`];
 
 const WebpackStatic = [
-  // { test: /\.json?$/, loader: `json-loader`, exclude: /node_modules/ },
   { test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/, exclude: /node_modules/, loader: `file-loader?name=fonts/[name].[ext]` },
   { test: /\.(png|jpg)$/, exclude: /node_modules/, loader: `file-loader?name=images/[name].[ext]` },
 ];

@@ -7,8 +7,7 @@ const {
 } = require(`./webpack.common`);
 
 const WebpackPlugins = [
-  new webpack.DefinePlugin({ ENV: JSON.stringify(`production`), BUILD_MODE: JSON.stringify(process.env.BUILD_MODE || `prebuilt`) }),
-  new MinifyPlugin({ removeDebugger: true, mangle: true }, { comments: false }),
+  new MinifyPlugin({ removeDebugger: true, mangle: false }, { comments: false }),
   new webpack.optimize.OccurrenceOrderPlugin(),
   new webpack.optimize.ModuleConcatenationPlugin(),
   new webpack.optimize.AggressiveMergingPlugin(),

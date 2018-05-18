@@ -1,6 +1,8 @@
 // db/graphql/index.js
 
-const { GraphQLSchema } = require(`graphql/type`);
-const query = require(`./queries`);
+import { GraphQLSchema } from 'graphql/type';
+import query from './queries';
 
-module.exports = new GraphQLSchema({ query });
+const schema = new GraphQLSchema({ query });
+
+export default schema;

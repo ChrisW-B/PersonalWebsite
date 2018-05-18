@@ -22,6 +22,7 @@ const Html = ({ state, content: { html, css, ids } }) => (
       <div id='root' dangerouslySetInnerHTML={{ __html: html }} />
       <script key='css-ids' dangerouslySetInnerHTML={{ __html: `window.APP_DATA=${serialize({ ids })};` }} />
       <script key='apollo-state' dangerouslySetInnerHTML={{ __html: `window.APOLLO_STATE=${JSON.stringify(state).replace(/</g, `\\u003c`)};` }} />
+      <script key='runtime' src={`/build/client/${webpackManifest[`runtime.js`]}`} />
       <script key='vendor' src={`/build/client/${webpackManifest[`vendor.js`]}`} />
       <script key='app' src={`/build/client/${webpackManifest[`app.js`]}`} />
       <style type='text/css' dangerouslySetInnerHTML={{ __html: globalCSS }} />
