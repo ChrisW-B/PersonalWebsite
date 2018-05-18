@@ -2,7 +2,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import Sidenav from '../presentational/Sidenav';
 
-const query = gql `
+const query = gql`
   {
     photoBlog {
       photos(limit: 10) {

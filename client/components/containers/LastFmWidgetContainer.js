@@ -2,7 +2,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import LastFmWidget from '../presentational/Sidenav/Widgets/LastFmWidget';
 
-const query = gql `
+const query = gql`
   {
     lastfm {
       nowplaying {

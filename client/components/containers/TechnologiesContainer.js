@@ -2,7 +2,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import { Technologies } from '../presentational/Info/Sections';
 
-const query = gql `
+const query = gql`
   {
     skills {
       category types

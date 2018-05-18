@@ -2,7 +2,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import SidenavLinks from '../presentational/Sidenav/SidenavLinks';
 
-const query = gql `
+const query = gql`
   {
     email
     twitter { url }

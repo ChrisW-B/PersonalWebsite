@@ -4,8 +4,7 @@ import SidenavLinkList from './SidenavLinkList';
 
 const SidenavLinks = ({ data }) => (
   SidenavLinkList(data).map(link =>
-    <SidenavLink key={link.title} {...link} />,
-  )
+    <SidenavLink key={link.title} {...link} />)
 );
 
 export default SidenavLinks;

@@ -21,13 +21,19 @@ const getGithubInfo = async () => {
     return (await githubRes.json()).data.viewer.repositories.nodes
       .reduce((repos, { url, nameWithOwner, refs }) => [...repos, ...refs.nodes.map(ref => ({ url, nameWithOwner, ref }))], [])
       .reduce((coms, { url, nameWithOwner, ref }) => [...coms, ...ref.target.history.edges.map(node => (Object.assign({}, { url, nameWithOwner, branch: ref.name }, node.node)))], [])
-      .map(({ url, nameWithOwner, branch, committedDate, messageBodyHTML, messageHeadlineHTML, author }) =>
-        ({ url, nameWithOwner, branch, committedDate, messageBodyHTML, messageHeadlineHTML, author: author.user }))
+      .map(({
+        url, nameWithOwner, branch, committedDate, messageBodyHTML, messageHeadlineHTML, author,
+      }) =>
+        ({
+          url, nameWithOwner, branch, committedDate, messageBodyHTML, messageHeadlineHTML, author: author.user,
+        }))
       .filter(({ author }) =>
         author !== null && author.login === process.env.GITHUB_ID)
       .map(commit =>
         Object.assign({}, commit, { author: commit.author.login }))
-      .map(({ url, nameWithOwner, branch, committedDate, messageBodyHTML, messageHeadlineHTML, author }) =>
+      .map(({
+        url, nameWithOwner, branch, committedDate, messageBodyHTML, messageHeadlineHTML, author,
+      }) =>
         ({
           url: `${url}/tree/${branch}`,
           author,

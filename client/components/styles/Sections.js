@@ -1,6 +1,6 @@
 import styled from 'react-emotion';
 
-export const SectionContentP = styled.p `
+export const SectionContentP = styled.p`
   margin: 0;
 
   div {

@@ -1,9 +1,10 @@
 // server/index.js
 
 import { ApolloClient } from 'apollo-client';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { SchemaLink } from 'apollo-link-schema';
 import { ApolloProvider, getDataFromTree } from 'react-apollo';
 import { extractCritical } from 'emotion-server';
-import { InMemoryCache } from 'apollo-cache-inmemory';
 import { renderToString } from 'react-dom/server';
 import env from 'dotenv';
 import express from 'express';
@@ -12,24 +13,20 @@ import React from 'react';
 import { Homepage } from './components/shared';
 import { logger } from './utils';
 import github from './github';
-import graphqlSchema from './db/graphql';
+import schema from './db/graphql';
 import Html from './components/html';
-import LocalQuery from './apollo-local-query';
 import setup from './setup';
 
 env.config();
 
 const app = express();
-
+const apolloOptions = {
+  ssr: true,
+  cache: new InMemoryCache(),
+  link: new SchemaLink({ schema }),
+};
+const client = new ApolloClient(apolloOptions);
 const renderPage = async (req, res) => {
-  const apolloOptions = {
-    ssrMode: true,
-    link: new LocalQuery(graphqlSchema),
-    cache: new InMemoryCache(),
-    shouldBatch: true,
-  };
-  const client = new ApolloClient(apolloOptions);
-
   const site = (
     <ApolloProvider client={client}>
       <Homepage />
@@ -46,9 +43,9 @@ const renderPage = async (req, res) => {
   } catch (e) {
     console.error(`RENDERING ERROR:`, e); // eslint-disable-line no-console
     res.status(500);
-    res.end(
-      `An error occurred. Please submit an issue to [https://github.com/apollographql/GitHunt-React] with the following stack trace:\n\n${e.stack}`,
-    );
+    res.end(`An error occurred. Please submit an issue to [https://github.com/apollographql/GitHunt-React] with the following stack trace:\n\n${
+      e.stack
+    }`);
   }
 };
 
@@ -72,7 +69,7 @@ const sendHtml = (req, res) => {
 };
 
 app.use(setup);
-app.use(`/graphql`, graphqlHTTP({ schema: graphqlSchema, graphiql: true }));
+app.use(`/graphql`, graphqlHTTP({ schema, graphiql: true }));
 app.get(`/`, process.env.NODE_ENV === `production` ? renderPage : sendHtml);
 app.use(github);
 

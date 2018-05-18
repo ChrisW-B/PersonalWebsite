@@ -3,7 +3,7 @@ import { InfoSubSection } from './Info';
 
 export const DetailList = InfoSubSection.withComponent(`ul`);
 
-export const DetailListItem = styled.li `
+export const DetailListItem = styled.li`
   border-top: 0.1rem dashed rgba(148, 174, 229, 0.25);
   display: grid;
   grid-gap: 1rem 0;
@@ -62,7 +62,7 @@ export const DetailListItem = styled.li `
   }
 `;
 
-export const SectionTitle = styled.h2 `
+export const SectionTitle = styled.h2`
   color: rgba(0, 195, 216, 1);
   margin: 0;
   margin-top: -0.1rem;
