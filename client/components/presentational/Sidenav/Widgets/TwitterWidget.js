@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { Transition, TransitionGroup } from 'react-transition-group';
 import { Link } from '../../../styles/Sidenav';
-import { Widget, Description, Time, WidgetWrapper } from '../../../styles/Widgets';
+import {
+  Widget, Description, Time, WidgetWrapper,
+} from '../../../styles/Widgets';
 
 class TwitterWidget extends Component {
   static propTypes = {
@@ -50,7 +52,9 @@ class TwitterWidget extends Component {
           <Transition key={message} timeout={1000}>
             {status => (
               <Widget status={status}>
-                <Description dangerouslySetInnerHTML={{ __html: message }} /> {/* eeep! */}
+                <Description dangerouslySetInnerHTML={{ __html: message }} />
+                {` `}
+                {/* eeep! */}
                 <Time>
                   <Link href={url} title={reltime}>
                     {reltime}

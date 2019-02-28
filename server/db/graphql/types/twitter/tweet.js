@@ -1,6 +1,6 @@
 // db/graphql/types/Tweet.js
 
-const { GraphQLObjectType, GraphQLString } = require(`graphql/type`);
+import { GraphQLObjectType, GraphQLString } from 'graphql/type';
 
 const Tweet = new GraphQLObjectType({
   name: `Tweet`,
@@ -13,4 +13,4 @@ const Tweet = new GraphQLObjectType({
   }),
 });
 
-module.exports = Tweet;
+export default Tweet;

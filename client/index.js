@@ -6,7 +6,7 @@ import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { Homepage } from './components';
+import Homepage from './components';
 
 const renderFunc = ENV === `production` ? ReactDOM.hydrate : ReactDOM.render;
 const cache = window.APOLLO_STATE ? new InMemoryCache().restore(window.APOLLO_STATE) : new InMemoryCache();

@@ -1,9 +1,9 @@
-const express = require(`express`);
-const bodyParser = require(`body-parser`);
-const compression = require(`compression`);
-const path = require(`path`);
-const winston = require(`winston`);
-const expressWinston = require(`express-winston`);
+import express from 'express';
+import bodyParser from 'body-parser';
+import compression from 'compression';
+import path from 'path';
+import winston from 'winston';
+import expressWinston from 'express-winston';
 
 const app = express();
 
@@ -45,4 +45,4 @@ if (process.env.NODE_ENV !== `production`) {
   }));
 }
 
-module.exports = app;
+export default app;

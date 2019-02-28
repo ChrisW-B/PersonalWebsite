@@ -2,7 +2,7 @@ import crypto from 'crypto';
 import { spawn } from 'child_process';
 import path from 'path';
 import express from 'express';
-import { logger } from './utils';
+import logger from './logger';
 
 const app = express();
 
@@ -27,4 +27,4 @@ app.post(`/postrecieve`, ensureGithub, (req, res) => {
   res.end(`Thanks GitHub <3`);
 });
 
-module.exports = app;
+export default app;

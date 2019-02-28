@@ -1,6 +1,6 @@
 // db/graphql/types/Photo.js
 
-const { GraphQLObjectType, GraphQLString } = require(`graphql/type`);
+import { GraphQLObjectType, GraphQLString } from 'graphql/type';
 
 const Photo = new GraphQLObjectType({
   name: `Photo`,
@@ -13,4 +13,4 @@ const Photo = new GraphQLObjectType({
   }),
 });
 
-module.exports = Photo;
+export default Photo;

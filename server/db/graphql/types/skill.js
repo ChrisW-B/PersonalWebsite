@@ -1,6 +1,6 @@
 // db/graphql/types/Skills.js
 
-const { GraphQLObjectType, GraphQLString, GraphQLList } = require(`graphql/type`);
+import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type';
 
 const Skills = new GraphQLObjectType({
   name: `Skills`,
@@ -11,4 +11,4 @@ const Skills = new GraphQLObjectType({
   }),
 });
 
-module.exports = Skills;
+export default Skills;

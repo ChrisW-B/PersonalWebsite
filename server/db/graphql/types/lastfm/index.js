@@ -1,8 +1,8 @@
-const { GraphQLObjectType, GraphQLString, GraphQLList } = require(`graphql/type`);
-const song = require(`./song`);
-const chartItem = require(`./chartItem`);
-const { limit, period } = require(`../../args`);
-const Lastfm = require(`lastfm-njs`);
+import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type';
+import Lastfm from 'lastfm-njs';
+import song from './song';
+import chartItem from './chartItem';
+import { limit, period } from '../../args';
 
 let lastFmClient = null;
 
@@ -26,8 +26,7 @@ const getLastFmSongs = async (max) => {
       limit: maxSongs,
     })).track;
     if (max !== tracks.length) tracks = tracks.slice(0, max); // sometimes last.fm returns 2 tracks when you ask for 1
-    return tracks.map(track =>
-      Object.assign({}, { title: track.name, artist: track.artist[`#text`], nowplaying: false }, track[`@attr`]));
+    return tracks.map(track => Object.assign({}, { title: track.name, artist: track.artist[`#text`], nowplaying: false }, track[`@attr`]));
   } catch (e) {
     throw e;
   }
@@ -115,4 +114,4 @@ const LastFMType = new GraphQLObjectType({
   }),
 });
 
-module.exports = LastFMType;
+export default LastFMType;

@@ -1,7 +1,7 @@
 // db/graphql/types/Job.js
 
-const { GraphQLObjectType, GraphQLString, GraphQLList } = require(`graphql/type`);
-const Timespan = require(`./timespan`);
+import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type';
+import Timespan from './timespan';
 
 const Job = new GraphQLObjectType({
   name: `Job`,
@@ -14,4 +14,4 @@ const Job = new GraphQLObjectType({
   }),
 });
 
-module.exports = Job;
+export default Job;

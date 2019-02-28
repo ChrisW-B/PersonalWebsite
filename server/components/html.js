@@ -8,7 +8,11 @@ const webpackManifest = process.env.NODE_ENV === `production`
   ? require(`../../public/build/client/manifest.json`)
   : {};
 
-const globalCSS = `@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:700|Source+Sans+Pro:400,700&subset=latin-ext');html,body {margin:0; font-size: 10px;}`;
+const globalCSS = `@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:700|Source+Sans+Pro:400,700&subset=latin-ext');html,body {margin:0; padding:0; font-size: 10px;}`;
+
+const runtimePath = webpackManifest && Object.prototype.hasOwnProperty.call(webpackManifest, `runtime.js`) ? webpackManifest[`runtime.js`] : ``;
+const vendorPath = webpackManifest && Object.prototype.hasOwnProperty.call(webpackManifest, `vendor.js`) ? webpackManifest[`vendor.js`] : ``;
+const appPath = webpackManifest && Object.prototype.hasOwnProperty.call(webpackManifest, `app.js`) ? webpackManifest[`app.js`] : ``;
 
 const Html = ({ state, content: { html, css, ids } }) => (
   <html lang='en'>
@@ -22,9 +26,9 @@ const Html = ({ state, content: { html, css, ids } }) => (
       <div id='root' dangerouslySetInnerHTML={{ __html: html }} />
       <script key='css-ids' dangerouslySetInnerHTML={{ __html: `window.APP_DATA=${serialize({ ids })};` }} />
       <script key='apollo-state' dangerouslySetInnerHTML={{ __html: `window.APOLLO_STATE=${JSON.stringify(state).replace(/</g, `\\u003c`)};` }} />
-      <script key='runtime' src={`/build/client/${webpackManifest[`runtime.js`]}`} />
-      <script key='vendor' src={`/build/client/${webpackManifest[`vendor.js`]}`} />
-      <script key='app' src={`/build/client/${webpackManifest[`app.js`]}`} />
+      <script key='runtime' src={runtimePath} />
+      <script key='vendor' src={vendorPath} />
+      <script key='app' src={appPath} />
       <style type='text/css' dangerouslySetInnerHTML={{ __html: globalCSS }} />
       <style type='text/css' dangerouslySetInnerHTML={{ __html: css }} />
     </body>

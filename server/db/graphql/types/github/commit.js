@@ -1,6 +1,5 @@
 // db/graphql/types/Commit.js
-
-const { GraphQLObjectType, GraphQLString } = require(`graphql/type`);
+import { GraphQLObjectType, GraphQLString } from 'graphql/type';
 
 const Commit = new GraphQLObjectType({
   name: `Commit`,
@@ -15,4 +14,4 @@ const Commit = new GraphQLObjectType({
   }),
 });
 
-module.exports = Commit;
+export default Commit;

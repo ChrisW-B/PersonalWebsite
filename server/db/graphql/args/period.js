@@ -1,6 +1,6 @@
-const { GraphQLEnumType } = require(`graphql/type`);
+import { GraphQLEnumType } from 'graphql/type';
 
-module.exports = {
+export default {
   name: `period`,
   description: `The time period`,
   type: new GraphQLEnumType({

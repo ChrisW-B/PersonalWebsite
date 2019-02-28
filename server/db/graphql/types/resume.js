@@ -1,6 +1,6 @@
 // db/graphql/types/Resume.js
 
-const { GraphQLObjectType, GraphQLString } = require(`graphql/type`);
+import { GraphQLObjectType, GraphQLString } from 'graphql/type';
 
 const Resume = new GraphQLObjectType({
   name: `Resume`,
@@ -11,4 +11,4 @@ const Resume = new GraphQLObjectType({
   }),
 });
 
-module.exports = Resume;
+export default Resume;

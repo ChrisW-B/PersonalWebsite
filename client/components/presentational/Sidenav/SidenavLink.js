@@ -7,7 +7,8 @@ const SidenavLink = ({
 }) => (
   <SidenavItem emphasis={emphasis}>
     <Link href={link} title={title}>
-      <Icon>{icon}</Icon>{title}
+      <Icon>{icon}</Icon>
+      {title}
     </Link>
     {widget}
   </SidenavItem>

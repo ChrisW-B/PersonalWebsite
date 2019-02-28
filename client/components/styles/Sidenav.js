@@ -1,4 +1,5 @@
-import styled, { keyframes } from 'react-emotion';
+import styled from '@emotion/styled';
+import { keyframes } from '@emotion/core';
 
 const animateImage = keyframes`
   from {
@@ -110,7 +111,7 @@ export const SidenavItem = styled.li`
     display: inline;
 
     &:not(:last-child) {
-      &:not(:first-child) {
+      &:not(:first-of-type) {
         &::after {
           content: ' / ';
         }

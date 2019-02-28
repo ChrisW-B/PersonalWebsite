@@ -1,29 +1,26 @@
 import React from 'react';
-import Mail from 'react-icons/lib/io/android-mail';
-import LinkedInLogo from 'react-icons/lib/io/social-linkedin';
-import Camera from 'react-icons/lib/io/camera';
-import GitHubLogo from 'react-icons/lib/io/social-github';
-import Music from 'react-icons/lib/io/radio-waves';
-import TwitterLogo from 'react-icons/lib/io/social-twitter';
+import {
+  IoMdMail, IoLogoLinkedin, IoMdCamera, IoLogoGithub, IoIosRadio, IoLogoTwitter,
+} from 'react-icons/io';
 import { TwitterWidgetContainer, GithubWidgetContainer, LastFmWidgetContainer } from '../../../containers';
 
 const links = ({
   email = ``, lastfm = { url: `` }, github = { url: `` }, twitter = { url: `` }, linkedin = { url: `` }, photoBlog = { url: `` },
 }) => [
   {
-    title: `Get in Touch`, link: `mailto:${email}`, icon: <Mail />, emphasis: true,
+    title: `Get in Touch`, link: `mailto:${email}`, icon: <IoMdMail />, emphasis: true,
   },
   {
-    title: `Github`, link: github.url, icon: <GitHubLogo />, widget: <GithubWidgetContainer />,
+    title: `Github`, link: github.url, icon: <IoLogoGithub />, widget: <GithubWidgetContainer />,
   },
   {
-    title: `Twitter`, link: twitter.url, icon: <TwitterLogo />, widget: <TwitterWidgetContainer />,
+    title: `Twitter`, link: twitter.url, icon: <IoLogoTwitter />, widget: <TwitterWidgetContainer />,
   },
   {
-    title: `LastFM`, link: lastfm.url, icon: <Music />, widget: <LastFmWidgetContainer />,
+    title: `LastFM`, link: lastfm.url, icon: <IoIosRadio />, widget: <LastFmWidgetContainer />,
   },
-  { title: `LinkedIn`, link: linkedin.url, icon: <LinkedInLogo /> },
-  { title: `Photos`, link: photoBlog.url, icon: <Camera /> },
+  { title: `LinkedIn`, link: linkedin.url, icon: <IoLogoLinkedin /> },
+  { title: `Photos`, link: photoBlog.url, icon: <IoMdCamera /> },
 ];
 
 export default links;

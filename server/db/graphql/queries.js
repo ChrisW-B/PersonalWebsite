@@ -1,4 +1,4 @@
 // db/graphql/queries.js
-const queries = require(`./types/me`);
+import queries from './types/me';
 
-module.exports = queries;
+export default queries;

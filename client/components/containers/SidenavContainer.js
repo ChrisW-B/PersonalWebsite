@@ -1,6 +1,6 @@
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import Sidenav from '../presentational/Sidenav';
+import { Sidenav } from '../presentational/Sidenav';
 
 const query = gql`
   {
@@ -15,6 +15,7 @@ const query = gql`
 const queryOptions = {
   // override the defaults to select a random photo
   options: { ssr: false },
+  displayName: `Sidenav-Query`,
   props: ({ data }) => {
     if (!data.photoBlog) return data;
     const { photoBlog: { photos = [] } } = data;
@@ -23,5 +24,4 @@ const queryOptions = {
       : null;
   },
 };
-
 export default graphql(query, queryOptions)(Sidenav);

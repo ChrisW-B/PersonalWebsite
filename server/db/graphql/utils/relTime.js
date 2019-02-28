@@ -34,4 +34,4 @@ const relativeTimeDifference = (previous) => {
   return `${num} ${unit} ago`;
 };
 
-module.exports = relativeTimeDifference;
+export default relativeTimeDifference;

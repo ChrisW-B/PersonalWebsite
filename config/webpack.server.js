@@ -15,14 +15,14 @@ const WebpackPlugins = [
 
 const presets = [
   [
-    `env`,
+    `@babel/env`,
     {
-      targets: { node: `9` },
+      targets: { node: `current` },
       forceAllTransforms: true,
       useBuiltIns: `usage`,
     },
   ],
-  `react`,
+  `@babel/react`,
 ];
 
 const plugins = [`emotion`, ...BabelPlugins];
