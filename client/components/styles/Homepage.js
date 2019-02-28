@@ -1,6 +1,6 @@
-import styled from 'react-emotion';
+import styled from '@emotion/styled';
 
-const HomepageDiv = styled.div`
+export default styled.div`
   display: grid;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: initial;
@@ -13,5 +13,3 @@ const HomepageDiv = styled.div`
     grid-template-rows: auto 1fr;
   }
 `;
-
-export { HomepageDiv };

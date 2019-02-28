@@ -1,9 +1,9 @@
 // db/graphql/types/Github.js
-const fetch = require(`node-fetch`);
-const { GraphQLObjectType, GraphQLString, GraphQLList } = require(`graphql/type`);
-const commitType = require(`./commit`);
-const { limit } = require(`../../args`);
-const { relTime } = require(`../../utils`);
+import fetch from 'node-fetch';
+import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type';
+import commitType from './commit';
+import { limit } from '../../args';
+import relTime from '../../utils/relTime';
 
 const getFirstN = (max = 0, array) => (max ? array.slice(0, max) : array);
 
@@ -22,28 +22,41 @@ const getGithubInfo = async () => {
       .reduce((repos, { url, nameWithOwner, refs }) => [...repos, ...refs.nodes.map(ref => ({ url, nameWithOwner, ref }))], [])
       .reduce((coms, { url, nameWithOwner, ref }) => [...coms, ...ref.target.history.edges.map(node => (Object.assign({}, { url, nameWithOwner, branch: ref.name }, node.node)))], [])
       .map(({
-        url, nameWithOwner, branch, committedDate, messageBodyHTML, messageHeadlineHTML, author,
-      }) =>
-        ({
-          url, nameWithOwner, branch, committedDate, messageBodyHTML, messageHeadlineHTML, author: author.user,
-        }))
-      .filter(({ author }) =>
-        author !== null && author.login === process.env.GITHUB_ID)
-      .map(commit =>
-        Object.assign({}, commit, { author: commit.author.login }))
+        url,
+        nameWithOwner,
+        branch,
+        committedDate,
+        messageBodyHTML,
+        messageHeadlineHTML,
+        author,
+      }) => ({
+        url,
+        nameWithOwner,
+        branch,
+        committedDate,
+        messageBodyHTML,
+        messageHeadlineHTML,
+        author: author.user,
+      }))
+      .filter(({ author }) => author !== null && author.login === process.env.GITHUB_ID)
+      .map(commit => Object.assign({}, commit, { author: commit.author.login }))
       .map(({
-        url, nameWithOwner, branch, committedDate, messageBodyHTML, messageHeadlineHTML, author,
-      }) =>
-        ({
-          url: `${url}/tree/${branch}`,
-          author,
-          name: `${nameWithOwner}@${branch}`,
-          time: committedDate,
-          reltime: relTime(new Date(committedDate)),
-          message: `${messageHeadlineHTML.replace(`…`, ``)}${messageBodyHTML.replace(`…`, ``)}`,
-        }))
-      .sort((a, b) =>
-        new Date(b.time) - new Date(a.time));
+        url,
+        nameWithOwner,
+        branch,
+        committedDate,
+        messageBodyHTML,
+        messageHeadlineHTML,
+        author,
+      }) => ({
+        url: `${url}/tree/${branch}`,
+        author,
+        name: `${nameWithOwner}@${branch}`,
+        time: committedDate,
+        reltime: relTime(new Date(committedDate)),
+        message: `${messageHeadlineHTML.replace(`…`, ``)}${messageBodyHTML.replace(`…`, ``)}`,
+      }))
+      .sort((a, b) => new Date(b.time) - new Date(a.time));
   } catch (e) {
     throw e;
   }
@@ -63,4 +76,4 @@ const Github = new GraphQLObjectType({
   }),
 });
 
-module.exports = Github;
+export default Github;

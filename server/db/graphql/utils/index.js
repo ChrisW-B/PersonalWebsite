@@ -1,3 +1,3 @@
-const relTime = require(`./relTime`);
+import relTime from './relTime';
 
-module.exports = { relTime };
+export default { relTime };

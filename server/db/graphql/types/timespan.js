@@ -1,6 +1,6 @@
 // db/graphql/types/Timespan.js
 
-const { GraphQLObjectType, GraphQLString } = require(`graphql/type`);
+import { GraphQLObjectType, GraphQLString } from 'graphql/type';
 
 const Timespan = new GraphQLObjectType({
   name: `Timespan`,
@@ -11,4 +11,4 @@ const Timespan = new GraphQLObjectType({
   }),
 });
 
-module.exports = Timespan;
+export default Timespan;

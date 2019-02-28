@@ -2,7 +2,12 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { SidenavLinksContainer } from '../../containers';
-import { Name, PhotoDescription, SidenavContainer, SidenavItems } from '../../styles/Sidenav';
+import {
+  Name,
+  PhotoDescription,
+  SidenavContainer,
+  SidenavItems,
+} from '../../styles/Sidenav';
 
 const Sidenav = ({ photo: { photo = ``, title = ``, url = `` } }) => (
   <SidenavContainer bg={photo}>
@@ -13,7 +18,13 @@ const Sidenav = ({ photo: { photo = ``, title = ``, url = `` } }) => (
       <SidenavLinksContainer />
     </SidenavItems>
     <PhotoDescription>
-      {title ? <a href={url}>Background: <br /> {title}</a> : null}
+      {title ? (
+        <a href={url}>
+Background:
+          <br />
+          {title}
+        </a>
+      ) : null}
     </PhotoDescription>
   </SidenavContainer>
 );

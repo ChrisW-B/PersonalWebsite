@@ -1,2 +1,4 @@
 // react/components/index.js
-export { default as Homepage } from './presentational/Homepage';
+import Homepage from './presentational/Homepage';
+
+export default Homepage;

@@ -1,6 +1,6 @@
 // db/graphql/types/project.js
 
-const { GraphQLObjectType, GraphQLString, GraphQLList } = require(`graphql/type`);
+import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type';
 
 const project = new GraphQLObjectType({
   name: `Project`,
@@ -14,4 +14,4 @@ const project = new GraphQLObjectType({
   }),
 });
 
-module.exports = project;
+export default project;

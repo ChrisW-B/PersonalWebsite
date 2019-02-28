@@ -1,6 +1,6 @@
 // db/graphql/types/Song.js
 
-const { GraphQLObjectType, GraphQLString, GraphQLBoolean } = require(`graphql/type`);
+import { GraphQLObjectType, GraphQLString, GraphQLBoolean } from 'graphql/type';
 
 const Song = new GraphQLObjectType({
   name: `Song`,
@@ -12,4 +12,4 @@ const Song = new GraphQLObjectType({
   }),
 });
 
-module.exports = Song;
+export default Song;

@@ -1,6 +1,8 @@
 import { PropTypes } from 'prop-types';
 import React from 'react';
-import { Skill, SkillList, SkillType, SkillName, SectionContentDIV } from '../../../styles/Technologies';
+import {
+  Skill, SkillList, SkillType, SkillName, SectionContentDIV,
+} from '../../../styles/Technologies';
 
 const Technologies = ({ data: { skills = [] } }) => (
   <SectionContentDIV>

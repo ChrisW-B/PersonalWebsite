@@ -1,5 +1,5 @@
 // db/graphql/types/ChartItem.js
-const { GraphQLObjectType, GraphQLString, GraphQLInt } = require(`graphql/type`);
+import { GraphQLObjectType, GraphQLString, GraphQLInt } from 'graphql/type';
 
 const ChartItem = new GraphQLObjectType({
   name: `chartItem`,
@@ -11,4 +11,4 @@ const ChartItem = new GraphQLObjectType({
   }),
 });
 
-module.exports = ChartItem;
+export default ChartItem;

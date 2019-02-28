@@ -1,6 +1,6 @@
-const { GraphQLInt } = require(`graphql/type`);
+import { GraphQLInt } from 'graphql/type';
 
-module.exports = {
+export default {
   name: `limit`,
   description: `The Max Number Of Results Returned`,
   type: GraphQLInt,

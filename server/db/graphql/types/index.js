@@ -1,12 +1,19 @@
-const job = require(`./job`);
-const github = require(`./github`);
-const project = require(`./project`);
-const skill = require(`./skill`);
-const resume = require(`./resume`);
-const lastfm = require(`./lastfm`);
-const twitter = require(`./twitter`);
-const photoBlog = require(`./photoBlog`);
+import job from './job';
+import github from './github';
+import project from './project';
+import skill from './skill';
+import resume from './resume';
+import lastfm from './lastfm';
+import twitter from './twitter';
+import photoBlog from './photoBlog';
 
-module.exports = {
-  job, github, project, skill, resume, lastfm, twitter, photoBlog,
+export {
+  job,
+  github,
+  project,
+  skill,
+  resume,
+  lastfm,
+  twitter,
+  photoBlog,
 };

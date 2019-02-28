@@ -1,9 +1,9 @@
-const { GraphQLObjectType, GraphQLString, GraphQLList } = require(`graphql/type`);
-const Twitter = require(`twitter`);
-const twitterText = require(`twitter-text`);
-const { relTime } = require(`../../utils`);
-const tweet = require(`./tweet`);
-const { limit } = require(`../../args`);
+import { GraphQLObjectType, GraphQLString, GraphQLList } from 'graphql/type';
+import Twitter from 'twitter';
+import twitterText from 'twitter-text';
+import relTime from '../../utils/relTime';
+import tweet from './tweet';
+import { limit } from '../../args';
 
 let twitterClient = null;
 // for some reason setting twitterClient on its own wasn't working so...
@@ -20,8 +20,7 @@ const getTwitterClient = () => {
   return twitterClient;
 };
 
-const convertToText = (text, urlEntities) =>
-  twitterText.autoLink(text, { urlEntities });
+const convertToText = (text, urlEntities) => twitterText.autoLink(text, { urlEntities });
 
 const getTweets = async (max) => {
   const twitter = getTwitterClient();
@@ -33,7 +32,10 @@ const getTweets = async (max) => {
       include_rts: false,
     });
     return tweets.map(({
-      text, entities, created_at: time, id_str: id,
+      text,
+      entities,
+      created_at: time,
+      id_str: id,
     }) => ({
       time,
       message: convertToText(text, entities.urls),
@@ -59,4 +61,4 @@ const TwitterType = new GraphQLObjectType({
   }),
 });
 
-module.exports = TwitterType;
+export default TwitterType;

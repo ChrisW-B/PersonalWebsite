@@ -1,11 +1,21 @@
-const {
-  GraphQLString, GraphQLList, GraphQLObjectType, GraphQLBoolean,
-} = require(`graphql/type`);
-const {
-  github, job, project, skill, resume, lastfm, twitter, photoBlog,
-} = require(`./`);
-const { limit } = require(`../args`);
-const info = require(`../../me.json`);
+import {
+  GraphQLString,
+  GraphQLList,
+  GraphQLObjectType,
+  GraphQLBoolean,
+} from 'graphql/type';
+import {
+  github,
+  job,
+  project,
+  skill,
+  resume,
+  lastfm,
+  twitter,
+  photoBlog,
+} from ".";
+import { limit } from '../args';
+import info from '../../me.json';
 
 const getFirstN = (max = 0, array) => (max ? array.slice(0, max) : array);
 
@@ -105,4 +115,4 @@ const me = new GraphQLObjectType({
     ...external,
   }),
 });
-module.exports = me;
+export default me;

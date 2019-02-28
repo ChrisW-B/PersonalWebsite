@@ -2,7 +2,7 @@
 {
   date
   git pull
-  yarn
-  yarn build:server
-  yarn build:client
+  npm ci
+  npm run build:server
+  npm run build:client
 } > update.log 2>&1

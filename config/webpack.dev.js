@@ -37,7 +37,7 @@ const HMRConfig = {
 };
 
 module.exports = {
-  entry: { app: [`babel-polyfill`, `webpack-hot-middleware/client?name=app`, `${AppDir}/index`] },
+  entry: { app: [`@babel/polyfill`, `webpack-hot-middleware/client?name=app`, `${AppDir}/index`] },
   output: { ...OutputConfig, ...HMRConfig },
   devtool: `cheap-module-source-map`,
   mode: `development`,

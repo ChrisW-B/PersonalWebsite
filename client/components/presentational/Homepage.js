@@ -2,7 +2,7 @@
 import React from 'react';
 import { SidenavContainer } from '../containers';
 import Info from './Info';
-import { HomepageDiv } from '../styles/Homepage';
+import HomepageDiv from '../styles/Homepage';
 
 const Homepage = () => (
   <HomepageDiv>

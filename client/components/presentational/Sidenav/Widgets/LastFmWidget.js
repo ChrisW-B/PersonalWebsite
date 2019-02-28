@@ -24,8 +24,7 @@ class LastFmWidget extends Component {
     songs: [],
   };
 
-  componentWillReceiveProps = ({ data: { loading, lastfm = { nowplaying: null } } }) =>
-    (loading ? this.updateSong(false) : this.updateSong(lastfm.nowplaying));
+  componentWillReceiveProps = ({ data: { loading, lastfm = { nowplaying: null } } }) => (loading ? this.updateSong(false) : this.updateSong(lastfm.nowplaying));
 
   updateSong = (nowplaying) => {
     if (!nowplaying) this.setState(state => ({ songs: [...state.songs, null] }));

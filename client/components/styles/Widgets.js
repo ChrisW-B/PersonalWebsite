@@ -1,4 +1,5 @@
-import styled, { keyframes } from 'react-emotion';
+import styled from '@emotion/styled';
+import { keyframes } from '@emotion/core';
 
 const SlideUpIn = keyframes`
   0% {
@@ -25,7 +26,7 @@ const transitionOut = `1000ms ${SlideUpOut} ${materialAnimation}`;
 const transitionIn = `1000ms ${SlideUpIn} ${materialAnimation}`;
 const animationStatus = (status) => {
   if (status === `entering`) return transitionIn;
-  else if (status === `exiting`) return transitionOut;
+  if (status === `exiting`) return transitionOut;
   return ``;
 };
 const heightStatus = status => (status === `exiting` ? 0 : `auto`);
