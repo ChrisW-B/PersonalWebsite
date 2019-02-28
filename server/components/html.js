@@ -14,17 +14,17 @@ const globalCSS = `@import url('https://fonts.googleapis.com/css?family=Source+C
 const vendorsRoot = webpackManifest && Object.prototype.hasOwnProperty.call(webpackManifest, `vendors.js`)
   ? webpackManifest[`vendors.js`]
   : ``;
-const vendorsPath = vendorsRoot.includes(`/build/path/`) ? vendorsRoot : path.join(`/build`, `client`, vendorsRoot);
+const vendorsPath = vendorsRoot.includes(`build/client`) ? vendorsRoot : path.join(`/build`, `client`, vendorsRoot);
 
 const runtimeRoot = webpackManifest && Object.prototype.hasOwnProperty.call(webpackManifest, `runtime.js`)
   ? webpackManifest[`runtime.js`]
   : ``;
-const runtimePath = runtimeRoot.includes(`/build/path/`) ? runtimeRoot : path.join(`/build`, `client`, runtimeRoot);
+const runtimePath = runtimeRoot.includes(`build/client`) ? runtimeRoot : path.join(`/build`, `client`, runtimeRoot);
 
 const appRoot = webpackManifest && Object.prototype.hasOwnProperty.call(webpackManifest, `app.js`)
   ? webpackManifest[`app.js`]
   : ``;
-const appPath = appRoot.includes(`/build/path/`) ? appRoot : path.join(`/build`, `client`, appRoot);
+const appPath = appRoot.includes(`build/client`) ? appRoot : path.join(`/build`, `client`, appRoot);
 
 const Html = ({ state, content: { html, css, ids } }) => (
   <html lang='en'>
