@@ -21,7 +21,7 @@ const CompressionConfig = {
 };
 const WebpackPlugins = [
   new ManifestPlugin({
-    publicPath: `/build/client/`,
+    publicPath: ``,
   }),
   new webpack.DefinePlugin({ ENV: JSON.stringify(`production`) }),
   new MinifyPlugin(MinifyConfig),
