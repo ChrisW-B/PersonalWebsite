@@ -10,7 +10,7 @@ const animateImage = keyframes`
   }
 `;
 
-const emptyBackground = `linear-gradient(102deg, rgba(0, 195, 216, 0.82) 9%, rgba(186, 39, 66, 0.51) 100%)`;
+const emptyBackground = `linear-gradient(-102deg, rgba(0, 195, 216, 0.82) 9%, rgba(186, 39, 66, 0.51) 100%)`;
 const fullBackground = bg => `${emptyBackground}, url(${bg}) center / cover no-repeat scroll`;
 
 export const SidenavContainer = styled.aside`

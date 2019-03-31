@@ -22,7 +22,7 @@ export const InfoSection = styled.main`
 export const ProfilePhoto = styled.img`
   border-radius: 100%;
   height: 10rem;
-  margin-top: 3rem;
+  margin-top: 30rem;
   width: 10rem;
 `;
 

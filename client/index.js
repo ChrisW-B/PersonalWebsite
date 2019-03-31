@@ -8,10 +8,10 @@ import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import Homepage from './components';
 
-const renderFunc = ENV === `production` ? ReactDOM.hydrate : ReactDOM.render;
+const renderFunc = process.env.NODE_ENV === `production` ? ReactDOM.hydrate : ReactDOM.render;
 const cache = window.APOLLO_STATE ? new InMemoryCache().restore(window.APOLLO_STATE) : new InMemoryCache();
 
-if (module.hot && ENV !== `production`) {
+if (module.hot && process.env.NODE_ENV !== `production`) {
   module.hot.accept();
 }
 
