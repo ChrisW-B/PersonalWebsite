@@ -2,8 +2,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import compression from 'compression';
 import path from 'path';
-import winston from 'winston';
-import expressWinston from 'express-winston';
 
 const app = express();
 
@@ -16,33 +14,51 @@ app.use(express.static(publicPath, { maxage: `7d` }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(compression());
-app.use(expressWinston.logger({
-  transports: [new winston.transports.Console({ timestamp: true, colorize: true })],
-  expressFormat: true,
-  meta: false,
-  colorize: true,
-}));
 
+/* eslint-disable global-require, import/no-extraneous-dependencies */
+if (process.env.NODE_ENV === `production`) {
+  const winston = require(`winston`);
+  app.use(require(`express-winston`).logger({
+    transports: [new winston.transports.Console({ timestamp: true, colorize: true })],
+    expressFormat: true,
+    meta: false,
+    colorize: true,
+  }));
+}
 if (process.env.NODE_ENV !== `production`) {
-  /* eslint-disable global-require, import/no-extraneous-dependencies */
   const devMiddleware = require(`webpack-dev-middleware`);
   const hotMiddleware = require(`webpack-hot-middleware`);
-  const webpackConfig = require(`../config/webpack.dev`);
+  const webpackConfig = require(`../config/webpack.client.dev`);
   const compiler = require(`webpack`)(webpackConfig);
 
   app.use(devMiddleware(compiler, {
     hot: true,
-    publicPath: `/build/client`,
-    stats: {
-      colors: true,
-    },
+    open: true,
+    noInfo: true,
     historyApiFallback: true,
+    logLevel: `silent`,
+    publicPath: path.join(webpackConfig.output.publicPath, `client`),
   }));
   app.use(hotMiddleware(compiler, {
-    reload: true,
-    path: `/__webpack_hmr`,
-    heartbeat: 10 * 1000,
+    log: false,
   }));
+
+  // app.use(require("webpack-dev-middleware")(compiler, {
+  //   quiet: true,
+  //   compress: true,
+  //   overlay: true,
+  //   historyApiFallback: true,
+  //   publicPath: webpackConfig.output.publicPath
+  // }));
+  // app.use(require("webpack-hot-middleware")(compiler, {
+  //   path: `/__webpack_hmr`,
+  //   log: false,
+  //   overlay: true,
+  //   reload: true,
+  //   noInfo: true,
+  //   quiet: true,
+  //   overlayWarnings: true
+  // }));
 }
 
 export default app;
