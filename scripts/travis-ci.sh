@@ -1,8 +1,8 @@
 #! /bin/bash
 set -e # exit w/ non-zero if there's a failure
-yarn lint:js
-yarn lint:css
-# yarn test
-yarn build:client
-yarn build:server
+npm lint:js
+npm lint:css
+# npm test
+npm build:client
+npm build:server
 exit 0

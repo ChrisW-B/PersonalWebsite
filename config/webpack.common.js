@@ -1,4 +1,4 @@
-import path from 'path';
+const path = require(`path`);
 
 const BuildDir = path.resolve(__dirname, `..`, `public`, `build`, `client`);
 
