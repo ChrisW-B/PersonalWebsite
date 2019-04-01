@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "extends": ["eslint:recommended", "airbnb", "plugin:react/recommended"],
+  "extends": ["eslint:recommended", "airbnb", "plugin:react/recommended", "plugin:prettier/recommended"],
   "rules": {
     "strict": 0,
     "quotes": [1, "backtick"],
