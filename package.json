@@ -90,8 +90,7 @@
     "lint:js": "eslint ./ --ignore-pattern 'public/**/*.js'",
     "lint:js:fix": "eslint --fix ./ --ignore-pattern 'public/**/*.js'",
     "lint:css": "stylelint './react/components/**/*style.js'",
-    "clean": "rm -rf public/build",
-    "precommit": "npm run lint:js"
+    "clean": "rm -rf public/build"
   },
   "repository": {
     "type": "git",
@@ -106,5 +105,10 @@
   "bugs": {
     "url": "https://github.com/ChrisW-B/PersonalWebsite/issues"
   },
-  "homepage": "https://github.com/ChrisW-B/PersonalWebsite#readme"
+  "homepage": "https://github.com/ChrisW-B/PersonalWebsite#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint:js"
+    }
+  }
 }

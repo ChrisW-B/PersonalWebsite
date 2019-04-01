@@ -58,7 +58,7 @@ const sendHtml = (req, res) => {
         <meta httpEquiv='X-UA-Compatible' content='IE=edge' />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <title>Dev Mode!</title>
-        <style>@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:700|Source+Sans+Pro:400,700&subset=latin-ext');html,body {margin:0; font-size: 10px; border: 2px solid red;}</style>
+        <style>@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:700|Source+Sans+Pro:400,700&subset=latin-ext');html,body {margin:0; padding: 0; font-size: 10px; border: 2px solid red;}</style>
       </head>
       <body>
           <div id='root'></div>
