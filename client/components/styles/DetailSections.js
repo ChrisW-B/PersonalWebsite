@@ -16,7 +16,7 @@ export const DetailListItem = styled.li`
     border: 1px solid #e1e1e8;
     border-radius: 3px;
     color: #d72b3f;
-    font-family: 'Operator Mono', Consolas, monaco, "Ubuntu Mono", courier, monospace;
+    font-family: 'Operator Mono', Consolas, monaco, 'Ubuntu Mono', courier, monospace;
     font-size: 85%;
     margin: 0;
     padding-bottom: 0.2em;
@@ -24,7 +24,7 @@ export const DetailListItem = styled.li`
 
     &::before,
     &::after {
-      content: "\00a0";
+      content: '\00a0';
       letter-spacing: -0.2rem;
     }
   }

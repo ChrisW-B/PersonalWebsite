@@ -1,17 +1,12 @@
 {
   "parser": "babel-eslint",
-  "extends": ["eslint:recommended", "airbnb", "plugin:react/recommended"],
+  "extends": ["eslint:recommended", "airbnb", "plugin:react/recommended", "plugin:prettier/recommended"],
   "rules": {
     "strict": 0,
-    "quotes": [1, "backtick"],
-    "jsx-quotes": [1, "prefer-single"],
-    "eol-last": [1, "never"],
-    "no-plusplus": [0],
     "react/jsx-filename-extension": [0],
     "import/prefer-default-export": [1],
     "no-console": [1],
-    "semi": [1],
-    "max-len": [0]
+    "operator-linebreak": 0
   },
   "plugins": ["react"],
   "env": {

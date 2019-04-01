@@ -10,23 +10,21 @@ module.exports = merge.smart(common, {
   entry: { app: [`webpack-hot-middleware/client`, `${AppDir}/index`] },
   devtool: `cheap-module-source-map`,
   mode: `development`,
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new FriendlyErrorsWebpackPlugin(),
-  ],
+  plugins: [new webpack.HotModuleReplacementPlugin(), new FriendlyErrorsWebpackPlugin()],
   module: {
-    rules: [{
-      enforce: `pre`,
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: `eslint-loader`,
-    },
-    {
-      enforce: `pre`,
-      test: /\.js$/,
-      exclude: /node_modules/,
-      loader: `stylelint-custom-processor-loader`,
-    },
-    ],
-  },
+    rules: [
+      {
+        enforce: `pre`,
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: `eslint-loader`
+      },
+      {
+        enforce: `pre`,
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: `stylelint-custom-processor-loader`
+      }
+    ]
+  }
 });

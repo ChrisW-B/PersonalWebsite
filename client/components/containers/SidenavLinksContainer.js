@@ -5,11 +5,21 @@ import SidenavLinks from '../presentational/Sidenav/SidenavLinks';
 const query = gql`
   {
     email
-    twitter { url }
-    github { url }
-    linkedin { url }
-    lastfm { url }
-    photoBlog { url }
+    twitter {
+      url
+    }
+    github {
+      url
+    }
+    linkedin {
+      url
+    }
+    lastfm {
+      url
+    }
+    photoBlog {
+      url
+    }
   }
 `;
 

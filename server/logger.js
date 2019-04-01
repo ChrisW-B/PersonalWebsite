@@ -10,17 +10,15 @@ export default new CreateLogger({
     twitter: 0,
     lastfm: 0,
     bg: 0,
-    github: 0,
+    github: 0
   },
   colors: {
     server: `green`,
     twitter: `blue`,
     lastfm: `yellow`,
     bg: `magenta`,
-    github: `red`,
+    github: `red`
   },
   colorize: true,
-  transports: [
-    new Console({ timestamp: true, prettyPrint: true, colorize: true }),
-  ],
+  transports: [new Console({ timestamp: true, prettyPrint: true, colorize: true })]
 });

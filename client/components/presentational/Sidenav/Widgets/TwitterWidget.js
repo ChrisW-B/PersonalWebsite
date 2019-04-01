@@ -2,29 +2,27 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { Transition, TransitionGroup } from 'react-transition-group';
 import { Link } from '../../../styles/Sidenav';
-import {
-  Widget, Description, Time, WidgetWrapper,
-} from '../../../styles/Widgets';
+import { Widget, Description, Time, WidgetWrapper } from '../../../styles/Widgets';
 
 class TwitterWidget extends Component {
   static propTypes = {
     data: PropTypes.shape({
       loading: PropTypes.bool,
-      twitter: PropTypes.object,
-    }),
+      twitter: PropTypes.object
+    })
   };
 
   static defaultProps = {
     data: {
       loading: true,
       twitter: {
-        tweets: [],
-      },
-    },
+        tweets: []
+      }
+    }
   };
 
   state = {
-    tweets: [],
+    tweets: []
   };
 
   componentWillReceiveProps({ data: { loading, twitter = { tweets: [null] } } }) {
@@ -36,7 +34,7 @@ class TwitterWidget extends Component {
     }
   }
 
-  updateTweets = (tweet) => {
+  updateTweets = tweet => {
     if (!tweet) this.setState(() => ({ tweets: [] }));
     else {
       this.setState(state => ({ tweets: [...state.tweets, tweet] }));

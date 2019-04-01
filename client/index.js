@@ -17,7 +17,7 @@ if (module.hot && process.env.NODE_ENV !== `production`) {
 
 const client = new ApolloClient({
   link: new HttpLink(),
-  cache,
+  cache
 });
 
 if (typeof window !== `undefined` && window.APP_DATA) {
@@ -29,5 +29,5 @@ renderFunc(
   <ApolloProvider client={client}>
     <Homepage />
   </ApolloProvider>,
-  document.getElementById(`root`),
+  document.getElementById(`root`)
 );

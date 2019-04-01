@@ -5,9 +5,12 @@ import { Experience } from '../presentational/Info/Sections';
 const query = gql`
   {
     jobs {
-      title company details
+      title
+      company
+      details
       when {
-        start end
+        start
+        end
       }
     }
   }

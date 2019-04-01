@@ -6,7 +6,12 @@ const query = gql`
   {
     github {
       commits(limit: 1) {
-        url author name time reltime message
+        url
+        author
+        name
+        time
+        reltime
+        message
       }
     }
   }
@@ -15,8 +20,8 @@ const query = gql`
 const queryOptions = {
   options: {
     pollInterval: 1000 * 60 * 10,
-    ssr: false,
-  },
+    ssr: false
+  }
 };
 
 export default graphql(query, queryOptions)(GithubWidget);

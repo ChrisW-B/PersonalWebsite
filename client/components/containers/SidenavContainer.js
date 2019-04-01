@@ -6,7 +6,9 @@ const query = gql`
   {
     photoBlog {
       photos(limit: 10) {
-        url title photo
+        url
+        title
+        photo
       }
     }
   }
@@ -18,10 +20,10 @@ const queryOptions = {
   displayName: `Sidenav-Query`,
   props: ({ data }) => {
     if (!data.photoBlog) return data;
-    const { photoBlog: { photos = [] } } = data;
-    return photos.length > 0
-      ? ({ photo: photos[Math.floor(Math.random() * (photos.length - 1))] })
-      : null;
-  },
+    const {
+      photoBlog: { photos = [] }
+    } = data;
+    return photos.length > 0 ? { photo: photos[Math.floor(Math.random() * (photos.length - 1))] } : null;
+  }
 };
 export default graphql(query, queryOptions)(Sidenav);

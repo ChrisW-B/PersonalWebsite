@@ -5,7 +5,8 @@ import { Technologies } from '../presentational/Info/Sections';
 const query = gql`
   {
     skills {
-      category types
+      category
+      types
     }
   }
 `;
