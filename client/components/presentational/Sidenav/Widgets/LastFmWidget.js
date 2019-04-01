@@ -7,26 +7,27 @@ class LastFmWidget extends Component {
   static propTypes = {
     data: PropTypes.shape({
       loading: PropTypes.bool,
-      lastfm: PropTypes.object,
-    }),
+      lastfm: PropTypes.object
+    })
   };
 
   static defaultProps = {
     data: {
       loading: true,
       lastfm: {
-        nowplaying: null,
-      },
-    },
+        nowplaying: null
+      }
+    }
   };
 
   state = {
-    songs: [],
+    songs: []
   };
 
-  componentWillReceiveProps = ({ data: { loading, lastfm = { nowplaying: null } } }) => (loading ? this.updateSong(false) : this.updateSong(lastfm.nowplaying));
+  componentWillReceiveProps = ({ data: { loading, lastfm = { nowplaying: null } } }) =>
+    loading ? this.updateSong(false) : this.updateSong(lastfm.nowplaying);
 
-  updateSong = (nowplaying) => {
+  updateSong = nowplaying => {
     if (!nowplaying) this.setState(state => ({ songs: [...state.songs, null] }));
     else this.setState(state => ({ songs: [...state.songs, `♫ ${nowplaying.title} by ${nowplaying.artist}`] }));
     this.setState(state => ({ songs: [state.songs[state.songs.length - 1]] }));

@@ -7,8 +7,8 @@ const Skills = new GraphQLObjectType({
   description: `Some Relevant Skills`,
   fields: () => ({
     category: { type: GraphQLString, description: `The skill category` },
-    types: { type: new GraphQLList(GraphQLString), description: `The skills` },
-  }),
+    types: { type: new GraphQLList(GraphQLString), description: `The skills` }
+  })
 });
 
 export default Skills;

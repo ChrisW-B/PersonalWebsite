@@ -8,8 +8,8 @@ const Song = new GraphQLObjectType({
   fields: () => ({
     title: { type: GraphQLString, description: `The Song Name` },
     nowplaying: { type: GraphQLBoolean, description: `Whether the song is currently playing` },
-    artist: { type: GraphQLString, description: `The Artist Name` },
-  }),
+    artist: { type: GraphQLString, description: `The Artist Name` }
+  })
 });
 
 export default Song;

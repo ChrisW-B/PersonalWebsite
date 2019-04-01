@@ -21,7 +21,7 @@ app.post(`/postrecieve`, ensureGithub, (req, res) => {
   logger.server(`updating from github! cwd: ${cwd}, file: ${updateFile}`);
   spawn(`sh`, [updateFile], {
     cwd,
-    env: Object.assign({}, process.env, { PATH: `${process.env.PATH} :/usr/local/bin` }),
+    env: Object.assign({}, process.env, { PATH: `${process.env.PATH} :/usr/local/bin` })
   });
   res.writeHead(200, { 'Content-Type': `text/plain` });
   res.end(`Thanks GitHub <3`);

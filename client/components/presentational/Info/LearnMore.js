@@ -7,9 +7,11 @@ const LearnMore = ({ data: { email = ``, resume = { pdf: `` } } }) => (
   <LearnMoreSection>
     <h3>Want to know more?</h3>
     <p>
-      <Link href={resume.pdf} title=''>Download my Resume</Link>
+      <Link href={resume.pdf} title=''>
+        Download my Resume
+      </Link>
       {` `}
-or
+      or
       {` `}
       <Link href={`mailto:${email}`}>Email Me!</Link>
     </p>

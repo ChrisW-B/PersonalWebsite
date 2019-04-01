@@ -23,7 +23,7 @@ const app = express();
 const apolloOptions = {
   ssr: true,
   cache: new InMemoryCache(),
-  link: new SchemaLink({ schema }),
+  link: new SchemaLink({ schema })
 };
 const client = new ApolloClient(apolloOptions);
 const renderPage = async (req, res) => {
@@ -43,9 +43,11 @@ const renderPage = async (req, res) => {
   } catch (e) {
     console.error(`RENDERING ERROR:`, e); // eslint-disable-line no-console
     res.status(500);
-    res.end(`An error occurred. Please submit an issue to [https://github.com/apollographql/GitHunt-React] with the following stack trace:\n\n${
-      e.stack
-    }`);
+    res.end(
+      `An error occurred. Please submit an issue to [https://github.com/apollographql/GitHunt-React] with the following stack trace:\n\n${
+        e.stack
+      }`
+    );
   }
 };
 

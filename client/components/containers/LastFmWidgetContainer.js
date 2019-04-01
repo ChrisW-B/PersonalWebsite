@@ -6,7 +6,8 @@ const query = gql`
   {
     lastfm {
       nowplaying {
-        title artist
+        title
+        artist
       }
     }
   }
@@ -15,8 +16,8 @@ const query = gql`
 const queryOptions = {
   options: {
     pollInterval: 1000 * 30,
-    ssr: false,
-  },
+    ssr: false
+  }
 };
 
 export default graphql(query, queryOptions)(LastFmWidget);

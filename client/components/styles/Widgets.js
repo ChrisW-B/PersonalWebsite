@@ -24,7 +24,7 @@ const SlideUpOut = keyframes`
 const materialAnimation = `cubic-bezier(0.4, 0, 0.2, 1)`;
 const transitionOut = `1000ms ${SlideUpOut} ${materialAnimation}`;
 const transitionIn = `1000ms ${SlideUpIn} ${materialAnimation}`;
-const animationStatus = (status) => {
+const animationStatus = status => {
   if (status === `entering`) return transitionIn;
   if (status === `exiting`) return transitionOut;
   return ``;
@@ -40,6 +40,7 @@ export const Widget = styled.div`
 `;
 
 export const WidgetWrapper = styled.div`
+  display: initial;
 
   @media only screen and (max-width: 900px) {
     display: none;

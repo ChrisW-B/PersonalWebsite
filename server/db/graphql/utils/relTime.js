@@ -1,4 +1,4 @@
-const relativeTimeDifference = (previous) => {
+const relativeTimeDifference = previous => {
   // based on http://stackoverflow.com/a/6109105/6465731
   const current = new Date();
   const msPerMinute = 60 * 1000;

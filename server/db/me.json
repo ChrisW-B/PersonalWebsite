@@ -13,47 +13,52 @@
     "pdf": "https://chriswbarry.com/files/ChrisBarry_Resume.pdf",
     "docx": "https://chriswbarry.com/files/ChrisBarry_Resume.docx"
   },
-  "projects": [{
-    "name": "Spotify Autoplaylists",
-    "description": "A website that will create and update playlists for your most played and recently added music",
-    "technologies": ["JavaScript", "React", "Redux", "CSS in JS/Emotion", "SCSS", "Webpack", "NodeJS", "Express", "GraphQL", "Mongoose"],
-    "github": "https://github.com/ChrisW-B/spotifyPlaylists",
-    "website": "https://spotifyapps.chriswbarry.com/"
-  }, {
-    "name": "@MagicGifsBot",
-    "description": "A little twitter bot that might respond with a gif!",
-    "technologies": ["Twitter API", "Giphy API", "Python"],
-    "github": "https://github.com/ChrisW-B/MagicGifs",
-    "website": "https://twitter.com/MagicGifsBot/"
-  }, {
-    "name": "Positive News",
-    "description": "An experiment in identifying positivity and sentiment in news",
-    "technologies": ["EJS", "Express", "NodeJS", "Sentiment Analysis", "News API"],
-    "github": "https://github.com/ChrisW-B/positive-news",
-    "website": "https://news.chriswbarry.com/"
-  }, {
-    "name": "Isabella Kapur Art & Illustration",
-    "description": "A simple portfolio site for a friend",
-    "technologies": ["KeystoneJS", "Handlebars", "NodeJS", "Express", "SCSS"],
-    "github": "https://github.com/ChrisW-B/izzy-website",
-    "website": "https://isabellakapur.com/"
-  }, {
-    "name": "This Site!",
-    "description": "Just a personal landing page. Check out [chrisb.me/graphql](https://chrisb.me/graphql) or try `curl chrisb.me` for some fun!",
-    "technologies": ["React", "Isomorphic React", "GraphQL", "Express", "CSS in JS/Emotion", "SCSS", "Webpack", "NodeJS"],
-    "github": "https://github.com/ChrisW-B/personalWebsite",
-    "website": "https://chriswbarry.com/"
-  }],
-  "jobs": [{
+  "projects": [
+    {
+      "name": "Spotify Autoplaylists",
+      "description": "A website that will create and update playlists for your most played and recently added music",
+      "technologies": ["JavaScript", "React", "Redux", "CSS in JS/Emotion", "SCSS", "Webpack", "NodeJS", "Express", "GraphQL", "Mongoose"],
+      "github": "https://github.com/ChrisW-B/spotifyPlaylists",
+      "website": "https://spotifyapps.chriswbarry.com/"
+    },
+    {
+      "name": "@MagicGifsBot",
+      "description": "A little twitter bot that might respond with a gif!",
+      "technologies": ["Twitter API", "Giphy API", "Python"],
+      "github": "https://github.com/ChrisW-B/MagicGifs",
+      "website": "https://twitter.com/MagicGifsBot/"
+    },
+    {
+      "name": "Positive News",
+      "description": "An experiment in identifying positivity and sentiment in news",
+      "technologies": ["EJS", "Express", "NodeJS", "Sentiment Analysis", "News API"],
+      "github": "https://github.com/ChrisW-B/positive-news",
+      "website": "https://news.chriswbarry.com/"
+    },
+    {
+      "name": "Isabella Kapur Art & Illustration",
+      "description": "A simple portfolio site for a friend",
+      "technologies": ["KeystoneJS", "Handlebars", "NodeJS", "Express", "SCSS"],
+      "github": "https://github.com/ChrisW-B/izzy-website",
+      "website": "https://isabellakapur.com/"
+    },
+    {
+      "name": "This Site!",
+      "description": "Just a personal landing page. Check out [chrisb.me/graphql](https://chrisb.me/graphql) or try `curl chrisb.me` for some fun!",
+      "technologies": ["React", "Isomorphic React", "GraphQL", "Express", "CSS in JS/Emotion", "SCSS", "Webpack", "NodeJS"],
+      "github": "https://github.com/ChrisW-B/personalWebsite",
+      "website": "https://chriswbarry.com/"
+    }
+  ],
+  "jobs": [
+    {
       "company": "Great Jones",
       "title": "Software Engineer",
       "when": {
         "start": "December 2017",
         "end": "-"
       },
-      "details": [
-        "Worked in a team to create a new frontend for a portal in Typescript with React"
-      ]
+      "details": ["Worked in a team to create a new frontend for a portal in Typescript with React"]
     },
     {
       "company": "Kip",
@@ -66,7 +71,8 @@
         "Worked in a small team to create a team commerce focused bot",
         "Created a new React Webapp from the ground up, including interacting with an API with Redux and Styling with SASS/SCSS"
       ]
-    }, {
+    },
+    {
       "company": "Chubb Insurance",
       "title": "Digital Business Intern",
       "when": {
@@ -78,7 +84,8 @@
         "Created complex modular JavaScript grids including session storage, searching, and sorting",
         "Worked in Claims IT to upgrade applications from VB6 to VB.Net, as well as Task Tray apps to aid in switching servers, parsing SQL"
       ]
-    }, {
+    },
+    {
       "company": "The Brown and White",
       "title": "Sports Visuals Editor",
       "when": {
@@ -91,7 +98,8 @@
         "Processed Photos for print and web",
         "Aided work on Wordpress Site, including setting up A/B testing with Parsely"
       ]
-    }, {
+    },
+    {
       "company": "Lehigh University",
       "title": "Computer Science Lab Assistant/Grader",
       "when": {
@@ -105,20 +113,26 @@
       ]
     }
   ],
-  "skills": [{
-    "category": "Programming",
-    "types": ["JavaScript", "MongoDB", "Node", "HTML5", "CSS3", "C/C++", "C#", "Python", "MATLAB/Octave"]
-  }, {
-    "category": "Libraries",
-    "types": ["React", "Redux", "Mongoose", "Express", "Sass", "GraphQL", "jQuery", "Styled-Components/Emotion", "Webpack", "Typescript"]
-  }, {
-    "category": "Visuals",
-    "types": ["Adobe Photoshop", "Bridge", "Lightroom", "Illustrator"]
-  }, {
-    "category": "Social",
-    "types": ["Wordpress", "Tumblr", "Twitter", "Facebook", "Slack"]
-  }, {
-    "category": "Platforms",
-    "types": ["OS X", "Linux", "Windows", "Unix", "Bash/Fish Shell", "Microsoft Office", "Windows Phone"]
-  }]
+  "skills": [
+    {
+      "category": "Programming",
+      "types": ["JavaScript", "MongoDB", "Node", "HTML5", "CSS3", "C/C++", "C#", "Python", "MATLAB/Octave"]
+    },
+    {
+      "category": "Libraries",
+      "types": ["React", "Redux", "Mongoose", "Express", "Sass", "GraphQL", "jQuery", "Styled-Components/Emotion", "Webpack", "Typescript"]
+    },
+    {
+      "category": "Visuals",
+      "types": ["Adobe Photoshop", "Bridge", "Lightroom", "Illustrator"]
+    },
+    {
+      "category": "Social",
+      "types": ["Wordpress", "Tumblr", "Twitter", "Facebook", "Slack"]
+    },
+    {
+      "category": "Platforms",
+      "types": ["OS X", "Linux", "Windows", "Unix", "Bash/Fish Shell", "Microsoft Office", "Windows Phone"]
+    }
+  ]
 }

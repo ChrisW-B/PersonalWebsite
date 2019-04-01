@@ -1,25 +1,19 @@
 import { PropTypes } from 'prop-types';
 import React from 'react';
-import {
-  Skill, SkillList, SkillType, SkillName, SectionContentDIV,
-} from '../../../styles/Technologies';
+import { Skill, SkillList, SkillType, SkillName, SectionContentDIV } from '../../../styles/Technologies';
 
 const Technologies = ({ data: { skills = [] } }) => (
   <SectionContentDIV>
-    {
-      skills.map(({ category, types }) => (
-        <SkillType key={category}>
-          <SkillName>{category}</SkillName>
-          <SkillList>
-            {
-              types.map(type => (
-                <Skill key={type}>{type}</Skill>
-              ))
-            }
-          </SkillList>
-        </SkillType>
-      ))
-    }
+    {skills.map(({ category, types }) => (
+      <SkillType key={category}>
+        <SkillName>{category}</SkillName>
+        <SkillList>
+          {types.map(type => (
+            <Skill key={type}>{type}</Skill>
+          ))}
+        </SkillList>
+      </SkillType>
+    ))}
   </SectionContentDIV>
 );
 

@@ -5,7 +5,11 @@ import { Projects } from '../presentational/Info/Sections';
 const query = gql`
   {
     projects {
-      name description github website technologies
+      name
+      description
+      github
+      website
+      technologies
     }
   }
 `;
