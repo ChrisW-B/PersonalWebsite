@@ -1,10 +1,11 @@
 // react/components/Projects/Projects.js
 import { PropTypes } from 'prop-types';
+import React from 'react';
 import { IoLogoGithub } from 'react-icons/io';
 import Markdown from 'react-remarkable';
-import React from 'react';
+
 import { Link } from '../../../styles/Info';
-import { ProjectsSection, ProjectItem, ProjectTitle, ProjectGithub } from '../../../styles/Projects';
+import { ProjectGithub, ProjectItem, ProjectTitle, ProjectsSection } from '../../../styles/Projects';
 
 const Projects = ({ data: { projects = [] } }) => (
   <ProjectsSection>

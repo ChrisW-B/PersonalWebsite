@@ -1,8 +1,9 @@
 // react/components/Experience/Experience.js
 import { PropTypes } from 'prop-types';
-import Markdown from 'react-remarkable';
 import React from 'react';
-import { ExperienceSection, ExperienceItem, Company, JobInfo, JobDetailList, JobDetail } from '../../../styles/Experience';
+import Markdown from 'react-remarkable';
+
+import { Company, ExperienceItem, ExperienceSection, JobDetail, JobDetailList, JobInfo } from '../../../styles/Experience';
 
 const Experience = ({ data: { jobs = [] } }) => (
   <ExperienceSection>

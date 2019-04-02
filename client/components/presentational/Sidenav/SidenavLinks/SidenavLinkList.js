@@ -1,6 +1,7 @@
 import React from 'react';
-import { IoMdMail, IoLogoLinkedin, IoMdCamera, IoLogoGithub, IoIosRadio, IoLogoTwitter } from 'react-icons/io';
-import { TwitterWidgetContainer, GithubWidgetContainer, LastFmWidgetContainer } from '../../../containers';
+import { IoIosRadio, IoLogoGithub, IoLogoLinkedin, IoLogoTwitter, IoMdCamera, IoMdMail } from 'react-icons/io';
+
+import { GithubWidgetContainer, LastFmWidgetContainer, TwitterWidgetContainer } from '../../../containers';
 
 const links = ({
   email = ``,

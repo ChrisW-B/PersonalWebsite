@@ -1,11 +1,12 @@
 // react/index.js
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { hydrate as emotionHydrate } from 'emotion';
-import { ApolloProvider } from 'react-apollo';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloClient } from 'apollo-client';
 import { HttpLink } from 'apollo-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory';
+import { hydrate as emotionHydrate } from 'emotion';
+import React from 'react';
+import { ApolloProvider } from 'react-apollo';
+import ReactDOM from 'react-dom';
+
 import Homepage from './components';
 
 const renderFunc = process.env.NODE_ENV === `production` ? ReactDOM.hydrate : ReactDOM.render;

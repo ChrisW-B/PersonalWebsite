@@ -1,7 +1,8 @@
-import { GraphQLString, GraphQLList, GraphQLObjectType, GraphQLBoolean } from 'graphql/type';
-import { github, job, project, skill, resume, lastfm, twitter, photoBlog } from '.';
-import { limit } from '../args';
+import { GraphQLBoolean, GraphQLList, GraphQLObjectType, GraphQLString } from 'graphql/type';
+
 import info from '../../me.json';
+import { limit } from '../args';
+import { github, job, lastfm, photoBlog, project, resume, skill, twitter } from '.';
 
 const getFirstN = (max = 0, array) => (max ? array.slice(0, max) : array);
 

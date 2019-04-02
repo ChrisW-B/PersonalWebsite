@@ -1,5 +1,6 @@
-import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
+
 import LastFmWidget from '../presentational/Sidenav/Widgets/LastFmWidget';
 
 const query = gql`

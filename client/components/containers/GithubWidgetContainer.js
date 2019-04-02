@@ -1,5 +1,6 @@
-import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
+
 import GithubWidget from '../presentational/Sidenav/Widgets/GithubWidget';
 
 const query = gql`

@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
-import { TransitionGroup, Transition } from 'react-transition-group';
+import React, { Component } from 'react';
+import { Transition, TransitionGroup } from 'react-transition-group';
+
 import { Link } from '../../../styles/Sidenav';
-import { Widget, Description, Time, WidgetWrapper } from '../../../styles/Widgets';
+import { Description, Time, Widget, WidgetWrapper } from '../../../styles/Widgets';
 
 class GithubWidget extends Component {
   static propTypes = {

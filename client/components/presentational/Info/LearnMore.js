@@ -1,6 +1,7 @@
 // react/components/Intro/Intro.js
 import { PropTypes } from 'prop-types';
 import React from 'react';
+
 import { LearnMoreSection, Link } from '../../styles/Info';
 
 const LearnMore = ({ data: { email = ``, resume = { pdf: `` } } }) => (
