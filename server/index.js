@@ -1,20 +1,21 @@
 // server/index.js
 
-import { ApolloClient } from 'apollo-client';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { ApolloClient } from 'apollo-client';
 import { SchemaLink } from 'apollo-link-schema';
-import { ApolloProvider, getDataFromTree } from 'react-apollo';
-import { extractCritical } from 'emotion-server';
-import { renderToString } from 'react-dom/server';
 import env from 'dotenv';
+import { extractCritical } from 'emotion-server';
 import express from 'express';
 import graphqlHTTP from 'express-graphql';
 import React from 'react';
-import Homepage from './components/shared';
-import logger from './logger';
-import github from './github';
-import schema from './db/graphql';
+import { ApolloProvider, getDataFromTree } from 'react-apollo';
+import { server } from 'react-dom';
+
 import Html from './components/html';
+import Homepage from './components/shared';
+import schema from './db/graphql';
+import github from './github';
+import logger from './logger';
 import setup from './setup';
 
 env.config();
@@ -34,11 +35,11 @@ const renderPage = async (req, res) => {
   );
   try {
     await getDataFromTree(site);
-    const content = extractCritical(renderToString(site));
+    const content = extractCritical(server.renderToString(site));
     const initialState = client.cache.extract();
     const html = <Html content={content} state={initialState} />;
     res.status(200);
-    res.send(`<!doctype html>\n${renderToString(html)}`);
+    res.send(`<!doctype html>\n${server.renderToString(html)}`);
     res.end();
   } catch (e) {
     console.error(`RENDERING ERROR:`, e); // eslint-disable-line no-console

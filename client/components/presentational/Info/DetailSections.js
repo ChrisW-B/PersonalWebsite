@@ -1,7 +1,8 @@
 // client/components/presentational/Info/DetailSections.js
 import React from 'react';
-import { DetailList, DetailListItem, SectionTitle } from '../../styles/DetailSections';
+
 import { ExperienceContainer, InterestsContainer, ProjectsContainer, TechnologiesContainer } from '../../containers';
+import { DetailList, DetailListItem, SectionTitle } from '../../styles/DetailSections';
 
 const DetailSectionList = [
   { title: `Interests`, content: <InterestsContainer /> },

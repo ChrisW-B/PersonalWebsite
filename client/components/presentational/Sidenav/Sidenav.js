@@ -1,6 +1,7 @@
 // react/components/Sidenav/Sidenav.js
-import React from 'react';
 import { PropTypes } from 'prop-types';
+import React from 'react';
+
 import { SidenavLinksContainer } from '../../containers';
 import { Name, PhotoDescription, SidenavContainer, SidenavItems } from '../../styles/Sidenav';
 

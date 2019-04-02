@@ -1,6 +1,7 @@
 import { PropTypes } from 'prop-types';
 import React from 'react';
-import { SidenavItem, Icon, Link } from '../../styles/Sidenav';
+
+import { Icon, Link, SidenavItem } from '../../styles/Sidenav';
 
 const SidenavLink = ({ link, title, widget = null, icon, emphasis }) => (
   <SidenavItem emphasis={emphasis}>

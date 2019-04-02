@@ -1,5 +1,6 @@
-import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import { graphql } from 'react-apollo';
+
 import TwitterWidget from '../presentational/Sidenav/Widgets/TwitterWidget';
 
 const query = gql`
