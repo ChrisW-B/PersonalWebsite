@@ -2,7 +2,7 @@ import { graphql } from 'react-apollo';
 
 import gql from 'graphql-tag';
 
-import { Technologies } from '@components/Info/Sections';
+import { Technologies } from '@components/Content/Sections';
 
 const query = gql`
   {

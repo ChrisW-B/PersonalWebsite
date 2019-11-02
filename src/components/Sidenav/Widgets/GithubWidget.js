@@ -1,5 +1,4 @@
 import React from 'react';
-import { PropTypes } from 'prop-types';
 import { useQuery } from 'react-apollo';
 import { Transition, TransitionGroup } from 'react-transition-group';
 
@@ -10,7 +9,7 @@ import { Description, Time, Widget, WidgetWrapper } from '@styles/Widgets';
 import { useRotateInEntry } from './hooks';
 
 const GithubWidget = () => {
-  const { data } = useQuery(githubQuery, { pollInterval: 1000 * 10, ssr: false });
+  const { data } = useQuery(githubQuery, { pollInterval: 1000 * 60 * 10, ssr: false });
   const newCommits = data && data.github && data.github.commits;
 
   const [commits, rotateInItem] = useRotateInEntry();
@@ -40,10 +39,5 @@ const GithubWidget = () => {
     </TransitionGroup>
   );
 };
-
-GithubWidget.propTypes = {
-  data: PropTypes.shape({ loading: PropTypes.bool, github: PropTypes.object }),
-};
-GithubWidget.defaultProps = { data: { loading: true, github: { commits: [] } } };
 
 export default GithubWidget;

@@ -2,43 +2,51 @@ import { css, keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
 
 const SlideUpIn = keyframes`
-  0% {
+  from {
+    height: 0.1px;
     opacity: 0;
     transform: translate3d(0, 100%, 0);
   }
-  100% {
+  to {
     transform: translate3d(0, 0, 0);
   }
 `;
 
 const SlideUpOut = keyframes`
-  0% {
+  from {
     transform: translate3d(0, 0, 0);
   }
-  100% {
+  to {
+    height: 0.1px;
     opacity: 0;
     transform: translate3d(0, -100%, 0);
   }
 `;
 
-const materialAnimation = `cubic-bezier(0.4, 0, 0.2, 1)`;
-const transitionOut = `1000ms ${SlideUpOut} ${materialAnimation}`;
-const transitionIn = `1000ms ${SlideUpIn} ${materialAnimation}`;
 const animationStatus = status => {
-  if (status === `entering`) return transitionIn;
-  if (status === `exiting`) return transitionOut;
-  return ``;
+  switch (status) {
+    case 'exiting':
+      return css`
+        animation: 1000ms ${SlideUpOut} cubic-bezier(0.4, 0, 0.2, 1);
+      `;
+    case 'entering':
+      return css`
+        animation: 1000ms ${SlideUpIn} cubic-bezier(0.4, 0, 0.2, 1);
+      `;
+    case 'exited':
+      return css`
+        display: none;
+      `;
+    default:
+      return '';
+  }
 };
-const heightStatus = status => (status === `exiting` ? 0 : `auto`);
 
 /* stylelint-disable declaration-colon-newline-after */
 export const Widget = styled.div`
-  animation: ${status =>
-    css`
-      ${animationStatus(status)}
-    `};
   color: #fff;
-  height: ${({ status }) => heightStatus(status)};
+  height: auto;
+  ${properties => animationStatus(properties.status)};
   padding-left: 1rem;
   text-align: left;
 `;

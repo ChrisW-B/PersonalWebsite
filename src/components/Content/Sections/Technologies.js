@@ -18,7 +18,7 @@ const Technologies = ({ data: { skills = [] } }) => (
   </SectionContentDIV>
 );
 
-Technologies.propTypes = { data: PropTypes.shape({ projects: PropTypes.array }) };
-Technologies.defaultProps = { data: { projects: [] } };
+Technologies.propTypes = { data: PropTypes.shape({ skills: PropTypes.array }) };
+Technologies.defaultProps = { data: { skills: [] } };
 
 export default Technologies;

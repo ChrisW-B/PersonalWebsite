@@ -21,8 +21,8 @@
     "build": "webpack -p --config ./webpack.production.js",
     "dev": "env NODE_ENV=development webpack-dev-server --config ./webpack.development.js",
     "lint:css": "stylelint './react/components/**/*style.js'",
-    "lint:js": "eslint ./ --ignore-pattern 'public/**/*.js'",
-    "lint:js:fix": "eslint --fix ./ --ignore-pattern 'public/**/*.js'",
+    "lint:js": "eslint \"./**/*.{js,jsx}\" --ignore-pattern 'public/**/*.js'",
+    "lint:js:fix": "eslint --fix \"./**/*.{js,jsx}\" --ignore-pattern 'public/**/*.js'",
     "prettier": "prettier \"./**/*.{js,jsx,gql,html,yml,json}\" --write",
     "prettier:check": "prettier './**/*.{js,jsx,json}' -c",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -34,12 +34,12 @@
     }
   },
   "lint-staged": {
-    "./src/**/*.json": [
-      "npm run prettier:check"
-    ],
-    "./src/**/*.{gql,html,yml,js}": [
+    "./src/**/*.js{x,}": [
       "npm run prettier:check",
       "npm run lint:js"
+    ],
+    "./src/**/*.{gql,html,yml,json}": [
+      "npm run prettier:check"
     ]
   },
   "dependencies": {

@@ -1,0 +1,9 @@
+query tweetsQuery {
+  twitter {
+    tweets {
+      message
+      reltime
+      url
+    }
+  }
+}

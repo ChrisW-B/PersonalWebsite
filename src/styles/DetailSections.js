@@ -2,14 +2,16 @@ import styled from '@emotion/styled';
 
 import { InfoSubSection } from './Info';
 
-export const DetailList = InfoSubSection.withComponent(`ul`);
-
+export const DetailList = styled(InfoSubSection.withComponent('ul'))`
+  list-style: none;
+`;
 export const DetailListItem = styled.li`
   border-top: 0.1rem dashed rgba(148, 174, 229, 0.25);
   display: grid;
   grid-gap: 1rem 0;
   grid-template-columns: 15rem auto;
   grid-template-rows: 1fr;
+  list-style: none;
   padding-top: 1rem;
 
   code {

@@ -1,4 +1,4 @@
-// client/componen@components/Info/DetailSections.js
+// client/componen@components/Content/DetailSections.js
 import React from 'react';
 
 import {

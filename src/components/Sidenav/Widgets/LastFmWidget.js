@@ -1,58 +1,40 @@
-import React, { Component } from 'react';
-import { PropTypes } from 'prop-types';
+import React from 'react';
+import { useQuery } from 'react-apollo';
 import { Transition, TransitionGroup } from 'react-transition-group';
 
+import nowPlayingQuery from '@queries/nowPlaying.gql';
 import { Description, Widget, WidgetWrapper } from '@styles/Widgets';
 
-class LastFmWidget extends Component {
-  static propTypes = {
-    data: PropTypes.shape({
-      loading: PropTypes.bool,
-      lastfm: PropTypes.object,
-    }),
-  };
+import { useRotateInEntry } from './hooks';
 
-  static defaultProps = {
-    data: {
-      loading: true,
-      lastfm: {
-        nowplaying: null,
-      },
-    },
-  };
+const LastFmWidget = () => {
+  const { data } = useQuery(nowPlayingQuery, { pollInterval: 1000 * 30, ssr: false });
+  const nowPlaying = data && data.lastfm && data.lastfm.nowplaying;
 
-  state = {
-    songs: [],
-  };
+  const [songs, rotateInSong] = useRotateInEntry();
 
-  componentWillReceiveProps = ({ data: { loading, lastfm = { nowplaying: null } } }) =>
-    loading ? this.updateSong(false) : this.updateSong(lastfm.nowplaying);
+  React.useEffect(() => {
+    if (nowPlaying) {
+      const newSongs = [`♫ ${nowPlaying.title} by ${nowPlaying.artist}`];
+      rotateInSong(newSongs);
+    } else {
+      rotateInSong([null]);
+    }
+  }, [nowPlaying, rotateInSong]);
 
-  updateSong = nowplaying => {
-    if (!nowplaying) this.setState(state => ({ songs: [...state.songs, null] }));
-    else
-      this.setState(state => ({
-        songs: [...state.songs, `♫ ${nowplaying.title} by ${nowplaying.artist}`],
-      }));
-    this.setState(state => ({ songs: [state.songs[state.songs.length - 1]] }));
-  };
-
-  render = () => {
-    const { songs = [] } = this.state;
-    return (
-      <TransitionGroup component={WidgetWrapper}>
-        {songs.map(song => (
-          <Transition key={song} timeout={1000}>
-            {status => (
-              <Widget status={status}>
-                <Description>{song}</Description>
-              </Widget>
-            )}
-          </Transition>
-        ))}
-      </TransitionGroup>
-    );
-  };
-}
+  return (
+    <TransitionGroup component={WidgetWrapper}>
+      {songs.map(song => (
+        <Transition key={song} timeout={1000}>
+          {status => (
+            <Widget status={status}>
+              <Description>{song}</Description>
+            </Widget>
+          )}
+        </Transition>
+      ))}
+    </TransitionGroup>
+  );
+};
 
 export default LastFmWidget;

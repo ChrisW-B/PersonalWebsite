@@ -1,0 +1,8 @@
+query nowPlaying {
+  lastfm {
+    nowplaying {
+      title
+      artist
+    }
+  }
+}
