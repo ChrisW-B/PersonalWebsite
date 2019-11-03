@@ -10,6 +10,16 @@
   targetPort = 8000 # Port of target app server
   publish = "dist" # If you use a _redirect file, provide the path to your static content folder
 
+[context.production.environment]
+  ENVIRONMENT = "production"
+  NODE_ENV = "production"
+  NODE_VERSION = "lts"
+
+[context.deploy-preview]
+  ENVIRONMENT = "production"
+  NODE_ENV = "production"
+  NODE_VERSION = "lts"
+
 [[redirects]]
   from = "/"
   to = "/index.html"
