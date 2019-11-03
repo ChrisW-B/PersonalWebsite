@@ -8,8 +8,7 @@ export const DetailListItem = styled.li`
   border-top: 0.1rem dashed rgba(148, 174, 229, 0.25);
   display: grid;
   grid-gap: 1rem 0;
-  grid-template-columns: 15rem auto;
-  grid-template-rows: 1fr;
+  grid-template: auto / 15rem auto;
   padding-top: 1rem;
 
   code {
@@ -25,7 +24,7 @@ export const DetailListItem = styled.li`
 
     &::before,
     &::after {
-      content: '\00a0';
+      content: ''; /* TODO: add back nbsp; */
       letter-spacing: -0.2rem;
     }
   }
