@@ -19,7 +19,8 @@
   "main": "server/index.js",
   "scripts": {
     "build": "webpack -p --config ./webpack.production.js",
-    "dev": "env NODE_ENV=development webpack-dev-server --config ./webpack.development.js",
+    "devserver": "env NODE_ENV=development webpack-dev-server --config ./webpack.development.js",
+    "start": "netlify dev",
     "lint:css": "stylelint './react/components/**/*style.js'",
     "lint:js": "eslint \"./**/*.{js,jsx}\" --ignore-pattern 'public/**/*.js'",
     "lint:js:fix": "eslint --fix \"./**/*.{js,jsx}\" --ignore-pattern 'public/**/*.js'",
@@ -97,6 +98,7 @@
     "import-sort-parser-typescript": "^6.0.0",
     "import-sort-style-react": "^5.1.0",
     "lint-staged": "^9.4.2",
+    "netlify-cli": "^2.20.2",
     "prettier": "^1.18.2",
     "prettier-eslint": "^9.0.0",
     "prettier-plugin-import-sort": "0.0.3",
