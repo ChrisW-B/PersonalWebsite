@@ -1,8 +1,8 @@
-// react/components/Experience/Experience.js
 import React from 'react';
-import { PropTypes } from 'prop-types';
+import { useQuery } from 'react-apollo';
 import Markdown from 'react-remarkable';
 
+import jobExperienceQuery from '@queries/jobExperience.gql';
 import {
   Company,
   ExperienceItem,
@@ -12,29 +12,31 @@ import {
   JobInfo,
 } from '@styles/Experience';
 
-const Experience = ({ data: { jobs = [] } }) => (
-  <ExperienceSection>
-    {jobs.map(({ company, title, when, details }) => (
-      <ExperienceItem key={company}>
-        <Company>{company}</Company>
+const Experience = () => {
+  const { data, loading, error } = useQuery(jobExperienceQuery);
+  if (loading || error) return null;
 
-        <JobInfo>
-          <strong>{`${title}, `}</strong>
-          <i>{`${when.start}-${when.end}`}</i>
-        </JobInfo>
-        <JobDetailList>
-          {details.map(text => (
-            <JobDetail key={text}>
-              <Markdown source={text} />
-            </JobDetail>
-          ))}
-        </JobDetailList>
-      </ExperienceItem>
-    ))}
-  </ExperienceSection>
-);
+  return (
+    <ExperienceSection>
+      {data.jobs.map(({ company, title, when, details }) => (
+        <ExperienceItem key={company}>
+          <Company>{company}</Company>
 
-Experience.propTypes = { data: PropTypes.shape({ jobs: PropTypes.array }) };
-Experience.defaultProps = { data: { jobs: [] } };
+          <JobInfo>
+            <strong>{`${title}, `}</strong>
+            <i>{`${when.start}-${when.end}`}</i>
+          </JobInfo>
+          <JobDetailList>
+            {details.map(text => (
+              <JobDetail key={text}>
+                <Markdown source={text} />
+              </JobDetail>
+            ))}
+          </JobDetailList>
+        </ExperienceItem>
+      ))}
+    </ExperienceSection>
+  );
+};
 
 export default Experience;

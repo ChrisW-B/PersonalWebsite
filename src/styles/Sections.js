@@ -17,5 +17,5 @@ export const SectionContentP = styled.p`
   }
 `;
 
-export const SectionContentUL = SectionContentP.withComponent(`ul`);
-export const SectionContentDIV = SectionContentP.withComponent(`div`);
+export const SectionContentUL = SectionContentP.withComponent('ul');
+export const SectionContentDIV = SectionContentP.withComponent('div');

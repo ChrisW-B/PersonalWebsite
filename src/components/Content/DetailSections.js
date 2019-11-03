@@ -1,28 +1,29 @@
-// client/componen@components/Content/DetailSections.js
 import React from 'react';
 
-import {
-  ExperienceContainer,
-  InterestsContainer,
-  ProjectsContainer,
-  TechnologiesContainer,
-} from '@components/containers';
+import Experience from '@components/Content/Sections/Experience';
+import Interests from '@components/Content/Sections/Interests';
+import Projects from '@components/Content/Sections/Projects';
+import Technologies from '@components/Content/Sections/Technologies';
 import { DetailList, DetailListItem, SectionTitle } from '@styles/DetailSections';
 
-const DetailSectionList = [
-  { title: `Interests`, content: <InterestsContainer /> },
-  { title: `Projects`, content: <ProjectsContainer /> },
-  { title: `Tech`, content: <TechnologiesContainer /> },
-  { title: `Experience`, content: <ExperienceContainer /> },
-];
 const DetailSections = () => (
   <DetailList>
-    {DetailSectionList.map(({ title, content }) => (
-      <DetailListItem key={title}>
-        <SectionTitle>{title}</SectionTitle>
-        {content}
-      </DetailListItem>
-    ))}
+    <DetailListItem key='interests'>
+      <SectionTitle>Interests</SectionTitle>
+      <Interests />
+    </DetailListItem>
+    <DetailListItem key='Projects'>
+      <SectionTitle>Projects</SectionTitle>
+      <Projects />
+    </DetailListItem>
+    <DetailListItem key='Tec'>
+      <SectionTitle>Tech</SectionTitle>
+      <Technologies />
+    </DetailListItem>
+    <DetailListItem key='Experience'>
+      <SectionTitle>Experience</SectionTitle>
+      <Experience />
+    </DetailListItem>
   </DetailList>
 );
 

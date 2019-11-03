@@ -1,5 +1,5 @@
 import React from 'react';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { Link, SidenavItem } from '@styles/Sidenav';
 
@@ -15,7 +15,7 @@ const SidenavLink = ({ link, title, widget: Widget = null, emphasis }) => (
 SidenavLink.propTypes = {
   link: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  widget: PropTypes.element,
+  widget: PropTypes.func,
   emphasis: PropTypes.bool,
 };
 

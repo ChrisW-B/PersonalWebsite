@@ -1,42 +1,40 @@
 import React from 'react';
 import { useQuery } from 'react-apollo';
-import { Transition, TransitionGroup } from 'react-transition-group';
 
 import githubQuery from '@queries/github.gql';
 import { Link } from '@styles/Sidenav';
-import { Description, Time, Widget, WidgetWrapper } from '@styles/Widgets';
+import { Description, Time } from '@styles/Widgets';
 
+import AnimatedWidget from './AnimatedWidget';
 import { useRotateInEntry } from './hooks';
 
 const GithubWidget = () => {
-  const { data } = useQuery(githubQuery, { pollInterval: 1000 * 60 * 10, ssr: false });
-  const newCommits = data && data.github && data.github.commits;
+  const { data = { github: { commits: [] } }, loading, error } = useQuery(githubQuery, {
+    pollInterval: 1000 * 60 * 10,
+    ssr: false,
+  });
 
+  const newCommits = !loading && !error ? data.github.commits : [];
   const [commits, rotateInItem] = useRotateInEntry();
 
   React.useEffect(() => {
     rotateInItem(newCommits);
   }, [newCommits, rotateInItem]);
 
+  if (loading || error) return null;
   return (
-    <TransitionGroup component={WidgetWrapper}>
-      {commits &&
-        commits.map(({ url = `//github.com/ChrisW-B/`, name = ``, message = ``, reltime = `` }) => (
-          <Transition key={message} timeout={1000}>
-            {status => (
-              <Widget status={status}>
-                {/* eeep! */}
-                <Description dangerouslySetInnerHTML={{ __html: message }} />
-                <Time>
-                  <Link href={url} title={name}>
-                    {`${reltime} in ${name}`}
-                  </Link>
-                </Time>
-              </Widget>
-            )}
-          </Transition>
-        ))}
-    </TransitionGroup>
+    <AnimatedWidget items={commits}>
+      {({ message, url, name, reltime }) => (
+        <>
+          <Description dangerouslySetInnerHTML={{ __html: message }} />
+          <Time>
+            <Link href={url} title={name}>
+              {`${reltime} in ${name}`}
+            </Link>
+          </Time>
+        </>
+      )}
+    </AnimatedWidget>
   );
 };
 

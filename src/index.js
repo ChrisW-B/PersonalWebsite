@@ -1,4 +1,3 @@
-// react/index.js
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import ReactDOM from 'react-dom';
@@ -8,14 +7,14 @@ import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { hydrate as emotionHydrate } from 'emotion';
 
-import Homepage from './components';
+import Homepage from '@components/Homepage';
 
-const renderFunc = process.env.NODE_ENV === `production` ? ReactDOM.hydrate : ReactDOM.render;
+const renderFunc = process.env.NODE_ENV === 'production' ? ReactDOM.hydrate : ReactDOM.render;
 const cache = window.APOLLO_STATE
   ? new InMemoryCache().restore(window.APOLLO_STATE)
   : new InMemoryCache();
 
-if (module.hot && process.env.NODE_ENV !== `production`) {
+if (module.hot && process.env.NODE_ENV !== 'production') {
   module.hot.accept();
 }
 
@@ -24,16 +23,16 @@ const client = new ApolloClient({
   cache,
 });
 
-if (typeof window !== `undefined` && window.APP_DATA) {
+if (typeof window !== 'undefined' && window.APP_DATA) {
   const { ids } = window.APP_DATA;
   emotionHydrate(ids);
 }
 
 renderFunc(
-  <React.StrictMode>
+  <>
     <ApolloProvider client={client}>
       <Homepage />
     </ApolloProvider>
-  </React.StrictMode>,
-  document.querySelector(`#root`),
+  </>,
+  document.querySelector('#root'),
 );

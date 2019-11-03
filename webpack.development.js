@@ -1,7 +1,8 @@
+const path = require('path');
+
 const merge = require('webpack-merge');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-const path = require('path');
 
 const commonConfig = require('./webpack.common.js');
 

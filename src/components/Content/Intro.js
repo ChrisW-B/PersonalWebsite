@@ -1,18 +1,21 @@
-import React from 'react';
 // react/components/Intro/Intro.js
-import { PropTypes } from 'prop-types';
+import React from 'react';
+import { useQuery } from 'react-apollo';
 import Markdown from 'react-remarkable';
 
+import bioQuery from '@queries/bioQuery.gql';
 import { HiMessage, InfoSubSection } from '@styles/Info';
 
-const Intro = ({ data: { bio } }) => (
-  <InfoSubSection>
-    <HiMessage>Hi!</HiMessage>
-    <Markdown source={bio} />
-  </InfoSubSection>
-);
-
-Intro.propTypes = { data: PropTypes.shape({ bio: PropTypes.string }) };
-Intro.defaultProps = { data: { body: `` } };
+const Intro = () => {
+  const { data = { bio: null }, loading, error } = useQuery(bioQuery);
+  if (loading || error) return null;
+  const { bio } = data;
+  return (
+    <InfoSubSection>
+      <HiMessage>Hi!</HiMessage>
+      <Markdown source={bio} />
+    </InfoSubSection>
+  );
+};
 
 export default Intro;

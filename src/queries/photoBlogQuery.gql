@@ -1,0 +1,9 @@
+query photoBlogQuery {
+  photoBlog {
+    photos(limit: 10) {
+      url
+      title
+      photo
+    }
+  }
+}

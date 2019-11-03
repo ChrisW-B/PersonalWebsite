@@ -1,11 +1,15 @@
 import React from 'react';
-// react/components/Interests/Interests.js
-import { PropTypes } from 'prop-types';
+import { useQuery } from 'react-apollo';
 import Markdown from 'react-remarkable';
-// import { SectionContentP } from '@styles/Sections';
 
-const Interests = ({ data: { interests } }) => <Markdown>{interests}</Markdown>;
-Interests.propTypes = { data: PropTypes.shape({ interests: PropTypes.string }) };
-Interests.defaultProps = { data: { interests: `` } };
+import interestsQuery from '@queries/interestsQuery';
+
+const Interests = () => {
+  const { data, loading, error } = useQuery(interestsQuery);
+  if (loading || error) return null;
+  const { interests } = data;
+
+  return <Markdown>{interests}</Markdown>;
+};
 
 export default Interests;
