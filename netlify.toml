@@ -15,7 +15,7 @@
   NODE_ENV = "production"
   NODE_VERSION = "lts"
 
-[context.deploy-preview]
+[context.deploy-preview.environment]
   ENVIRONMENT = "production"
   NODE_ENV = "production"
   NODE_VERSION = "lts"
