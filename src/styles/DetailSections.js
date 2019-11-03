@@ -24,7 +24,7 @@ export const DetailListItem = styled.li`
 
     &::before,
     &::after {
-      content: ''; /* TODO: add back nbsp; */
+      content: '\\00a0';
       letter-spacing: -0.2rem;
     }
   }

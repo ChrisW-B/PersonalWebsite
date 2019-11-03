@@ -12,7 +12,7 @@ const LearnMore = () => {
     <LearnMoreSection>
       <h3>Want to know more?</h3>
       <p>
-        <Link href={resume.pdf} title=''>
+        <Link href={resume.pdf} title='Resume'>
           Download my Resume
         </Link>
         or
