@@ -59,3 +59,8 @@ typings/
 
 # build files
 public/build/
+
+# Local Netlify folder
+.netlify
+dist/
+build/
