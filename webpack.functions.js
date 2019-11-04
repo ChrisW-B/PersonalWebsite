@@ -30,7 +30,7 @@ const config = {
         test: /\.(ico|png|jpg|gif|eot|ttf|woff|woff2)(\?.+)?$/,
         include: [SRC_PATH],
         loader: 'file-loader',
-        options: { name: '[path][name].[hash].[ext]' },
+        options: { name: '[name].[ext]' },
       },
     ],
   },

@@ -26,20 +26,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const routerBasePath =
   process.env.NODE_ENV === 'dev' ? `/${functionName}` : `/.netlify/functions/${functionName}/`;
 
+const client = new ApolloClient({
+  ssrMode: true,
+  link: createHttpLink({
+    uri: 'https://api.chriswb.dev/',
+    fetch,
+  }),
+  cache: new InMemoryCache(),
+});
+const App = (
+  <ApolloProvider client={client}>
+    <Homepage />
+  </ApolloProvider>
+);
+
 app.use(async (_, response) => {
-  const client = new ApolloClient({
-    ssrMode: true,
-    link: createHttpLink({
-      uri: 'https://api.chriswb.dev/',
-      fetch,
-    }),
-    cache: new InMemoryCache(),
-  });
-  const App = (
-    <ApolloProvider client={client}>
-      <Homepage />
-    </ApolloProvider>
-  );
   await getDataFromTree(App);
   const [head, tail] = htmlTemplate.split('<div id="root"></div>');
   response.write(`${head}`);
