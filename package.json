@@ -18,7 +18,7 @@
   "author": "Chris Barry <me@chrisb.xyz>",
   "main": "server/index.js",
   "scripts": {
-    "build:netlify": "webpack -p --config ./webpack.production.js && netlify-lambda build ./src -c webpack.functions.js",
+    "build": "webpack -p --config ./webpack.production.js && netlify-lambda build ./src -c webpack.functions.js",
     "build:react": "webpack -p --config ./webpack.production.js",
     "devserver": "env NODE_ENV=development webpack-dev-server --config ./webpack.development.js",
     "lint:css": "stylelint './**/styles/*.js'",
