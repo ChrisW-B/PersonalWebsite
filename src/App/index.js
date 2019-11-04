@@ -6,7 +6,6 @@ import ReactDOM from 'react-dom';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
-import { hydrate as emotionHydrate } from 'emotion';
 
 import Homepage from '@components/Homepage';
 
@@ -24,11 +23,6 @@ const client = new ApolloClient({
   link: createHttpLink({ uri: 'https://api.chriswb.dev' }),
   cache,
 });
-
-if (typeof window !== 'undefined' && window.APP_DATA) {
-  const { ids } = window.APP_DATA;
-  emotionHydrate(ids);
-}
 
 renderFunc(
   <ApolloProvider client={client}>
