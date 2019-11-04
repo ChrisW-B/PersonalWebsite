@@ -11,7 +11,6 @@ import { useRotateInEntry } from './hooks';
 const TwitterWidget = () => {
   const { data = { twitter: { tweets: [] } }, loading, error } = useQuery(tweetsQuery, {
     pollInterval: 1000 * 60 * 5,
-    ssr: false,
   });
   const newTweets = !loading && !error ? data.twitter.tweets : [];
 

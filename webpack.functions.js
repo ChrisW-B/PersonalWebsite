@@ -1,6 +1,4 @@
 const path = require('path');
-
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const SRC_PATH = path.resolve(__dirname, 'src', 'App');
@@ -8,7 +6,8 @@ const NODE_MODULES_PATH = path.resolve(__dirname, 'node_modules');
 const HTML_SRC = path.resolve(SRC_PATH, 'index.html');
 
 const config = {
-  entry: { app: [SRC_PATH] },
+  mode: 'development',
+  devtool: 'cheap-module-source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.gql', '.graphql'],
     modules: [SRC_PATH, NODE_MODULES_PATH],
@@ -19,19 +18,11 @@ const config = {
       '@public': path.resolve(SRC_PATH, 'public'),
     },
   },
-  // webpack 4 optimization
-  // 'all' means both async and initial chunks (whether they're async or classically imported)
-  optimization: {
-    runtimeChunk: 'single',
-    splitChunks: { chunks: 'all', maxInitialRequests: Infinity },
-  },
   module: {
     rules: [
       {
-        test: /\.(j)sx?$/,
-        exclude: /(\.test.ts$|node_modules)/,
-        include: SRC_PATH,
-        loader: 'babel-loader',
+        test: /\.html$/,
+        loader: 'raw-loader',
       },
       { test: /\.(graphql|gql)$/, use: 'graphql-mini-transforms/webpack', exclude: /node_modules/ },
       { test: /\.svg$/, include: [SRC_PATH], loader: 'svg-react-loader' },
@@ -44,7 +35,6 @@ const config = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: HTML_SRC,
       inject: 'body',

@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import ReactDOM from 'react-dom';
@@ -10,8 +11,9 @@ import { hydrate as emotionHydrate } from 'emotion';
 import Homepage from '@components/Homepage';
 
 const renderFunc = process.env.NODE_ENV === 'production' ? ReactDOM.hydrate : ReactDOM.render;
-const cache = window.APOLLO_STATE
-  ? new InMemoryCache().restore(window.APOLLO_STATE)
+
+const cache = window.__APOLLO_STATE__
+  ? new InMemoryCache().restore(window.__APOLLO_STATE__)
   : new InMemoryCache();
 
 if (module.hot && process.env.NODE_ENV !== 'production') {
@@ -29,10 +31,8 @@ if (typeof window !== 'undefined' && window.APP_DATA) {
 }
 
 renderFunc(
-  <>
-    <ApolloProvider client={client}>
-      <Homepage />
-    </ApolloProvider>
-  </>,
+  <ApolloProvider client={client}>
+    <Homepage />
+  </ApolloProvider>,
   document.querySelector('#root'),
 );

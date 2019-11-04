@@ -10,7 +10,6 @@ import { useRotateInEntry } from './hooks';
 const LastFmWidget = () => {
   const { data = { lastfm: { nowPlaying: null } }, loading, error } = useQuery(nowPlayingQuery, {
     pollInterval: 1000 * 30,
-    ssr: false,
   });
   const nowPlaying = !loading && !error ? data.lastfm.nowplaying : null;
   const [songs, rotateInSong] = useRotateInEntry();

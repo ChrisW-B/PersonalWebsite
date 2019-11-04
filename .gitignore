@@ -63,3 +63,4 @@ public/build/
 # Local Netlify folder
 .netlify
 dist/
+build/

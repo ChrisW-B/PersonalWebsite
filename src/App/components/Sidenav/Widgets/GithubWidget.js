@@ -11,7 +11,6 @@ import { useRotateInEntry } from './hooks';
 const GithubWidget = () => {
   const { data = { github: { commits: [] } }, loading, error } = useQuery(githubQuery, {
     pollInterval: 1000 * 60 * 10,
-    ssr: false,
   });
 
   const newCommits = !loading && !error ? data.github.commits : [];

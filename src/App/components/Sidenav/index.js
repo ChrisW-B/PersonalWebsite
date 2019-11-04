@@ -7,7 +7,7 @@ import { Name, PhotoDescription, SidenavContainer, SidenavItems } from '@styles/
 
 const Sidenav = () => {
   const [photoData, setPhoto] = useState(null);
-  const { data, loading, error } = useQuery(photoBlogQuery, { ssr: false });
+  const { data, loading, error } = useQuery(photoBlogQuery);
   const photos = data && data.photoBlog && data.photoBlog.photos;
 
   useEffect(() => {
@@ -16,9 +16,9 @@ const Sidenav = () => {
     }
   }, [photos]);
 
-  if (loading || error || !photoData) return null;
+  if (loading || error) return null;
 
-  const { photo, title, url } = photoData;
+  const { photo = '', title = '', url = '' } = photoData || {};
 
   return (
     <SidenavContainer bg={photo}>

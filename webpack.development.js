@@ -6,9 +6,8 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 const commonConfig = require('./webpack.common.js');
 
-const SRC_PATH = path.resolve(__dirname, 'src');
+const SRC_PATH = path.resolve(__dirname, 'src', 'App');
 const BUILD_PATH = path.join(__dirname, './build');
-const NODE_MODULES_PATH = path.resolve(__dirname, 'node_modules');
 const PORT = process.env.PORT || 8000;
 
 const config = merge(commonConfig, {
@@ -29,9 +28,7 @@ const config = merge(commonConfig, {
     stats: 'errors-only',
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.gql', '.graphql'],
-    modules: [SRC_PATH, NODE_MODULES_PATH],
-    alias: { 'core-js/es6': 'core-js/es', 'react-dom': '@hot-loader/react-dom' },
+    alias: { 'react-dom': '@hot-loader/react-dom' },
   },
   module: {
     rules: [

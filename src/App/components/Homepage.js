@@ -6,6 +6,9 @@ import CSSResets from '@components/cssResets';
 import Sidenav from '@components/Sidenav';
 import HomepageDiv from '@styles/Homepage';
 
+// const Content = React.lazy(() => import(/* webpackChunkName: "Content" */ '@components/Content'));
+// const Sidenav = React.lazy(() => import(/* webpackChunkName: "Sidenav" */ '@components/Sidenav'));
+
 const Homepage = () => (
   <>
     <CSSResets />

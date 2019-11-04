@@ -1,6 +1,6 @@
 query tweetsQuery {
   twitter {
-    tweets {
+    tweets(limit: 1) {
       message
       reltime
       url

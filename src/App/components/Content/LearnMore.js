@@ -15,7 +15,7 @@ const LearnMore = () => {
         <Link href={resume.pdf} title='Resume'>
           Download my Resume
         </Link>
-        or
+        &nbsp;or&nbsp;
         <Link href={`mailto:${email}`}>Email Me!</Link>
       </p>
     </LearnMoreSection>
