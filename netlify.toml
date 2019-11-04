@@ -1,7 +1,7 @@
 
 [build]
   functions = "build"
-  build = "npm run build"
+  build = "npm run build:netlify"
 
 [dev]
   targetPort = 8000
