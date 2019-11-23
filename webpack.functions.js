@@ -21,10 +21,16 @@ const config = {
   module: {
     rules: [
       {
+        test: /\.(j|t)sx?$/,
+        exclude: /(\.test.ts$|node_modules)/,
+        include: SRC_PATH,
+        loader: 'babel-loader',
+      },
+      {
         test: /\.html$/,
         loader: 'raw-loader',
       },
-      { test: /\.(graphql|gql)$/, use: 'graphql-mini-transforms/webpack', exclude: /node_modules/ },
+      { test: /\.(graphql|gql)$/, use: 'graphql-tag/loader', exclude: /node_modules/ },
       { test: /\.svg$/, include: [SRC_PATH], loader: 'svg-react-loader' },
       {
         test: /\.(ico|png|jpg|gif|eot|ttf|woff|woff2)(\?.+)?$/,

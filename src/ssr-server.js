@@ -12,7 +12,7 @@ import express from 'express';
 import fetch from 'node-fetch';
 import serverless from 'serverless-http';
 
-import Homepage from '@components/Homepage';
+import { Homepage } from '@components/Homepage';
 
 import htmlTemplate from '../dist/index.html';
 
