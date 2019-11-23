@@ -46,10 +46,7 @@ app.use(async (_, response) => {
   response.write(`${head}`);
   response.write('<div id="root">');
   const stream = ReactDOMServer.renderToNodeStream(App);
-  stream.pipe(
-    response,
-    { end: false },
-  );
+  stream.pipe(response, { end: false });
   stream.on('end', () => {
     const initialState = client.cache.extract();
     response.write('</div>');

@@ -1,0 +1,27 @@
+overwrite: true
+schema: https://api.chriswb.dev/
+documents: ./src/**/*.gql
+generates:
+  ./schema.graphql:
+    plugins:
+      - schema-ast
+
+  ./src/App/schema/dataModel/personalApi.ts:
+    plugins:
+      - typescript
+
+  ./src/App:
+    preset: near-operation-file
+    presetConfig:
+      baseTypesPath: schema/dataModel/personalApi.ts
+      extension: .generated.ts
+    plugins:
+      - typescript-operations
+      - typescript-react-apollo
+    config:
+      withHooks: true
+      withComponent: false
+      withHOC: false
+      documentMode: external
+      importDocumentNodeExternallyFrom: 'near-operation-file'
+      addDocBlocks:

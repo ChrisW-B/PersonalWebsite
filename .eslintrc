@@ -1,21 +1,31 @@
 {
-  "plugins": ["unicorn", "react", "react-hooks"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "@typescript-eslint/tslint",
+    "csstyper",
+    "graphql",
+    "react-hooks",
+    "react-hooks",
+    "react",
+    "unicorn"
+  ],
   "extends": [
     "airbnb",
-    "plugin:react/recommended",
     "eslint:recommended",
-    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
-    "plugin:unicorn/recommended"
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:unicorn/recommended",
+    "prettier/@typescript-eslint"
   ],
   "parserOptions": {
+    "ecmaFeatures": { "jsx": true, "classes": true },
     "ecmaVersion": 2019,
     "sourceType": "module",
-    "ecmaFeatures": {
-      "classes": true,
-      "jsx": true
-    }
+    "extraFileExtensions": [".gql", ".html"]
   },
   "env": {
     "jest": true,
@@ -41,11 +51,20 @@
     "unicorn/filename-case": [0],
     "strict": 0,
     "react/jsx-filename-extension": [0],
-    "import/prefer-default-export": [1],
     "operator-linebreak": 0,
     "react/jsx-props-no-spreading": [0],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
-    "quotes": ["warn", "single"]
+    "import/prefer-default-export": [0],
+    "import/no-default-export": [2],
+    "quotes": ["warn", "single"],
+    "@typescript-eslint/camelcase": 0,
+    "@typescript-eslint/explicit-function-return-type": 0,
+    "@typescript-eslint/interface-name-prefix": 1,
+    "@typescript-eslint/no-angle-bracket-type-assertion": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/no-object-literal-type-assertion": 0,
+    "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
+    "@typescript-eslint/no-var-requires": 0
   }
 }

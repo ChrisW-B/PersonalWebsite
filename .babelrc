@@ -1,5 +1,5 @@
 {
-  "presets": [["@babel/env", { "targets": { "node": "current" } }], "@babel/react"],
+  "presets": [["@babel/env", { "targets": { "node": "current" } }], "@babel/react", "@babel/preset-typescript"],
   "plugins": [
     "emotion",
     "@babel/plugin-proposal-class-properties",
@@ -8,7 +8,6 @@
   ],
   "env": {
     "production": {
-      "plugins": [["transform-react-remove-prop-types", { "mode": "remove", "removeImport": true }]],
       "presets": [
         ["@babel/env", { "targets": { "node": "current" }, "forceAllTransforms": true, "useBuiltIns": "usage" }],
         "@babel/react"

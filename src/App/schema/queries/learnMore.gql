@@ -1,0 +1,6 @@
+query learnMore {
+  email
+  resume {
+    pdf
+  }
+}

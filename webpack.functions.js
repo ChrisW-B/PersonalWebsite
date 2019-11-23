@@ -12,10 +12,10 @@ const config = {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.gql', '.graphql'],
     modules: [SRC_PATH, NODE_MODULES_PATH],
     alias: {
+      '@app': path.resolve(SRC_PATH),
       '@components': path.resolve(SRC_PATH, 'components'),
-      '@queries': path.resolve(SRC_PATH, 'queries'),
+      '@schema': path.resolve(SRC_PATH, 'schema'),
       '@styles': path.resolve(SRC_PATH, 'styles'),
-      '@public': path.resolve(SRC_PATH, 'public'),
     },
   },
   module: {

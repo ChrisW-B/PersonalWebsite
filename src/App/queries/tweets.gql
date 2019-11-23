@@ -1,9 +1,0 @@
-query tweetsQuery {
-  twitter {
-    tweets(limit: 1) {
-      message
-      reltime
-      url
-    }
-  }
-}

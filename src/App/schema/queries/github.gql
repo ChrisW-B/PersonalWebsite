@@ -1,0 +1,12 @@
+query github {
+  github {
+    commits(limit: 1) {
+      url
+      author
+      name
+      time
+      reltime
+      message
+    }
+  }
+}

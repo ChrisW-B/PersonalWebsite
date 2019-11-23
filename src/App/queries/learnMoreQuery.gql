@@ -1,6 +1,0 @@
-query learnMoreQuery {
-  email
-  resume {
-    pdf
-  }
-}

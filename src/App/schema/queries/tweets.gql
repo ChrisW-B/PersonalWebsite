@@ -1,0 +1,9 @@
+query tweets {
+  twitter {
+    tweets(limit: 1) {
+      message
+      reltime
+      url
+    }
+  }
+}

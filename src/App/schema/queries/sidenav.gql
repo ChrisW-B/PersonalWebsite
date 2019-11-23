@@ -1,0 +1,18 @@
+query sidenav {
+  email
+  twitter {
+    url
+  }
+  github {
+    url
+  }
+  linkedin {
+    url
+  }
+  lastfm {
+    url
+  }
+  photoBlog {
+    url
+  }
+}
