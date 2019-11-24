@@ -12,7 +12,7 @@ export const Description = () => {
         source={loading ? '' : data.bio}
         renderers={{ paragraph: ({ children }) => <p style={{ color: 'red' }}>{children}</p> }}
       />
-      <div style={{ height: '100vh' }} />
+      <div style={{ height: '10000px' }} />
     </>
   );
 };

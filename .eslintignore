@@ -2,3 +2,4 @@ dist
 build
 .netlify
 *.generated.ts
+schema/dataModel

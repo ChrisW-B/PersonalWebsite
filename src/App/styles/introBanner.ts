@@ -14,36 +14,47 @@ const animateImageCss = css`
   animation: ${animateImage} 5s cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
-export const BannerWrapper = styled.div`
+export const BannerWrapper = styled.div<{ mini: boolean }>`
   align-items: center;
-  display: flex;
+  display: ${({ mini }) => (mini ? 'block' : 'flex')};
   flex-flow: column nowrap;
-  height: 100vh;
+  height: ${({ mini }) => (mini ? '5rem' : '100%')};
   justify-content: center;
+  left: 0;
+  position: ${({ mini }) => (mini ? 'absolute' : 'relative')};
+  right: 0;
+  top: 0;
 `;
 
-export const StickyWrapper = styled.div`
+export const StickyWrapper = styled.div<{ mini: boolean }>`
   align-items: center;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
+  left: 0;
   margin-top: -20vh;
   position: sticky;
+  right: 0;
   top: 0;
   width: 100%;
 `;
 
-export const Banner = styled.div<{ bgImage: string; isLoading: boolean; mini: boolean }>`
+export const Banner = styled.div<{
+  bgImage: string;
+  isLoading: boolean;
+  mini: boolean;
+  fixed: boolean;
+}>`
   align-items: stretch;
+  background-color: ${({ mini }) => (mini ? '#FFF' : 'transparent')};
   display: flex;
   flex-flow: row nowrap;
   height: ${({ mini }) => (mini ? 5 : 20)}rem;
   justify-content: stretch;
-  position: ${({ mini }) => (mini ? 'absolute' : 'relative')};
+  position: ${({ mini, fixed }) => (fixed ? 'fixed' : mini ? 'absolute' : 'relative')};
   top: 0;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   width: ${({ mini }) => (mini ? 100 : 75)}vw;
-  background-color: ${({ mini }) => (mini ? '#FFF' : 'transparent')};
 
   &::after {
     background: ${({ isLoading, bgImage, mini }) =>

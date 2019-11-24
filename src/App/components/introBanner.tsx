@@ -7,10 +7,15 @@ import { Banner, BannerWrapper, CenterText, Name, Now, StickyWrapper } from '@st
 
 import { LastFMWidget } from './widgets';
 
-export const IntroBanner = () => {
-  const [inViewReference, inView] = useInView();
+interface OwnProps {
+  mini: boolean;
+}
+const THRESHOLD = 0.01;
+export const IntroBanner: React.FC<OwnProps> = ({ mini = false }) => {
+  const [scrolledRef, allowScroll] = useInView({ threshold: THRESHOLD });
   const [bgImage, setBgImage] = useState<Photo>(null);
   const { loading, data } = usePhotoBlogQuery();
+
   const photos = data?.photoBlog?.photos;
 
   useEffect(() => {
@@ -21,22 +26,22 @@ export const IntroBanner = () => {
   }, [photos, loading]);
 
   return (
-    <BannerWrapper>
-      <StickyWrapper>
-        <Banner isLoading={loading} bgImage={bgImage?.photo} mini={!inView}>
-          <CenterText mini={!inView && !loading}>
-            <Name mini={!inView && !loading} title='Chris Barry'>
+    <BannerWrapper mini={!loading && mini}>
+      <div style={{ top: 'calc(50% - 23.25rem)', position: 'absolute' }} ref={scrolledRef} />
+      <StickyWrapper mini={!loading && mini}>
+        <Banner isLoading={loading} bgImage={bgImage?.photo} mini={mini} fixed={!allowScroll}>
+          <CenterText mini={mini && !loading}>
+            <Name mini={mini && !loading} title='Chris Barry'>
               Chris Barry
             </Name>
           </CenterText>
         </Banner>
-        {inView && (
+        {!mini && (
           <Now>
             <LastFMWidget />
           </Now>
         )}
       </StickyWrapper>
-      <div ref={inViewReference} />
     </BannerWrapper>
   );
 };

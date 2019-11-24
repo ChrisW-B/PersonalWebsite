@@ -45,6 +45,11 @@
     "./src/**/*.{j,t}s{x,}": [
       "prettier -c",
       "eslint"
+    ],
+    "./src/App/styles/*.{j,t}s{x,}": [
+      "prettier -c",
+      "eslint",
+      "stylelint"
     ]
   },
   "dependencies": {
