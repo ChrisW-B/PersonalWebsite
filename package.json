@@ -22,12 +22,12 @@
     "build": "webpack -p --config ./webpack.production.js && netlify-lambda build ./src -c webpack.functions.js",
     "build:react": "webpack -p --config ./webpack.production.js",
     "generate": "graphql-codegen",
-    "lint:css": "stylelint './**/styles/*.js'",
+    "lint:css": "stylelint './**/styles/*.{j,t}s{x,}'",
     "lint:js": "eslint \"./**/*.{js,jsx}\" --ignore-pattern 'public/**/*.js'",
     "lint:js:fix": "eslint --fix \"./**/*.{js,jsx}\" --ignore-pattern 'public/**/*.js'",
     "predev": "npm run generate",
-    "prettier": "prettier \"./**/*.{js,jsx,gql,html,yml,json}\" --write",
-    "prettier:check": "prettier './**/*.{js,jsx,json}' -c",
+    "prettier": "prettier \"./**/*.{ts,tsx,js,jsx,gql,html,yml,json}\" --write",
+    "prettier:check": "prettier './**/*.{ts,tsx,js,jsx,json}' -c",
     "prestart": "npm run generate",
     "start": "env NODE_ENV=development webpack-dev-server --config ./webpack.development.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -39,16 +39,17 @@
     }
   },
   "lint-staged": {
-    "./src/**/*.js{x,}": [
+    "./**/*.{gql,html,yml,json}": [
+      "prettier -c"
+    ],
+    "./src/**/*.{j,t}s{x,}": [
       "prettier -c",
       "eslint"
-    ],
-    "./src/**/*.{gql,html,yml,json}": [
-      "prettier -c"
     ]
   },
   "dependencies": {
     "@apollo/react-common": "^3.1.3",
+    "@apollo/react-hooks": "^3.1.3",
     "@apollo/react-ssr": "^3.1.3",
     "@babel/preset-typescript": "^7.7.4",
     "@emotion/core": "^10.0.22",
@@ -66,6 +67,7 @@
     "graphql": "^14.5.8",
     "graphql-tag": "^2.10.1",
     "html-webpack-plugin": "^3.2.0",
+    "intersection-observer": "^0.7.0",
     "netlify-lambda": "^1.6.3",
     "node-fetch": "^2.6.0",
     "path": "^0.12.7",
@@ -73,6 +75,8 @@
     "react-apollo": "^3.1.3",
     "react-dom": "^16.12.0",
     "react-hot-loader": "^4.12.18",
+    "react-intersection-observer": "^8.25.1",
+    "react-markdown": "^4.2.2",
     "serverless-http": "^2.3.0",
     "stylelint-webpack-plugin": "^1.1.0",
     "webpack-cdn-plugin": "^3.2.0",
@@ -83,6 +87,7 @@
     "@babel/core": "^7.7.4",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/plugin-proposal-export-default-from": "^7.7.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.7.4",
     "@babel/preset-env": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
     "@commitlint/cli": "^8.2.0",
@@ -129,10 +134,18 @@
     "prettier-plugin-packagejson": "^2.0.2",
     "raw-loader": "^3.1.0",
     "stylelint": "^11.1.1",
+    "stylelint-a11y": "^1.2.2",
+    "stylelint-config-css-modules": "^2.1.0",
+    "stylelint-config-prettier": "^6.0.0",
+    "stylelint-config-recommended": "^3.0.0",
+    "stylelint-config-sass-guidelines": "^6.1.0",
     "stylelint-config-standard": "^19.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-csstree-validator": "^1.6.1",
     "stylelint-custom-processor-loader": "^0.6.0",
     "stylelint-no-unsupported-browser-features": "^3.0.2",
     "stylelint-order": "^3.1.1",
+    "stylelint-prettier": "^1.1.1",
     "stylelint-processor-styled-components": "^1.8.0",
     "svg-react-loader": "^0.4.6",
     "tslint": "^5.20.1",

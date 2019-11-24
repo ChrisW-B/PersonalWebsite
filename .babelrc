@@ -1,15 +1,23 @@
 {
-  "presets": [["@babel/env", { "targets": { "node": "current" } }], "@babel/react", "@babel/preset-typescript"],
+  "presets": [
+    ["@babel/env", { "targets": { "node": "current" } }],
+    "@babel/react",
+    "@babel/preset-typescript"
+  ],
   "plugins": [
     "emotion",
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-proposal-export-default-from",
+    "@babel/plugin-proposal-optional-chaining",
     "react-hot-loader/babel"
   ],
   "env": {
     "production": {
       "presets": [
-        ["@babel/env", { "targets": { "node": "current" }, "forceAllTransforms": true, "useBuiltIns": "usage" }],
+        [
+          "@babel/env",
+          { "targets": { "node": "current" }, "forceAllTransforms": true, "useBuiltIns": "usage" }
+        ],
         "@babel/react"
       ]
     }

@@ -1,0 +1,1 @@
+export { LastFMWidget } from './lastfm';

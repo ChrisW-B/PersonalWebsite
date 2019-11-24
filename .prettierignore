@@ -1,3 +1,4 @@
 dist
 .netlify
 build
+*.generated.ts

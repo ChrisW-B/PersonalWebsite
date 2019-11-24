@@ -65,6 +65,8 @@
     "@typescript-eslint/no-explicit-any": 0,
     "@typescript-eslint/no-object-literal-type-assertion": 0,
     "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
-    "@typescript-eslint/no-var-requires": 0
+    "@typescript-eslint/no-var-requires": 0,
+    "react/display-name": 0,
+    "react/prop-types": 0
   }
 }

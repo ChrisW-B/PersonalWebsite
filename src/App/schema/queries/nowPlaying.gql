@@ -1,6 +1,7 @@
 query nowPlaying {
   lastfm {
     nowplaying {
+      nowplaying
       title
       artist
     }

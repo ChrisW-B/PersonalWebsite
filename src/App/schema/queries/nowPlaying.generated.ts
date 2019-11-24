@@ -13,7 +13,7 @@ export type NowPlayingQuery = (
     { __typename?: 'LastFM' }
     & { nowplaying: Types.Maybe<(
       { __typename?: 'Song' }
-      & Pick<Types.Song, 'title' | 'artist'>
+      & Pick<Types.Song, 'nowplaying' | 'title' | 'artist'>
     )> }
   )> }
 );
