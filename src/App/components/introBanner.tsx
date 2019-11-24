@@ -1,18 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
+import { Links } from '@components/links';
 import { Photo } from '@schema/dataModel/personalApi';
 import { usePhotoBlogQuery } from '@schema/queries/photoBlog.generated';
-import { Banner, BannerWrapper, CenterText, Name, Now, StickyWrapper } from '@styles/introBanner';
+import {
+  Banner,
+  BannerPositioner,
+  BannerWrapper,
+  CenterText,
+  Details,
+  Name,
+  Now,
+  ScrollMonitor,
+} from '@styles/introBanner';
 
 import { LastFMWidget } from './widgets';
 
 interface OwnProps {
   mini: boolean;
 }
-const THRESHOLD = 0.01;
+
 export const IntroBanner: React.FC<OwnProps> = ({ mini = false }) => {
-  const [scrolledRef, allowScroll] = useInView({ threshold: THRESHOLD });
+  const [scrolledRef, allowScroll] = useInView();
   const [bgImage, setBgImage] = useState<Photo>(null);
   const { loading, data } = usePhotoBlogQuery();
 
@@ -27,21 +37,24 @@ export const IntroBanner: React.FC<OwnProps> = ({ mini = false }) => {
 
   return (
     <BannerWrapper mini={!loading && mini}>
-      <div style={{ top: 'calc(50% - 23.25rem)', position: 'absolute' }} ref={scrolledRef} />
-      <StickyWrapper mini={!loading && mini}>
-        <Banner isLoading={loading} bgImage={bgImage?.photo} mini={mini} fixed={!allowScroll}>
+      <ScrollMonitor ref={scrolledRef} />
+      <BannerPositioner mini={mini}>
+        <Banner bgImage={bgImage?.photo} mini={mini} fixed={!loading && !allowScroll}>
           <CenterText mini={mini && !loading}>
             <Name mini={mini && !loading} title='Chris Barry'>
               Chris Barry
             </Name>
+            <Details mini={mini}>
+              <Links mini={mini} />
+              {!mini && (
+                <Now>
+                  <LastFMWidget />
+                </Now>
+              )}
+            </Details>
           </CenterText>
         </Banner>
-        {!mini && (
-          <Now>
-            <LastFMWidget />
-          </Now>
-        )}
-      </StickyWrapper>
+      </BannerPositioner>
     </BannerWrapper>
   );
 };

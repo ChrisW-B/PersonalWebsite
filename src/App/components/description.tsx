@@ -10,7 +10,7 @@ export const Description = () => {
     <>
       <Markdown
         source={loading ? '' : data.bio}
-        renderers={{ paragraph: ({ children }) => <p style={{ color: 'red' }}>{children}</p> }}
+        renderers={{ paragraph: ({ children }) => <p style={{ color: 'black' }}>{children}</p> }}
       />
       <div style={{ height: '10000px' }} />
     </>

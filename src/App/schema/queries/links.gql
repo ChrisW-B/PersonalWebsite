@@ -1,5 +1,4 @@
-query sidenav {
-  email
+query links {
   twitter {
     url
   }
