@@ -1,7 +1,7 @@
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import { Description } from '@components/description';
+import { Description } from '@components/details';
 import { IntroBanner } from '@components/introBanner';
 import { PageGrid } from '@styles/homepage.ts';
 

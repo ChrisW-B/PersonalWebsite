@@ -6,14 +6,14 @@ generates:
     plugins:
       - schema-ast
 
-  ./src/App/schema/dataModel/personalApi.ts:
+  ./src/App/schema/dataModel/personalApi.generated.ts:
     plugins:
       - typescript
 
   ./src/App:
     preset: near-operation-file
     presetConfig:
-      baseTypesPath: schema/dataModel/personalApi.ts
+      baseTypesPath: schema/dataModel/personalApi.generated.ts
       extension: .generated.ts
     plugins:
       - typescript-operations

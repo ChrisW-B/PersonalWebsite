@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { AutoSeperator, animateImageCss, transparentBg } from './css';
+import { AutoSeperator, animateImageCss, transparentBg, whiteBg } from './css';
 
 export const BannerWrapper = styled.div<{ mini: boolean }>`
   align-items: center;
@@ -9,6 +9,7 @@ export const BannerWrapper = styled.div<{ mini: boolean }>`
   height: ${({ mini }) => (mini ? '5rem' : '100%')};
   justify-content: center;
   left: 0;
+  overflow: hidden;
   position: ${({ mini }) => (mini ? 'absolute' : 'relative')};
   right: 0;
   top: 0;
@@ -45,8 +46,8 @@ export const Banner = styled.div<{ bgImage: string; mini: boolean; fixed: boolea
   z-index: 0;
 
   &::after {
-    background: ${({ bgImage, mini }) =>
-      bgImage === '' || mini ? 'transparent' : `url(${bgImage}) center / cover no-repeat scroll`};
+    background: ${({ bgImage }) =>
+      bgImage === '' ? 'transparent' : `url(${bgImage}) center / cover no-repeat scroll`};
     bottom: 0;
     content: '';
     left: 0;
@@ -56,16 +57,32 @@ export const Banner = styled.div<{ bgImage: string; mini: boolean; fixed: boolea
     z-index: -1;
     ${({ bgImage }) => bgImage && animateImageCss}
   }
+
+  @media screen and (max-width: 84rem) {
+    width: 100vw;
+  }
 `;
 
 export const CenterText = styled.div<{ mini: boolean }>`
-  ${transparentBg};
+  ${({ mini }) => (mini ? whiteBg : transparentBg)};
   align-items: center;
   display: flex;
   flex: 1;
   flex-flow: column nowrap;
   position: relative;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+
+  &::before {
+    ${({ mini }) => mini && transparentBg}
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+  }
 `;
 
 export const Name = styled.h1<{ mini: boolean }>`
@@ -76,6 +93,15 @@ export const Name = styled.h1<{ mini: boolean }>`
   position: relative;
   top: ${({ mini }) => (mini ? 2.3 : 9)}rem;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media screen and (max-width: 76.8rem) {
+    font-size: ${({ mini }) => (mini ? 2.8 : 8)}rem;
+    top: ${({ mini }) => (mini ? 2.3 : 12.5)}rem;
+  }
+  @media screen and (max-width: 45rem) {
+    font-size: ${({ mini }) => (mini ? 2.8 : 6)}rem;
+    top: ${({ mini }) => (mini ? 2.3 : 14.25)}rem;
+  }
 `;
 
 export const Now = styled.div`
@@ -96,4 +122,10 @@ export const Details = styled.div<{ mini: boolean }>`
   position: relative;
   top: ${({ mini }) => (mini ? -2.8 : 7)}rem;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  @media screen and (max-width: 76.8rem) {
+    top: ${({ mini }) => (mini ? -2.8 : 11.75)}rem;
+  }
+  @media screen and (max-width: 45rem) {
+    top: ${({ mini }) => (mini ? -2.8 : 14)}rem;
+  }
 `;

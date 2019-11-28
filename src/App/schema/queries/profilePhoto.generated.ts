@@ -1,4 +1,4 @@
-import * as Types from '../dataModel/personalApi';
+import * as Types from '../dataModel/personalApi.generated';
 
 import * as Operations from './profilePhoto.gql';
 import * as ApolloReactCommon from '@apollo/react-common';

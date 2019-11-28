@@ -7,9 +7,11 @@ interface OwnProps {
   mini: boolean;
 }
 
+const linkGradient = ['#00c3d8', '#2f9cb3', '#5d758d', '#8c4e68', '#ba2742'];
+
 export const Links: React.FC<OwnProps> = ({ mini }) => {
   const { data } = useLinksQuery();
-
+  if (!data) return null;
   return (
     <LinkList mini={mini}>
       <li>
@@ -18,7 +20,7 @@ export const Links: React.FC<OwnProps> = ({ mini }) => {
           target='_blank'
           rel='noopener noreferrer'
           title='Github'
-          bgColor='00c3d8'>
+          bgColor={linkGradient[0]}>
           Github
         </Link>
       </li>
@@ -28,7 +30,7 @@ export const Links: React.FC<OwnProps> = ({ mini }) => {
           target='_blank'
           rel='noopener noreferrer'
           title='LinkedIn'
-          bgColor='2f9cb3'>
+          bgColor={linkGradient[1]}>
           LinkedIn
         </Link>
       </li>
@@ -38,7 +40,7 @@ export const Links: React.FC<OwnProps> = ({ mini }) => {
           target='_blank'
           rel='noopener noreferrer'
           title='Twitter'
-          bgColor='5d758d'>
+          bgColor={linkGradient[2]}>
           Twitter
         </Link>
       </li>
@@ -48,7 +50,7 @@ export const Links: React.FC<OwnProps> = ({ mini }) => {
           target='_blank'
           rel='noopener noreferrer'
           title='Photography'
-          bgColor='8c4e68'>
+          bgColor={linkGradient[3]}>
           Photography
         </Link>
       </li>
@@ -58,7 +60,7 @@ export const Links: React.FC<OwnProps> = ({ mini }) => {
           target='_blank'
           rel='noopener noreferrer'
           title='LastFM'
-          bgColor='ba2742'>
+          bgColor={linkGradient[4]}>
           LastFM
         </Link>
       </li>

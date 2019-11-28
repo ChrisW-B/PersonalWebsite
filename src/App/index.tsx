@@ -2,7 +2,7 @@ import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import ReactDOM from 'react-dom';
 
-import { Homepage } from '@components/Homepage';
+import { Homepage } from '@components/homepage';
 
 import { apolloClient } from './utils/apollo';
 import { loadPolyfills } from './utils/polyfills';

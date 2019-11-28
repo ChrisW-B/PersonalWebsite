@@ -1,4 +1,4 @@
-import * as Types from '../dataModel/personalApi';
+import * as Types from '../dataModel/personalApi.generated';
 
 import * as Operations from './projects.gql';
 import * as ApolloReactCommon from '@apollo/react-common';

@@ -12,6 +12,6 @@ export const BannerWrapper = styled.div<{ mini: boolean }>`
 
 export const PageGrid = styled.div`
   display: grid;
-  grid-template: 98vh 0.1rem max-content / auto;
+  grid-template: 94vh 0.1rem max-content / auto;
   overflow: auto;
 `;

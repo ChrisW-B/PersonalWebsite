@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import { Links } from '@components/links';
-import { Photo } from '@schema/dataModel/personalApi';
+import { LastFMWidget } from '@components/widgets';
+import { Photo } from '@schema/dataModel/personalApi.generated';
 import { usePhotoBlogQuery } from '@schema/queries/photoBlog.generated';
 import {
   Banner,
@@ -15,7 +15,7 @@ import {
   ScrollMonitor,
 } from '@styles/introBanner';
 
-import { LastFMWidget } from './widgets';
+import { Links } from './links';
 
 interface OwnProps {
   mini: boolean;

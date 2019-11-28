@@ -29,3 +29,7 @@ export const animateImageCss = css`
 export const transparentBg = css`
   background: linear-gradient(-0.28turn, rgba(0, 195, 216, 0.7) 9%, rgba(186, 39, 66, 0.5) 100%);
 `;
+
+export const whiteBg = css`
+  background: #fff;
+`;
