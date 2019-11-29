@@ -2,18 +2,21 @@ import React from 'react';
 import Markdown from 'react-markdown';
 
 import { useBioQuery } from '@schema/queries/bio.generated';
-import { DetailWrapper } from '@styles/details';
+import { DetailHeader, DetailWrapper, Overview } from '@styles/details';
+
+import { Experience } from './experience';
 
 export const Description = () => {
   const { loading, data } = useBioQuery();
 
   return (
     <DetailWrapper>
+      <DetailHeader>About Me</DetailHeader>
       <Markdown
         source={loading ? '' : data.bio}
-        renderers={{ paragraph: ({ children }) => <p style={{ color: 'black' }}>{children}</p> }}
+        renderers={{ paragraph: ({ children }) => <Overview>{children}</Overview> }}
       />
-      <div style={{ height: '10000px' }} />
+      <Experience />
     </DetailWrapper>
   );
 };

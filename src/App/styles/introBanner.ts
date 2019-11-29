@@ -58,7 +58,7 @@ export const Banner = styled.div<{ bgImage: string; mini: boolean; fixed: boolea
     ${({ bgImage }) => bgImage && animateImageCss}
   }
 
-  @media screen and (max-width: 84rem) {
+  @media screen and (max-width: 54rem) {
     width: 100vw;
   }
 `;
@@ -94,11 +94,11 @@ export const Name = styled.h1<{ mini: boolean }>`
   top: ${({ mini }) => (mini ? 2.3 : 9)}rem;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
-  @media screen and (max-width: 76.8rem) {
+  @media screen and (max-width: 56.8rem) {
     font-size: ${({ mini }) => (mini ? 2.8 : 8)}rem;
     top: ${({ mini }) => (mini ? 2.3 : 12.5)}rem;
   }
-  @media screen and (max-width: 45rem) {
+  @media screen and (max-width: 35rem) {
     font-size: ${({ mini }) => (mini ? 2.8 : 6)}rem;
     top: ${({ mini }) => (mini ? 2.3 : 14.25)}rem;
   }
@@ -122,10 +122,10 @@ export const Details = styled.div<{ mini: boolean }>`
   position: relative;
   top: ${({ mini }) => (mini ? -2.8 : 7)}rem;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  @media screen and (max-width: 76.8rem) {
+  @media screen and (max-width: 56.8rem) {
     top: ${({ mini }) => (mini ? -2.8 : 11.75)}rem;
   }
-  @media screen and (max-width: 45rem) {
+  @media screen and (max-width: 35rem) {
     top: ${({ mini }) => (mini ? -2.8 : 14)}rem;
   }
 `;

@@ -1,6 +1,0 @@
-query technologies {
-  skills {
-    category
-    types
-  }
-}
