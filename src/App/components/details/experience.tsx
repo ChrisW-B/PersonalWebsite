@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useJobExperienceQuery } from '@schema/queries/jobExperience.generated';
-import { CompanyName, ExperienceGrid, ExperienceHeader, JobItem } from '@styles/experience';
+import { CompanyName, ExperienceGrid, JobDescription, JobItem } from '@styles/experience';
 
 export const Experience = () => {
   const { loading, data } = useJobExperienceQuery();
@@ -10,21 +10,16 @@ export const Experience = () => {
   const jobs = data?.jobs || [];
 
   return (
-    <>
-      <ExperienceHeader>Experience</ExperienceHeader>
-      <ExperienceGrid>
-        {jobs.map(job => (
-          <React.Fragment key={job.company}>
-            <JobItem>
-              <CompanyName>{job.company}</CompanyName>
-              <p>
-                <b>{`(${job.when.start} - ${job.when.end}) `}</b>
-                {`${job.details.join(', ')}`}
-              </p>
-            </JobItem>
-          </React.Fragment>
-        ))}
-      </ExperienceGrid>
-    </>
+    <ExperienceGrid>
+      {jobs.map(job => (
+        <JobItem key={job.company}>
+          <CompanyName>{job.company}</CompanyName>
+          <JobDescription>
+            <b>{`(${job.when.start} - ${job.when.end}) `}</b>
+            {`${job.details.join('. ')}`}
+          </JobDescription>
+        </JobItem>
+      ))}
+    </ExperienceGrid>
   );
 };

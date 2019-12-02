@@ -14,6 +14,7 @@ export const BannerWrapper = styled.div<{ mini: boolean }>`
   right: 0;
   top: 0;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
 `;
 
 export const ScrollMonitor = styled.div`
@@ -71,7 +72,7 @@ export const CenterText = styled.div<{ mini: boolean }>`
   flex-flow: column nowrap;
   position: relative;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 0;
+  z-index: 10;
 
   &::before {
     ${({ mini }) => mini && transparentBg}
@@ -87,20 +88,19 @@ export const CenterText = styled.div<{ mini: boolean }>`
 
 export const Name = styled.h1<{ mini: boolean }>`
   color: #fff;
-  font: 700 ${({ mini }) => (mini ? 2.8 : 12)}rem -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font: 700 ${({ mini }) => (mini ? 2.8 : 12)}rem 'Open Sans', sans-serif;
   margin: 0;
   position: relative;
-  top: ${({ mini }) => (mini ? 2.3 : 9)}rem;
+  top: ${({ mini }) => (mini ? 2.2 : 7.5)}rem;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (max-width: 56.8rem) {
     font-size: ${({ mini }) => (mini ? 2.8 : 8)}rem;
-    top: ${({ mini }) => (mini ? 2.3 : 12.5)}rem;
+    top: ${({ mini }) => (mini ? 2.3 : 11.5)}rem;
   }
   @media screen and (max-width: 35rem) {
     font-size: ${({ mini }) => (mini ? 2.8 : 6)}rem;
-    top: ${({ mini }) => (mini ? 2.3 : 14.25)}rem;
+    top: ${({ mini }) => (mini ? 2.3 : 13.75)}rem;
   }
 `;
 
@@ -120,7 +120,7 @@ export const Details = styled.div<{ mini: boolean }>`
   height: 4rem;
   justify-content: space-between;
   position: relative;
-  top: ${({ mini }) => (mini ? -2.8 : 7)}rem;
+  top: ${({ mini }) => (mini ? -3.25 : 7)}rem;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   @media screen and (max-width: 56.8rem) {
     top: ${({ mini }) => (mini ? -2.8 : 11.75)}rem;
