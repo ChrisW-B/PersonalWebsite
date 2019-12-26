@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const ExperienceGrid = styled.div`
   display: grid;
-  grid-gap: 1.2rem;
+  grid-gap: 1.2rem 3rem;
   grid-template: auto / repeat(6, 1fr);
   justify-items: center;
 `;
@@ -14,18 +14,16 @@ export const CompanyName = styled.h3`
   padding: 0;
 `;
 
-export const JobItem = styled.div`
-  grid-column: span 3;
-  max-width: 85%;
-  &:first-child {
+export const JobItem = styled.div<{ RowHeight: number }>`
+  grid-column: span 2;
+  grid-row: span ${({ RowHeight }) => RowHeight};
+
+  /* &:first-child {
     grid-column: 2 / -2;
     max-width: unset;
-  }
+  } */
 `;
 
-export const Spacer = styled.div`
-  grid-column: span 1;
-`;
 export const JobDescription = styled.p`
   font-size: 1.3rem;
 `;

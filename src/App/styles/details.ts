@@ -37,6 +37,6 @@ export const DetailWrapper = styled.article`
   display: grid;
   grid-gap: 3rem 2rem;
   grid-template: auto / 4rem auto;
-  margin: 0 10% 10rem;
+  margin: 0 3% 10rem;
   padding: 5rem 10%;
 `;

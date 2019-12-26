@@ -6,7 +6,7 @@ import { IntroBanner } from '@components/introBanner';
 import { PageGrid } from '@styles/homepage.ts';
 
 export const Homepage = () => {
-  const [inViewReference, inView] = useInView({ rootMargin: '-250px 0px 0px' });
+  const [inViewReference, inView] = useInView({ rootMargin: '-300px 0px 0px' });
   return (
     <PageGrid>
       <div>

@@ -11,12 +11,12 @@ export const Experience = () => {
 
   return (
     <ExperienceGrid>
-      {jobs.map(job => (
-        <JobItem key={job.company}>
+      {jobs.map((job, i) => (
+        <JobItem key={job.company} RowHeight={((i + 7) % 5) + 3}>
           <CompanyName>{job.company}</CompanyName>
           <JobDescription>
             <b>{`(${job.when.start} - ${job.when.end}) `}</b>
-            {`${job.details.join('. ')}`}
+            {`${job.details.join(' \u00B7 ')}`}
           </JobDescription>
         </JobItem>
       ))}
