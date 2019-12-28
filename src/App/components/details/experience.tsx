@@ -12,7 +12,11 @@ export const Experience = () => {
   return (
     <ExperienceGrid>
       {jobs.map((job, i) => (
-        <JobItem key={job.company} RowHeight={((i + 7) % 5) + 3}>
+        <JobItem
+          key={job.company}
+          ColumnSide={i % 2 === 1 ? 'right' : 'left'}
+          RowNumber={i}
+          TotalRows={jobs.length}>
           <CompanyName>{job.company}</CompanyName>
           <JobDescription>
             <b>{`(${job.when.start} - ${job.when.end}) `}</b>

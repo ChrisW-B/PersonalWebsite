@@ -5,6 +5,7 @@ import { useBioQuery } from '@schema/queries/bio.generated';
 import { DetailContent, DetailHeader, DetailWrapper, Overview } from '@styles/details';
 
 import { Experience } from './experience';
+import { Projects } from './projects';
 
 export const Description = () => {
   const { loading, data } = useBioQuery();
@@ -22,6 +23,10 @@ export const Description = () => {
       <DetailHeader>Experience</DetailHeader>
       <DetailContent>
         <Experience />
+      </DetailContent>
+      <DetailHeader>Projects</DetailHeader>
+      <DetailContent>
+        <Projects />
       </DetailContent>
     </DetailWrapper>
   );

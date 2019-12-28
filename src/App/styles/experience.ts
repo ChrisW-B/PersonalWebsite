@@ -1,9 +1,10 @@
+import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
 export const ExperienceGrid = styled.div`
   display: grid;
-  grid-gap: 1.2rem 3rem;
-  grid-template: auto / repeat(6, 1fr);
+  grid-gap: 1.2rem 6rem;
+  grid-template: auto / [left-start] 1fr [left-end right-start] 1fr [right-end];
   justify-items: center;
 `;
 
@@ -14,14 +15,64 @@ export const CompanyName = styled.h3`
   padding: 0;
 `;
 
-export const JobItem = styled.div<{ RowHeight: number }>`
-  grid-column: span 2;
-  grid-row: span ${({ RowHeight }) => RowHeight};
+const LeftBullet = css`
+  right: -3.7rem;
+`;
+const RightBullet = css`
+  left: -3.7rem;
+`;
+const LeftBorder = css`
+  border-right-width: 0.2rem;
+  right: -3.1rem;
+`;
+const RightBorder = css`
+  border-left-width: 0.2rem;
+  left: -3.1rem;
+`;
 
-  /* &:first-child {
-    grid-column: 2 / -2;
-    max-width: unset;
-  } */
+const toGridRowString = (rowStart: number, rowEnd: number) => `${rowStart} / ${rowEnd}`;
+const rowToColor = (row: number, totalRows: number) =>
+  `hsl(${186 + ((349 - 186) / totalRows) * row}, ${80 - ((80 - 45) / totalRows) * row}%, 60%)`;
+
+export const JobItem = styled.div<{
+  ColumnSide: 'left' | 'right';
+  RowNumber: number;
+  TotalRows: number;
+}>`
+  grid-column: ${props =>
+    props.ColumnSide === 'left' ? 'left-start / left-end' : 'right-start / right-end'};
+  grid-row: ${props => toGridRowString(props.RowNumber + 1, props.RowNumber + 3)};
+  position: relative;
+
+  &::after {
+    color: ${props => rowToColor(props.RowNumber, props.TotalRows)};
+    content: '\u2022';
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 4rem;
+    position: absolute;
+    top: -1rem;
+    ${props => (props.ColumnSide === 'left' ? LeftBullet : RightBullet)};
+  }
+
+  &::before {
+    border-color: ${props => rowToColor(props.RowNumber, props.TotalRows)};
+    border-style: solid;
+    border-width: 0;
+    border-top-width: 0.2rem;
+    ${props => (props.ColumnSide === 'left' ? LeftBorder : RightBorder)};
+    content: '';
+    height: 100%;
+    position: absolute;
+    top: 1.25rem;
+    width: 2.7rem;
+  }
+
+  &:last-of-type {
+    &::before {
+      border-color: #f9fcfc;
+      border-top-color: ${props => rowToColor(props.RowNumber, props.TotalRows)};
+    }
+  }
 `;
 
 export const JobDescription = styled.p`

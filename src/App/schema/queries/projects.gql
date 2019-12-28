@@ -1,0 +1,9 @@
+query projects {
+  projects {
+    technologies
+    github
+    website
+    description
+    name
+  }
+}

@@ -20,7 +20,13 @@ export const DetailContent = styled.div`
   :not(:last-of-type) {
     position: relative;
     ::after {
-      background-image: linear-gradient(to right, transparent, rgb(48, 49, 51), transparent);
+      background-image: linear-gradient(
+        to right,
+        transparent,
+        rgba(186, 39, 66),
+        rgba(0, 195, 216),
+        transparent
+      );
       bottom: -0.1rem;
       content: '';
       height: 0.1rem;
