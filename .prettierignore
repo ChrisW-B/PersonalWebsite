@@ -1,5 +1,4 @@
 dist
 .netlify
 build
-*.generated.ts
-src/App/typings/graphql.d.ts
+*.generated.*
