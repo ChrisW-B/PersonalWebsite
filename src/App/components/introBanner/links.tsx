@@ -20,7 +20,8 @@ export default (({ mini }) => {
           target='_blank'
           rel='noopener noreferrer'
           title='Github'
-          bgColor={linkGradient[0]}>
+          bgColor={linkGradient[0]}
+        >
           Github
         </Link>
       </li>
@@ -30,7 +31,8 @@ export default (({ mini }) => {
           target='_blank'
           rel='noopener noreferrer'
           title='LinkedIn'
-          bgColor={linkGradient[1]}>
+          bgColor={linkGradient[1]}
+        >
           LinkedIn
         </Link>
       </li>
@@ -40,7 +42,8 @@ export default (({ mini }) => {
           target='_blank'
           rel='noopener noreferrer'
           title='Twitter'
-          bgColor={linkGradient[2]}>
+          bgColor={linkGradient[2]}
+        >
           Twitter
         </Link>
       </li>
@@ -50,7 +53,8 @@ export default (({ mini }) => {
           target='_blank'
           rel='noopener noreferrer'
           title='Photography'
-          bgColor={linkGradient[3]}>
+          bgColor={linkGradient[3]}
+        >
           Photography
         </Link>
       </li>
@@ -60,7 +64,8 @@ export default (({ mini }) => {
           target='_blank'
           rel='noopener noreferrer'
           title='LastFM'
-          bgColor={linkGradient[4]}>
+          bgColor={linkGradient[4]}
+        >
           LastFM
         </Link>
       </li>

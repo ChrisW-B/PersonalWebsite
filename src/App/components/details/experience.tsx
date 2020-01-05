@@ -16,7 +16,8 @@ export default () => {
           key={job.company}
           ColumnSide={i % 2 === 1 ? 'right' : 'left'}
           RowNumber={i}
-          TotalRows={jobs.length}>
+          TotalRows={jobs.length}
+        >
           <CompanyName>{job.company}</CompanyName>
           <JobDescription>
             <b>{`(${job.when.start} - ${job.when.end}) `}</b>
