@@ -20,7 +20,7 @@
   "scripts": {
     "prebuild": "npm run generate:graphql",
     "build": "npm run build:react && npm run build:funcs",
-    "build:funcs": "netlify-lambda build ./src -c webpack.functions.js",
+    "build:funcs": "netlify-lambda build ./src/ssr-server.jsx -c webpack.functions.js",
     "build:react": "webpack -p --config ./webpack.production.js",
     "generate:graphql": "graphql-codegen",
     "lint:css": "stylelint './**/styles/*.{j,t}s{x,}'",
