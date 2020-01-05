@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import { LastFMWidget } from '@components/widgets';
+import LastFMWidget from '@components/widgets/lastfm';
 import { Photo } from '@schema/dataModel/personalApi.generated';
 import { usePhotoBlogQuery } from '@schema/queries/photoBlog.generated';
 import {
@@ -15,13 +15,13 @@ import {
   ScrollMonitor,
 } from '@styles/introBanner';
 
-import { Links } from './links';
+import Links from './links';
 
 interface OwnProps {
   mini: boolean;
 }
 
-export const IntroBanner: React.FC<OwnProps> = ({ mini = false }) => {
+export default (({ mini = false }) => {
   const [scrolledRef, allowScroll] = useInView();
   const [bgImage, setBgImage] = useState<Photo>(null);
   const { loading, data } = usePhotoBlogQuery();
@@ -57,4 +57,4 @@ export const IntroBanner: React.FC<OwnProps> = ({ mini = false }) => {
       </BannerPositioner>
     </BannerWrapper>
   );
-};
+}) as React.FC<OwnProps>;

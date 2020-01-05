@@ -14,6 +14,8 @@ import serverless from 'serverless-http';
 
 import { Homepage } from '@components/homepage';
 
+// because generated file
+// eslint-disable-next-line import/no-unresolved
 import htmlTemplate from '../dist/index.html';
 
 const functionName = 'ssr-server';

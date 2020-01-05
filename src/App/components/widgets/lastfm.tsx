@@ -1,9 +1,8 @@
 import * as React from 'react';
 
 import { useNowPlayingQuery } from '@schema/queries/nowPlaying.generated';
-import { NowPlaying } from '@styles/lastFmWidget';
 
-export const LastFMWidget = () => {
+export default () => {
   const { data, loading } = useNowPlayingQuery({ pollInterval: (1000 * 60) / 2 });
 
   const title = data?.lastfm?.nowplaying?.title || '';
@@ -14,5 +13,5 @@ export const LastFMWidget = () => {
     return null;
   }
 
-  return <NowPlaying>{`♫ ${title} by ${artist}`}</NowPlaying>;
+  return <p>{`♫ ${title} by ${artist}`}</p>;
 };

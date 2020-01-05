@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useProjectsQuery } from '@schema/queries/projects.generated';
 
-export const Projects = () => {
+export default () => {
   const { loading, data } = useProjectsQuery();
 
   if (loading) return null;

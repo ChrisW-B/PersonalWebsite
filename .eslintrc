@@ -37,26 +37,6 @@
     "import/resolver": { "webpack": { "config": "webpack.production.js" } }
   },
   "rules": {
-    "no-console": ["warn"],
-    "no-duplicate-imports": "error",
-    "no-prototype-builtins": 0,
-    "no-unused-expressions": "error",
-    "no-unused-vars": ["error", { "ignoreRestSiblings": true, "argsIgnorePattern": "^_+" }],
-    "semi": ["warn", "always"],
-    "space-before-function-paren": [
-      "error",
-      { "anonymous": "always", "named": "never", "asyncArrow": "always" }
-    ],
-    "unicorn/filename-case": [0],
-    "strict": 0,
-    "react/jsx-filename-extension": [0],
-    "operator-linebreak": 0,
-    "react/jsx-props-no-spreading": [0],
-    "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "import/prefer-default-export": [0],
-    "import/no-default-export": [2],
-    "quotes": ["warn", "single"],
     "@typescript-eslint/camelcase": 0,
     "@typescript-eslint/explicit-function-return-type": 0,
     "@typescript-eslint/interface-name-prefix": 1,
@@ -65,10 +45,32 @@
     "@typescript-eslint/no-object-literal-type-assertion": 0,
     "@typescript-eslint/no-unused-vars": ["error", { "ignoreRestSiblings": true }],
     "@typescript-eslint/no-var-requires": 0,
+    "import/extensions": [
+      "error",
+      { "ts": "never", "json": "always", "tsx": "never", "html": "always" }
+    ],
+    "import/no-unresolved": "error",
+    "no-console": ["warn"],
+    "no-duplicate-imports": "error",
+    "no-prototype-builtins": 0,
+    "no-unused-expressions": "error",
+    "no-unused-vars": ["error", { "ignoreRestSiblings": true, "argsIgnorePattern": "^_+" }],
+    "operator-linebreak": 0,
+    "quotes": ["warn", "single"],
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "error",
     "react/display-name": 0,
-    "react/prop-types": 0,
-    "unicorn/prevent-abbreviations": 0,
     "react/jsx-closing-bracket-location": 0,
-    "unicorn/no-nested-ternary": 0
+    "react/jsx-filename-extension": [0],
+    "react/jsx-props-no-spreading": [0],
+    "react/prop-types": 0,
+    "semi": ["warn", "always"],
+    "space-before-function-paren": [
+      "error",
+      { "anonymous": "always", "named": "never", "asyncArrow": "always" }
+    ],
+    "unicorn/filename-case": [0],
+    "unicorn/no-nested-ternary": 0,
+    "unicorn/prevent-abbreviations": 0
   }
 }

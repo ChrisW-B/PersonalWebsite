@@ -4,10 +4,10 @@ import Markdown from 'react-markdown';
 import { useBioQuery } from '@schema/queries/bio.generated';
 import { DetailContent, DetailHeader, DetailWrapper, Overview } from '@styles/details';
 
-import { Experience } from './experience';
-import { Projects } from './projects';
+import Experience from './experience';
+import Projects from './projects';
 
-export const Description = () => {
+export default () => {
   const { loading, data } = useBioQuery();
 
   return (

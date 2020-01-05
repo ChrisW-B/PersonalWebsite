@@ -3,7 +3,7 @@ const supportsIntersectionObserver = () =>
   'IntersectionObserverEntry' in global &&
   'intersectionRatio' in IntersectionObserverEntry.prototype;
 
-export const loadPolyfills = () => {
+export default () => {
   const polyfills = [];
   if (!supportsIntersectionObserver()) {
     // eslint-disable-next-line global-require

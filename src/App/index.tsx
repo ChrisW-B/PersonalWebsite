@@ -2,10 +2,10 @@ import React from 'react';
 import { ApolloProvider } from 'react-apollo';
 import ReactDOM from 'react-dom';
 
-import { Homepage } from '@components/homepage';
+import Homepage from '@components/homepage';
 
-import { apolloClient } from './utils/apollo';
-import { loadPolyfills } from './utils/polyfills';
+import apolloClient from './utils/apollo';
+import loadPolyfills from './utils/polyfills';
 
 const renderFunc = process.env.NODE_ENV === 'production' ? ReactDOM.hydrate : ReactDOM.render;
 

@@ -9,7 +9,7 @@ interface OwnProps {
 
 const linkGradient = ['#00c3d8', '#2f9cb3', '#5d758d', '#8c4e68', '#ba2742'];
 
-export const Links: React.FC<OwnProps> = ({ mini }) => {
+export default (({ mini }) => {
   const { data } = useLinksQuery();
   if (!data) return null;
   return (
@@ -66,4 +66,4 @@ export const Links: React.FC<OwnProps> = ({ mini }) => {
       </li>
     </LinkList>
   );
-};
+}) as React.FC<OwnProps>;

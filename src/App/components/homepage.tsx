@@ -1,11 +1,11 @@
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import { Description } from '@components/details';
-import { IntroBanner } from '@components/introBanner';
-import { PageGrid } from '@styles/homepage.ts';
+import Description from '@components/details';
+import IntroBanner from '@components/introBanner';
+import { PageGrid } from '@styles/homepage';
 
-export const Homepage = () => {
+export default () => {
   const [inViewReference, inView] = useInView({ rootMargin: '-300px 0px 0px' });
   return (
     <PageGrid>

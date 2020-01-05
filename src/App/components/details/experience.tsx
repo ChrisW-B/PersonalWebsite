@@ -3,7 +3,7 @@ import React from 'react';
 import { useJobExperienceQuery } from '@schema/queries/jobExperience.generated';
 import { CompanyName, ExperienceGrid, JobDescription, JobItem } from '@styles/experience';
 
-export const Experience = () => {
+export default () => {
   const { loading, data } = useJobExperienceQuery();
 
   if (loading) return null;
