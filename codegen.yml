@@ -2,6 +2,9 @@ overwrite: true
 schema: https://api.chriswb.dev/
 documents: ./src/**/*.gql
 generates:
+  ./src/App/typings/graphql.d.ts:
+    - typescript-graphql-files-modules
+
   ./schema.graphql:
     plugins:
       - schema-ast

@@ -65,3 +65,5 @@ build/
 *.generated.*
 schema/dataModel
 schema.graphql
+typings/graphql.d.ts
+src/App/typings/graphql.d.ts

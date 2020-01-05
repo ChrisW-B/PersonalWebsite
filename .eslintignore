@@ -3,3 +3,5 @@ build
 .netlify
 *.generated.ts
 schema/dataModel
+typings/graphql.d.ts
+src/App/typings/graphql.d.ts
