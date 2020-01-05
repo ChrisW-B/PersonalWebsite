@@ -6,7 +6,7 @@ const NODE_MODULES_PATH = path.resolve(__dirname, 'node_modules');
 const HTML_SRC = path.resolve(SRC_PATH, 'index.html');
 
 const config = {
-  mode: 'development',
+  mode: 'production',
   devtool: 'cheap-module-source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.gql', '.graphql'],
@@ -26,11 +26,11 @@ const config = {
         include: SRC_PATH,
         loader: 'babel-loader',
       },
+      { test: /\.(graphql|gql)$/, use: 'graphql-tag/loader', exclude: /node_modules/ },
       {
         test: /\.html$/,
         loader: 'raw-loader',
       },
-      { test: /\.(graphql|gql)$/, use: 'graphql-tag/loader', exclude: /node_modules/ },
       { test: /\.svg$/, include: [SRC_PATH], loader: 'svg-react-loader' },
       {
         test: /\.(ico|png|jpg|gif|eot|ttf|woff|woff2)(\?.+)?$/,

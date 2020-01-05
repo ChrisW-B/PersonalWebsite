@@ -12,11 +12,10 @@ import express from 'express';
 import fetch from 'node-fetch';
 import serverless from 'serverless-http';
 
-import { Homepage } from '@components/homepage';
-
 // because generated file
 // eslint-disable-next-line import/no-unresolved
 import htmlTemplate from '../dist/index.html';
+import Homepage from './App/components/homepage';
 
 const functionName = 'ssr-server';
 const app = express();
@@ -30,10 +29,7 @@ const routerBasePath =
 
 const client = new ApolloClient({
   ssrMode: true,
-  link: createHttpLink({
-    uri: 'https://api.chriswb.dev/',
-    fetch,
-  }),
+  link: createHttpLink({ uri: 'https://api.chriswb.dev/', fetch }),
   cache: new InMemoryCache(),
 });
 const App = (

@@ -57,7 +57,7 @@
     "react-hooks/exhaustive-deps": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react/display-name": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx"] }],
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".jsx", ".js"] }],
     "react/jsx-props-no-spreading": [0],
     "react/prop-types": 0,
     "semi": ["warn", "always"],

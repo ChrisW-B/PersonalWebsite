@@ -2,13 +2,28 @@ const path = require('path');
 
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const SRC_PATH = path.resolve(__dirname, 'src', 'App');
 const NODE_MODULES_PATH = path.resolve(__dirname, 'node_modules');
 const HTML_SRC = path.resolve(SRC_PATH, 'index.html');
 
+const analyze = process.env.ANALYZE || false;
+
 const config = {
-  entry: { app: [SRC_PATH] },
+  entry: {
+    main: SRC_PATH,
+    react: ['react', 'react-dom'],
+    apollo: [
+      'react-apollo',
+      'apollo-client',
+      'apollo-utilities/lib',
+      '@apollo/react-hooks',
+      'apollo-cache-inmemory/lib',
+    ],
+    remark: ['remark-parse'],
+    emotion: ['emotion', '@emotion/core', '@emotion/styled']
+  },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.gql', '.graphql'],
     modules: [SRC_PATH, NODE_MODULES_PATH],
@@ -53,5 +68,9 @@ const config = {
     }),
   ],
 };
+
+if (analyze) {
+  config.plugins.push(new BundleAnalyzerPlugin());
+}
 
 module.exports = config;
