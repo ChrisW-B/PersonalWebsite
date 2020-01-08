@@ -2,12 +2,14 @@ import React from 'react';
 
 import { useLinksQuery } from '@schema/queries/links.generated';
 import { Link, LinkList } from '@styles/links';
+import gradientAtIndex from '@utils/gradientToHSL';
 
 interface OwnProps {
   mini: boolean;
 }
 
-const linkGradient = ['#00c3d8', '#2f9cb3', '#5d758d', '#8c4e68', '#ba2742'];
+const targetBlank = { target: '_blank', rel: 'noopener noreferrer' };
+const TOTAL_LINKS = 5;
 
 export default (({ mini }) => {
   const { data } = useLinksQuery();
@@ -17,10 +19,9 @@ export default (({ mini }) => {
       <li>
         <Link
           href={data?.github?.url}
-          target='_blank'
-          rel='noopener noreferrer'
+          {...targetBlank}
           title='Github'
-          bgColor={linkGradient[0]}
+          bgColor={gradientAtIndex(0, TOTAL_LINKS)}
         >
           Github
         </Link>
@@ -28,10 +29,9 @@ export default (({ mini }) => {
       <li>
         <Link
           href={data?.linkedin?.url}
-          target='_blank'
-          rel='noopener noreferrer'
+          {...targetBlank}
           title='LinkedIn'
-          bgColor={linkGradient[1]}
+          bgColor={gradientAtIndex(1, TOTAL_LINKS)}
         >
           LinkedIn
         </Link>
@@ -39,10 +39,9 @@ export default (({ mini }) => {
       <li>
         <Link
           href={data?.twitter?.url}
-          target='_blank'
-          rel='noopener noreferrer'
+          {...targetBlank}
           title='Twitter'
-          bgColor={linkGradient[2]}
+          bgColor={gradientAtIndex(2, TOTAL_LINKS)}
         >
           Twitter
         </Link>
@@ -50,10 +49,9 @@ export default (({ mini }) => {
       <li>
         <Link
           href={data?.photoBlog?.url}
-          target='_blank'
-          rel='noopener noreferrer'
+          {...targetBlank}
           title='Photography'
-          bgColor={linkGradient[3]}
+          bgColor={gradientAtIndex(3, TOTAL_LINKS)}
         >
           Photography
         </Link>
@@ -61,12 +59,21 @@ export default (({ mini }) => {
       <li>
         <Link
           href={data?.lastfm?.url}
-          target='_blank'
-          rel='noopener noreferrer'
+          {...targetBlank}
           title='LastFM'
-          bgColor={linkGradient[4]}
+          bgColor={gradientAtIndex(4, TOTAL_LINKS)}
         >
           LastFM
+        </Link>
+      </li>
+      <li>
+        <Link
+          href='mailto:me@chriswbarry.com'
+          {...targetBlank}
+          title='Email'
+          bgColor={gradientAtIndex(5, TOTAL_LINKS)}
+        >
+          Email
         </Link>
       </li>
     </LinkList>

@@ -22,13 +22,14 @@ const config = {
       'apollo-cache-inmemory/lib',
     ],
     remark: ['remark-parse'],
-    emotion: ['emotion', '@emotion/core', '@emotion/styled']
+    emotion: ['emotion', '@emotion/core', '@emotion/styled'],
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.gql', '.graphql'],
     modules: [SRC_PATH, NODE_MODULES_PATH],
     alias: {
       '@app': path.resolve(SRC_PATH),
+      '@utils': path.resolve(SRC_PATH, 'utils'),
       '@components': path.resolve(SRC_PATH, 'components'),
       '@schema': path.resolve(SRC_PATH, 'schema'),
       '@styles': path.resolve(SRC_PATH, 'styles'),

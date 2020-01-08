@@ -1,6 +1,8 @@
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
+import rowToColor from '@utils/gradientToHSL';
+
 export const ExperienceGrid = styled.div`
   display: grid;
   grid-gap: 1.2rem 6rem;
@@ -31,8 +33,6 @@ const RightBorder = css`
 `;
 
 const toGridRowString = (rowStart: number, rowEnd: number) => `${rowStart} / ${rowEnd}`;
-const rowToColor = (row: number, totalRows: number) =>
-  `hsl(${186 + ((349 - 186) / totalRows) * row}, ${80 - ((80 - 45) / totalRows) * row}%, 60%)`;
 
 export const JobItem = styled.div<{
   ColumnSide: 'left' | 'right';
@@ -45,7 +45,7 @@ export const JobItem = styled.div<{
   position: relative;
 
   &::after {
-    color: ${props => rowToColor(props.RowNumber, props.TotalRows)};
+    color: hsl(${props => rowToColor(props.RowNumber, props.TotalRows)});
     content: '\u2022';
     font-family: Arial, Helvetica, sans-serif;
     font-size: 4rem;
@@ -55,7 +55,7 @@ export const JobItem = styled.div<{
   }
 
   &::before {
-    border-color: ${props => rowToColor(props.RowNumber, props.TotalRows)};
+    border-color: hsl(${props => rowToColor(props.RowNumber, props.TotalRows)});
     border-style: solid;
     border-width: 0;
     border-top-width: 0.2rem;
@@ -70,7 +70,7 @@ export const JobItem = styled.div<{
   &:last-of-type {
     &::before {
       border-color: #f9fcfc;
-      border-top-color: ${props => rowToColor(props.RowNumber, props.TotalRows)};
+      border-top-color: hsl(${props => rowToColor(props.RowNumber, props.TotalRows)});
     }
   }
 `;

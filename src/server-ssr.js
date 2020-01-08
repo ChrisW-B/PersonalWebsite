@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
@@ -12,9 +13,8 @@ import express from 'express';
 import fetch from 'node-fetch';
 import serverless from 'serverless-http';
 
-// because generated file
-// eslint-disable-next-line import/no-unresolved
-import htmlTemplate from '../dist/index.html';
+// htmlTemplate is a generated file
+import htmlTemplate from '../dist/index.html'; // eslint-disable-line import/no-unresolved
 import Homepage from './App/components/homepage';
 
 const functionName = 'ssr-server';
@@ -32,6 +32,7 @@ const client = new ApolloClient({
   link: createHttpLink({ uri: 'https://api.chriswb.dev/', fetch }),
   cache: new InMemoryCache(),
 });
+
 const App = (
   <ApolloProvider client={client}>
     <Homepage />

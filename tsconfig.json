@@ -19,6 +19,7 @@
     "sourceRoot": "/",
     "target": "es2015",
     "paths": {
+      "@utils/*": ["src/App/utils/*"],
       "@components/*": ["src/App/components/*"],
       "@schema/*": ["src/App/schema/*"],
       "@styles/*": ["src/App/styles/*"],

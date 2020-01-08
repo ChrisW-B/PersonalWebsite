@@ -120,12 +120,12 @@ export const Details = styled.div<{ mini: boolean }>`
   height: 4rem;
   justify-content: space-between;
   position: relative;
-  top: ${({ mini }) => (mini ? -3.25 : 7)}rem;
+  top: ${({ mini }) => (mini ? -3.25 : 5)}rem;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   @media screen and (max-width: 56.8rem) {
-    top: ${({ mini }) => (mini ? -2.8 : 11.75)}rem;
+    top: ${({ mini }) => (mini ? -2.8 : 10)}rem;
   }
   @media screen and (max-width: 35rem) {
-    top: ${({ mini }) => (mini ? -2.8 : 14)}rem;
+    top: ${({ mini }) => (mini ? -2.8 : 12.5)}rem;
   }
 `;

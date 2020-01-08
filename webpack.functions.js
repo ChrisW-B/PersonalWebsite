@@ -13,6 +13,7 @@ const config = {
     modules: [SRC_PATH, NODE_MODULES_PATH],
     alias: {
       '@app': path.resolve(SRC_PATH),
+      '@utils': path.resolve(SRC_PATH, 'utils'),
       '@components': path.resolve(SRC_PATH, 'components'),
       '@schema': path.resolve(SRC_PATH, 'schema'),
       '@styles': path.resolve(SRC_PATH, 'styles'),
