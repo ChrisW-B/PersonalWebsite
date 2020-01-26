@@ -1,15 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": [
-    "@typescript-eslint",
-    "@typescript-eslint/tslint",
-    "csstyper",
-    "graphql",
-    "react-hooks",
-    "react-hooks",
-    "react",
-    "unicorn"
-  ],
+  "plugins": ["@typescript-eslint", "csstyper", "graphql", "react-hooks", "react", "unicorn"],
   "extends": [
     "airbnb",
     "eslint:recommended",

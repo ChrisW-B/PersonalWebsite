@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { useNowPlayingQuery } from '@schema/queries/nowPlaying.generated';
+import { useNowPlayingQuery } from '@queries/nowPlaying.generated';
 
 export default () => {
   const { data, loading } = useNowPlayingQuery({ pollInterval: (1000 * 60) / 2 });

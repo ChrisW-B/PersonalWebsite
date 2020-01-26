@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { useProjectsQuery } from '@schema/queries/projects.generated';
+import { useProjectsQuery } from '@queries/projects.generated';
+import { ProjectList } from '@styles/projects';
+
+import Project from './project';
 
 export default () => {
   const { loading, data } = useProjectsQuery();
@@ -9,10 +12,10 @@ export default () => {
   const projects = data?.projects || [];
 
   return (
-    <ul>
+    <ProjectList>
       {projects.map(project => (
-        <li key={project.github}>{project.name}</li>
+        <Project key={project.github} project={project} />
       ))}
-    </ul>
+    </ProjectList>
   );
 };

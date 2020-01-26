@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import LastFMWidget from '@components/widgets/lastfm';
+import { usePhotoBlogQuery } from '@queries/photoBlog.generated';
 import { Photo } from '@schema/dataModel/personalApi.generated';
-import { usePhotoBlogQuery } from '@schema/queries/photoBlog.generated';
 import {
   Banner,
   BannerPositioner,

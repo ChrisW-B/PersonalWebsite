@@ -16,6 +16,7 @@ generates:
   ./src/App:
     preset: near-operation-file
     presetConfig:
+      folder: __generated__
       baseTypesPath: schema/dataModel/personalApi.generated.ts
       extension: .generated.ts
     plugins:
@@ -25,6 +26,5 @@ generates:
       withHooks: true
       withComponent: false
       withHOC: false
-      documentMode: external
       importDocumentNodeExternallyFrom: 'near-operation-file'
-      addDocBlocks:
+      addDocBlocks: false

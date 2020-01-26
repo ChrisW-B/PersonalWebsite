@@ -1,7 +1,7 @@
 import React from 'react';
 import Markdown from 'react-markdown';
 
-import { useBioQuery } from '@schema/queries/bio.generated';
+import { useBioQuery } from '@queries/bio.generated';
 import { DetailContent, DetailHeader, DetailWrapper, Overview } from '@styles/details';
 
 import Experience from './experience';
@@ -24,6 +24,7 @@ export default () => {
       <DetailContent>
         <Experience />
       </DetailContent>
+
       <DetailHeader>Projects</DetailHeader>
       <DetailContent>
         <Projects />

@@ -7,13 +7,10 @@ export const Overview = styled.p`
 
 export const DetailHeader = styled.h2`
   font-family: 'IBM Plex Serif', serif;
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 700;
   margin: 0;
-  padding-bottom: 1rem;
-  text-align: right;
-  transform: rotate(0.5turn);
-  writing-mode: vertical-lr;
+  text-align: center;
 `;
 
 export const DetailContent = styled.div`
@@ -42,7 +39,7 @@ export const DetailWrapper = styled.article`
   background: #f9fcfc;
   display: grid;
   grid-gap: 3rem 2rem;
-  grid-template: auto / 4rem auto;
+  grid-template: auto / auto;
   margin: 0 3% 10rem;
   padding: 5rem 10%;
 `;

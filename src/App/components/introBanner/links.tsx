@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useLinksQuery } from '@schema/queries/links.generated';
+import { useLinksQuery } from '@queries/links.generated';
 import { Link, LinkList } from '@styles/links';
 import gradientAtIndex from '@utils/gradientToHSL';
 

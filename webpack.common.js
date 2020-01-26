@@ -33,6 +33,7 @@ const config = {
       '@app': path.resolve(SRC_PATH),
       '@utils': path.resolve(SRC_PATH, 'utils'),
       '@components': path.resolve(SRC_PATH, 'components'),
+      '@queries': path.resolve(SRC_PATH, 'schema', 'queries', '__generated__'),
       '@schema': path.resolve(SRC_PATH, 'schema'),
       '@styles': path.resolve(SRC_PATH, 'styles'),
     },

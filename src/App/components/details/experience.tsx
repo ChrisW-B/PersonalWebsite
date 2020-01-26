@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useJobExperienceQuery } from '@schema/queries/jobExperience.generated';
+import { useJobExperienceQuery } from '@queries/jobExperience.generated';
 import { CompanyName, ExperienceGrid, JobDescription, JobItem } from '@styles/experience';
 
 export default () => {

@@ -17,12 +17,12 @@ export const CompanyName = styled.h3`
   padding: 0;
 `;
 
-const LeftBullet = css`
-  right: -3.7rem;
-`;
-const RightBullet = css`
-  left: -3.7rem;
-`;
+// const LeftBullet = css`
+//   right: -3.5rem;
+// `;
+// const RightBullet = css`
+//   left: -3.5rem;
+// `;
 const LeftBorder = css`
   border-right-width: 0.2rem;
   right: -3.1rem;
@@ -43,16 +43,6 @@ export const JobItem = styled.div<{
     props.ColumnSide === 'left' ? 'left-start / left-end' : 'right-start / right-end'};
   grid-row: ${props => toGridRowString(props.RowNumber + 1, props.RowNumber + 3)};
   position: relative;
-
-  &::after {
-    color: hsl(${props => rowToColor(props.RowNumber, props.TotalRows)});
-    content: '\u2022';
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 4rem;
-    position: absolute;
-    top: -1rem;
-    ${props => (props.ColumnSide === 'left' ? LeftBullet : RightBullet)};
-  }
 
   &::before {
     border-color: hsl(${props => rowToColor(props.RowNumber, props.TotalRows)});

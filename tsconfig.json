@@ -21,6 +21,7 @@
     "paths": {
       "@utils/*": ["src/App/utils/*"],
       "@components/*": ["src/App/components/*"],
+      "@queries/*": ["src/App/schema/queries/__generated__/*"],
       "@schema/*": ["src/App/schema/*"],
       "@styles/*": ["src/App/styles/*"],
       "@app/*": ["src/App/*"]
@@ -29,11 +30,6 @@
       {
         "name": "typescript-styled-plugin",
         "tags": ["styled", "css"]
-      },
-      {
-        "name": "tslint-language-service",
-        "alwaysShowRuleFailuresAsWarnings": false,
-        "ignoreDefinitionFiles": true
       }
     ]
   },
