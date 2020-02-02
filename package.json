@@ -24,7 +24,7 @@
     "build:react": "webpack -p --config ./webpack.production.js",
     "generate:graphql": "graphql-codegen",
     "lint:css": "stylelint './**/styles/*.{j,t}s{x,}'",
-    "lint:js": "eslint \"./**/*.{j,t}s{x,}\" --ignore-pattern 'public/**/*.js'",
+    "lint:js": "eslint \"./**/*.{j,t}s{x,}\" --ignore-pattern \"public/**/*.js\"",
     "lint:js:fix": "eslint --fix \"./**/*.{j,t}s{x,}\" --ignore-pattern 'public/**/*.js'",
     "prettier": "prettier \"./**/*.{ts,tsx,js,jsx,gql,html,yml,json}\" --write",
     "prettier:check": "prettier './**/*.{ts,tsx,js,jsx,json}' -c",
