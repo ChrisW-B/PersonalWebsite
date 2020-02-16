@@ -20,7 +20,10 @@
     "target": "es2015",
     "paths": {
       "@utils/*": ["src/App/utils/*"],
+      "@assets/*": ["src/App/assets/*"],
       "@components/*": ["src/App/components/*"],
+      "@hooks/*": ["src/App/hooks/*"],
+      "@contexts/*": ["src/App/contexts/*"],
       "@queries/*": ["src/App/schema/queries/__generated__/*"],
       "@schema/*": ["src/App/schema/*"],
       "@styles/*": ["src/App/styles/*"],

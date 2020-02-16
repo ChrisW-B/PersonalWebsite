@@ -59,7 +59,7 @@ export const JobItem = styled.div<{
 
   &:last-of-type {
     &::before {
-      border-color: #f9fcfc;
+      border-color: var(--light-grey);
       border-top-color: hsl(${props => rowToColor(props.RowNumber, props.TotalRows)});
     }
   }

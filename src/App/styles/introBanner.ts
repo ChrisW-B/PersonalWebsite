@@ -1,6 +1,27 @@
 import styled from '@emotion/styled';
 
+import LightBulb from '@assets/lightbulb.svg';
+
 import { AutoSeperator, animateImageCss, transparentBg, whiteBg } from './css';
+
+export const BulbIcon = styled(LightBulb)<{ isLightMode: boolean }>`
+  fill: var(--white);
+  height: 3.6rem;
+  transition: all 0.5s var(--bezier-transition);
+  width: 3.6rem;
+`;
+
+export const DarkModeButton = styled.button`
+  background: transparent;
+  border: 0;
+  bottom: 0;
+  cursor: pointer;
+  height: 4.8rem;
+  margin: 0;
+  position: absolute;
+  right: 0;
+  z-index: 100;
+`;
 
 export const BannerWrapper = styled.div<{ mini: boolean }>`
   align-items: center;
@@ -13,7 +34,7 @@ export const BannerWrapper = styled.div<{ mini: boolean }>`
   position: ${({ mini }) => (mini ? 'absolute' : 'relative')};
   right: 0;
   top: 0;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s var(--bezier-transition);
   z-index: 10;
 `;
 
@@ -29,20 +50,20 @@ export const BannerPositioner = styled.div<{ mini: boolean }>`
   justify-content: center;
   position: relative;
   top: ${({ mini }) => (mini ? 0 : -20)}vh;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s var(--bezier-transition);
   width: 100%;
 `;
 
 export const Banner = styled.div<{ bgImage: string; mini: boolean; fixed: boolean }>`
   align-items: stretch;
-  background-color: #fff;
+  background-color: var(--white);
   display: flex;
   flex-flow: row nowrap;
   height: ${({ mini }) => (mini ? 5 : 20)}rem;
   justify-content: stretch;
   position: ${({ mini, fixed }) => (fixed ? 'fixed' : mini ? 'absolute' : 'relative')};
   top: 0;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s var(--bezier-transition);
   width: ${({ mini }) => (mini ? 100 : 75)}vw;
   z-index: 0;
 
@@ -71,7 +92,7 @@ export const CenterText = styled.div<{ mini: boolean }>`
   flex: 1;
   flex-flow: column nowrap;
   position: relative;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s var(--bezier-transition);
   z-index: 10;
 
   &::before {
@@ -87,12 +108,12 @@ export const CenterText = styled.div<{ mini: boolean }>`
 `;
 
 export const Name = styled.h1<{ mini: boolean }>`
-  color: #fff;
+  color: var(--white);
   font: 700 ${({ mini }) => (mini ? 2.8 : 12)}rem 'Open Sans', sans-serif;
   margin: 0;
   position: relative;
   top: ${({ mini }) => (mini ? 2.2 : 7.5)}rem;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s var(--bezier-transition);
 
   @media screen and (max-width: 56.8rem) {
     font-size: ${({ mini }) => (mini ? 2.8 : 8)}rem;
@@ -121,7 +142,7 @@ export const Details = styled.div<{ mini: boolean }>`
   justify-content: space-between;
   position: relative;
   top: ${({ mini }) => (mini ? -3.25 : 5)}rem;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.5s var(--bezier-transition);
   @media screen and (max-width: 56.8rem) {
     top: ${({ mini }) => (mini ? -2.8 : 10)}rem;
   }

@@ -20,8 +20,8 @@ export const DetailContent = styled.div`
       background-image: linear-gradient(
         to right,
         transparent,
-        rgba(186, 39, 66),
-        rgba(0, 195, 216),
+        --var(--rose),
+        --var(--cyan),
         transparent
       );
       bottom: -0.1rem;
@@ -36,10 +36,11 @@ export const DetailContent = styled.div`
 `;
 
 export const DetailWrapper = styled.article`
-  background: #f9fcfc;
+  background: var(--light-grey);
   display: grid;
   grid-gap: 3rem 2rem;
   grid-template: auto / auto;
   margin: 0 3% 10rem;
   padding: 5rem 10%;
+  transition: all 0.5s var(--bezier-transition);
 `;

@@ -23,13 +23,13 @@ export const animateImage = keyframes`
 `;
 
 export const animateImageCss = css`
-  animation: ${animateImage} 5s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: ${animateImage} 5s var(--bezier-transition);
 `;
 
 export const transparentBg = css`
-  background: linear-gradient(-0.28turn, rgba(0, 195, 216, 0.7) 9%, rgba(186, 39, 66, 0.5) 100%);
+  background: linear-gradient(-0.28turn, var(--cyan-70) 9%, var(--rose-50) 100%);
 `;
 
 export const whiteBg = css`
-  background: #fff;
+  background: var(--white);
 `;

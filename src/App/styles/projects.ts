@@ -12,7 +12,12 @@ export const ProjectItem = styled.li`
 `;
 
 export const TitleWrapper = styled.div`
-  background: linear-gradient(to bottom, #fff0, #fff0 25%, #ffff);
+  background: linear-gradient(
+    to bottom,
+    var(--light-grey-00),
+    var(--light-grey-00) 10%,
+    var(--light-grey)
+  );
   display: flex;
   flex-flow: column nowrap;
   height: 8rem;
@@ -26,6 +31,7 @@ export const ProjectTitle = styled.h4`
 
 export const ProjectScreenshot = styled.div<{ imgUrl: string }>`
   background: url("${props => props.imgUrl}") center / cover no-repeat scroll;
+  border-radius: 0.4rem;
   display: flex;
   flex-flow: column nowrap;
   height: 10rem;

@@ -14,6 +14,9 @@ const config = {
     alias: {
       '@app': path.resolve(SRC_PATH),
       '@utils': path.resolve(SRC_PATH, 'utils'),
+      '@assets': path.resolve(SRC_PATH, 'assets'),
+      '@hooks': path.resolve(SRC_PATH, 'hooks'),
+      '@contexts': path.resolve(SRC_PATH, 'contexts'),
       '@components': path.resolve(SRC_PATH, 'components'),
       '@queries': path.resolve(SRC_PATH, 'schema', 'queries', '__generated__'),
       '@schema': path.resolve(SRC_PATH, 'schema'),
