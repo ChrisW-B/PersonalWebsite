@@ -108,8 +108,8 @@ export const Now = styled.div`
   display: flex;
   flex-flow: row nowrap;
   font-size: 1.4rem;
-
   justify-content: center;
+  margin-top: 1rem;
   ${AutoSeperator};
 `;
 
