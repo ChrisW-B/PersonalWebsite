@@ -1,12 +1,14 @@
 import * as React from 'react';
 
+const isClient = typeof window === 'object';
+
 export default <T = undefined>(
   key: string,
   initialValue?: T,
 ): [T | undefined, React.Dispatch<React.SetStateAction<T | undefined>>] => {
   const [storedValue, setStoredValue] = React.useState<T>(() => {
     try {
-      const item = window.localStorage.getItem(key);
+      const item = isClient ? window.localStorage.getItem(key) : initialValue.toString();
       return item ? JSON.parse(item) : initialValue;
     } catch (error) {
       return initialValue;

@@ -46,7 +46,9 @@ export default (({ mini = false }) => {
       <BannerPositioner mini={mini}>
         <Banner bgImage={bgImage?.photo} mini={mini} fixed={!loading && !allowScroll}>
           <DarkModeButton title='Toggle dark mode' type='button' onClick={toggleLightMode}>
-            <BulbIcon title='bulb by Iconnic from the Noun Project' />
+            <span title='bulb icon from noun project'>
+              <BulbIcon />
+            </span>
           </DarkModeButton>
           <CenterText mini={mini && !loading}>
             <Name mini={mini && !loading} title='Chris Barry'>
