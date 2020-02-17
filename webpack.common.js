@@ -15,16 +15,6 @@ const bundleAnalyzerToken = process.env.BUNDLE_ANALYZER_TOKEN || false;
 const config = {
   entry: {
     main: SRC_PATH,
-    react: ['react', 'react-dom'],
-    apollo: [
-      'react-apollo',
-      'apollo-client',
-      'apollo-utilities/lib',
-      '@apollo/react-hooks',
-      'apollo-cache-inmemory/lib',
-    ],
-    remark: ['remark-parse'],
-    emotion: ['emotion', '@emotion/core', '@emotion/styled'],
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.gql', '.graphql'],
@@ -41,11 +31,14 @@ const config = {
       '@styles': path.resolve(SRC_PATH, 'styles'),
     },
   },
-  // webpack 4 optimization
-  // 'all' means both async and initial chunks (whether they're async or classically imported)
   optimization: {
     runtimeChunk: 'single',
-    splitChunks: { chunks: 'all', maxInitialRequests: Infinity },
+    splitChunks: {
+      chunks: 'all',
+      maxSize: 200 * 1000, // 100kb max size
+      maxInitialRequests: Infinity,
+      maxAsyncRequests: Infinity,
+    },
   },
   module: {
     rules: [

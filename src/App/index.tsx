@@ -3,7 +3,6 @@ import { ApolloProvider } from 'react-apollo';
 import ReactDOM from 'react-dom';
 
 import Homepage from '@components/homepage';
-import { NightModeProvider } from '@contexts/nightMode';
 import apolloClient from '@utils/apollo';
 import loadPolyfills from '@utils/polyfills';
 
@@ -12,11 +11,9 @@ const renderFunc = process.env.NODE_ENV === 'production' ? ReactDOM.hydrate : Re
 const render = (App: React.FC) => {
   renderFunc(
     <React.StrictMode>
-      <NightModeProvider>
-        <ApolloProvider client={apolloClient}>
-          <App />
-        </ApolloProvider>
-      </NightModeProvider>
+      <ApolloProvider client={apolloClient}>
+        <App />
+      </ApolloProvider>
     </React.StrictMode>,
     document.querySelector('#root'),
   );
