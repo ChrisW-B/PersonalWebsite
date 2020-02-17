@@ -1,8 +1,6 @@
-// this comment tells babel to convert jsx to calls to a function called jsx instead of React.createElement
-/** @jsx jsx */
 import * as React from 'react';
 
-import { css, jsx } from '@emotion/core';
+import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
 import useLocalStorage from '@hooks/useLocalStorage';
@@ -36,8 +34,8 @@ const DarkModeCSS = css`
   --white-00: var(--dark-mode-white-00);
 `;
 
-const NightModeStyles = styled.div<{ lightMode: boolean }>`
-  ${props => (props.lightMode ? LightModeCSS : DarkModeCSS)};
+const NightModeStyles = styled.div<{ lightMode: boolean; isClient: boolean }>`
+  ${props => (props.isClient ? (props.lightMode ? LightModeCSS : DarkModeCSS) : css``)};
   background-color: var(--white);
   color: var(--dark);
   transition: all 0.5s var(--bezier-transition);
@@ -45,7 +43,7 @@ const NightModeStyles = styled.div<{ lightMode: boolean }>`
 
 export const NightModeProvider: React.FC = ({ children }) => {
   const prefersDarkMode = usePrefersDarkMode();
-  const [isClient, setIsClient] = React.useState(typeof window === 'object');
+  const [isClient, setIsClient] = React.useState(null);
   const [isLightMode, setLightMode] = useLocalStorage<boolean>('light-mode');
 
   const showLightTheme = typeof isLightMode !== 'undefined' ? isLightMode : !prefersDarkMode;
@@ -57,7 +55,9 @@ export const NightModeProvider: React.FC = ({ children }) => {
 
   return (
     <NightModeContext.Provider value={[showLightTheme, toggleMode]}>
-      {isClient ? <NightModeStyles lightMode={isLightMode}>{children}</NightModeStyles> : children}
+      <NightModeStyles isClient={isClient} lightMode={isLightMode}>
+        {children}
+      </NightModeStyles>
     </NightModeContext.Provider>
   );
 };
