@@ -3,6 +3,7 @@ import { ApolloProvider } from 'react-apollo';
 import ReactDOM from 'react-dom';
 
 import Homepage from '@components/homepage';
+import { NightModeProvider } from '@contexts/nightMode';
 import apolloClient from '@utils/apollo';
 import loadPolyfills from '@utils/polyfills';
 
@@ -12,7 +13,9 @@ const render = (App: React.FC) => {
   renderFunc(
     <React.StrictMode>
       <ApolloProvider client={apolloClient}>
-        <App />
+        <NightModeProvider>
+          <App />
+        </NightModeProvider>
       </ApolloProvider>
     </React.StrictMode>,
     document.querySelector('#root'),
