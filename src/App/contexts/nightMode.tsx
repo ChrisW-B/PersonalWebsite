@@ -8,8 +8,6 @@ import styled from '@emotion/styled';
 import useLocalStorage from '@hooks/useLocalStorage';
 import usePrefersDarkMode from '@hooks/usePrefersDarkMode';
 
-const isClient = typeof window === 'object';
-
 export const NightModeContext = React.createContext<[boolean, () => void]>(null);
 
 const LightModeCSS = css`
@@ -38,8 +36,8 @@ const DarkModeCSS = css`
   --white-00: var(--dark-mode-white-00);
 `;
 
-const NightModeStyles = styled.div<{ lightMode: boolean; isClient: boolean }>`
-  ${props => (props.isClient ? (props.lightMode ? LightModeCSS : DarkModeCSS) : null)};
+const NightModeStyles = styled.div<{ lightMode: boolean }>`
+  ${props => (props.lightMode ? LightModeCSS : DarkModeCSS)};
   background-color: var(--white);
   color: var(--dark);
   transition: all 0.5s var(--bezier-transition);
@@ -47,16 +45,19 @@ const NightModeStyles = styled.div<{ lightMode: boolean; isClient: boolean }>`
 
 export const NightModeProvider: React.FC = ({ children }) => {
   const prefersDarkMode = usePrefersDarkMode();
+  const [isClient, setIsClient] = React.useState(typeof window === 'object');
   const [isLightMode, setLightMode] = useLocalStorage<boolean>('light-mode');
 
   const showLightTheme = typeof isLightMode !== 'undefined' ? isLightMode : !prefersDarkMode;
   const toggleMode = () => setLightMode(isLight => !isLight);
 
+  React.useEffect(() => {
+    setIsClient(typeof window === 'object');
+  }, []);
+
   return (
     <NightModeContext.Provider value={[showLightTheme, toggleMode]}>
-      <NightModeStyles isClient={isClient} lightMode={isLightMode}>
-        {children}
-      </NightModeStyles>
+      {isClient ? <NightModeStyles lightMode={isLightMode}>{children}</NightModeStyles> : children}
     </NightModeContext.Provider>
   );
 };
