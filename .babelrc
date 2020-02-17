@@ -10,16 +10,5 @@
     "@babel/plugin-proposal-export-default-from",
     "@babel/plugin-proposal-optional-chaining",
     "react-hot-loader/babel"
-  ],
-  "env": {
-    "production": {
-      "presets": [
-        [
-          "@babel/env",
-          { "targets": { "node": "current" }, "forceAllTransforms": true, "useBuiltIns": "usage" }
-        ],
-        "@babel/react"
-      ]
-    }
-  }
+  ]
 }
