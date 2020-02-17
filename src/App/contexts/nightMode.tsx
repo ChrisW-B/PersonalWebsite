@@ -55,7 +55,7 @@ export const NightModeProvider: React.FC = ({ children }) => {
 
   return (
     <NightModeContext.Provider value={[showLightTheme, toggleMode]}>
-      <NightModeStyles isClient={isClient} lightMode={isLightMode}>
+      <NightModeStyles isClient={isClient} lightMode={showLightTheme}>
         {children}
       </NightModeStyles>
     </NightModeContext.Provider>
