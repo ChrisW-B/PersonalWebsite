@@ -36,7 +36,8 @@ const DarkModeCSS = css`
   --white-00: var(--dark-mode-white-00);
 `;
 
-const NightModeStyles = styled.div`
+const NightModeStyles = styled.div<{ lightMode: boolean }>`
+  ${props => (props.lightMode ? LightModeCSS : DarkModeCSS)};
   background-color: var(--white);
   color: var(--dark);
   transition: all 0.5s var(--bezier-transition);
@@ -48,12 +49,10 @@ export const NightModeProvider: React.FC = ({ children }) => {
 
   const showLightTheme = typeof isLightMode !== 'undefined' ? isLightMode : !prefersDarkMode;
   const toggleMode = () => setLightMode(isLight => !isLight);
-
+  console.log({ showLightTheme });
   return (
     <NightModeContext.Provider value={[showLightTheme, toggleMode]}>
-      <div css={isLightMode ? LightModeCSS : DarkModeCSS}>
-        <NightModeStyles>{children}</NightModeStyles>
-      </div>
+      <NightModeStyles lightMode={isLightMode}>{children}</NightModeStyles>
     </NightModeContext.Provider>
   );
 };
