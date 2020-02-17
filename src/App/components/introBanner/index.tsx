@@ -33,7 +33,7 @@ export default (({ mini = false }) => {
   const photos = data?.photoBlog?.photos;
 
   useEffect(() => {
-    if (!loading && photos.length > 0) {
+    if (!loading && photos?.length) {
       const randomPhotoNumber = Math.floor(Math.random() * photos.length);
       setBgImage(photos[randomPhotoNumber]);
     }
