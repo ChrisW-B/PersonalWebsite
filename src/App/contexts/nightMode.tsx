@@ -4,6 +4,7 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
 import useLocalStorage from '@hooks/useLocalStorage';
+import usePrefersDarkMode from '@hooks/usePrefersDarkMode';
 
 export const NightModeContext = React.createContext<[boolean, () => void]>(null);
 
@@ -42,11 +43,15 @@ const NightModeStyles = styled.div<{ isLightMode: boolean }>`
 `;
 
 export const NightModeProvider: React.FC = ({ children }) => {
-  const [isLightMode, setLightMode] = useLocalStorage('lightMode', true);
+  const prefersDarkMode = usePrefersDarkMode();
+  const [isLightMode, setLightMode] = useLocalStorage<boolean>('light-mode');
+
+  const showLightTheme = typeof isLightMode !== 'undefined' ? isLightMode : !prefersDarkMode;
   const toggleMode = () => setLightMode(isLight => !isLight);
+
   return (
-    <NightModeContext.Provider value={[isLightMode, toggleMode]}>
-      <NightModeStyles isLightMode={isLightMode}>{children}</NightModeStyles>
+    <NightModeContext.Provider value={[showLightTheme, toggleMode]}>
+      <NightModeStyles isLightMode={showLightTheme}>{children}</NightModeStyles>
     </NightModeContext.Provider>
   );
 };

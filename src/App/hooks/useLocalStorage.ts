@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export default <T = undefined>(
   key: string,
-  initialValue: T,
+  initialValue?: T,
 ): [T | undefined, React.Dispatch<React.SetStateAction<T | undefined>>] => {
   const [storedValue, setStoredValue] = React.useState<T>(() => {
     try {

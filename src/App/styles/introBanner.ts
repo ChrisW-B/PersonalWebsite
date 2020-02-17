@@ -4,7 +4,7 @@ import LightBulb from '@assets/lightbulb.svg';
 
 import { AutoSeperator, animateImageCss, transparentBg, whiteBg } from './css';
 
-export const BulbIcon = styled(LightBulb)<{ isLightMode: boolean }>`
+export const BulbIcon = styled(LightBulb)`
   fill: var(--white);
   height: 3.6rem;
   transition: all 0.5s var(--bezier-transition);
