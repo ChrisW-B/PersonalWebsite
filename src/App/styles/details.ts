@@ -1,13 +1,13 @@
 import styled from '@emotion/styled';
 
 export const Overview = styled.p`
-  font-size: 1.6rem;
+  font-size: var(--body-text);
   margin: 0 0 2rem;
 `;
 
 export const DetailHeader = styled.h2`
   font-family: 'IBM Plex Serif', serif;
-  font-size: 2.5rem;
+  font-size: var(--section-header-text);
   font-weight: 700;
   margin: 0;
   text-align: center;
@@ -43,4 +43,8 @@ export const DetailWrapper = styled.article`
   margin: 0 3% 10rem;
   padding: 5rem 10%;
   transition: all 0.5s var(--bezier-transition);
+
+  @media screen and (max-width: 35rem) {
+    padding: 3rem 5%;
+  }
 `;

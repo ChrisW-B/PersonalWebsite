@@ -5,7 +5,7 @@ import { AutoSeperator } from './css';
 export const LinkList = styled.ul<{ mini: boolean }>`
   display: flex;
   flex-flow: row nowrap;
-  font-size: ${({ mini }) => (mini ? 1.3 : 2)}rem;
+  font-size: var(${({ mini }) => (mini ? '--description-text' : '--subhead-text')});
   font-weight: 500;
   list-style: none;
   margin: 0;
@@ -13,7 +13,7 @@ export const LinkList = styled.ul<{ mini: boolean }>`
   transition: all 0.5s var(--bezier-transition);
   ${AutoSeperator}
   @media screen and (max-width: 46rem) {
-    font-size: 1.3rem;
+    font-size: var(--description-text);
   }
 `;
 

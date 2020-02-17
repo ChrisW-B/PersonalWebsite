@@ -25,7 +25,7 @@ export const TitleWrapper = styled.div`
   margin: 1rem 0 0;
 `;
 export const ProjectTitle = styled.h4`
-  font-size: 1.8rem;
+  font-size: var(--body-text);
   margin: 0 1rem;
 `;
 

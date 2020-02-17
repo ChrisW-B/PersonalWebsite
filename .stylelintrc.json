@@ -40,6 +40,7 @@
     "selector-max-compound-selectors": 8,
     "order/order": ["custom-properties", "declarations"],
     "order/properties-alphabetical-order": true,
-    "function-name-case": null
+    "function-name-case": null,
+    "value-keyword-case": null
   }
 }

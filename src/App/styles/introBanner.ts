@@ -14,12 +14,13 @@ export const BulbIcon = styled(LightBulb)<{ isLightMode: boolean }>`
 export const DarkModeButton = styled.button`
   background: transparent;
   border: 0;
-  bottom: 0;
   cursor: pointer;
-  height: 4.8rem;
+  height: 3.6rem;
   margin: 0;
+  padding: 0;
   position: absolute;
-  right: 0;
+  right: 1rem;
+  top: 1rem;
   z-index: 100;
 `;
 
@@ -109,18 +110,19 @@ export const CenterText = styled.div<{ mini: boolean }>`
 
 export const Name = styled.h1<{ mini: boolean }>`
   color: var(--white);
-  font: 700 ${({ mini }) => (mini ? 2.8 : 12)}rem 'Open Sans', sans-serif;
+  font: 700 ${({ mini }) => `var(--page-title-${mini ? 'scroll' : 'large'}) `} 'Open Sans',
+    sans-serif;
   margin: 0;
   position: relative;
   top: ${({ mini }) => (mini ? 2.2 : 7.5)}rem;
   transition: all 0.5s var(--bezier-transition);
 
   @media screen and (max-width: 56.8rem) {
-    font-size: ${({ mini }) => (mini ? 2.8 : 8)}rem;
+    font-size: ${({ mini }) => `var(--page-title-${mini ? 'scroll' : 'medium'}) `};
     top: ${({ mini }) => (mini ? 2.3 : 11.5)}rem;
   }
   @media screen and (max-width: 35rem) {
-    font-size: ${({ mini }) => (mini ? 2.8 : 6)}rem;
+    font-size: ${({ mini }) => `var(--page-title-${mini ? 'scroll' : 'small'}) `};
     top: ${({ mini }) => (mini ? 2.3 : 13.75)}rem;
   }
 `;

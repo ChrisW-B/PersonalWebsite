@@ -12,17 +12,11 @@ export const ExperienceGrid = styled.div`
 
 export const CompanyName = styled.h3`
   font-family: 'IBM Plex Serif', serif;
-  font-size: 2rem;
+  font-size: var(--subhead-text);
   margin: 0;
   padding: 0;
 `;
 
-// const LeftBullet = css`
-//   right: -3.5rem;
-// `;
-// const RightBullet = css`
-//   left: -3.5rem;
-// `;
 const LeftBorder = css`
   border-right-width: 0.2rem;
   right: -3.1rem;
@@ -54,7 +48,7 @@ export const JobItem = styled.div<{
     height: 100%;
     position: absolute;
     top: 1.25rem;
-    width: 2.7rem;
+    width: 1.5rem;
   }
 
   &:last-of-type {
@@ -66,5 +60,5 @@ export const JobItem = styled.div<{
 `;
 
 export const JobDescription = styled.p`
-  font-size: 1.3rem;
+  font-size: var(--description-text);
 `;

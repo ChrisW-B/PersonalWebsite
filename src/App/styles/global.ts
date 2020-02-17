@@ -3,6 +3,18 @@ import { css } from '@emotion/core';
 export default css`
   :root {
     --bezier-transition: cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* font sizes */
+    --description-text: 1.4rem;
+    --body-text: 1.6rem;
+    --subhead-text: 2rem;
+    --section-header-text: 2.6rem;
+    --page-title-scroll: 2.8rem;
+    --page-title-small: 6rem;
+    --page-title-medium: 8rem;
+    --page-title-large: 12rem;
+
+    /* light mode colors */
     --light-mode-cyan: #00c3d8;
     --light-mode-cyan-70: #00c3d8b3;
     --light-mode-dark: #1a0b00;
@@ -13,6 +25,8 @@ export default css`
     --light-mode-rose-50: #ba274280;
     --light-mode-white: #ffff;
     --light-mode-white-00: #fff0;
+
+    /* dark mode colors */
     --dark-mode-cyan: #00c3d8;
     --dark-mode-cyan-70: #00c3d8b3;
     --dark-mode-dark: #ffff;
