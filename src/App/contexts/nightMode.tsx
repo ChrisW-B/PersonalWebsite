@@ -1,22 +1,40 @@
 import * as React from 'react';
 
+import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
 import useLocalStorage from '@hooks/useLocalStorage';
 
 export const NightModeContext = React.createContext<[boolean, () => void]>(null);
 
+const LightModeCSS = css`
+  --cyan: var(--light-mode-cyan);
+  --cyan-70: var(--light-mode-cyan-70);
+  --dark: var(--light-mode-dark);
+  --light-grey: var(--light-mode-light-grey);
+  --light-grey-00: var(--light-mode-light-grey-00);
+  --link-blue: var(--light-mode-link-blue);
+  --rose: var(--light-mode-rose);
+  --rose-50: var(--light-mode-rose-50);
+  --white: var(--light-mode-white);
+  --white-00: var(--light-mode-white-00);
+`;
+
+const DarkModeCSS = css`
+  --cyan: var(--dark-mode-cyan);
+  --cyan-70: var(--dark-mode-cyan-70);
+  --dark: var(--dark-mode-dark);
+  --light-grey: var(--dark-mode-light-grey);
+  --light-grey-00: var(--dark-mode-light-grey-00);
+  --link-blue: var(--dark-mode-link-blue);
+  --rose: var(--dark-mode-rose);
+  --rose-50: var(--dark-mode-rose-50);
+  --white: var(--dark-mode-white);
+  --white-00: var(--dark-mode-white-00);
+`;
+
 const NightModeStyles = styled.div<{ isLightMode: boolean }>`
-  --cyan: var(${props => (props.isLightMode ? '--light' : '--dark')}-mode-cyan);
-  --cyan-70: var(${props => (props.isLightMode ? '--light' : '--dark')}-mode-cyan-70);
-  --dark: var(${props => (props.isLightMode ? '--light' : '--dark')}-mode-dark);
-  --light-grey: var(${props => (props.isLightMode ? '--light' : '--dark')}-mode-light-grey);
-  --light-grey-00: var(${props => (props.isLightMode ? '--light' : '--dark')}-mode-light-grey-00);
-  --link-blue: var(${props => (props.isLightMode ? '--light' : '--dark')}-mode-link-blue);
-  --rose: var(${props => (props.isLightMode ? '--light' : '--dark')}-mode-rose);
-  --rose-50: var(${props => (props.isLightMode ? '--light' : '--dark')}-mode-rose-50);
-  --white: var(${props => (props.isLightMode ? '--light' : '--dark')}-mode-white);
-  --white-00: var(${props => (props.isLightMode ? '--light' : '--dark')}-mode-white-00);
+  ${props => (props.isLightMode ? LightModeCSS : DarkModeCSS)};
 
   background-color: var(--white);
   color: var(--dark);

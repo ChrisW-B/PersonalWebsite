@@ -20,8 +20,8 @@
   "scripts": {
     "prebuild": "npm run generate:graphql",
     "build": "npm run build:react && npm run build:funcs",
-    "build:funcs": "netlify-lambda build ./src -c webpack.functions.js",
-    "build:react": "webpack -p --config ./webpack.production.js",
+    "build:funcs": "env NODE_ENV=production netlify-lambda build ./src -c webpack.functions.js",
+    "build:react": "env NODE_ENV=production webpack -p --config ./webpack.production.js",
     "generate:graphql": "graphql-codegen",
     "lint:css": "stylelint './**/styles/*.{j,t}s{x,}'",
     "lint:js": "eslint \"./**/*.{j,t}s{x,}\" --ignore-pattern \"public/**/*.js\"",
