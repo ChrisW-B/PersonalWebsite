@@ -12,11 +12,11 @@ const renderFunc = process.env.NODE_ENV === 'production' ? ReactDOM.hydrate : Re
 const render = (App: React.FC) => {
   renderFunc(
     <React.StrictMode>
-      <ApolloProvider client={apolloClient}>
-        <NightModeProvider>
+      <NightModeProvider>
+        <ApolloProvider client={apolloClient}>
           <App />
-        </NightModeProvider>
-      </ApolloProvider>
+        </ApolloProvider>
+      </NightModeProvider>
     </React.StrictMode>,
     document.querySelector('#root'),
   );
