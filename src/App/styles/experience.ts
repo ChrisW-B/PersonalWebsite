@@ -33,17 +33,17 @@ export const JobItem = styled.div<{
   RowNumber: number;
   TotalRows: number;
 }>`
-  grid-column: ${props =>
+  grid-column: ${(props) =>
     props.ColumnSide === 'left' ? 'left-start / left-end' : 'right-start / right-end'};
-  grid-row: ${props => toGridRowString(props.RowNumber + 1, props.RowNumber + 3)};
+  grid-row: ${(props) => toGridRowString(props.RowNumber + 1, props.RowNumber + 3)};
   position: relative;
 
   &::before {
-    border-color: hsl(${props => rowToColor(props.RowNumber, props.TotalRows)});
+    border-color: hsl(${(props) => rowToColor(props.RowNumber, props.TotalRows)});
     border-style: solid;
     border-width: 0;
     border-top-width: 0.2rem;
-    ${props => (props.ColumnSide === 'left' ? LeftBorder : RightBorder)};
+    ${(props) => (props.ColumnSide === 'left' ? LeftBorder : RightBorder)};
     content: '';
     height: 100%;
     position: absolute;
@@ -54,7 +54,7 @@ export const JobItem = styled.div<{
   &:last-of-type {
     &::before {
       border-color: var(--light-grey);
-      border-top-color: hsl(${props => rowToColor(props.RowNumber, props.TotalRows)});
+      border-top-color: hsl(${(props) => rowToColor(props.RowNumber, props.TotalRows)});
     }
   }
 `;

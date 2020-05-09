@@ -35,7 +35,7 @@ const DarkModeCSS = css`
 `;
 
 const NightModeStyles = styled.div<{ lightMode: boolean; isClient: boolean }>`
-  ${props => (props.isClient ? (props.lightMode ? LightModeCSS : DarkModeCSS) : css``)};
+  ${(props) => (props.isClient ? (props.lightMode ? LightModeCSS : DarkModeCSS) : css``)};
   background-color: var(--white);
   color: var(--dark);
   transition: all 0.5s var(--bezier-transition);
@@ -47,7 +47,7 @@ export const NightModeProvider: React.FC = ({ children }) => {
   const [isLightMode, setLightMode] = useLocalStorage<boolean>('light-mode');
 
   const showLightTheme = typeof isLightMode !== 'undefined' ? isLightMode : !prefersDarkMode;
-  const toggleMode = () => setLightMode(isLight => !isLight);
+  const toggleMode = () => setLightMode((isLight) => !isLight);
 
   React.useEffect(() => {
     setIsClient(typeof window === 'object');

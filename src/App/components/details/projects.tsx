@@ -13,7 +13,7 @@ export default () => {
 
   return (
     <ProjectList>
-      {projects.map(project => (
+      {projects.map((project) => (
         <Project key={project.github} project={project} />
       ))}
     </ProjectList>
