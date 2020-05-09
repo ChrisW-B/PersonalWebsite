@@ -16,4 +16,7 @@ jobs:
     - name: 'Check typescript'
       env: TEST_NAME=typescript
 
+    - name: 'Builds sucessfully'
+      env: TEST_NAME=build
+
 script: 'npm run $TEST_NAME'
