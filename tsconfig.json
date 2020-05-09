@@ -17,6 +17,7 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "sourceRoot": "/",
+    "strict": true,
     "target": "es2015",
     "paths": {
       "@utils/*": ["src/App/utils/*"],

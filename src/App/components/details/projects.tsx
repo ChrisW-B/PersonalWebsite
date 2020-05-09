@@ -5,7 +5,7 @@ import { ProjectList } from '@styles/projects';
 
 import Project from './project';
 
-export default () => {
+const Projects: React.FC = () => {
   const { loading, data } = useProjectsQuery();
 
   if (loading) return null;
@@ -14,8 +14,10 @@ export default () => {
   return (
     <ProjectList>
       {projects.map((project) => (
-        <Project key={project.github} project={project} />
+        <Project key={project?.github || undefined} project={project} />
       ))}
     </ProjectList>
   );
 };
+
+export default Projects;

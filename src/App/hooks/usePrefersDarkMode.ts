@@ -1,3 +1,4 @@
 import useMedia from './useMedia';
 
-export default () => useMedia(['(prefers-color-scheme: dark)'], [true], false);
+const usePrefersDarkMode = () => useMedia(['(prefers-color-scheme: dark)'], [true], false);
+export default usePrefersDarkMode;

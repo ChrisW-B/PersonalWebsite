@@ -11,7 +11,7 @@ export const ExperienceGrid = styled.div`
 `;
 
 export const CompanyName = styled.h3`
-  font-family: 'IBM Plex Serif', serif;
+  font-family: var(--font-family-header);
   font-size: var(--subhead-text);
   margin: 0;
   padding: 0;

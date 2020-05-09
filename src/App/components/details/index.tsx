@@ -7,7 +7,7 @@ import { DetailContent, DetailHeader, DetailWrapper, Overview } from '@styles/de
 import Experience from './experience';
 import Projects from './projects';
 
-export default () => {
+const Details: React.FC = () => {
   const { loading, data } = useBioQuery();
 
   return (
@@ -15,7 +15,7 @@ export default () => {
       <DetailHeader>About</DetailHeader>
       <DetailContent>
         <Markdown
-          source={loading ? '' : data.bio}
+          source={loading ? '' : data?.bio || ''}
           renderers={{ paragraph: ({ children }) => <Overview>{children}</Overview> }}
         />
       </DetailContent>
@@ -32,3 +32,5 @@ export default () => {
     </DetailWrapper>
   );
 };
+
+export default Details;

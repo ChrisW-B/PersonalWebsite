@@ -6,7 +6,7 @@ export const Overview = styled.p`
 `;
 
 export const DetailHeader = styled.h2`
-  font-family: 'IBM Plex Serif', serif;
+  font-family: var(--font-family-header);
   font-size: var(--section-header-text);
   font-weight: 700;
   margin: 0;
@@ -20,8 +20,8 @@ export const DetailContent = styled.div`
       background-image: linear-gradient(
         to right,
         transparent,
-        --var(--rose),
-        --var(--cyan),
+        var(--rose),
+        var(--cyan),
         transparent
       );
       bottom: -0.1rem;

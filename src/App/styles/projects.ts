@@ -1,14 +1,19 @@
 import styled from '@emotion/styled';
 
 export const ProjectList = styled.ul`
-  display: grid;
-  grid-auto-flow: dense;
-  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+  display: flex;
+  flex-flow: row wrap;
   list-style: none;
+  padding: 0;
 `;
 
 export const ProjectItem = styled.li`
-  grid-row: span 2;
+  align-items: center;
+  display: flex;
+  flex: 1 1 33%;
+  flex-flow: column nowrap;
+  margin: 1rem 0;
+  min-width: 21rem;
 `;
 
 export const TitleWrapper = styled.div`

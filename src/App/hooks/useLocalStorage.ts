@@ -2,13 +2,13 @@ import * as React from 'react';
 
 const isClient = typeof window === 'object';
 
-export default <T = undefined>(
+const useLocalStorage = <T = undefined>(
   key: string,
   initialValue?: T,
-): [T | undefined, React.Dispatch<React.SetStateAction<T | undefined>>] => {
+): [T | undefined, React.Dispatch<React.SetStateAction<T>>] => {
   const [storedValue, setStoredValue] = React.useState<T>(() => {
     try {
-      const item = isClient ? window.localStorage.getItem(key) : initialValue.toString();
+      const item = isClient ? window.localStorage.getItem(key) : (initialValue as any).toString();
       return item ? JSON.parse(item) : initialValue;
     } catch (error) {
       return initialValue;
@@ -27,3 +27,5 @@ export default <T = undefined>(
 
   return [storedValue, setValue];
 };
+
+export default useLocalStorage;

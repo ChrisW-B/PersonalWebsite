@@ -1,24 +1,25 @@
 import * as React from 'react';
 
-import { Project } from '@schema/dataModel/personalApi.generated';
+import { ProjectFragment } from '@schema/fragments/__generated__/project.generated';
 import { ProjectItem, ProjectScreenshot, ProjectTitle, TitleWrapper } from '@styles/projects';
 
 interface OwnProps {
-  project: {
-    __typename?: 'Project';
-  } & Pick<Project, 'technologies' | 'github' | 'website' | 'description' | 'name' | 'screenshots'>;
+  project: ProjectFragment | null;
 }
 
-export default (({ project }) => (
+const Project: React.FC<OwnProps> = ({ project }) => (
   <ProjectItem>
-    <ProjectScreenshot imgUrl={project.screenshots[0]}>
-      <TitleWrapper>
-        <ProjectTitle>{project.name}</ProjectTitle>
-      </TitleWrapper>
-    </ProjectScreenshot>
+    <div>
+      <ProjectScreenshot imgUrl={project?.screenshots?.[0] || ''}>
+        <TitleWrapper>
+          <ProjectTitle>{project?.name}</ProjectTitle>
+        </TitleWrapper>
+      </ProjectScreenshot>
 
-    <p>
-      <a href={project.github}>Github</a>
-    </p>
+      <p>
+        <a href={project?.github || undefined}>Github</a>
+      </p>
+    </div>
   </ProjectItem>
-)) as React.FC<OwnProps>;
+);
+export default Project;

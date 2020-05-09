@@ -1,10 +1,7 @@
+# import * from '../fragments/project.gql'
+
 query projects {
   projects {
-    technologies
-    github
-    website
-    description
-    name
-    screenshots
+    ...project
   }
 }

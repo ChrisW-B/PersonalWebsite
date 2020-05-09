@@ -1,7 +1,6 @@
 const path = require('path');
 
 const merge = require('webpack-merge');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 
 const commonConfig = require('./webpack.common.js');
@@ -30,22 +29,7 @@ const config = merge(commonConfig, {
   resolve: {
     alias: { 'react-dom': '@hot-loader/react-dom' },
   },
-  module: {
-    rules: [
-      {
-        enforce: 'pre',
-        test: /\.tsx?$/,
-        loader: 'eslint-loader',
-        include: SRC_PATH,
-        exclude: /(\.test.ts$|node_modules)/,
-        options: { cache: true },
-      },
-    ],
-  },
-  plugins: [
-    new FriendlyErrorsWebpackPlugin(),
-    new StyleLintPlugin({ lintDirtyModulesOnly: true, files: './src/**/*.{js,jsx,html}' }),
-  ],
+  plugins: [new FriendlyErrorsWebpackPlugin()],
 });
 
 module.exports = config;

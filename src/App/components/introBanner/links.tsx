@@ -11,14 +11,14 @@ interface OwnProps {
 const targetBlank = { target: '_blank', rel: 'noopener noreferrer' };
 const TOTAL_LINKS = 5;
 
-export default (({ mini }) => {
+const Links: React.FC<OwnProps> = ({ mini }) => {
   const { data } = useLinksQuery();
   if (!data) return null;
   return (
     <LinkList mini={mini}>
       <li>
         <Link
-          href={data?.github?.url}
+          href={data?.github?.url || undefined}
           {...targetBlank}
           title='Github'
           bgColor={gradientAtIndex(0, TOTAL_LINKS)}
@@ -28,7 +28,7 @@ export default (({ mini }) => {
       </li>
       <li>
         <Link
-          href={data?.linkedin?.url}
+          href={data?.linkedin?.url || undefined}
           {...targetBlank}
           title='LinkedIn'
           bgColor={gradientAtIndex(1, TOTAL_LINKS)}
@@ -38,7 +38,7 @@ export default (({ mini }) => {
       </li>
       <li>
         <Link
-          href={data?.twitter?.url}
+          href={data?.twitter?.url || undefined}
           {...targetBlank}
           title='Twitter'
           bgColor={gradientAtIndex(2, TOTAL_LINKS)}
@@ -48,7 +48,7 @@ export default (({ mini }) => {
       </li>
       <li>
         <Link
-          href={data?.photoBlog?.url}
+          href={data?.photoBlog?.url || undefined}
           {...targetBlank}
           title='Photography'
           bgColor={gradientAtIndex(3, TOTAL_LINKS)}
@@ -58,7 +58,7 @@ export default (({ mini }) => {
       </li>
       <li>
         <Link
-          href={data?.lastfm?.url}
+          href={data?.lastfm?.url || undefined}
           {...targetBlank}
           title='LastFM'
           bgColor={gradientAtIndex(4, TOTAL_LINKS)}
@@ -78,4 +78,5 @@ export default (({ mini }) => {
       </li>
     </LinkList>
   );
-}) as React.FC<OwnProps>;
+};
+export default Links;

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 const isClient = typeof window === 'object';
 
-export default <T = undefined>(queries: string[], values: T[], defaultValue: T) => {
+const useMedia = <T = undefined>(queries: string[], values: T[], defaultValue: T) => {
   const mediaQueryLists = isClient ? queries.map((q) => window.matchMedia(q)) : [];
 
   const getValue = useCallback(() => {
@@ -22,3 +22,4 @@ export default <T = undefined>(queries: string[], values: T[], defaultValue: T) 
 
   return value;
 };
+export default useMedia;

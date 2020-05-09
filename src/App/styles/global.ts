@@ -4,6 +4,10 @@ export default css`
   :root {
     --bezier-transition: cubic-bezier(0.4, 0, 0.2, 1);
 
+    /* font families */
+    --font-family-body: 'Open Sans', sans-serif;
+    --font-family-header: 'IBM Plex Serif', serif;
+
     /* font sizes */
     --description-text: 1.4rem;
     --body-text: 1.6rem;
@@ -40,7 +44,7 @@ export default css`
   }
   html,
   body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: var(--font-family-body);
     /* stylelint-disable unit-whitelist */
     font-size: 10px;
     /* stylelint-enable unit-whitelist */
