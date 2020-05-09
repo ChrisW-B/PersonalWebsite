@@ -29,7 +29,8 @@
     "prettier": "prettier \"./**/*.{ts,tsx,js,jsx,gql,html,yml,json}\" --write",
     "prettier:check": "prettier './**/*.{ts,tsx,js,jsx,json}' -c",
     "prestart": "npm run generate:graphql",
-    "start": "env NODE_ENV=development webpack-dev-server --config ./webpack.development.js"
+    "start": "env NODE_ENV=development webpack-dev-server --config ./webpack.development.js",
+    "typescript": "tsc -p ./tsconfig.json"
   },
   "husky": {
     "hooks": {

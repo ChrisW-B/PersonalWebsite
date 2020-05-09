@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  - 'lts/*'
+
+jobs:
+  include:
+    - stage: 'Check Prettier'
+      script:
+        - 'npm run generate:graphql'
+        - 'npm run prettier:check'
+
+    - stage: 'Check ESLint'
+      script:
+        - 'npm run generate:graphql'
+        - 'npm run lint:js'
+
+    - stage: 'Check Stylelint'
+      script: npm run lint:css
+
+    - stage: 'Check typescript'
+      script:
+        - 'npm run generate:graphql'
+        - 'npm run typescript'
