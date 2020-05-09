@@ -24,32 +24,16 @@
     "build:react": "env NODE_ENV=production webpack -p --config ./webpack.production.js",
     "generate:graphql": "graphql-codegen",
     "lint:css": "stylelint './**/styles/*.{j,t}s{x,}'",
+    "prelint:js": "npm run generate:graphql",
     "lint:js": "eslint \"./**/*.{j,t}s{x,}\" --ignore-pattern \"public/**/*.js\"",
     "lint:js:fix": "eslint --fix \"./**/*.{j,t}s{x,}\" --ignore-pattern 'public/**/*.js'",
     "prettier": "prettier \"./**/*.{ts,tsx,js,jsx,gql,html,yml,json}\" --write",
+    "preprettier:check": "npm run generate:graphql",
     "prettier:check": "prettier './**/*.{ts,tsx,js,jsx,json}' -c",
     "prestart": "npm run generate:graphql",
     "start": "env NODE_ENV=development webpack-dev-server --config ./webpack.development.js",
-    "typescript": "tsc -p ./tsconfig.json"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "./**/*.{gql,html,yml,json}": [
-      "prettier -c"
-    ],
-    "./src/**/*.{j,t}s{x,}": [
-      "prettier -c",
-      "eslint"
-    ],
-    "./src/App/styles/*.{j,t}s{x,}": [
-      "prettier -c",
-      "eslint",
-      "stylelint"
-    ]
+    "pretypescript": "npm run generate:graphql",
+    "typescript": "tsc --noEmit"
   },
   "dependencies": {
     "@apollo/react-common": "^3.1.4",
@@ -133,11 +117,9 @@
     "eslint-plugin-unicorn": "^19.0.1",
     "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
-    "husky": "^4.2.5",
     "import-sort": "^6.0.0",
     "import-sort-parser-typescript": "^6.0.0",
     "import-sort-style-react": "^5.1.0",
-    "lint-staged": "^10.2.2",
     "netlify-lambda": "^1.6.3",
     "prettier": "^2.0.5",
     "prettier-eslint": "^9.0.1",
