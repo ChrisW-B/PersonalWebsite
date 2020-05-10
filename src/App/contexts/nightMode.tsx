@@ -12,7 +12,10 @@ export const NightModeProvider: React.FC = ({ children }) => {
   const [isLightMode, setLightMode] = useLocalStorage<boolean>('light-mode');
 
   const showLightTheme = typeof isLightMode !== 'undefined' ? isLightMode : !prefersDarkMode;
-  const toggleMode = () => setLightMode((isLight) => !isLight);
+  const toggleMode = () =>
+    setLightMode((isLight) =>
+      isLight === undefined || isLight === null ? prefersDarkMode : !isLight,
+    );
 
   React.useEffect(() => {
     setIsClient(typeof window === 'object');
