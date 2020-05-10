@@ -29,7 +29,7 @@ const routerBasePath =
 
 const client = new ApolloClient({
   ssrMode: true,
-  link: createHttpLink({ uri: 'https://api.chriswb.dev/', fetch }),
+  link: createHttpLink({ uri: process.env.GRAPHQL_API, fetch }),
   cache: new InMemoryCache(),
 });
 
