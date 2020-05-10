@@ -1,17 +1,25 @@
 {
-  "extends": "stylelint-config-standard",
-  "processors": ["stylelint-processor-styled-components"],
-  "syntax": "scss",
-  "plugins": ["stylelint-order", "stylelint-no-unsupported-browser-features"],
+  "syntax": "css-in-js",
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-recommended",
+    "stylelint-config-css-modules",
+    "stylelint-config-styled-components",
+    "stylelint-config-sass-guidelines",
+    "stylelint-a11y/recommended",
+    "stylelint-prettier/recommended"
+  ],
+  "plugins": [
+    "stylelint-no-unsupported-browser-features",
+    "stylelint-a11y",
+    "stylelint-csstree-validator",
+    "stylelint-order"
+  ],
   "rules": {
-    "rule-empty-line-before": null,
-    "no-empty-source": null,
-    "no-missing-end-of-source-newline": null,
-    "at-rule-empty-line-before": "always",
-    "font-family-name-quotes": "always-where-recommended",
+    "csstree/validator": null,
+    "declaration-empty-line-before": null,
+    "shorthand-property-no-redundant-values": true,
     "value-no-vendor-prefix": true,
-    "declaration-no-important": true,
-    "font-weight-notation": "numeric",
     "plugin/no-unsupported-browser-features": [
       true,
       {
@@ -19,8 +27,20 @@
         "ignore": ["multicolumn", "css-appearance", "css-gradients", "text-decoration"]
       }
     ],
-    "order/order": ["declarations", "rules", "at-rules"],
+    "selector-no-qualifying-type": [true, { "ignore": ["attribute"] }],
+    "a11y/media-prefers-reduced-motion": null,
+    "selector-combinator-space-before": null,
+    "unit-whitelist": ["rem", "vw", "%", "vh", "fr", "s", "turn"],
+    "color-no-invalid-hex": true,
+    "selector-class-pattern": null,
+    "declaration-block-no-redundant-longhand-properties": true,
+    "unit-no-unknown": true,
+    "unit-case": "lower",
+    "max-nesting-depth": 3,
+    "selector-max-compound-selectors": 8,
+    "order/order": ["custom-properties", "declarations"],
     "order/properties-alphabetical-order": true,
-    "color-hex-case": null
+    "function-name-case": null,
+    "value-keyword-case": null
   }
 }

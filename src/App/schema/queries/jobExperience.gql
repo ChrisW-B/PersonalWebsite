@@ -1,0 +1,11 @@
+query jobExperience {
+  jobs {
+    title
+    company
+    details
+    when {
+      start
+      end
+    }
+  }
+}

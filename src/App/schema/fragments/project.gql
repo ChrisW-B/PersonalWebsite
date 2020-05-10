@@ -1,0 +1,8 @@
+fragment project on Project {
+  technologies
+  github
+  website
+  description
+  name
+  screenshots
+}

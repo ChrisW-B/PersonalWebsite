@@ -1,18 +1,14 @@
 {
-  "presets": [["@babel/env", { "targets": { "node": "current" } }], "@babel/react"],
+  "presets": [
+    "@babel/preset-react",
+    ["@babel/preset-env", { "useBuiltIns": "usage", "corejs": "core-js@3", "modules": false }],
+    "@babel/preset-typescript"
+  ],
   "plugins": [
-    "emotion",
+    ["emotion"],
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-proposal-export-default-from",
+    "@babel/plugin-proposal-optional-chaining",
     "react-hot-loader/babel"
-  ],
-  "env": {
-    "production": {
-      "plugins": [["transform-react-remove-prop-types", { "mode": "remove", "removeImport": true }]],
-      "presets": [
-        ["@babel/env", { "targets": { "node": "current" }, "forceAllTransforms": true, "useBuiltIns": "usage" }],
-        "@babel/react"
-      ]
-    }
-  }
+  ]
 }

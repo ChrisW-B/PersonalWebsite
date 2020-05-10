@@ -1,7 +1,6 @@
 
 [build]
   functions = "build"
-  build = "npm run build:netlify"
 
 [dev]
   targetPort = 8000
@@ -10,6 +9,7 @@
 
 [[redirects]]
   from = "/"
-  to = "/.netlify/functions/ssr-server"
+  to = "/.netlify/functions/server"
   status = 200
   force = true
+

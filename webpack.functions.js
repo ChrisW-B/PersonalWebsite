@@ -6,25 +6,36 @@ const NODE_MODULES_PATH = path.resolve(__dirname, 'node_modules');
 const HTML_SRC = path.resolve(SRC_PATH, 'index.html');
 
 const config = {
-  mode: 'development',
+  mode: 'production',
   devtool: 'cheap-module-source-map',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.gql', '.graphql'],
     modules: [SRC_PATH, NODE_MODULES_PATH],
     alias: {
+      '@app': path.resolve(SRC_PATH),
+      '@utils': path.resolve(SRC_PATH, 'utils'),
+      '@assets': path.resolve(SRC_PATH, 'assets'),
+      '@hooks': path.resolve(SRC_PATH, 'hooks'),
+      '@contexts': path.resolve(SRC_PATH, 'contexts'),
       '@components': path.resolve(SRC_PATH, 'components'),
-      '@queries': path.resolve(SRC_PATH, 'queries'),
+      '@queries': path.resolve(SRC_PATH, 'schema', 'queries', '__generated__'),
+      '@schema': path.resolve(SRC_PATH, 'schema'),
       '@styles': path.resolve(SRC_PATH, 'styles'),
-      '@public': path.resolve(SRC_PATH, 'public'),
     },
   },
   module: {
     rules: [
       {
+        test: /\.(j|t)sx?$/,
+        exclude: /(\.test.ts$|node_modules)/,
+        include: SRC_PATH,
+        loader: 'babel-loader',
+      },
+      { test: /\.(graphql|gql)$/, use: 'graphql-tag/loader', exclude: /node_modules/ },
+      {
         test: /\.html$/,
         loader: 'raw-loader',
       },
-      { test: /\.(graphql|gql)$/, use: 'graphql-mini-transforms/webpack', exclude: /node_modules/ },
       { test: /\.svg$/, include: [SRC_PATH], loader: 'svg-react-loader' },
       {
         test: /\.(ico|png|jpg|gif|eot|ttf|woff|woff2)(\?.+)?$/,

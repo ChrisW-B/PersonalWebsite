@@ -1,0 +1,41 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "experimentalDecorators": true,
+    "inlineSources": true,
+    "jsx": "preserve",
+    "lib": ["esnext", "dom"],
+    "module": "esNext",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "./dist",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "sourceRoot": "/",
+    "strict": true,
+    "target": "es2015",
+    "paths": {
+      "@utils/*": ["src/App/utils/*"],
+      "@assets/*": ["src/App/assets/*"],
+      "@components/*": ["src/App/components/*"],
+      "@hooks/*": ["src/App/hooks/*"],
+      "@contexts/*": ["src/App/contexts/*"],
+      "@queries/*": ["src/App/schema/queries/__generated__/*"],
+      "@schema/*": ["src/App/schema/*"],
+      "@styles/*": ["src/App/styles/*"],
+      "@app/*": ["src/App/*"]
+    },
+    "plugins": [
+      {
+        "name": "typescript-styled-plugin",
+        "tags": ["styled", "css"]
+      }
+    ]
+  },
+  "include": ["./src/App"]
+}

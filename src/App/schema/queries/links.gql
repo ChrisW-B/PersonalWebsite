@@ -1,0 +1,17 @@
+query links {
+  twitter {
+    url
+  }
+  github {
+    url
+  }
+  linkedin {
+    url
+  }
+  lastfm {
+    url
+  }
+  photoBlog {
+    url
+  }
+}
