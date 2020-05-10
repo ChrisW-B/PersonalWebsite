@@ -10,7 +10,7 @@ export const LinkList = styled.ul<{ mini: boolean }>`
   list-style: none;
   margin: 0;
   padding: 0;
-  transition: all 0.5s var(--bezier-transition);
+  transition: all 0.25s var(--bezier-transition);
   ${AutoSeperator}
   @media screen and (max-width: 46rem) {
     font-size: var(--description-text);
@@ -25,7 +25,7 @@ export const Link = styled.a<{ bgColor: string }>`
   display: inline-block;
   position: relative;
   text-decoration: none;
-  transition: all 0.5s var(--bezier-transition);
+  transition: all 0.25s var(--bezier-transition);
 
   :hover,
   :focus,

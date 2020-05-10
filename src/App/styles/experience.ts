@@ -5,9 +5,10 @@ import rowToColor from '@utils/gradientToHSL';
 
 export const ExperienceGrid = styled.div`
   display: grid;
-  grid-gap: 1.2rem 6rem;
+  grid-gap: 3rem 6rem;
   grid-template: auto / [left-start] 1fr [left-end right-start] 1fr [right-end];
   justify-items: center;
+  margin: 0 0 5rem;
 `;
 
 export const CompanyName = styled.h3`

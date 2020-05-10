@@ -5,6 +5,16 @@ export const Overview = styled.p`
   margin: 0 0 2rem;
 `;
 
+export const Link = styled.a`
+  color: var(--cyan);
+  transition: all 0.25s var(--bezier-transition);
+  &:hover,
+  &:focus,
+  &:active {
+    color: var(--rose);
+  }
+`;
+
 export const DetailHeader = styled.h2`
   font-family: var(--font-family-header);
   font-size: var(--section-header-text);
@@ -42,7 +52,7 @@ export const DetailWrapper = styled.article`
   grid-template: auto / auto;
   margin: 0 3% 10rem;
   padding: 5rem 10%;
-  transition: all 0.5s var(--bezier-transition);
+  transition: all 0.25s var(--bezier-transition);
 
   @media screen and (max-width: 35rem) {
     padding: 3rem 5%;

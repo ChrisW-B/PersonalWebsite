@@ -2,7 +2,7 @@ import React from 'react';
 import Markdown from 'react-markdown';
 
 import { useBioQuery } from '@queries/bio.generated';
-import { DetailContent, DetailHeader, DetailWrapper, Overview } from '@styles/details';
+import { DetailContent, DetailHeader, DetailWrapper, Link, Overview } from '@styles/details';
 
 import Experience from './experience';
 import Projects from './projects';
@@ -16,7 +16,10 @@ const Details: React.FC = () => {
       <DetailContent>
         <Markdown
           source={loading ? '' : data?.bio || ''}
-          renderers={{ paragraph: ({ children }) => <Overview>{children}</Overview> }}
+          renderers={{
+            paragraph: (props) => <Overview {...props} />,
+            link: (props) => <Link target='_blank' rel='noopener noreferrer' {...props} />,
+          }}
         />
       </DetailContent>
 
@@ -25,7 +28,7 @@ const Details: React.FC = () => {
         <Experience />
       </DetailContent>
 
-      <DetailHeader>Projects</DetailHeader>
+      <DetailHeader>Personal Projects</DetailHeader>
       <DetailContent>
         <Projects />
       </DetailContent>

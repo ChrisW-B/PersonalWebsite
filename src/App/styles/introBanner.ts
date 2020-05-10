@@ -7,7 +7,7 @@ import { AutoSeperator, animateImageCss, transparentBg, whiteBg } from './css';
 export const BulbIcon = styled(LightBulb)`
   fill: var(--white);
   height: 3.6rem;
-  transition: all 0.5s var(--bezier-transition);
+  transition: all 0.25s var(--bezier-transition);
   width: 3.6rem;
 `;
 
@@ -35,7 +35,7 @@ export const BannerWrapper = styled.div<{ mini: boolean }>`
   position: ${({ mini }) => (mini ? 'absolute' : 'relative')};
   right: 0;
   top: 0;
-  transition: all 0.5s var(--bezier-transition);
+  transition: all 0.25s var(--bezier-transition);
   z-index: 10;
 `;
 
@@ -51,7 +51,7 @@ export const BannerPositioner = styled.div<{ mini: boolean }>`
   justify-content: center;
   position: relative;
   top: ${({ mini }) => (mini ? 0 : -20)}vh;
-  transition: all 0.5s var(--bezier-transition);
+  transition: all 0.25s var(--bezier-transition);
   width: 100%;
 `;
 
@@ -64,7 +64,7 @@ export const Banner = styled.div<{ bgImage: string; mini: boolean; fixed: boolea
   justify-content: stretch;
   position: ${({ mini, fixed }) => (fixed ? 'fixed' : mini ? 'absolute' : 'relative')};
   top: 0;
-  transition: all 0.5s var(--bezier-transition);
+  transition: all 0.25s var(--bezier-transition);
   width: ${({ mini }) => (mini ? 100 : 75)}vw;
   z-index: 0;
 
@@ -93,7 +93,7 @@ export const CenterText = styled.div<{ mini: boolean }>`
   flex: 1;
   flex-flow: column nowrap;
   position: relative;
-  transition: all 0.5s var(--bezier-transition);
+  transition: all 0.25s var(--bezier-transition);
   z-index: 10;
 
   &::before {
@@ -115,7 +115,7 @@ export const Name = styled.h1<{ mini: boolean }>`
   margin: 0;
   position: relative;
   top: ${({ mini }) => (mini ? 2.2 : 7.5)}rem;
-  transition: all 0.5s var(--bezier-transition);
+  transition: all 0.25s var(--bezier-transition);
 
   @media screen and (max-width: 56.8rem) {
     font-size: ${({ mini }) => `var(--page-title-${mini ? 'scroll' : 'medium'}) `};
@@ -144,7 +144,7 @@ export const Details = styled.div<{ mini: boolean }>`
   justify-content: space-between;
   position: relative;
   top: ${({ mini }) => (mini ? -3.25 : 5)}rem;
-  transition: all 0.5s var(--bezier-transition);
+  transition: all 0.25s var(--bezier-transition);
   @media screen and (max-width: 56.8rem) {
     top: ${({ mini }) => (mini ? -2.8 : 10)}rem;
   }
