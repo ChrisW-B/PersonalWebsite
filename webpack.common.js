@@ -4,6 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { WebpackAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const BundleAnalyzerPlugin = require('@bundle-analyzer/webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const SRC_PATH = path.resolve(__dirname, 'src', 'App');
 const NODE_MODULES_PATH = path.resolve(__dirname, 'node_modules');
@@ -60,6 +61,11 @@ const config = {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new Dotenv({
+      path: path.resolve(__dirname, './.env'),
+      systemvars: true, // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
+      silent: true, // hide any errors
+    }),
     new HtmlWebpackPlugin({
       template: HTML_SRC,
       inject: 'body',
