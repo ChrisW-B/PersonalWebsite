@@ -5,10 +5,13 @@ import rowToColor from '@utils/gradientToHSL';
 
 export const ExperienceGrid = styled.div`
   display: grid;
-  grid-gap: 3rem 6rem;
-  grid-template: auto / [left-start] 1fr [left-end right-start] 1fr [right-end];
+  grid-template: auto / [left-start right-start] 1fr [left-end right-end];
   justify-items: center;
   margin: 0 0 5rem;
+  @media screen and (min-width: 55rem) {
+    grid-gap: 3rem 6rem;
+    grid-template: auto / [left-start] 1fr [left-end right-start] 1fr [right-end];
+  }
 `;
 
 export const CompanyName = styled.h3`
@@ -36,7 +39,7 @@ export const JobItem = styled.div<{
 }>`
   grid-column: ${(props) =>
     props.ColumnSide === 'left' ? 'left-start / left-end' : 'right-start / right-end'};
-  grid-row: ${(props) => toGridRowString(props.RowNumber + 1, props.RowNumber + 3)};
+
   position: relative;
 
   &::before {
@@ -44,18 +47,27 @@ export const JobItem = styled.div<{
     border-style: solid;
     border-width: 0;
     border-top-width: 0.2rem;
-    ${(props) => (props.ColumnSide === 'left' ? LeftBorder : RightBorder)};
     content: '';
     height: 100%;
     position: absolute;
     top: 1.25rem;
     width: 1.5rem;
+    @media screen and (max-width: 55rem) {
+      ${RightBorder};
+    }
   }
 
   &:last-of-type {
     &::before {
       border-color: var(--light-grey);
       border-top-color: hsl(${(props) => rowToColor(props.RowNumber, props.TotalRows)});
+    }
+  }
+
+  @media screen and (min-width: 55rem) {
+    grid-row: ${(props) => toGridRowString(props.RowNumber + 1, props.RowNumber + 3)};
+    &::before {
+      ${(props) => (props.ColumnSide === 'left' ? LeftBorder : RightBorder)};
     }
   }
 `;

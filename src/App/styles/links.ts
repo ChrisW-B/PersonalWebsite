@@ -15,6 +15,9 @@ export const LinkList = styled.ul<{ mini: boolean }>`
   @media screen and (max-width: 46rem) {
     font-size: var(--description-text);
   }
+  @media screen and (max-width: 38rem) {
+    font-size: 1rem;
+  }
 `;
 
 export const Link = styled.a<{ bgColor: string }>`
