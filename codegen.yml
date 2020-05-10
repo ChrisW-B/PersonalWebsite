@@ -1,5 +1,5 @@
 overwrite: true
-schema: ${GRAPHQL_API:https://api.chriswb.dev/} 
+schema: ${GRAPHQL_API:https://api.chriswb.dev/}
 documents: ./src/**/*.gql
 generates:
   ./src/App/typings/graphql.generated.d.ts:
