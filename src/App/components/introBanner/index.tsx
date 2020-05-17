@@ -30,10 +30,10 @@ const IntroBanner: React.FC<OwnProps> = ({ mini = false }) => {
   const [bgImage, setBgImage] = useState<Photo | null>(null);
   const { loading, data } = usePhotoBlogQuery();
 
-  const photos = data?.photoBlog?.photos;
+  const photos = data?.photoBlog?.photos || [];
 
   useEffect(() => {
-    if (!loading && photos?.length) {
+    if (!loading && photos.length > 0) {
       const randomPhotoNumber = Math.floor(Math.random() * photos.length);
       setBgImage(photos[randomPhotoNumber]);
     }
