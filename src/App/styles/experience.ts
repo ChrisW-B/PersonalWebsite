@@ -17,6 +17,7 @@ export const ExperienceGrid = styled.div`
 export const CompanyName = styled.h3`
   font-family: var(--font-family-header);
   font-size: var(--subhead-text);
+  font-style: italic;
   margin: 0;
   padding: 0;
 `;

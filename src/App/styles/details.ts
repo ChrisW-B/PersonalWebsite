@@ -49,11 +49,11 @@ export const DetailWrapper = styled.article`
   background: var(--light-grey);
   display: grid;
   grid-gap: 3rem 2rem;
-  grid-template: auto / auto;
+  grid-template: auto / minmax(auto, 96rem);
+  justify-content: center;
   margin: 0 3% 10rem;
   padding: 5rem 10%;
   transition: all 0.25s var(--bezier-transition);
-
   @media screen and (max-width: 35rem) {
     padding: 3rem 5%;
   }
