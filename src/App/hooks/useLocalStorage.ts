@@ -10,7 +10,7 @@ const useLocalStorage = <T = undefined>(
     try {
       const item = isClient ? window.localStorage.getItem(key) : (initialValue as any).toString();
       return item ? JSON.parse(item) : initialValue;
-    } catch (error) {
+    } catch {
       return initialValue;
     }
   });
