@@ -1,6 +1,17 @@
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 
+const IOSFullHeight = css`
+  /* need to use -webkit-fill-available for safari, where the address bar does not affect vh value */
+  /* stylelint-disable value-no-vendor-prefix, plugin/no-unsupported-browser-features */
+  height: -webkit-fill-available;
+  height: 100vh;
+  max-height: 100vh;
+  max-height: -webkit-fill-available;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+`;
+
 export default css`
   :root {
     --bezier-transition: cubic-bezier(0.4, 0, 0.2, 1);
@@ -50,11 +61,11 @@ export default css`
     /* stylelint-disable unit-whitelist */
     font-size: 10px;
     /* stylelint-enable unit-whitelist */
-    height: 100vh;
     margin: 0;
     overflow-x: hidden;
     overflow-y: auto;
     padding: 0;
+    ${IOSFullHeight};
   }
 `;
 
