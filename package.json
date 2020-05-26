@@ -102,7 +102,7 @@
     "@typescript-eslint/typescript-estree": "^3.0.1",
     "babel-loader": "^8.1.0",
     "babel-plugin-emotion": "^10.0.33",
-    "eslint": "^7.0.0",
+    "eslint": "^7.1.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-import-resolver-webpack": "^0.12.1",
