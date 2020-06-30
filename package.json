@@ -86,7 +86,7 @@
     "@graphql-codegen/schema-ast": "^1.15.3",
     "@graphql-codegen/typescript": "^1.15.3",
     "@graphql-codegen/typescript-graphql-files-modules": "^1.15.3",
-    "@graphql-codegen/typescript-operations": "^1.15.3",
+    "@graphql-codegen/typescript-operations": "^1.16.0",
     "@graphql-codegen/typescript-react-apollo": "^1.15.3",
     "@types/aws-lambda": "^8.10.55",
     "@types/body-parser": "^1.19.0",
