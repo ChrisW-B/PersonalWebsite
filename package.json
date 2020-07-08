@@ -79,7 +79,7 @@
     "@babel/preset-react": "^7.10.4",
     "@babel/preset-typescript": "^7.10.1",
     "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-conventional": "^8.3.4",
+    "@commitlint/config-conventional": "^9.0.1",
     "@graphql-codegen/cli": "^1.15.3",
     "@graphql-codegen/fragment-matcher": "^1.16.3",
     "@graphql-codegen/near-operation-file-preset": "^1.15.3",
