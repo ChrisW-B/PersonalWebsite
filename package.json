@@ -99,7 +99,7 @@
     "@types/webpack-env": "^1.15.2",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.34.0",
-    "@typescript-eslint/typescript-estree": "^3.5.0",
+    "@typescript-eslint/typescript-estree": "^4.4.1",
     "babel-loader": "^8.1.0",
     "babel-plugin-emotion": "^10.0.33",
     "eslint": "^7.2.0",
