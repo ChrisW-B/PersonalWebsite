@@ -56,7 +56,7 @@
     "graphql": "^15.1.0",
     "graphql-tag": "^2.10.3",
     "html-webpack-plugin": "^4.3.0",
-    "intersection-observer": "^0.10.0",
+    "intersection-observer": "^0.11.0",
     "node-fetch": "^2.6.1",
     "path": "^0.12.7",
     "react": "^16.13.1",
