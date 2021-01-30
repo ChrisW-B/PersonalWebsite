@@ -3,7 +3,8 @@ schema: ${GRAPHQL_API:https://api.chriswb.dev/}
 documents: ./src/**/*.gql
 generates:
   ./src/App/typings/graphql.generated.d.ts:
-    - typescript-graphql-files-modules
+    plugins:
+      - typescript-graphql-files-modules
 
   ./schema.generated.graphql:
     plugins:
@@ -12,6 +13,10 @@ generates:
   ./src/App/schema/dataModel/personalApi.generated.ts:
     plugins:
       - typescript
+    config:
+      immutableTypes: true
+      namingConvention:
+        enumValues: keep
 
   ./src/App:
     preset: near-operation-file
@@ -23,8 +28,5 @@ generates:
       - typescript-operations
       - typescript-react-apollo
     config:
-      withHooks: true
-      withComponent: false
-      withHOC: false
-      importDocumentNodeExternallyFrom: 'near-operation-file'
-      addDocBlocks: false
+      dedupeOperationSuffix: true
+      pureMagicComment: true

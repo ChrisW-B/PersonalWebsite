@@ -3,7 +3,6 @@ const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { WebpackAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const BundleAnalyzerPlugin = require('@bundle-analyzer/webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 const SRC_PATH = path.resolve(__dirname, 'src', 'App');
@@ -11,7 +10,6 @@ const NODE_MODULES_PATH = path.resolve(__dirname, 'node_modules');
 const HTML_SRC = path.resolve(SRC_PATH, 'index.html');
 
 const analyze = process.env.ANALYZE || false;
-const bundleAnalyzerToken = process.env.BUNDLE_ANALYZER_TOKEN || false;
 
 const config = {
   entry: {
@@ -77,9 +75,6 @@ const config = {
 
 if (analyze) {
   config.plugins.push(new WebpackAnalyzerPlugin());
-}
-if (bundleAnalyzerToken) {
-  config.plugins.push(new BundleAnalyzerPlugin());
 }
 
 module.exports = config;

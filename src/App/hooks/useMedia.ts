@@ -1,23 +1,26 @@
-import { useCallback, useEffect, useState } from 'react';
+import * as React from 'react';
 
 const isClient = typeof window === 'object';
 
 const useMedia = <T = undefined>(queries: string[], values: T[], defaultValue: T) => {
-  const mediaQueryLists = isClient ? queries.map((q) => window.matchMedia(q)) : [];
+  const mediaQueryLists = React.useMemo(
+    () => (isClient ? queries.map((q) => window.matchMedia(q)) : []),
+    [queries],
+  );
 
-  const getValue = useCallback(() => {
+  const getValue = React.useCallback(() => {
     const index = mediaQueryLists.findIndex((mql) => mql.matches);
 
     return typeof values[index] !== 'undefined' ? values[index] : defaultValue;
   }, [defaultValue, mediaQueryLists, values]);
 
-  const [value, setValue] = useState(getValue);
+  const [value, setValue] = React.useState(getValue);
 
   const handler = () => setValue(getValue);
 
-  useEffect(() => {
-    mediaQueryLists.forEach((mql) => mql.addListener(handler));
-    return () => mediaQueryLists.forEach((mql) => mql.removeListener(handler));
+  React.useEffect(() => {
+    mediaQueryLists.forEach((mql) => mql.addEventListener('change', handler));
+    return () => mediaQueryLists.forEach((mql) => mql.removeEventListener('change', handler));
   });
 
   return value;

@@ -1,6 +1,4 @@
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloClient } from 'apollo-client';
-import { createHttpLink } from 'apollo-link-http';
+import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 
 /* eslint-disable no-underscore-dangle */
 const cache = window.__APOLLO_STATE__

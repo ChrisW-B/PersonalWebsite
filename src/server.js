@@ -2,11 +2,8 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
-import { ApolloProvider } from '@apollo/react-common';
-import { getDataFromTree } from '@apollo/react-ssr';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { ApolloClient } from 'apollo-client';
-import { createHttpLink } from 'apollo-link-http';
+import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
+import { getDataFromTree } from '@apollo/client/react/ssr';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
