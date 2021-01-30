@@ -14,4 +14,4 @@ jobs:
           site_name: 'chris-barry-personal-site'
       - name: Check site for copy
         run: |
-          curl -s https://deploy-preview-${{github.event.number}}--chris-barry-personal-site.netlify.app | grep "Chris Barry"
+          curl -s https://deploy-preview-${{github.event.number}}--chris-barry-personal-site.netlify.app | grep "Personal Projects"
