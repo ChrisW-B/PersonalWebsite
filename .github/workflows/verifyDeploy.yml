@@ -1,0 +1,17 @@
+name: Verify Deploy
+
+on:
+  pull_request:
+    branches: [prod]
+
+jobs:
+  check-prettier:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Waiting for 200 from the Netlify Preview
+        uses: jakepartusch/wait-for-netlify-action@v1.2
+        with:
+          site_name: 'chris-barry-personal-site'
+      - name: Check site for copy
+        run: |
+          curl -s https://deploy-preview-${{github.event.number}}--chris-barry-personal-site.netlify.app | grep "Chris Barry"
