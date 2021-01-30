@@ -28,7 +28,7 @@ const Details: React.FC = () => {
         <Experience />
       </DetailContent>
 
-      <DetailHeader>Personal Projs</DetailHeader>
+      <DetailHeader>Personal Projects</DetailHeader>
       <DetailContent>
         <Projects />
       </DetailContent>
