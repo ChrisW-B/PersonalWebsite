@@ -35,8 +35,8 @@ const config = {
     splitChunks: {
       chunks: 'all',
       maxSize: 200 * 1000, // 100kb max size
-      maxInitialRequests: Infinity,
-      maxAsyncRequests: Infinity,
+      maxInitialRequests: Number.POSITIVE_INFINITY,
+      maxAsyncRequests: Number.POSITIVE_INFINITY,
     },
   },
   module: {

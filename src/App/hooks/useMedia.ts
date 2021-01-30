@@ -19,8 +19,10 @@ const useMedia = <T = undefined>(queries: string[], values: T[], defaultValue: T
   const handler = () => setValue(getValue);
 
   React.useEffect(() => {
-    mediaQueryLists.forEach((mql) => mql.addEventListener('change', handler));
-    return () => mediaQueryLists.forEach((mql) => mql.removeEventListener('change', handler));
+    mediaQueryLists.map((mql) => mql.addEventListener('change', handler));
+    return () => {
+      mediaQueryLists.map((mql) => mql.removeEventListener('change', handler));
+    };
   });
 
   return value;
