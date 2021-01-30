@@ -94,6 +94,7 @@
     "@typescript-eslint/typescript-estree": "^4.14.1",
     "babel-loader": "^8.2.2",
     "babel-plugin-emotion": "^10.0.33",
+    "encoding": "^0.1.13",
     "eslint": "^7.18.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^6.15.0",
