@@ -2,7 +2,7 @@ name: Lint Project
 
 on:
   pull_request:
-    branches: [ prod ]
+    branches: [prod]
 
 jobs:
   check-prettier:
@@ -14,7 +14,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '12.x'
-      
+
       - run: npm ci
 
       - run: npm run prettier:check
@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '12.x'
-      
+
       - run: npm ci
 
       - run: npm run lint:js
@@ -42,7 +42,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '12.x'
-      
+
       - run: npm ci
 
       - run: npm run lint:css
@@ -56,7 +56,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '12.x'
-      
+
       - run: npm ci
 
       - run: npm run typescript
