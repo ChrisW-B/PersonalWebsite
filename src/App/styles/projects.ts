@@ -65,7 +65,7 @@ export const ProjectTitle = styled.h4`
 `;
 
 export const ProjectScreenshot = styled.a<{ imgUrl: string }>`
-  background: url("${(props) => props.imgUrl}") center / cover no-repeat scroll;
+  background: url('${(props) => props.imgUrl}') center / cover no-repeat scroll;
   border-radius: 0.4rem;
   display: flex;
   flex-flow: column nowrap;

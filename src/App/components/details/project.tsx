@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Markdown from 'react-markdown';
 
-import { ProjectFragment } from '@schema/fragments/__generated__/project.generated';
+import { ProjectFragment } from '@queries/projects.generated';
 import { Link } from '@styles/details';
 import {
   ProjectDescriptionPara,
