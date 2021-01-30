@@ -2,34 +2,29 @@ const path = require('path');
 
 const merge = require('webpack-merge');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
-
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const commonConfig = require('./webpack.common.js');
 
 const SRC_PATH = path.resolve(__dirname, 'src', 'App');
 const BUILD_PATH = path.join(__dirname, './build');
-const PORT = process.env.PORT || 8000;
 
 const config = merge(commonConfig, {
-  entry: ['react-hot-loader/patch', SRC_PATH],
+  entry: [SRC_PATH],
   mode: 'development',
+  target: 'web',
   devtool: 'cheap-module-source-map',
-  output: { path: BUILD_PATH, filename: '[name].[hash].js', publicPath: '/' },
+  output: { path: BUILD_PATH, filename: '[name].[contenthash].js', publicPath: '/' },
   devServer: {
-    contentBase: path.join(__dirname, './dist'),
+    disableHostCheck: true,
     compress: true,
-    port: PORT,
+    contentBase: path.join(__dirname, 'public'),
     historyApiFallback: true,
     hot: true,
-    open: true,
     overlay: true,
     quiet: true,
-    noInfo: true,
     stats: 'errors-only',
   },
-  resolve: {
-    alias: { 'react-dom': '@hot-loader/react-dom' },
-  },
-  plugins: [new FriendlyErrorsWebpackPlugin()],
+  plugins: [new FriendlyErrorsWebpackPlugin(), new ReactRefreshWebpackPlugin()],
 });
 
 module.exports = config;

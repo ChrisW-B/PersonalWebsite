@@ -1,6 +1,14 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "csstyper", "graphql", "react-hooks", "react", "unicorn"],
+  "plugins": [
+    "@emotion",
+    "@typescript-eslint",
+    "csstyper",
+    "graphql",
+    "react-hooks",
+    "react",
+    "unicorn"
+  ],
   "extends": [
     "airbnb",
     "eslint:recommended",
@@ -28,6 +36,8 @@
     "import/resolver": { "webpack": { "config": "webpack.production.js" } }
   },
   "rules": {
+    "@emotion/jsx-import": "error",
+    "@emotion/pkg-renaming": "error",
     "@typescript-eslint/camelcase": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/interface-name-prefix": "warn",
