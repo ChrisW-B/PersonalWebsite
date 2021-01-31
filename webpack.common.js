@@ -13,6 +13,9 @@ const analyze = process.env.ANALYZE || false;
 
 const config = {
   entry: { main: SRC_PATH },
+  devtool: 'cheap-module-source-map',
+  output: { path: path.resolve(__dirname, 'build') },
+  cache: { type: 'filesystem', buildDependencies: { config: [__filename] } },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: [SRC_PATH, NODE_MODULES_PATH],
@@ -29,19 +32,17 @@ const config = {
       '@styles': path.resolve(SRC_PATH, 'styles'),
     },
   },
-  cache: { type: 'filesystem', buildDependencies: { config: [__filename] } },
   module: {
     rules: [
       {
         test: /\.(j|t)sx?$/i,
         exclude: /(\.test.tsx?$|node_modules)/i,
-        include: SRC_PATH,
-        use: ['babel-loader?cacheDirectory=true'],
+        loader: 'babel-loader',
+        options: { cacheDirectory: true },
       },
-      { test: /\.svg$/, include: [SRC_PATH], loader: 'svg-react-loader' },
+      { test: /\.svg$/, loader: 'svg-react-loader' },
       {
         test: /\.(ico|png|jpg|gif|eot|ttf|woff|woff2)(\?.+)?$/,
-        include: [SRC_PATH],
         loader: 'file-loader',
         options: { name: '[name].[ext]' },
       },

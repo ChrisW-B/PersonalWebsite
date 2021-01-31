@@ -1,10 +1,12 @@
+const path = require('path');
+
 module.exports = (api) => {
   api.cache.using(() => process.env.NODE_ENV);
   return {
     presets: [
       ['@babel/preset-react', { runtime: 'automatic' }],
       ['@babel/preset-env', { useBuiltIns: 'usage', corejs: 'core-js@3', modules: false }],
-      '@babel/preset-typescript',
+      ['@babel/preset-typescript', { allowNamespaces: true }],
     ],
     sourceType: 'unambiguous',
     plugins: [
@@ -13,10 +15,13 @@ module.exports = (api) => {
       '@babel/proposal-optional-chaining',
       '@babel/syntax-dynamic-import',
       '@babel/transform-runtime',
-    ].filter(Boolean),
+    ],
     env: {
       development: {
         plugins: ['react-refresh/babel'],
+      },
+      production: {
+        presets: [['@babel/preset-env', { targets: { node: '12' } }]],
       },
     },
   };

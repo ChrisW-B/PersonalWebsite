@@ -1,15 +1,5 @@
-
-[build]
-  functions = "build"
-
-[dev]
-  targetPort = 8000
-  functionsPort = 9000
-  publish = "dist"
-
 [[redirects]]
   from = "/"
-  to = "/.netlify/functions/server"
+  to = "/.netlify/functions/main"
   status = 200
   force = true
-

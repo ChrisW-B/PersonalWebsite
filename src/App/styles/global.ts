@@ -54,6 +54,18 @@ export default css`
     --dark-mode-rose-50: #ba274280;
     --dark-mode-white: #252729;
     --dark-mode-white-00: #1a0b0000;
+
+    /* set defaults to be overridden */
+    --cyan: var(--dark-mode-cyan);
+    --cyan-70: var(--dark-mode-cyan-70);
+    --dark: var(--dark-mode-dark);
+    --light-grey: var(--dark-mode-light-grey);
+    --light-grey-00: var(--dark-mode-light-grey-00);
+    --link-blue: var(--dark-mode-link-blue);
+    --rose: var(--dark-mode-rose);
+    --rose-50: var(--dark-mode-rose-50);
+    --white: var(--dark-mode-white);
+    --white-00: var(--dark-mode-white-00);
   }
   html,
   body {
