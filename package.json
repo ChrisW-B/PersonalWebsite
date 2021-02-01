@@ -114,7 +114,7 @@
     "import-sort-style-react": "^5.1.0",
     "netlify-lambda": "^2.0.3",
     "prettier": "^2.2.1",
-    "prettier-eslint": "^11.0.0",
+    "prettier-eslint": "^12.0.0",
     "prettier-plugin-import-sort": "0.0.6",
     "prettier-plugin-packagejson": "^2.2.9",
     "raw-loader": "^4.0.2",
