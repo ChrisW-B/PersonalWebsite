@@ -1,5 +1,10 @@
+[build]
+  command = "npm run build"
+  functions = "functions" #  netlify-lambda reads this
+  publish = "dist"
+
 [[redirects]]
   from = "/"
-  to = "/.netlify/functions/main"
+  to = "/.netlify/functions/server"
   status = 200
   force = true

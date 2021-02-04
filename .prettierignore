@@ -2,3 +2,5 @@ dist
 .netlify
 build
 *.generated.*
+functions
+functions-distr

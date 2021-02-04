@@ -21,8 +21,8 @@ module.exports = (api) => {
         plugins: ['react-refresh/babel'],
       },
       production: {
-        presets: [['@babel/preset-env', { targets: { node: '12' } }]],
-      },
+        plugins:[ ['@emotion', {autoLabel: 'never'}]]
+      }
     },
   };
 };

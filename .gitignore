@@ -62,6 +62,7 @@ public/build/
 dist/
 build/
 functions/
+functions-dist/
 
 *.generated.*
 
