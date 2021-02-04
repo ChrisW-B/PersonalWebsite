@@ -21,8 +21,8 @@ module.exports = (api) => {
         plugins: ['react-refresh/babel'],
       },
       production: {
-        plugins:[ ['@emotion', {autoLabel: 'never'}]]
-      }
+        plugins: [['@emotion', { autoLabel: 'never' }]],
+      },
     },
   };
 };

@@ -59,10 +59,11 @@ public/build/
 
 # Local Netlify folder
 .netlify
-dist/
-build/
-functions/
-functions-dist/
+dist
+build
+functions
+functions-dist
 
 *.generated.*
 
+functions/app.js

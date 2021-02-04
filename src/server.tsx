@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
-import {getDataFromTree} from '@apollo/client/react/ssr';
+import { getDataFromTree } from '@apollo/client/react/ssr';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(async (_, response) => {
-  console.log({env: process.env.GRAPHQL_API});
+  console.log({ env: process.env.GRAPHQL_API });
   const client = new ApolloClient({
     ssrMode: true,
     link: createHttpLink({ uri: process.env.GRAPHQL_API, fetch }),
@@ -33,14 +33,14 @@ app.use(async (_, response) => {
     </ApolloProvider>
   );
 
-const content=  await getDataFromTree(App);
+  const content = await getDataFromTree(App);
 
   const [head, tail] = htmlTemplate.split('<div id="root"></div>');
   response.write(`${head}`);
   response.write('<div id="root">');
   const stream = ReactDOMServer.renderToNodeStream(App);
   const state = client.extract();
-  console.log({state})
+  console.log({ state });
   stream.pipe(response, { end: false });
   stream.on('end', () => {
     response.write('</div>');
