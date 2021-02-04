@@ -58,7 +58,7 @@
     "react-dom": "^16.14.0",
     "react-hot-loader": "^4.13.0",
     "react-intersection-observer": "^8.31.0",
-    "react-markdown": "^4.3.1",
+    "react-markdown": "^5.0.3",
     "serverless-http": "^2.7.0",
     "webpack-bundle-analyzer": "^4.4.0",
     "webpack-merge": "^4.2.2"
