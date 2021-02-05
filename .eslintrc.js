@@ -8,5 +8,7 @@ module.exports = {
       'never',
       { pattern: { html: 'always', json: 'always', gql: 'always' } },
     ],
+    'no-unneeded-ternary': 'error',
+    'no-nested-ternary': 'off',
   },
 };

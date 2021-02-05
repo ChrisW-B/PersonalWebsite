@@ -1,9 +1,7 @@
-import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
 import { getDataFromTree } from '@apollo/client/react/ssr';
-import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
 import fetch from 'isomorphic-fetch';
@@ -17,8 +15,8 @@ import Homepage from './App/components/homepage';
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.use(async (_, response) => {
   const client = new ApolloClient({
@@ -51,4 +49,5 @@ app.use(async (_, response) => {
   });
 });
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 exports.handler = serverless(app);

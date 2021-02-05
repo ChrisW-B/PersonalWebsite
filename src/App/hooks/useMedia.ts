@@ -2,7 +2,7 @@ import * as React from 'react';
 
 const isClient = typeof window === 'object';
 
-const useMedia = <T = undefined>(queries: string[], values: T[], defaultValue: T) => {
+const useMedia = <T = undefined>(queries: string[], values: T[], defaultValue: T): T => {
   const mediaQueryLists = React.useMemo(
     () => (isClient ? queries.map((q) => window.matchMedia(q)) : []),
     [queries],

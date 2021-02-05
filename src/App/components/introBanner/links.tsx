@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import { useLinksQuery } from '@queries/links.generated';
 import { Link, LinkList } from '@styles/links';
@@ -8,8 +8,7 @@ interface OwnProps {
   mini: boolean;
 }
 
-const targetBlank = { target: '_blank', rel: 'noopener noreferrer' };
-const TOTAL_LINKS = 5;
+const TOTAL_LINKS = 6;
 
 const Links: React.FC<OwnProps> = ({ mini }) => {
   const { data } = useLinksQuery();
@@ -18,8 +17,9 @@ const Links: React.FC<OwnProps> = ({ mini }) => {
     <LinkList mini={mini}>
       <li>
         <Link
-          href={data?.github?.url || undefined}
-          {...targetBlank}
+          href={data.github?.url ?? undefined}
+          target='_blank'
+          rel='noopener noreferrer'
           title='Github'
           bgColor={gradientAtIndex(0, TOTAL_LINKS)}
         >
@@ -28,8 +28,9 @@ const Links: React.FC<OwnProps> = ({ mini }) => {
       </li>
       <li>
         <Link
-          href={data?.linkedin?.url || undefined}
-          {...targetBlank}
+          href={data.linkedin?.url ?? undefined}
+          target='_blank'
+          rel='noopener noreferrer'
           title='LinkedIn'
           bgColor={gradientAtIndex(1, TOTAL_LINKS)}
         >
@@ -38,8 +39,9 @@ const Links: React.FC<OwnProps> = ({ mini }) => {
       </li>
       <li>
         <Link
-          href={data?.twitter?.url || undefined}
-          {...targetBlank}
+          href={data.twitter?.url ?? undefined}
+          target='_blank'
+          rel='noopener noreferrer'
           title='Twitter'
           bgColor={gradientAtIndex(2, TOTAL_LINKS)}
         >
@@ -48,8 +50,9 @@ const Links: React.FC<OwnProps> = ({ mini }) => {
       </li>
       <li>
         <Link
-          href={data?.photoBlog?.url || undefined}
-          {...targetBlank}
+          href={data.photoBlog?.url ?? undefined}
+          target='_blank'
+          rel='noopener noreferrer'
           title='Photography'
           bgColor={gradientAtIndex(3, TOTAL_LINKS)}
         >
@@ -58,8 +61,9 @@ const Links: React.FC<OwnProps> = ({ mini }) => {
       </li>
       <li>
         <Link
-          href={data?.lastfm?.url || undefined}
-          {...targetBlank}
+          href={data.lastfm?.url ?? undefined}
+          target='_blank'
+          rel='noopener noreferrer'
           title='LastFM'
           bgColor={gradientAtIndex(4, TOTAL_LINKS)}
         >
@@ -69,7 +73,8 @@ const Links: React.FC<OwnProps> = ({ mini }) => {
       <li>
         <Link
           href='mailto:me@chriswbarry.com'
-          {...targetBlank}
+          target='_blank'
+          rel='noopener noreferrer'
           title='Email'
           bgColor={gradientAtIndex(5, TOTAL_LINKS)}
         >

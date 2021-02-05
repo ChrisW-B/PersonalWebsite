@@ -4,7 +4,9 @@ import useLocalStorage from '@hooks/useLocalStorage';
 import usePrefersDarkMode from '@hooks/usePrefersDarkMode';
 import { NightModeStyles } from '@styles/global';
 
-export const NightModeContext = React.createContext<[boolean, () => void] | null>(null);
+export const NightModeContext = React.createContext<
+  [boolean | undefined, (() => void) | undefined]
+>([undefined, undefined]);
 
 export const NightModeProvider: React.FC = ({ children }) => {
   const prefersDarkMode = usePrefersDarkMode();
@@ -13,9 +15,7 @@ export const NightModeProvider: React.FC = ({ children }) => {
 
   const showLightTheme = typeof isLightMode !== 'undefined' ? isLightMode : !prefersDarkMode;
   const toggleMode = () =>
-    setLightMode((isLight) =>
-      isLight === undefined || isLight === null ? prefersDarkMode : !isLight,
-    );
+    setLightMode((isLight) => (isLight === undefined ? prefersDarkMode : !isLight));
 
   React.useEffect(() => {
     setIsClient(typeof window === 'object');
