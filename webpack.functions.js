@@ -1,8 +1,6 @@
 const path = require('path');
-const merge = require('webpack-merge');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const commonConfig = require('./webpack.common.js');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const SRC_PATH = path.resolve(__dirname, 'src', 'server');
 const APP_PATH = path.resolve(__dirname, 'src', 'App');

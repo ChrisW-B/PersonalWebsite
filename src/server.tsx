@@ -9,10 +9,11 @@ import express from 'express';
 import fetch from 'isomorphic-fetch';
 import serverless from 'serverless-http';
 
+// @ts-ignore generated file
+// eslint-disable-next-line import/no-unresolved
 import htmlTemplate from '../dist/index.html';
 import Homepage from './App/components/homepage';
 
-const functionName = 'ssr-server';
 const app = express();
 
 app.use(cors());
@@ -20,7 +21,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(async (_, response) => {
-  console.log({ env: process.env.GRAPHQL_API });
   const client = new ApolloClient({
     ssrMode: true,
     link: createHttpLink({ uri: process.env.GRAPHQL_API, fetch }),
@@ -33,14 +33,13 @@ app.use(async (_, response) => {
     </ApolloProvider>
   );
 
-  const content = await getDataFromTree(App);
+  await getDataFromTree(App);
 
   const [head, tail] = htmlTemplate.split('<div id="root"></div>');
   response.write(`${head}`);
   response.write('<div id="root">');
   const stream = ReactDOMServer.renderToNodeStream(App);
   const state = client.extract();
-  console.log({ state });
   stream.pipe(response, { end: false });
   stream.on('end', () => {
     response.write('</div>');
