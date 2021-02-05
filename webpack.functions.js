@@ -1,58 +1,55 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const SRC_PATH = path.resolve(__dirname, 'src', 'App');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+const SRC_PATH = path.resolve(__dirname, 'src', 'server');
+const APP_PATH = path.resolve(__dirname, 'src', 'App');
 const NODE_MODULES_PATH = path.resolve(__dirname, 'node_modules');
-const HTML_SRC = path.resolve(SRC_PATH, 'index.html');
 
 const config = {
+  entry: { server: SRC_PATH, app: APP_PATH },
+  target: 'node',
   mode: 'production',
-  devtool: 'cheap-module-source-map',
+  optimization: { minimize: false },
+  output: {
+    path: path.resolve(__dirname, 'functions'),
+    filename: '[name].js',
+    chunkFilename: '[name].js',
+    sourceMapFilename: '[name].js.map',
+    publicPath: '/',
+  },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.gql', '.graphql'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: [SRC_PATH, NODE_MODULES_PATH],
     alias: {
-      '@app': path.resolve(SRC_PATH),
-      '@utils': path.resolve(SRC_PATH, 'utils'),
-      '@assets': path.resolve(SRC_PATH, 'assets'),
-      '@hooks': path.resolve(SRC_PATH, 'hooks'),
-      '@contexts': path.resolve(SRC_PATH, 'contexts'),
-      '@components': path.resolve(SRC_PATH, 'components'),
-      '@queries': path.resolve(SRC_PATH, 'schema', 'queries', '__generated__'),
-      '@schema': path.resolve(SRC_PATH, 'schema'),
-      '@styles': path.resolve(SRC_PATH, 'styles'),
+      '@utils': path.resolve(APP_PATH, 'utils'),
+      '@assets': path.resolve(APP_PATH, 'assets'),
+      '@hooks': path.resolve(APP_PATH, 'hooks'),
+      '@contexts': path.resolve(APP_PATH, 'contexts'),
+      '@components': path.resolve(APP_PATH, 'components'),
+      '@queries': path.resolve(APP_PATH, 'schema', 'queries', '__generated__'),
+      '@schema': path.resolve(APP_PATH, 'schema'),
+      '@styles': path.resolve(APP_PATH, 'styles'),
     },
   },
   module: {
     rules: [
       {
-        test: /\.(j|t)sx?$/,
-        exclude: /(\.test.ts$|node_modules)/,
-        include: SRC_PATH,
+        test: /\.(j|t)sx?$/i,
+        exclude: /(\.test.tsx?$|node_modules)/i,
         loader: 'babel-loader',
+        options: { cacheDirectory: true },
       },
-      { test: /\.(graphql|gql)$/, use: 'graphql-tag/loader', exclude: /node_modules/ },
-      {
-        test: /\.html$/,
-        loader: 'raw-loader',
-      },
-      { test: /\.svg$/, include: [SRC_PATH], loader: 'svg-react-loader' },
+      { test: /\.svg$/, loader: 'svg-react-loader' },
       {
         test: /\.(ico|png|jpg|gif|eot|ttf|woff|woff2)(\?.+)?$/,
-        include: [SRC_PATH],
         loader: 'file-loader',
         options: { name: '[name].[ext]' },
       },
+      { test: /\.html$/, loader: 'raw-loader' },
     ],
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: HTML_SRC,
-      inject: 'body',
-      chunksSortMode: 'auto',
-      minify: { removeRedundantAttributes: true },
-    }),
-  ],
+  plugins: [new CleanWebpackPlugin()],
 };
 
 module.exports = config;

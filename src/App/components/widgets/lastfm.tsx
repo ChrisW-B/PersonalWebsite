@@ -9,8 +9,8 @@ const LastFM: React.FC = () => {
   if (loading || !currentlyPlaying) {
     return null;
   }
-  const title = data?.lastfm?.nowplaying?.title || '';
-  const artist = data?.lastfm?.nowplaying?.artist || '';
+  const title = data?.lastfm?.nowplaying?.title ?? '';
+  const artist = data?.lastfm?.nowplaying?.artist ?? '';
   return <p>{`♫ ${title} by ${artist}`}</p>;
 };
 export default LastFM;

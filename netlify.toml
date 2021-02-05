@@ -1,10 +1,6 @@
-
 [build]
-  functions = "build"
-
-[dev]
-  targetPort = 8000
-  functionsPort = 9000
+  command = "npm run build"
+  functions = "functions" #  netlify-lambda reads this
   publish = "dist"
 
 [[redirects]]
@@ -12,4 +8,3 @@
   to = "/.netlify/functions/server"
   status = 200
   force = true
-

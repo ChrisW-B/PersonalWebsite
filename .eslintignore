@@ -1,4 +1,7 @@
 dist
 build
+functions
+functions-dist
 .netlify
 *.generated.*
+.eslintrc.js

@@ -2,20 +2,22 @@ import * as React from 'react';
 
 const isClient = typeof window === 'object';
 
-const useLocalStorage = <T = undefined>(
+type Nullable<T> = T | undefined;
+
+const useLocalStorage = <T extends number | string | boolean | undefined>(
   key: string,
-  initialValue?: T,
-): [T | undefined, React.Dispatch<React.SetStateAction<T>>] => {
-  const [storedValue, setStoredValue] = React.useState<T>(() => {
+  initialValue?: Nullable<T>,
+): [Nullable<T>, React.Dispatch<React.SetStateAction<Nullable<T>>>] => {
+  const [storedValue, setStoredValue] = React.useState<Nullable<T>>(() => {
     try {
-      const item = isClient ? window.localStorage.getItem(key) : (initialValue as any).toString();
-      return item ? JSON.parse(item) : initialValue;
+      const item = isClient ? window.localStorage.getItem(key) : (initialValue ?? '').toString();
+      return item ? (JSON.parse(item) as T) : initialValue;
     } catch {
       return initialValue;
     }
   });
 
-  const setValue = (value: ((arg: T) => T) | T) => {
+  const setValue = (value: ((arg: Nullable<T>) => Nullable<T>) | Nullable<T>) => {
     const valueToStore = value instanceof Function ? value(storedValue) : value;
     setStoredValue(valueToStore);
     try {

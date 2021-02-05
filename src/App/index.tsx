@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 
 import { ApolloProvider } from '@apollo/client';
@@ -20,7 +20,8 @@ const render = (App: React.FC) => {
   );
 };
 
-loadPolyfills().then(() => render(Homepage));
+// eslint-disable-next-line no-void
+void loadPolyfills().then(() => render(Homepage));
 
 if (module.hot && process.env.NODE_ENV !== 'production') {
   module.hot.accept();

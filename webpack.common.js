@@ -12,12 +12,14 @@ const HTML_SRC = path.resolve(SRC_PATH, 'index.html');
 const analyze = process.env.ANALYZE || false;
 
 const config = {
-  entry: {
-    main: SRC_PATH,
-  },
+  entry: { main: SRC_PATH },
+  devtool: 'cheap-module-source-map',
+  output: { path: path.resolve(__dirname, 'build') },
+  cache: { type: 'filesystem', buildDependencies: { config: [__filename] } },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.gql', '.graphql'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: [SRC_PATH, NODE_MODULES_PATH],
+    fallback: { path: require.resolve('path-browserify') },
     alias: {
       '@app': path.resolve(SRC_PATH),
       '@utils': path.resolve(SRC_PATH, 'utils'),
@@ -30,28 +32,17 @@ const config = {
       '@styles': path.resolve(SRC_PATH, 'styles'),
     },
   },
-  optimization: {
-    runtimeChunk: 'single',
-    splitChunks: {
-      chunks: 'all',
-      maxSize: 200 * 1000, // 100kb max size
-      maxInitialRequests: Number.POSITIVE_INFINITY,
-      maxAsyncRequests: Number.POSITIVE_INFINITY,
-    },
-  },
   module: {
     rules: [
       {
-        test: /\.(j|t)sx?$/,
-        exclude: /(\.test.ts$|node_modules)/,
-        include: SRC_PATH,
+        test: /\.(j|t)sx?$/i,
+        exclude: /(\.test.tsx?$|node_modules)/i,
         loader: 'babel-loader',
+        options: { cacheDirectory: true },
       },
-      { test: /\.(graphql|gql)$/, use: 'graphql-tag/loader', exclude: /node_modules/ },
-      { test: /\.svg$/, include: [SRC_PATH], loader: 'svg-react-loader' },
+      { test: /\.svg$/, loader: 'svg-react-loader' },
       {
         test: /\.(ico|png|jpg|gif|eot|ttf|woff|woff2)(\?.+)?$/,
-        include: [SRC_PATH],
         loader: 'file-loader',
         options: { name: '[name].[ext]' },
       },

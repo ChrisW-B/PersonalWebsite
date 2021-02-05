@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
 
 import LastFMWidget from '@components/widgets/lastfm';
@@ -25,13 +25,13 @@ interface OwnProps {
 }
 
 const IntroBanner: React.FC<OwnProps> = ({ mini = false }) => {
-  const [, toggleLightMode] = useContext(NightModeContext) || [];
+  const [, toggleLightMode] = React.useContext(NightModeContext);
   const [scrolledRef, allowScroll] = useInView();
-  const [bgImage, setBgImage] = useState<Photo | null>(null);
+  const [bgImage, setBgImage] = React.useState<Photo | null>(null);
   const { loading, data } = usePhotoBlogQuery();
 
-  useEffect(() => {
-    const photos = data?.photoBlog?.photos || [];
+  React.useEffect(() => {
+    const photos = data?.photoBlog?.photos ?? [];
     if (!loading && photos.length > 0) {
       const randomPhotoNumber = Math.floor(Math.random() * photos.length);
       setBgImage(photos[randomPhotoNumber]);
@@ -43,7 +43,7 @@ const IntroBanner: React.FC<OwnProps> = ({ mini = false }) => {
       <ScrollMonitor ref={scrolledRef} />
 
       <BannerPositioner mini={mini}>
-        <Banner bgImage={bgImage?.photo || ''} mini={mini} fixed={!loading && !allowScroll}>
+        <Banner bgImage={bgImage?.photo ?? ''} mini={mini} fixed={!loading && !allowScroll}>
           <DarkModeButton title='Toggle dark mode' type='button' onClick={toggleLightMode}>
             <span title='bulb icon from noun project'>
               <BulbIcon />

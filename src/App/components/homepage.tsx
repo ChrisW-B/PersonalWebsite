@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
 
-import { Global } from '@emotion/core';
+import { Global } from '@emotion/react';
 
 import Description from '@components/details';
 import IntroBanner from '@components/introBanner';

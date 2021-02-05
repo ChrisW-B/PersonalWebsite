@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Markdown from 'react-markdown';
 
 import { useBioQuery } from '@queries/bio.generated';
@@ -15,7 +15,7 @@ const Details: React.FC = () => {
       <DetailHeader>About</DetailHeader>
       <DetailContent>
         <Markdown
-          source={loading ? '' : data?.bio || ''}
+          source={loading ? '' : data?.bio ?? ''}
           renderers={{
             paragraph: (props) => <Overview {...props} />,
             link: (props) => <Link target='_blank' rel='noopener noreferrer' {...props} />,

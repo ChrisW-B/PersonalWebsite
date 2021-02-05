@@ -22,8 +22,8 @@ const Project: React.FC<OwnProps> = ({ project }) => (
   <ProjectItem>
     <div>
       <ProjectScreenshot
-        imgUrl={project?.screenshots?.[0] || ''}
-        href={project?.website || undefined}
+        imgUrl={project?.screenshots?.[0] ?? ''}
+        href={project?.website ?? undefined}
         target='_blank'
         rel='noopener noreferrer'
       >
@@ -34,18 +34,18 @@ const Project: React.FC<OwnProps> = ({ project }) => (
       <ProjectDetails>
         <TechList>
           {project?.technologies?.map((tech) => (
-            <Tech key={tech || undefined}>{tech}</Tech>
+            <Tech key={tech ?? undefined}>{tech}</Tech>
           ))}
         </TechList>
         <Markdown
-          source={project?.description || ''}
+          source={project?.description ?? ''}
           renderers={{
             paragraph: (props) => <ProjectDescriptionPara {...props} />,
             link: (props) => <Link target='_blank' rel='noopener noreferrer' {...props} />,
           }}
         />
         <p>
-          <Link href={project?.github || undefined} target='_blank' rel='noopener noreferrer'>
+          <Link href={project?.github ?? undefined} target='_blank' rel='noopener noreferrer'>
             Github
           </Link>
         </p>
