@@ -4,7 +4,7 @@ import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@ap
 import { getDataFromTree } from '@apollo/client/react/ssr';
 import cors from 'cors';
 import express from 'express';
-import fetch from 'isomorphic-fetch';
+import fetch from 'node-fetch';
 import serverless from 'serverless-http';
 
 // @ts-ignore generated file
@@ -21,6 +21,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(async (_, response) => {
   const client = new ApolloClient({
     ssrMode: true,
+    // @ts-ignore fetch types mismatch
     link: createHttpLink({ uri: process.env.GRAPHQL_API, fetch }),
     cache: new InMemoryCache(),
   });
@@ -38,6 +39,7 @@ app.use(async (_, response) => {
   response.write('<div id="root">');
   const stream = ReactDOMServer.renderToNodeStream(App);
   const state = client.extract();
+
   stream.pipe(response, { end: false });
   stream.on('end', () => {
     response.write('</div>');

@@ -20,8 +20,8 @@ const render = (App: React.FC) => {
   );
 };
 
-const runPolyfills = loadPolyfills().then(() => render(Homepage));
-await runPolyfills;
+// eslint-disable-next-line no-void
+void loadPolyfills().then(() => render(Homepage));
 
 if (module.hot && process.env.NODE_ENV !== 'production') {
   module.hot.accept();
