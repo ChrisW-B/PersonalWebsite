@@ -1,6 +1,6 @@
 const path = require('path');
 
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const commonConfig = require('./webpack.common.js');
