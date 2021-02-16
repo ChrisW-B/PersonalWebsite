@@ -37,7 +37,7 @@
     "typescript": "tsc --noEmit"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.9",
+    "@apollo/client": "^3.3.11",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
