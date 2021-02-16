@@ -118,7 +118,7 @@
     "import-sort": "^6.0.0",
     "import-sort-parser-typescript": "^6.0.0",
     "import-sort-style-react": "^5.1.0",
-    "netlify-cli": "^3.7.1",
+    "netlify-cli": "^3.8.3",
     "path-browserify": "^1.0.1",
     "prettier": "^2.2.1",
     "prettier-plugin-import-sort": "0.0.6",
