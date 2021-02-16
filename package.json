@@ -87,7 +87,7 @@
     "@netlify/zip-it-and-ship-it": "^2.3.0",
     "@types/aws-lambda": "^8.10.72",
     "@types/body-parser": "^1.19.0",
-    "@types/cors": "^2.8.9",
+    "@types/cors": "^2.8.10",
     "@types/express": "^4.17.11",
     "@types/isomorphic-fetch": "0.0.35",
     "@types/node": "^14.14.27",
