@@ -102,7 +102,7 @@
     "babel-plugin-module-resolver": "^4.1.0",
     "copyfiles": "^2.4.1",
     "encoding": "^0.1.13",
-    "eslint": "^7.19.0",
+    "eslint": "^7.20.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^7.2.0",
     "eslint-import-resolver-webpack": "^0.13.0",
