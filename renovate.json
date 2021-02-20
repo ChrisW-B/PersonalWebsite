@@ -10,7 +10,8 @@
     "group:babelMonorepo",
     "group:graphqlcodegeneratorMonorepo",
     "group:typescript-eslintMonorepo",
-    "group:reactMonorepo"
+    "group:reactMonorepo",
+    "schedule:nonOfficeHours"
   ],
   "separateMinorPatch": true,
   "reviewers": ["chrisw-b"],
@@ -18,7 +19,6 @@
   "prHourlyLimit": 5,
   "assignAutomerge": true,
   "automerge": true,
-  "schedule": ["schedule:nonOfficeHours"],
   "packageRules": [
     {
       "packagePatterns": ["*"],
