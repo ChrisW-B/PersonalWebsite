@@ -6,8 +6,6 @@ module.exports = {
   extends: [
     '../.eslintrc.js',
     'airbnb/hooks',
-    'prettier/@typescript-eslint',
-    'prettier/react',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
   ],
