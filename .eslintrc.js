@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['airbnb', 'eslint:recommended', 'prettier', 'prettier/babel'],
+  extends: ['airbnb', 'eslint:recommended', 'prettier'],
   env: { es2020: true },
   settings: { 'import/resolver': { webpack: { config: 'webpack.development.js' } } },
   rules: {

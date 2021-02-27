@@ -10,16 +10,16 @@
     "group:babelMonorepo",
     "group:graphqlcodegeneratorMonorepo",
     "group:typescript-eslintMonorepo",
-    "group:reactMonorepo",
-    "schedule:nonOfficeHours"
+    "group:reactMonorepo"
   ],
+  "timezone": "America/New_York",
   "masterIssue": true,
   "separateMinorPatch": true,
   "reviewers": ["chrisw-b"],
   "labels": ["dependency"],
-  "prHourlyLimit": 5,
   "assignAutomerge": true,
   "automerge": true,
+  "schedule": ["before 12pm on Monday"],
   "packageRules": [
     {
       "packagePatterns": ["*"],
