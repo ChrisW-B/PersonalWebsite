@@ -4,6 +4,7 @@ query nowPlaying {
       nowplaying
       title
       artist
+      id
     }
   }
 }

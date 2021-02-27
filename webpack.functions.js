@@ -1,6 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
-
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const SRC_PATH = path.resolve(__dirname, 'src', 'server');
 const APP_PATH = path.resolve(__dirname, 'src', 'App');
@@ -17,6 +16,7 @@ const config = {
     chunkFilename: '[name].js',
     sourceMapFilename: '[name].js.map',
     publicPath: '/',
+    clean: true,
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -49,7 +49,6 @@ const config = {
       { test: /\.html$/, loader: 'raw-loader' },
     ],
   },
-  plugins: [new CleanWebpackPlugin()],
 };
 
 module.exports = config;

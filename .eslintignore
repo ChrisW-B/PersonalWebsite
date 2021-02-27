@@ -5,3 +5,4 @@ functions-dist
 .netlify
 *.generated.*
 .eslintrc.js
+public/

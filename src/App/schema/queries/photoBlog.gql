@@ -4,6 +4,7 @@ query photoBlog {
       url
       title
       photo
+      id
     }
   }
 }

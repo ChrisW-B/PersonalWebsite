@@ -1,6 +1,6 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const path = require('path');
 
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { WebpackAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const Dotenv = require('dotenv-webpack');
@@ -14,7 +14,7 @@ const analyze = process.env.ANALYZE || false;
 const config = {
   entry: { main: SRC_PATH },
   devtool: 'cheap-module-source-map',
-  output: { path: path.resolve(__dirname, 'build') },
+  output: { path: path.resolve(__dirname, 'build'), clean: true },
   cache: { type: 'filesystem', buildDependencies: { config: [__filename] } },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -49,7 +49,6 @@ const config = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new Dotenv({
       path: path.resolve(__dirname, './.env'),
       systemvars: true, // load all the predefined 'process.env' variables which will trump anything local per dotenv specs.
