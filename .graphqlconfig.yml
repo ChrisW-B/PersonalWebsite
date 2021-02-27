@@ -1,4 +1,0 @@
-projects:
-  PersonalApi:
-    includes: ['**/*.gql', '**/*.graphql']
-    schemaPath: ./schema.graphql
