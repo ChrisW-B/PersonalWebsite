@@ -8,19 +8,20 @@ import Experience from './experience';
 import Projects from './projects';
 
 const Details: React.FC = () => {
-  const { loading, data } = useBioQuery();
+  const { data } = useBioQuery();
 
   return (
     <DetailWrapper>
       <DetailHeader>About</DetailHeader>
       <DetailContent>
         <Markdown
-          source={loading ? '' : data?.bio ?? ''}
-          renderers={{
-            paragraph: (props) => <Overview {...props} />,
-            link: (props) => <Link target='_blank' rel='noopener noreferrer' {...props} />,
+          components={{
+            p: (props) => <Overview {...props} />,
+            a: (props) => <Link target='_blank' rel='noopener noreferrer' {...props} />,
           }}
-        />
+        >
+          {data?.bio ?? ''}
+        </Markdown>
       </DetailContent>
 
       <DetailHeader>Experience</DetailHeader>
