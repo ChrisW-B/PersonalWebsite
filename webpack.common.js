@@ -19,7 +19,7 @@ const config = {
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: [SRC_PATH, NODE_MODULES_PATH],
-    fallback: { path: require.resolve('path-browserify') },
+    fallback: { path: require.resolve('path-browserify'), punycode: require.resolve('punycode') },
     alias: {
       '@app': path.resolve(SRC_PATH),
       '@utils': path.resolve(SRC_PATH, 'utils'),
