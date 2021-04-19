@@ -38,12 +38,13 @@ const Project: React.FC<OwnProps> = ({ project }) => (
           ))}
         </TechList>
         <Markdown
-          source={project?.description ?? ''}
-          renderers={{
-            paragraph: (props) => <ProjectDescriptionPara {...props} />,
-            link: (props) => <Link target='_blank' rel='noopener noreferrer' {...props} />,
+          components={{
+            p: (props) => <ProjectDescriptionPara {...props} />,
+            a: (props) => <Link target='_blank' rel='noopener noreferrer' {...props} />,
           }}
-        />
+        >
+          {project?.description ?? ''}
+        </Markdown>
         <p>
           <Link href={project?.github ?? undefined} target='_blank' rel='noopener noreferrer'>
             Github
