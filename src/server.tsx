@@ -1,6 +1,8 @@
 import ReactDOMServer from 'react-dom/server';
 
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from '@apollo/client';
+// bug in import I guess
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { getDataFromTree } from '@apollo/client/react/ssr';
 import cors from 'cors';
 import express from 'express';
