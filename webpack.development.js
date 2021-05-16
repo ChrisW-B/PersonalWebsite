@@ -4,7 +4,7 @@ const path = require('path');
 const { merge } = require('webpack-merge');
 const FriendlyErrorsWebpackPlugin = require('@soda/friendly-errors-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
-const commonConfig = require('./webpack.common.js');
+const commonConfig = require('./webpack.common');
 
 const SRC_PATH = path.resolve(__dirname, 'src', 'App');
 const BUILD_PATH = path.join(__dirname, './build');
