@@ -17,7 +17,6 @@ module.exports = {
         '@graphql-eslint/require-id-when-available': 'error',
         '@graphql-eslint/avoid-duplicate-fields': 'error',
         '@graphql-eslint/input-name': ['error', { checkInputType: true }],
-        '@graphql-eslint/prettier': 'error',
         '@graphql-eslint/executable-definitions': 'error',
         '@graphql-eslint/fields-on-correct-type': 'error',
         '@graphql-eslint/fragments-on-composite-type': 'error',
