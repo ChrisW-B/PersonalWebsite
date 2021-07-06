@@ -11,31 +11,18 @@
   "separateMinorPatch": true,
   "reviewers": ["chrisw-b"],
   "labels": ["dependency"],
-  "assignAutomerge": true,
   "automerge": true,
   "schedule": ["before 3pm on Sunday"],
   "packageRules": [
     {
       "matchPackagePatterns": ["*"],
       "matchUpdateTypes": ["minor"],
-      "groupName": "all minor dependencies",
-      "groupSlug": "all-minor-deps",
-      "labels": ["minor"]
+      "groupName": "all minor dependencies"
     },
     {
       "matchPackagePatterns": ["*"],
       "matchUpdateTypes": ["patch"],
-      "groupName": "all patch dependencies",
-      "groupSlug": "all-patch-deps",
-      "labels": ["patch"]
-    },
-    {
-      "matchPackagePatterns": ["^stylelint"],
-      "groupName": "stylelint packages"
-    },
-    {
-      "matchPackagePatterns": ["^webpack"],
-      "groupName": "webpack packages"
+      "groupName": "all patch dependencies"
     }
   ]
 }
